@@ -1,22 +1,52 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include "DyvirFight.h"
+#include "dragonAzul.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "Proyectazo");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Proyectazo");
+	window.setFramerateLimit(60);
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+	
+	dragonAzul juan;
+	DyvirFight david;
 
-        window.clear();
+	sf::SoundBuffer bufferPelea;
+	bufferPelea.loadFromFile("musicaPelea.wav");
+	sf::Sound musicaPelea;
+	musicaPelea.setBuffer(bufferPelea);
+	musicaPelea.setVolume(30);
+	bool pelea = true;
+	int timer = 60 * 10;
 
-        window.display();
-    }
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+		timer--;
+		if (timer < 0) {
+			if (pelea) {
+				musicaPelea.play();
+				pelea = false;
+				timer = 60 * 24;
+			}
+		}
+		
 
-    return 0;
+
+		juan.update();
+		david.update();
+		window.clear();
+		//window.draw(background);
+		window.draw(david);
+		window.draw(juan);
+		window.display();
+	}
+
+	return 0;
 }

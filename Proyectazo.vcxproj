@@ -132,7 +132,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dragonAzul.cpp" />
+    <ClCompile Include="DyvirFight.cpp" />
+    <ClCompile Include="Fight.cpp" />
     <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dragonAzul.h" />
+    <ClInclude Include="DyvirFight.h" />
+    <ClInclude Include="Fight.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

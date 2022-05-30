@@ -18,5 +18,25 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DyvirFight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dragonAzul.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DyvirFight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dragonAzul.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
