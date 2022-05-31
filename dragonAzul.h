@@ -12,11 +12,13 @@ private:
 	sf::Texture _texture;
 	sf::Sprite _sprite;
 	float _frame;
+	int _backGround;
 public:
 	dragonAzul();
 	void update();
 	bool damageTaken(int);
 	int doDamage();
+	int getBack() { return _backGround; }
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

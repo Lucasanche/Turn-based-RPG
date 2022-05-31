@@ -26,3 +26,4 @@ void DyvirFight::update()
 	}
 	_sprite.setTextureRect({ int(_frame) * 260, 0, 260, 230 });
 }
+

@@ -11,6 +11,7 @@ dragonAzul::dragonAzul()
 	_sprite.setScale(2, 2);
 	_sprite.setPosition(750 - _sprite.getGlobalBounds().width, 500 - _sprite.getGlobalBounds().height);
 	_frame = 0;
+	_backGround = 1;
 }
 void dragonAzul::update()
 {

@@ -15,7 +15,6 @@ private:
 	float _frame;
 public:
 	DyvirFight();
-
 	void update();
 	void getDamage(int);
 	int doDamage();
