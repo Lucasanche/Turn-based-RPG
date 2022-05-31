@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-class dragonAzul : public sf::Drawable
+class EnemyFight : public sf::Drawable
 {
 private:
 	int _HP;
@@ -14,7 +14,7 @@ private:
 	float _frame;
 	int _backGround;
 public:
-	dragonAzul();
+	EnemyFight();
 	void update();
 	bool damageTaken(int);
 	int doDamage();

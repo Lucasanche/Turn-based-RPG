@@ -1,11 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "dragonAzul.h"
+#include "EnemyFight.h"
 #include "DyvirFight.h"
 class Fight
 {
 public:
-	void update(sf::Texture&, DyvirFight&, dragonAzul&);
+	void update(sf::Texture&, DyvirFight&, EnemyFight&);
 };
 
 

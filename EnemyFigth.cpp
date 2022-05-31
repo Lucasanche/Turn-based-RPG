@@ -1,6 +1,6 @@
-#include "dragonAzul.h"
+#include "EnemyFight.h"
 
-dragonAzul::dragonAzul()
+EnemyFight::EnemyFight()
 {
 	_HP = 100;
 	_isAlive = true;
@@ -21,7 +21,7 @@ void dragonAzul::update()
 	}
 	_sprite.setTextureRect({ int(_frame) * 96, 0, 92, 92 });
 }
-bool dragonAzul::damageTaken(int damageTaken)
+bool EnemyFight::damageTaken(int damageTaken)
 {
 	_HP -= damageTaken;
 	if (_HP <= 0) {
@@ -30,7 +30,7 @@ bool dragonAzul::damageTaken(int damageTaken)
 	}
 	return _isAlive;
 }
-void dragonAzul::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void EnemyFight::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(_sprite, states);
 }

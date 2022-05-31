@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Fight.h"
 
-void Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enemigo)
+void Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, EnemyFight& enemigo)
 {
 	// cargar textura del background bruh
 	switch (enemigo.getBack())

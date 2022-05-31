@@ -1,12 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "DyvirFight.h"
-#include "dragonAzul.h"
+#include "EnemyFight.h"
 #include "Fight.h"
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Proyectazo");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "THE DRAGON LORD");
 	window.setFramerateLimit(60);
 	sf::Texture backTexture;
 	//backTexture.loadFromFile("fondo.png");
@@ -15,7 +15,7 @@ int main()
 
 	Fight pelea;
 
-	dragonAzul juan;
+	EnemyFight juan;
 	DyvirFight david;
 	bool bpelea = true;
 	sf::SoundBuffer bufferPelea;
