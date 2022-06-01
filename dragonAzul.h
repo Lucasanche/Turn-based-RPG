@@ -13,6 +13,11 @@ private:
 	sf::Texture _texture;
 	sf::Sprite _sprite;
 	float _frame;
+
+	//Barra de vida
+	sf::Texture _textureHP;
+	sf::Sprite _spriteHP;
+
 public:
 	dragonAzul();
 	/// Getters
@@ -20,6 +25,7 @@ public:
 	int getBaseDamage() { return _BaseDamage; }
 	bool getIsAlive() { return _isAlive; }
 	int getBack() { return _backGround; }
+
 
 	void update();
 	bool damageTaken(int);

@@ -12,15 +12,21 @@ dragonAzul::dragonAzul()
 	_sprite.setPosition(750 - _sprite.getGlobalBounds().width, 500 - _sprite.getGlobalBounds().height);
 	_frame = 0;
 	_backGround = 1;
+
+	//Barra de vida
+	_textureHP.loadFromFile("EnemyHP100.png");
+	_spriteHP.setTexture(_textureHP);
+	_spriteHP.setPosition(650, 280);
 }
 void dragonAzul::update()
 {
-	_frame += 0.1;
+	_frame += 0.15;
 	if (_frame >= 4) {
 		_frame = 0;
 	}
 	_sprite.setTextureRect({ int(_frame) * 96, 0, 92, 92 });
 }
+
 bool dragonAzul::damageTaken(int damageTaken)
 {
 	_HP -= damageTaken;
@@ -38,4 +44,5 @@ int dragonAzul::doDamage()
 void dragonAzul::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(_sprite, states);
+	target.draw(_spriteHP, states);
 }

@@ -3,7 +3,7 @@
 #include "DyvirFight.h"
 #include "dragonAzul.h"
 #include "Fight.h"
-
+#include "Cursor.h"
 
 
 int main()
@@ -15,8 +15,8 @@ int main()
     sf::Sprite background;
 
 
-    Fight pelea;
-
+    Fight prototype;
+    Cursor cursorFight;
     dragonAzul juan;
     DyvirFight david;
     bool bpelea = true;
@@ -44,18 +44,42 @@ int main()
             }*/
 
         window.clear();
-        pelea.update(backTexture, david, juan);
-        background.setTexture(backTexture);
 
+        prototype.update(backTexture, david, juan);
+        background.setTexture(backTexture);
+        cursorFight.update();
         //musicaPelea.play();
         //bpelea = false;
 
         window.draw(background);
-        window.draw(david);
-        window.draw(juan);
-        window.display();
+
+        if (david.getIsAlive() || juan.getIsAlive()) {
+
+            window.draw(cursorFight);
+            
+            window.draw(david);
+            window.draw(juan);
+
+            if (juan.getHP() == 0) {
+                david.setIsAlive(false);
+            }
+            if (juan.getHP() == 0) {
+                david.setIsAlive(false);
+            }
+            window.display();
+        }
+        
+            if (!juan.getIsAlive()) {
+                //FUNCION DE GANASTE Y KABOOM
+            }
+            david.setHP(0);
+            if (!david.getIsAlive()) {
+                ///FUNCION DE PERDISTE
+            }
+            window.display();
+        
     }
-	return 0;
+    return 0;
 }
 
 
