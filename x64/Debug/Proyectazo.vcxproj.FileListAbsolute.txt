@@ -1,2 +1,4 @@
 C:\Users\Lucas\Desktop\Proyectos VS\Proyectazo\x64\Debug\Proyectazo.exe
 E:\UTN\2022\Lab II\Proyectazo5\x64\Debug\Proyectazo.exe
+C:\Users\nicolas\source\repos\Parcial-Labo\Actualizacion 31-05\x64\Debug\Proyectazo.exe
+C:\Users\nicolas\OneDrive\Documentos\GitHub\Actualizacion 31-05\x64\Debug\Proyectazo.exe
