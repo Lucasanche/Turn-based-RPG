@@ -29,6 +29,7 @@ public:
 	void Die();
 	int doDamage();
 	void updateSpriteHP();
+	void damageTaken(int);
 
 	///Setters
 	void setHP(int hp) { _HP = hp; }

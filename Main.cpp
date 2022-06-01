@@ -15,10 +15,10 @@ int main()
     sf::Sprite background;
 
 
-    Fight prototype;
+    Fight fight;
     Cursor cursorFight;
-    dragonAzul juan;
-    DyvirFight david;
+    dragonAzul enemy;
+    DyvirFight dyvir;
     bool bpelea = true;
     sf::SoundBuffer bufferPelea;
     bufferPelea.loadFromFile("musicaPelea.wav");
@@ -42,41 +42,31 @@ int main()
                     timer = 60 * 24;
                 }
             }*/
-
-        window.clear();
-
-        prototype.update(backTexture, david, juan);
-        background.setTexture(backTexture);
-        cursorFight.update();
-        //musicaPelea.play();
-        //bpelea = false;
-
-        window.draw(background);
-
-        if (david.getIsAlive() || juan.getIsAlive()) {
-
+        //while (dyvir.getIsAlive()) {
+            window.clear();
+            fight.update(backTexture, dyvir, enemy);
+            if (!dyvir.getIsAlive()) {
+                dyvir.Die();
+            }
+            background.setTexture(backTexture);
+            cursorFight.update();
+            window.draw(background);
             window.draw(cursorFight);
-            
-            window.draw(david);
-            window.draw(juan);
+            window.draw(enemy);
+            window.draw(dyvir);
+            window.display();
 
-            if (juan.getHP() == 0) {
-                david.setIsAlive(false);
-            }
-            if (juan.getHP() == 0) {
-                david.setIsAlive(false);
-            }
-            window.display();
-        }
+        //}
         
-            if (!juan.getIsAlive()) {
-                //FUNCION DE GANASTE Y KABOOM
-            }
-            david.setHP(0);
-            if (!david.getIsAlive()) {
-                ///FUNCION DE PERDISTE
-            }
-            window.display();
+        
+        //if (!juan.getIsAlive()) {
+            //FUNCION DE GANASTE Y KABOOM
+        //}
+        //david.setHP(0);
+        //if (!david.getIsAlive()) {
+            ///FUNCION DE PERDISTE
+        //}
+           
         
     }
     return 0;

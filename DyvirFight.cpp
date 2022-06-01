@@ -3,7 +3,7 @@
 DyvirFight::DyvirFight()
 {   
 	_HP = 100;
-	_isAlive = true;
+	//_isAlive = false;
 	_BaseDamage = 10;
 
     _texture.loadFromFile("dyvir.png");
@@ -12,6 +12,7 @@ DyvirFight::DyvirFight()
 	_sprite.setScale(0.5, 0.5);
 	_sprite.setPosition(85, 500 - _sprite.getGlobalBounds().height);
 	_frame = 0;
+    _isAlive = true;
 
     //Barra de vida
     _textureHP.loadFromFile("DyvirHP100.png");
@@ -25,6 +26,15 @@ void DyvirFight::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(_sprite, states);
     target.draw(_spriteHP, states);
 }
+void DyvirFight::damageTaken(int damageTaken)
+{
+    _HP -= damageTaken;
+    if (_HP <= 0) {
+        _HP = 0;
+        _isAlive = false;
+    }
+    //return _isAlive;
+}
 
 
 
@@ -33,6 +43,7 @@ void DyvirFight::update()
     _frame += 0.075;	if (_frame >= 8) {
         _frame = 0;
     }
+    this->updateSpriteHP();
     _sprite.setTextureRect({ int(_frame) * 260, 0, 260, 230 });
 }
 
@@ -71,15 +82,16 @@ void DyvirFight::Die()
 {
     _frame += 0.15;
     if (_frame >= 10) {
-        return;
+        _frame = 0;
+        //return;
     }
-    _sprite.setTextureRect({ int(_frame) * 170, 0, 170, 110 });
+    
     _texture.loadFromFile("dyvir_dead.png");
     _sprite.setTexture(_texture);
-    _sprite.setTextureRect({ 0,0,102,67 });
-    ///_sprite.setScale(1.5, 1.5);
+    _sprite.setTextureRect({ int(_frame) * 170, 0, 170, 110 });
+    _sprite.setScale(1.5, 1.5);
     _sprite.setPosition(85, 500 - _sprite.getGlobalBounds().height);
-    _frame = 0;;
+    
 }
 
 int DyvirFight::doDamage()
@@ -91,20 +103,23 @@ int DyvirFight::doDamage()
 
 void DyvirFight::updateSpriteHP()  
 {   
-    if (_HP < 100 && _HP > _HP * 0.9) {
+    if (_HP < 100 && _HP > 90) {
         _textureHP.loadFromFile("DyvirHP90.png");
     }
-    if (_HP <= _HP*0.9 && _HP > _HP*0.75) {
+    if (_HP <= 90 && _HP > 75) {
         _textureHP.loadFromFile("DyvirHP75.png");
     }
-    if (_HP <= _HP * 0.75 && _HP > _HP*0.50) {
+    if (_HP <= 75 && _HP > 50) {
         _textureHP.loadFromFile("DyvirHP50.png");
     }
-    if (_HP <= _HP * 0.50 && _HP > _HP*0.25) {
+    if (_HP <= 50 && _HP > 25) {
         _textureHP.loadFromFile("DyvirHP25.png");
     }
-    if (_HP <= _HP * 0.25) {
+    if (_HP <= 25) {
         _textureHP.loadFromFile("DyvirHP10.png");
+    }
+    if (_HP == 0) {
+        _textureHP.loadFromFile("DyvirHP0.png");
     }
     _spriteHP.setTexture(_textureHP);
 }

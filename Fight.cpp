@@ -11,6 +11,10 @@ void Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enem
     default:
         break;
     }
+   
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        dyvir.damageTaken(enemy.getBaseDamage());
+    }
     dyvir.update();
     enemy.update();
 }
