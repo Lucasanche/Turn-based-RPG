@@ -15,9 +15,13 @@ private:
 	float _frame;
 public:
 	DyvirFight();
+	/// Getters
+	int getHP() { return _HP; }
+	int getBaseDamage() { return _BaseDamage; }
+	bool getIsAlive() { return _isAlive; }
 
 	void update();
-	void getDamage(int);
+	void changeStatus();
 	int doDamage();
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

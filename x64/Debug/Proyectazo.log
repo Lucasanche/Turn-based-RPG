@@ -1,5 +1,2 @@
-﻿  dragonAzul.cpp
-C:\Users\Lucas\Desktop\Proyectos VS\Proyectazo\dragonAzul.cpp(17,15): warning C4305: '+=': truncation from 'double' to 'float'
-  Main.cpp
-  Generating Code...
-  Proyectazo.vcxproj -> C:\Users\Lucas\Desktop\Proyectos VS\Proyectazo\x64\Debug\Proyectazo.exe
+﻿  Main.cpp
+  Proyectazo.vcxproj -> E:\UTN\2022\Lab II\Proyectazo5\x64\Debug\Proyectazo.exe

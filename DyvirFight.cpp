@@ -1,7 +1,7 @@
 #include "DyvirFight.h"
 
 DyvirFight::DyvirFight()
-{
+{   
 	_HP = 100;
 	_isAlive = true;
 	_BaseDamage = 10;
@@ -25,4 +25,28 @@ void DyvirFight::update()
 		_frame = 0;
 	}
 	_sprite.setTextureRect({ int(_frame) * 260, 0, 260, 230 });
+}
+
+void DyvirFight::changeStatus() {
+
+    if (_isAlive) {
+        _texture.loadFromFile("dyvir.png");
+        _sprite.setTexture(_texture);
+        _sprite.setTextureRect({ 0,0,260,230 });
+        _sprite.setScale(0.5, 0.5);
+        _sprite.setPosition(50, 500 - _sprite.getGlobalBounds().height);
+        _frame = 0;
+
+    }
+
+    else {
+        _texture.loadFromFile("dyvirDEAD.png");
+        _sprite.setTexture(_texture);
+        _sprite.setTextureRect({ 0,0,260,230 });
+        _sprite.setScale(0.5, 0.5);
+        _sprite.setPosition(50, 500 - _sprite.getGlobalBounds().height);
+        _frame = 0;
+
+    }
+
 }
