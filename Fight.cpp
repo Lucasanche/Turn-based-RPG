@@ -3,11 +3,20 @@
 
 Fight::Fight() {
     _turn = true;
+    _music = true;
+    bufferPelea.loadFromFile("musicaPelea.wav");
+    musicaPelea.setBuffer(bufferPelea);
+    musicaPelea.setVolume(30);
+
 }
 
 void Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enemy)
 {
-    // cargar textura del background bruh
+    if (_music) {
+        musicaPelea.play();
+        _music = false;
+    }
+
     switch (enemy.getBack())
     {
     case 1:
@@ -23,7 +32,7 @@ void Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enem
         }
     }
     else {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
             dyvir.damageTaken(enemy.doDamage());
             _turn = true;
         }
