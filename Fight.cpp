@@ -1,5 +1,9 @@
 #include <SFML/Graphics.hpp>
-#include "Fight.h" 
+#include "Fight.h"
+
+Fight::Fight() {
+    _turn = true;
+}
 
 void Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enemy)
 {
@@ -11,6 +15,26 @@ void Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enem
     default:
         break;
     }
+
+    if (_turn) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+            enemy.damageTaken(dyvir.doDamage());
+            _turn = false;
+        }
+    }
+    else {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+            dyvir.damageTaken(enemy.doDamage());
+            _turn = true;
+        }
+    }
+
+   
+    
+    
+
+
+
     dyvir.update();
     enemy.update();
 }
