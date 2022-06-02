@@ -10,7 +10,6 @@ Menu::Menu(float width, float height)
 	{
 		// handle error
 	}
-
 	menu[0].setFont(font);
 	menu[0].setFillColor(sf::Color::Red);
 	menu[0].setString("Play");
