@@ -137,6 +137,7 @@
     <ClCompile Include="DyvirFight.cpp" />
     <ClCompile Include="Fight.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuFight.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="dragonAzul.h" />
     <ClInclude Include="DyvirFight.h" />
     <ClInclude Include="Fight.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuFight.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

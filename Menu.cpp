@@ -1,11 +1,15 @@
+
 #include "Menu.h"
+#include "iostream"
+
 Menu::Menu(float width, float height)
 {
+	_flag = true;
+	_option = 0;
 	if (!font.loadFromFile("Nostalgia.ttf"))
 	{
 		// handle error
 	}
-
 	menu[0].setFont(font);
 	menu[0].setFillColor(sf::Color::Red);
 	menu[0].setString("Play");
@@ -24,17 +28,19 @@ Menu::Menu(float width, float height)
 	selectedItemIndex = 0;
 }
 
-
-Menu::~Menu()
-{
-}
-
-void Menu::draw(sf::RenderWindow& window)
+//void Menu::draw(sf::RenderWindow& window)
+//{
+//	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
+//	{
+//		window.draw(menu[i]);
+//	}
+//}
+void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
-	{
-		window.draw(menu[i]);
-	}
+		{
+		target.draw(menu[i], states);
+		}
 }
 
 void Menu::MoveUp()
@@ -56,3 +62,44 @@ void Menu::MoveDown()
 		menu[selectedItemIndex].setFillColor(sf::Color::Red);
 	}
 }
+
+
+
+
+void Menu::update()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		if (_flag) {
+			this->MoveUp();
+			_flag = false;
+		}
+		
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		if (_flag) {
+			this->MoveDown();
+			_flag = false;
+		}
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+		switch (this->GetPressedItem())
+		{
+		case 0:
+			std::cout << "Play button has been pressed" << std::endl;
+			_option = 1;
+			break;
+		case 1:
+			std::cout << "Option button has been pressed" << std::endl;
+			_option = 2;
+			break;
+		case 2:
+			std::cout << "Option button has been pressed" << std::endl;
+			_option = 3;
+			break;
+		}
+	}
+	else {
+		_flag = true;
+	}
+}
+
