@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "Fight.h" 
+#include "Fight.h"
 
 void Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enemy)
 {
@@ -11,10 +11,34 @@ void Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enem
     default:
         break;
     }
-   
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        dyvir.damageTaken(enemy.getBaseDamage());
+
+   /* while(wait){
+        if (turno%2==0){
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+            dyvir.damageTaken(enemy.doDamage());
+            wait = false;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        dyvir.damageTaken(enemy.doDamage());
+        if ((turno%2!=0)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            enemy.damageTaken(dyvir.doDamage());
+            wait=false;
+                }
+
+            }
+        }
+        }*/
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+            dyvir.damageTaken(enemy.doDamage());
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            enemy.damageTaken(dyvir.doDamage());
+
+        }
+
+
+
     dyvir.update();
     enemy.update();
 }

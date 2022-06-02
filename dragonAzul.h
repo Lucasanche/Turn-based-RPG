@@ -30,6 +30,7 @@ public:
 	void update();
 	bool damageTaken(int);
 	int doDamage();
+    void updateSpriteHP();
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

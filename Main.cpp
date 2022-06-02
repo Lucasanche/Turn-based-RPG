@@ -13,6 +13,7 @@ int main()
     sf::Texture backTexture;
     //backTexture.loadFromFile("fondo.png");
     sf::Sprite background;
+    int turno=0;
 
 
     Fight fight;
@@ -47,18 +48,20 @@ int main()
             fight.update(backTexture, dyvir, enemy);
             if (!dyvir.getIsAlive()) {
                 dyvir.Die();
+
             }
             background.setTexture(backTexture);
             cursorFight.update();
             window.draw(background);
-            window.draw(cursorFight);
+            //window.draw(cursorFight);
             window.draw(enemy);
             window.draw(dyvir);
             window.display();
 
-        //}
-        
-        
+
+
+
+
         //if (!juan.getIsAlive()) {
             //FUNCION DE GANASTE Y KABOOM
         //}
@@ -66,10 +69,46 @@ int main()
         //if (!david.getIsAlive()) {
             ///FUNCION DE PERDISTE
         //}
-           
-        
+
+
     }
     return 0;
 }
+
+        /*while (dyvir.getIsAlive()) {
+            window.clear();
+            if (turno%2==0){
+                wait=true;
+                while (wait){
+                    attack=fight.menu();
+                    wait=fight.update(backTexture, dyvir, enemy, attack);
+                    window.clear();
+                    background.setTexture(backTexture);
+                    window.draw(background);
+                    window.draw(enemy);
+                    window.draw(dyvir);
+                    window.display();
+
+                }
+            }
+            if (turno%2!=0){
+                fight.update(backTexture, dyvir, enemy);
+                window.clear();
+                background.setTexture(backTexture);
+                window.draw(background);
+                attack=fight.menu();
+                window.draw(enemy);
+                window.draw(dyvir);
+                window.display();
+            }
+            if (!dyvir.getIsAlive()) {
+                dyvir.Die();
+            }
+            if (!enemy.getIsAlive()) {
+                enemy.Die();
+            }
+            turno++;
+
+        }
 
 
