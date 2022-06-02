@@ -1,4 +1,0 @@
-﻿  DyvirFight.cpp
-C:\Users\Lucas\Desktop\Proyectos VS\Proyectazo\DyvirFight.cpp(43,20): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\Lucas\Desktop\Proyectos VS\Proyectazo\DyvirFight.cpp(83,19): warning C4305: '+=': truncation from 'double' to 'float'
-  Proyectazo.vcxproj -> C:\Users\Lucas\Desktop\Proyectos VS\Proyectazo\x64\Debug\Proyectazo.exe
