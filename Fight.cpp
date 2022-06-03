@@ -12,10 +12,10 @@ Fight::Fight() {
 
 void Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enemy)
 {
-    if (_music) {
+    /*if (_music) {
         musicaPelea.play();
         _music = false;
-    }
+    }*/
 
     switch (enemy.getBack())
     {

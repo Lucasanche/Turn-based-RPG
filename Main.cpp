@@ -9,10 +9,11 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 520), "Proyectazo");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Proyectazo");
     window.setFramerateLimit(60);
     sf::Texture backTexture;
     sf::Sprite background;
+    background.setTextureRect({ 0,0,800,600 });
 
     //menu inicio
     Menu menu(window.getSize().x, window.getSize().y);
@@ -39,6 +40,7 @@ int main()
             background.setTexture(backTexture);
             window.draw(background);
             window.draw(menu);
+            window.display();
             break;
 
         case 1:
@@ -53,6 +55,7 @@ int main()
             window.draw(cursorFight);
             window.draw(enemy);
             window.draw(dyvir);
+            window.display();
             break;
 
         case 2:
@@ -61,7 +64,7 @@ int main()
         case 3:
             window.close();
         }
-        window.display();
+        
 
         //if (!juan.getIsAlive()) {
             //FUNCION DE GANASTE Y KABOOM
@@ -70,8 +73,6 @@ int main()
         //if (!david.getIsAlive()) {
             ///FUNCION DE PERDISTE
         //}
-
-
     }
     return 0;
 }
