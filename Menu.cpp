@@ -43,6 +43,11 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		}
 }
 
+Menu::~Menu()
+{
+	std::cout << "se murió";
+}
+
 void Menu::MoveUp()
 {
 	if (selectedItemIndex - 1 >= 0)
@@ -66,14 +71,14 @@ void Menu::MoveDown()
 
 
 
-void Menu::update()
+void Menu::update(sf::Event& event)
 {
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
 			this->MoveUp();
 			_flag = false;
 		}
-		
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 		if (_flag) {
@@ -82,8 +87,7 @@ void Menu::update()
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-		switch (this->GetPressedItem())
-		{
+		switch (this->GetPressedItem()) {
 		case 0:
 			std::cout << "Play button has been pressed" << std::endl;
 			_option = 1;
@@ -93,7 +97,7 @@ void Menu::update()
 			_option = 2;
 			break;
 		case 2:
-			std::cout << "Option button has been pressed" << std::endl;
+			std::cout << "Exit button has been pressed" << std::endl;
 			_option = 3;
 			break;
 		}
@@ -101,5 +105,38 @@ void Menu::update()
 	else {
 		_flag = true;
 	}
+
+	//	switch (event.key.code){
+	//	case sf::Keyboard::Up:
+	//		this->MoveUp();
+	//		break;
+	//	case sf::Keyboard::Down:
+	//		this->MoveDown();
+	//		break;
+	//	case sf::Keyboard::Return:
+	//		std::cout << "presionaste enter";
+	//		switch (this->GetPressedItem()) {
+	//		case 0:
+	//			std::cout << "Play button has been pressed" << std::endl;
+	//			_option = 1;
+	//			break;
+	//		case 1:
+	//			std::cout << "Option button has been pressed" << std::endl;
+	//			_option = 2;
+	//			break;
+	//		case 2:
+	//			std::cout << "Exit button has been pressed" << std::endl;
+	//			_option = 3;
+	//			break;
+	//		}
+	//		break;
+	//		
+	//	}
+	//	std::cout << this->GetPressedItem();
+	//	_flag = false;
+	//}
+	//if (event.type == sf::Event::KeyReleased) {
+	//	_flag = true;
+	//}
 }
 
