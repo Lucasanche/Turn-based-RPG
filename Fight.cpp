@@ -38,9 +38,9 @@ void Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enem
         }
     }
 
-   
-    
-    
+
+
+
 
 
 

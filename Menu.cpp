@@ -130,7 +130,7 @@ void Menu::update(sf::Event& event)
 	//			break;
 	//		}
 	//		break;
-	//		
+	//
 	//	}
 	//	std::cout << this->GetPressedItem();
 	//	_flag = false;
@@ -139,4 +139,5 @@ void Menu::update(sf::Event& event)
 	//	_flag = true;
 	//}
 }
+
 

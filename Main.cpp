@@ -6,6 +6,7 @@
 #include "Cursor.h"
 #include "Menu.h"
 #include "iostream"
+#include "MenuFight.h"
 
 
 int main()
@@ -20,55 +21,63 @@ int main()
     Menu menu(window.getSize().x, window.getSize().y);
 
     Fight fight;
-    Cursor cursorFight;
+    //Cursor cursorFight;
     dragonAzul enemy;
     DyvirFight dyvir;
     sf::Event event;
-    int option = 0;
+    int option = 0, dead=60;
+    MenuFight m(0,window.getSize().y);
 
     while (window.isOpen())
     {
-        window.clear();
+        //window.clear();
         while (window.pollEvent(event))
         {
-            //window.clear();
+            window.clear();
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
+            window.clear();
             switch (option) {
-            case 0:
-                menu.update(event);
-                backTexture.loadFromFile("menuInicio.jpg");
-                background.setTexture(backTexture);
-                window.draw(background);
-                window.draw(menu);
-                option = menu.getOption();
-                
+                case 0:
 
-                
-                break;
+                    menu.update(event);
+                    backTexture.loadFromFile("menuInicio.jpg");
+                    background.setTexture(backTexture);
+                    window.draw(background);
+                    window.draw(menu);
+                    option = menu.getOption();
 
-            case 1:
-                fight.update(backTexture, dyvir, enemy);
-                if (!dyvir.getIsAlive()) {
-                    dyvir.Die();
 
-                }
-                background.setTexture(backTexture);
-                cursorFight.update();
-                window.draw(background);
-                window.draw(cursorFight);
-                window.draw(enemy);
-                window.draw(dyvir);
-                window.display();
-                break;
 
-            case 2:
-                break;
+                    break;
 
-            case 3:
-                window.close();
+                case 1:
+
+                    fight.update(backTexture, dyvir, enemy);
+                    if (!dyvir.getIsAlive()) {
+                            dyvir.Die();
+                    }
+                    background.setTexture(backTexture);
+                    //ursorFight.update();
+                    m.update(event);
+                    window.draw(background);
+                    //window.draw(cursorFight);
+                    window.draw(enemy);
+                    window.draw(dyvir);
+                    window.draw(m);
+
+
+                    break;
+
+                case 2:
+
+                    break;
+
+                case 3:
+                    window.close();
+                    break;
             }
 
 

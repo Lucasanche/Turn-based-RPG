@@ -13,5 +13,6 @@ public:
 	void setPosition(sf::Vector2f);
 	void update();
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	sf::Sprite getSprite(){return _sprite;}
 };
 
