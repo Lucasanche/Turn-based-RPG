@@ -12,14 +12,17 @@ dragonAzul::dragonAzul()
 	_sprite.setPosition(750 - _sprite.getGlobalBounds().width, 500 - _sprite.getGlobalBounds().height);
 	_frame = 0;
 	_backGround = 1;
-
+	_statusHP = 1;
 	//Barra de vida
-	_textureHP.loadFromFile("HP100.png");
+	_textureHP.loadFromFile("HP-bar.png");
 	_spriteHP.setTexture(_textureHP);
-	_spriteHP.setPosition(650, 280);
-	_spriteHP.setOrigin(_spriteHP.getGlobalBounds().width/2,0);
+	_spriteHP.setTextureRect({ 0,0,150,15 });
+	_spriteHP.setPosition(750, 460 - _sprite.getGlobalBounds().height);
+	_spriteHPFill.setTexture(_textureHP);
+	_spriteHPFill.setTextureRect({ 0,15 * _statusHP,150,15 });
+	_spriteHPFill.setPosition(_spriteHP.getPosition());
 	_spriteHP.setScale(-1,1);
-
+	_spriteHPFill.setScale(-1, 1);
 }
 void dragonAzul::update()
 {
@@ -50,29 +53,29 @@ void dragonAzul::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(_sprite, states);
 	target.draw(_spriteHP, states);
+	target.draw(_spriteHPFill, states);
 }
 
 void dragonAzul::updateSpriteHP()
 {
-    if (_HP < 100 && _HP > 90) {
-        _textureHP.loadFromFile("HP90.png");
-    }
-    if (_HP <= 90 && _HP > 75) {
-        _textureHP.loadFromFile("HP75.png");
-    }
-    if (_HP <= 75 && _HP > 50) {
-        _textureHP.loadFromFile("HP50.png");
-    }
-    if (_HP <= 50 && _HP > 25) {
-        _textureHP.loadFromFile("HP25.png");
-    }
-    if (_HP <= 25) {
-        _textureHP.loadFromFile("HP10.png");
-    }
-    if (_HP == 0) {
-        _textureHP.loadFromFile("HP0.png");
-    }
-    _spriteHP.setTexture(_textureHP);
+	if (_HP < 80 && _HP > 60) {
+		_statusHP = 2;
+	}
+	if (_HP <= 60 && _HP > 40) {
+		_statusHP = 3;
+	}
+	if (_HP <= 40 && _HP > 20) {
+		_statusHP = 4;
+	}
+	if (_HP <= 20 && _HP > 0) {
+		_statusHP = 5;
+	}
+	if (_HP == 0) {
+		_statusHP = 1;
+	}
+	_lenghtHP = _HP * 1.5;
+
+	_spriteHPFill.setTextureRect({ 0,15 * _statusHP,_lenghtHP,15 });
 
 }
 
