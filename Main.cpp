@@ -12,8 +12,8 @@
 int main()
 {
     setlocale(LC_CTYPE, "Spanish");
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Proyectazo");
-    window.setFramerateLimit(200);
+    sf::RenderWindow window(sf::VideoMode(800, 700), "Proyectazo");
+    window.setFramerateLimit(60);
     sf::Texture backTexture;
     sf::Sprite background;
     background.setTextureRect({ 0,0,800,600 });

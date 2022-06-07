@@ -5,22 +5,22 @@ class dragonAzul : public sf::Drawable
 private:
 	int _HP;
 	int _BaseDamage;
-	int _statusHP;
-	int _lenghtHP;
 	/*int BaseDefense;
 	int ElectricDamage;
 	int FireDamage;*/
-	bool _isAlive;
-	int _backGround;
 	float _frame;
 	sf::Texture _texture;
 	sf::Sprite _sprite;
-	
+	bool _isAlive;
+	bool _flagDie;
+	int _backGround;
 
 	//Barra de vida
 	sf::Texture _textureHP;
 	sf::Sprite _spriteHP;
 	sf::Sprite _spriteHPFill;
+	int _statusHP;
+	int _lenghtHP;
 
 public:
 	dragonAzul();

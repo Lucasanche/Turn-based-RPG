@@ -5,23 +5,26 @@ DyvirFight::DyvirFight()
 	_HP = 100;
 	//_isAlive = false;
 	_BaseDamage = 10;
-    _flagDie = true;
     _texture.loadFromFile("dyvir.png");
 	_sprite.setTexture(_texture);
 	_sprite.setTextureRect({ 0,0,260,230 });
 	_sprite.setScale(0.5, 0.5);
 	_sprite.setPosition(85, 500 - _sprite.getGlobalBounds().height);
-	_frame = 0;
     _isAlive = true;
-    _statusHP = 1;
     //Barra de vida
     _textureHP.loadFromFile("HP-bar.png");
     _spriteHP.setTexture(_textureHP);
     _spriteHP.setTextureRect({ 0,0,150,15});
-    _spriteHP.setPosition(20, 460 - _sprite.getGlobalBounds().height);
+    _spriteHP.setPosition(_sprite.getPosition().x, _sprite.getPosition().y - 30);
     _spriteHPFill.setTexture(_textureHP);
     _spriteHPFill.setTextureRect({ 0,15*_statusHP,150,15 });
     _spriteHPFill.setPosition(_spriteHP.getPosition());
+
+    ///Variables útiles para los sprites
+    _flagDie = true; // Usar para reproducir la animación de muerte
+    _frame = 0;
+    _statusHP = 1; // Setea el color de la barra de vida
+    _lenghtHP = _spriteHP.getGlobalBounds().width; // Setea el largo del relleno del HP
 
 }
 
