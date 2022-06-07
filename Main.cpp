@@ -11,8 +11,9 @@
 
 int main()
 {
+    setlocale(LC_CTYPE, "Spanish");
     sf::RenderWindow window(sf::VideoMode(800, 600), "Proyectazo");
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(200);
     sf::Texture backTexture;
     sf::Sprite background;
     background.setTextureRect({ 0,0,800,600 });
@@ -26,11 +27,11 @@ int main()
     DyvirFight dyvir;
     sf::Event event;
     int option = 0, dead=60;
+    int optionFight = 0;
     MenuFight m(0,window.getSize().y);
 
     while (window.isOpen())
     {
-        //window.clear();
         while (window.pollEvent(event))
         {
             window.clear();
@@ -41,29 +42,28 @@ int main()
             window.clear();
             switch (option) {
                 case 0:
-
-                    menu.update(event);
+                    menu.update();
                     backTexture.loadFromFile("menuInicio.jpg");
                     background.setTexture(backTexture);
                     window.draw(background);
                     window.draw(menu);
                     option = menu.getOption();
+                    /*if (option != 0) {
+                        menu.~Menu();
+                    }*/
 
 
 
                     break;
 
                 case 1:
-
-                    fight.update(backTexture, dyvir, enemy);
+                    
+                    m.setOption(fight.update(backTexture, dyvir, enemy, m.update()));
                     if (!dyvir.getIsAlive()) {
                             dyvir.Die();
                     }
                     background.setTexture(backTexture);
-                    //ursorFight.update();
-                    m.update(event);
                     window.draw(background);
-                    //window.draw(cursorFight);
                     window.draw(enemy);
                     window.draw(dyvir);
                     window.draw(m);

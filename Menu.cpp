@@ -1,6 +1,5 @@
 
 #include "Menu.h"
-#include "iostream"
 
 Menu::Menu(float width, float height)
 {
@@ -71,7 +70,7 @@ void Menu::MoveDown()
 
 
 
-void Menu::update(sf::Event& event)
+void Menu::update()
 {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
@@ -89,18 +88,19 @@ void Menu::update(sf::Event& event)
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
 		switch (this->GetPressedItem()) {
 		case 0:
-			std::cout << "Play button has been pressed" << std::endl;
+			std::cout << "Se presionó el botón PLAY" << std::endl;
 			_option = 1;
 			break;
 		case 1:
-			std::cout << "Option button has been pressed" << std::endl;
+			std::cout << "Se presionó el botón OPTIONS" << std::endl;
 			_option = 2;
 			break;
 		case 2:
-			std::cout << "Exit button has been pressed" << std::endl;
+			std::cout << "Se presionó el botón EXIT" << std::endl;
 			_option = 3;
 			break;
 		}
+		_flag = false;
 	}
 	else {
 		_flag = true;

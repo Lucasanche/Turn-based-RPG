@@ -4,7 +4,7 @@ dragonAzul::dragonAzul()
 {
 	_HP = 100;
 	_isAlive = true;
-	_BaseDamage = 10;
+	_BaseDamage = 5;
 	_texture.loadFromFile("dragonAzul.png");
 	_sprite.setTexture(_texture);
 	_sprite.setTextureRect({ 0,0,92,92 });
@@ -70,7 +70,7 @@ void dragonAzul::updateSpriteHP()
         _textureHP.loadFromFile("HP10.png");
     }
     if (_HP == 0) {
-        //_textureHP.loadFromFile("DyvirHP0.png");
+        _textureHP.loadFromFile("HP0.png");
     }
     _spriteHP.setTexture(_textureHP);
 

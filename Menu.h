@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "iostream"
 
 #define MAX_NUMBER_OF_ITEMS 3
 
@@ -16,7 +17,7 @@ public:
 	//void draw(sf::RenderWindow& window);
 	void MoveUp();
 	void MoveDown();
-	void update(sf::Event& event);
+	void update();
 	int GetPressedItem() { return selectedItemIndex; }
 	int getOption() { return _option; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

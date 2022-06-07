@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include "DyvirFight.h"
 #include "dragonAzul.h"
+#include <iostream>
 
 class Fight
 {
@@ -13,7 +14,8 @@ private:
     sf::Sound musicaPelea;
 public:
     Fight();
-    void update(sf::Texture&, DyvirFight&, dragonAzul&);
+    int update(sf::Texture&, DyvirFight&, dragonAzul&, int option);
+    //void setOption(int option);
 };
 
 

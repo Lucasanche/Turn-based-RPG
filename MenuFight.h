@@ -2,27 +2,27 @@
 #include <SFML/Graphics.hpp>
 #include "Cursor.h"
 #include <iostream>
+#include "Fight.h"
 
 #define MAX_NUMBER_OF_ITEMS 3
 
 class MenuFight : public sf::Drawable
 {
 private:
-	int _option;
 	bool _flag;
+	int _option;
 	int selectedItemIndex;
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_ITEMS];
-	Cursor cursed;
+	Cursor cursor;
 
 public:
 	MenuFight(float width, float height);
-	//void draw(sf::RenderWindow& window);
 	void MoveUp();
 	void MoveDown();
-	void update(sf::Event& event);
+	void setOption(int option);
+	int update();
 	int GetPressedItem() { return selectedItemIndex; }
-	int getOption() { return _option; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	~MenuFight();
 };
