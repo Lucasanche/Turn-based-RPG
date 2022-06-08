@@ -41,19 +41,6 @@ int Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enemy
        
     }
     
-
-    if (_turn) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-            
-            _turn = false;
-        }
-    }
-    else {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            dyvir.damageTaken(enemy.doDamage());
-            _turn = true;
-        }
-    }
     dyvir.update();
     enemy.update();
     return option;

@@ -16,7 +16,7 @@ int main()
     window.setFramerateLimit(60);
     sf::Texture backTexture;
     sf::Sprite background;
-    background.setTextureRect({ 0,0,800,600 });
+    //background.setTextureRect({ 0,0,800,700 });
 
     //menu inicio
     Menu menu(window.getSize().x, window.getSize().y);
@@ -43,14 +43,14 @@ int main()
             switch (option) {
                 case 0:
                     menu.update();
-                    backTexture.loadFromFile("menuInicio.jpg");
+                    backTexture.loadFromFile("menuInicio2.jpg");
                     background.setTexture(backTexture);
                     window.draw(background);
                     window.draw(menu);
                     option = menu.getOption();
-                    /*if (option != 0) {
+                    if (option != 0) {
                         menu.~Menu();
-                    }*/
+                    }
 
 
 

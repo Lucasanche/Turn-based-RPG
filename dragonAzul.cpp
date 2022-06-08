@@ -24,7 +24,6 @@ dragonAzul::dragonAzul()
     _spriteHP.setTextureRect({ 0,0,150,15 });
     _spriteHP.setPosition(_sprite.getPosition().x + 30, _sprite.getPosition().y - 30);
     _spriteHP.setOrigin(_spriteHP.getGlobalBounds().width / 2, 0);
-    _spriteHP.setScale(-1, 1);
 
     //Relleno HP
     _spriteHPFill.setTexture(_textureHP);
