@@ -43,7 +43,7 @@ int main()
             switch (option) {
                 case 0:
                     menu.update();
-                    backTexture.loadFromFile("menuInicio2.jpg");
+                    backTexture.loadFromFile("menuInicio.jpg");
                     background.setTexture(backTexture);
                     window.draw(background);
                     window.draw(menu);
