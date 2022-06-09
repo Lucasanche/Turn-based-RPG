@@ -41,7 +41,6 @@ void DyvirFight::damageTaken(int damageTaken)
         _HP = 0;
         _isAlive = false;
     }
-    //return _isAlive;
 }
 
 
@@ -57,35 +56,6 @@ void DyvirFight::update()
 }
 
 
-///CREO QUE TENDRIAMOS QUE USAR LA FUNCION DIE Y CAMBIAR LOS ESTADOS CON EL SETISALIVE.
-//bool DyvirFight::changeStatus() {
-//
-//    if (_isAlive) {
-//        _texture.loadFromFile("dyvir.png");
-//        _sprite.setTexture(_texture);
-//        _sprite.setTextureRect({ 0,0,170,110 });
-//        _sprite.setScale(0.5, 0.5);
-//        _sprite.setPosition(50, 500 - _sprite.getGlobalBounds().height);
-//        _frame = 0;
-//
-//        _isAlive = false;
-//        return _isAlive;
-//
-//    }
-//
-//    else {
-//        _texture.loadFromFile("dyvir_dead.png");
-//        _sprite.setTexture(_texture);
-//        _sprite.setTextureRect({ 0,0,102,67 });
-//        ///_sprite.setScale(1.5, 1.5);
-//        _sprite.setPosition(85, 500 - _sprite.getGlobalBounds().height);
-//        _frame = 0;;
-//
-//        _isAlive = true;
-//        return _isAlive;
-//    }
-//
-//}
 
 void DyvirFight::Die()
 {

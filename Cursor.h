@@ -7,7 +7,6 @@ private:
 	sf::Texture _texture;
 	sf::Sprite _sprite;
 	sf::Vector2f _position;
-	bool _key;
 public:
 	Cursor();
 	void setPosition(sf::Vector2f);
