@@ -47,9 +47,7 @@ int main()
                 window.draw(background);
                 window.draw(menu);
                 option = menu.getOption();
-                if (option != 0) {
-                    menu.~Menu();
-                }
+                
 
 
 
@@ -60,6 +58,12 @@ int main()
                 m.setOption(fight.update(backTexture, dyvir, enemy, m.update()));
                 if (!dyvir.getIsAlive()) {
                     dyvir.Die();
+                }
+           
+                if (!enemy.getIsAlive())
+                {
+                    enemy.Die();
+                
                 }
                 background.setTexture(backTexture);
                 window.draw(background);

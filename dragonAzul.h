@@ -29,7 +29,7 @@ public:
 	int getBaseDamage() { return _BaseDamage; }
 	bool getIsAlive() { return _isAlive; }
 	int getBack() { return _backGround; }
-
+	void Die();
 
 	void update();
 	bool damageTaken(int);

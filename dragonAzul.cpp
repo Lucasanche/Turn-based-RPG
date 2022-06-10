@@ -92,4 +92,21 @@ void dragonAzul::updateSpriteHP()
 
     _spriteHPFill.setTextureRect({ 0,15 * _statusHP,_lenghtHP,15 });
 }
+void dragonAzul::Die()
+{
+    if (_flagDie) {
+        _frame = 0;
+        _flagDie = false;
+    }
+    _frame += 0.15;
+    if (_frame >= 3) {
+        _frame = 3;
+    }
 
+    _texture.loadFromFile("1.png");
+    _sprite.setTexture(_texture);
+    _sprite.setTextureRect({ int(_frame) * 110, 0, 110, 170 });
+    _sprite.setScale(1.4, 1.4);
+    _sprite.setPosition(500, 560 - _sprite.getGlobalBounds().height);
+
+}
