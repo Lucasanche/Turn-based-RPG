@@ -14,7 +14,6 @@ private:
 	sf::Text menu[MAX_NUMBER_OF_ITEMS];
 public:
 	Menu(float width, float height);
-	//void draw(sf::RenderWindow& window);
 	void MoveUp();
 	void MoveDown();
 	void update();

@@ -47,7 +47,7 @@ void DyvirFight::damageTaken(int damageTaken)
 
 void DyvirFight::update()
 {
-    _frame += 0.075;
+    _frame += 0.15;
     if (_frame >= 8 && _isAlive) {
         _frame = 0;
     }
@@ -55,23 +55,21 @@ void DyvirFight::update()
     _sprite.setTextureRect({ int(_frame) * 260, 0, 260, 230 });
 }
 
-
-
 void DyvirFight::Die()
 {
     if (_flagDie) {
         _frame = 0;
         _flagDie = false;
+        _texture.loadFromFile("Dyvir_dead.png");
+        _sprite.setTexture(_texture);
+        _sprite.setScale(1, 1);
     }
     _frame += 0.15;
     if (_frame >= 9) {
         _frame = 9;
     }
-
-    _texture.loadFromFile("Dyvir_dead.png");
-    _sprite.setTexture(_texture);
     _sprite.setTextureRect({ int(_frame) * 170, 0, 170, 110 });
-    _sprite.setScale(1, 1);
+
     _sprite.setPosition(85, 500 - _sprite.getGlobalBounds().height);
 
 }

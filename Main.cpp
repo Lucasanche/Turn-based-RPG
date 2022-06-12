@@ -19,7 +19,7 @@ int main()
     background.setTextureRect({ 0,0,800,700 });
 
     //menu inicio
-    Menu menu(window.getSize().x, window.getSize().y);
+    Menu *menu = new Menu(window.getSize().x, window.getSize().y);
 
     Fight fight;
     dragonAzul enemy;
@@ -40,48 +40,46 @@ int main()
         }
             window.clear();
             switch (option) {
-            case 0:
-                menu.update();
-                backTexture.loadFromFile("menuInicio.jpg");
-                background.setTexture(backTexture);
-                window.draw(background);
-                window.draw(menu);
-                option = menu.getOption();
-                
+                case 0:
+                    menu->update();
+                    backTexture.loadFromFile("menuInicio.jpg");
+                    background.setTexture(backTexture);
+                    window.draw(background);
+                    window.draw(*menu);
+                    option = menu->getOption();
+                    if (option != 0) {
+                        delete menu;
+                        menu = nullptr;
+                    }
+                    break;
+
+                case 1:
+                    
+                    m.setOption(fight.update(backTexture, dyvir, enemy, m.update()));
+                    if (!dyvir.getIsAlive()) {
+                            dyvir.Die();
+                    }
+                    if (!enemy.getIsAlive()) {
+                        enemy.Die();
+                    }
+                    background.setTexture(backTexture);
+                    window.draw(background);
+                    window.draw(enemy);
+                    window.draw(dyvir);
+                    window.draw(m);
 
 
+                    break;
 
-                break;
+                case 2:
 
-            case 1:
+                    break;
 
-                m.setOption(fight.update(backTexture, dyvir, enemy, m.update()));
-                if (!dyvir.getIsAlive()) {
-                    dyvir.Die();
-                }
-           
-                if (!enemy.getIsAlive())
-                {
-                    enemy.Die();
-                
-                }
-                background.setTexture(backTexture);
-                window.draw(background);
-                window.draw(enemy);
-                window.draw(dyvir);
-                window.draw(m);
-
-
-                break;
-
-            case 2:
-
-                break;
-
-            case 3:
-                window.close();
-                break;
+                case 3:
+                    window.close();
+                    break;
             }
+
             //if (!juan.getIsAlive()) {
                 //FUNCION DE GANASTE Y KABOOM
             //}
@@ -89,7 +87,6 @@ int main()
             //if (!david.getIsAlive()) {
                 ///FUNCION DE PERDISTE
             //}
-            //window.display();
             window.display();
     }
     return 0;

@@ -7,7 +7,7 @@ Menu::Menu(float width, float height)
 	_option = 0;
 	if (!font.loadFromFile("Nostalgia.ttf"))
 	{
-		// handle error
+		std::cout << "No se pudo cargar archivo Nostalgia.ttf" << std::endl;
 	}
 	menu[0].setFont(font);
 	menu[0].setFillColor(sf::Color::Red);
@@ -27,13 +27,6 @@ Menu::Menu(float width, float height)
 	selectedItemIndex = 0;
 }
 
-//void Menu::draw(sf::RenderWindow& window)
-//{
-//	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
-//	{
-//		window.draw(menu[i]);
-//	}
-//}
 void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
@@ -44,7 +37,7 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 Menu::~Menu()
 {
-	std::cout << "se murió";
+	std::cout << "se murió" << std::endl << std::endl;
 }
 
 void Menu::MoveUp()

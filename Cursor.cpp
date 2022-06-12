@@ -4,7 +4,9 @@ Cursor::Cursor()
 {
     _texture.loadFromFile("cursor.png");
     _sprite.setTexture(_texture);
+    //_sprite.setOrigin(0, 500);
     _sprite.setPosition(0,500);
+    //_sprite.setOrigin(_sprite.getGlobalBounds().width/, _sprite.getGlobalBounds().height);
 
 
 }
@@ -17,12 +19,19 @@ void Cursor::setPosition(sf::Vector2f pos)
 void Cursor::update()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+       // if (_key) {
             _sprite.move(0, 50);
+           // _key = false;
+        //}
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+      //  if (_key) {
             _sprite.move(0, -50);
+            //_key = false;
+       // }
     }
+    _key = true;
 
     if(_sprite.getGlobalBounds().top<500){
             _sprite.setPosition(0, 500);

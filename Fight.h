@@ -15,7 +15,6 @@ private:
 public:
     Fight();
     int update(sf::Texture&, DyvirFight&, dragonAzul&, int option);
-    //void setOption(int option);
 };
 
 

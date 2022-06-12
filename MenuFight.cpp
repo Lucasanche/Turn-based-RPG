@@ -9,7 +9,7 @@ MenuFight::MenuFight(float width, float height)
 	_option = 0;
 	if (!font.loadFromFile("Nostalgia.ttf"))
 	{
-		std::cout<<"No se cargó el archivo Nostalgia.ttf";
+		std::cout<<"a casa por feo";
 	}
 
     menu[0].setCharacterSize(25);
@@ -50,7 +50,7 @@ void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 MenuFight::~MenuFight()
 {
-	std::cout << "se murió";
+	std::cout << "se murió" << std::endl << std::endl;
 }
 
 void MenuFight::MoveUp()
@@ -96,15 +96,15 @@ int MenuFight::update()
 		if (_flag) {
 			switch (this->GetPressedItem()) {
 			case 0:
-				std::cout << "Se presionó el botón ATACK" << std::endl;
+				std::cout << "Se presionó el botón ATACK" << std::endl << std::endl;
 				_option = 1;
 				break;
 			case 1:
-				std::cout << "Se presionó el botón SPECIAL" << std::endl;
+				std::cout << "Se presionó el botón SPECIAL" << std::endl << std::endl;
 				_option = 2;
 				break;
 			case 2:
-				std::cout << "Se presionó el botón ESCAPE" << std::endl;
+				std::cout << "Se presionó el botón ESCAPE" << std::endl << std::endl;
 				_option = 3;
 				break;
 			}

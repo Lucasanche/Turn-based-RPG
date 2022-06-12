@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="dragonAzul.cpp" />
     <ClCompile Include="DyvirFight.cpp" />
     <ClCompile Include="Fight.cpp" />
@@ -142,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cursor.h" />
+    <ClInclude Include="Dragon.h" />
     <ClInclude Include="dragonAzul.h" />
     <ClInclude Include="DyvirFight.h" />
     <ClInclude Include="Fight.h" />

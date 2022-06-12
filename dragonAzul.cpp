@@ -3,9 +3,10 @@
 dragonAzul::dragonAzul()
 {
     ///Stats
-    _HP = 100;
+    _HP = 10;
     _BaseDamage = 10;
     _isAlive = true;
+    _frameY = 0;
 
 
     ///Sprite
@@ -42,12 +43,12 @@ dragonAzul::dragonAzul()
 void dragonAzul::update()
 {
     _frame += 0.15;
-    if (_frame >= 4) {
+    if (_frame >= 4 && _isAlive) {
         _frame = 0;
     }
 
     this->updateSpriteHP();
-    _sprite.setTextureRect({ int(_frame) * 96, 0, 92, 92 });
+    _sprite.setTextureRect({ int(_frame) * 96, 0, 82, 92 });
 }
 
 bool dragonAzul::damageTaken(int damageTaken)
@@ -92,21 +93,28 @@ void dragonAzul::updateSpriteHP()
 
     _spriteHPFill.setTextureRect({ 0,15 * _statusHP,_lenghtHP,15 });
 }
+
 void dragonAzul::Die()
 {
     if (_flagDie) {
         _frame = 0;
         _flagDie = false;
+        _texture.loadFromFile("kaboom.png");
+        _sprite.setTexture(_texture);
+        _sprite.setScale(3.5, 3.5);
+        _sprite.setPosition(_sprite.getPosition().x - _sprite.getGlobalBounds().width/4, _sprite.getPosition().y - _sprite.getGlobalBounds().height / 4);
+       
     }
-    _frame += 0.15;
-    if (_frame >= 3) {
-        _frame = 3;
+    _frame += 0.5;
+    if (_frame >= 8) {
+        _frame = 0;
+        _frameY++;
+        if (_frameY >= 9) {
+            _frameY = 9;
+            _frame = 9;
+        }
     }
-
-    _texture.loadFromFile("1.png");
-    _sprite.setTexture(_texture);
-    _sprite.setTextureRect({ int(_frame) * 110, 0, 110, 170 });
-    _sprite.setScale(1.4, 1.4);
-    _sprite.setPosition(500, 560 - _sprite.getGlobalBounds().height);
-
+    _sprite.setTextureRect({ int(_frame) * 100, int(_frameY) * 100, 100, 100 });
+    //_sprite.setPosition(85, 500 - _sprite.getGlobalBounds().height);
 }
+
