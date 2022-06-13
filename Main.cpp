@@ -6,7 +6,6 @@
 #include "Cursor.h"
 #include "Menu.h"
 #include "iostream"
-#include "MenuFight.h"
 
 
 int main()
@@ -20,14 +19,12 @@ int main()
 
     //menu inicio
     Menu *menu = new Menu(window.getSize().x, window.getSize().y);
-
     Fight fight;
     dragonAzul enemy;
     DyvirFight dyvir;
     sf::Event event;
     int option = 0, dead=60;
     int optionFight = 0;
-    MenuFight m(0,window.getSize().y);
 
     while (window.isOpen())
     {
@@ -55,18 +52,18 @@ int main()
 
                 case 1:
                     
-                    m.setOption(fight.update(backTexture, dyvir, enemy, m.update()));
-                    if (!dyvir.getIsAlive()) {
-                            dyvir.Die();
-                    }
-                    if (!enemy.getIsAlive()) {
+                   fight.update(background, dyvir, enemy, window);
+                    //if (!dyvir.getIsAlive()) {
+                    //        dyvir.Die();
+                    //}
+                    /*if (!enemy.getIsAlive()) {
                         enemy.Die();
-                    }
-                    background.setTexture(backTexture);
-                    window.draw(background);
+                    }*/
+                    //background.setTexture(backTexture);
+                    /*window.draw(background);
                     window.draw(enemy);
-                    window.draw(dyvir);
-                    window.draw(m);
+                    window.draw(dyvir);*/
+                    //window.draw(m);
 
 
                     break;

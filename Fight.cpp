@@ -1,37 +1,41 @@
-#include <SFML/Graphics.hpp>
 #include "Fight.h"
 
 
 Fight::Fight() {
+    _backTexture = new sf::Texture;
+    _menu = nullptr;
     _turn = true;
     _music = true;
+    _backFlag = true;
     bufferPelea.loadFromFile("musicaPelea.wav");
     musicaPelea.setBuffer(bufferPelea);
     musicaPelea.setVolume(30);
 
 }
 
-//void Fight::setOption(int option) {
-//    _option = option;
-//}
 
-int Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enemy, int option)
+int Fight::update(sf::Sprite& background, DyvirFight& dyvir, dragonAzul& enemy, sf::RenderWindow& window)
 {
-    
-    switch (enemy.getBack())
-    {
-    case 1:
-        backTexture.loadFromFile("fondo.png");
-    default:
-        break;
+    if (_backFlag) {
+        switch (enemy.getBack())
+        {
+        case 1:
+            _backTexture->loadFromFile("fondo.png");
+            background.setTexture(*_backTexture);
+            _menu = new MenuFight(window.getSize().x, window.getSize().y);
+            _backFlag = false;
+        default:
+            break;
+        }
     }
+    
     if (_turn) {
-        switch (option) {
+        switch (_menu->update(dyvir.getHP(), enemy.getHP())) {
         case 1:
             enemy.damageTaken(dyvir.doDamage());
             _turn = false;
             std::cout << "Hiciste " << dyvir.doDamage() << " puntos de daño" << std::endl << std::endl;
-            option = 0;
+            _menu->setOption(0);
         }
     }
     else {
@@ -40,8 +44,13 @@ int Fight::update(sf::Texture& backTexture, DyvirFight& dyvir, dragonAzul& enemy
         _turn = true;
        
     }
-    
     dyvir.update();
     enemy.update();
-    return option;
+    window.draw(background);
+    window.draw(*_menu);
+    window.draw(dyvir);
+    window.draw(enemy);
+    
+    
+    return 1;
 }

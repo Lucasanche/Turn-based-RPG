@@ -1,20 +1,23 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "DyvirFight.h"
 #include "dragonAzul.h"
-#include <iostream>
+#include "MenuFight.h"
 
 class Fight
 {
 private:
+    MenuFight* _menu;
     bool _turn;
     bool _music;
+    bool _backFlag;
+    sf::Texture* _backTexture;
     sf::SoundBuffer bufferPelea;
     sf::Sound musicaPelea;
+    
 public:
     Fight();
-    int update(sf::Texture&, DyvirFight&, dragonAzul&, int option);
+    int update(sf::Sprite&, DyvirFight&, dragonAzul&, sf::RenderWindow& window);
 };
 
 

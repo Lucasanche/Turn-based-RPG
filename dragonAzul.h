@@ -11,7 +11,6 @@ public:
 	void update();
 	bool damageTaken(int);
 	int doDamage();
-    void updateSpriteHP();
 	int getBack() { return _backGround; }
 	void Die();
 

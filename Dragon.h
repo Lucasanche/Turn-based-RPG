@@ -14,12 +14,12 @@ protected:
 	bool _isAlive;
 	bool _flagDie;
 
-	//Barra de vida
-	sf::Texture _textureHP;
-	sf::Sprite _spriteHP;
-	sf::Sprite _spriteHPFill;
-	int _statusHP;
-	int _lenghtHP;
+	////Barra de vida
+	//sf::Texture _textureHP;
+	//sf::Sprite _spriteHP;
+	//sf::Sprite _spriteHPFill;
+	//int _statusHP;
+	//int _lenghtHP;
 
 public:
 	//Gets()
