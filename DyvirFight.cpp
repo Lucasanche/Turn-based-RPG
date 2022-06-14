@@ -63,7 +63,7 @@ void DyvirFight::Die()
     }
     _sprite.setTextureRect({ int(_frame) * 170, 0, 170, 110 });
 
-    _sprite.setPosition(85, 500 - _sprite.getGlobalBounds().height);
+    _sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
 }
 
 int DyvirFight::doDamage()
