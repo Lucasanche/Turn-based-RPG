@@ -12,7 +12,7 @@ Fight::Fight() {
     musicaPelea.setVolume(30);
 
 }
-
+// Prueba modificaciones Git
 
 int Fight::update(sf::Sprite& background, DyvirFight& dyvir, dragonAzul& enemy, sf::RenderWindow& window)
 {
@@ -34,13 +34,13 @@ int Fight::update(sf::Sprite& background, DyvirFight& dyvir, dragonAzul& enemy, 
         case 1:
             enemy.damageTaken(dyvir.doDamage());
             _turn = false;
-            std::cout << "Hiciste " << dyvir.doDamage() << " puntos de daño" << std::endl << std::endl;
+            std::cout << "Hiciste " << dyvir.doDamage() << " puntos de daï¿½o" << std::endl << std::endl;
             _menu->setOption(0);
         }
     }
     else {
         dyvir.damageTaken(enemy.doDamage());
-        std::cout << "Te hicieron " << enemy.getBaseDamage() << " puntos de daño" << std::endl << std::endl;
+        std::cout << "Te hicieron " << enemy.getBaseDamage() << " puntos de daï¿½o" << std::endl << std::endl;
         _turn = true;
        
     }
