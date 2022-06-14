@@ -12,10 +12,13 @@ private:
 	int _option;
 	int _selectedItemIndex;
 	sf::Font _font;
-	sf::Text _menu[MAX_NUMBER_OF_ITEMS];
+	sf::Text* _menu;
+	sf::Text* _names;
 	Cursor _cursor;
 	sf::Sprite _backMenu;
-	sf::Texture _backTexture;
+	sf::Texture _backMenuTexture;
+	sf::Sprite _backMenuEnemy;
+	sf::Texture _backMenuEnemyTexture;
 	//Textura barra de vida
 	sf::Texture _textureHP;
 	//Barra de vida Dyvir
@@ -31,6 +34,8 @@ private:
 	sf::Sprite _textHPenemy;
 	int _statusHPenemy;
 	int _lenghtHPenemy;
+	float _posIniMenu;
+	int _posMaxMenu;
 public:
 	MenuFight(float width, float height);
 	void updateSpriteHPdyvir(int);

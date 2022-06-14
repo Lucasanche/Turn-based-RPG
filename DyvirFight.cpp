@@ -9,7 +9,7 @@ DyvirFight::DyvirFight()
 	_sprite.setTexture(_texture);
 	_sprite.setTextureRect({ 0,0,260,230 });
 	_sprite.setScale(0.5, 0.5);
-	_sprite.setPosition(85, 500 - _sprite.getGlobalBounds().height);
+	_sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
     _isAlive = true;
 
     /////Variables útiles para los sprites

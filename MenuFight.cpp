@@ -4,6 +4,8 @@
 
 MenuFight::MenuFight(float width, float height)
 {
+	_menu = new sf::Text[3];
+	_names = new sf::Text[2];
 	_flag = false;
 	_option = 0;
 	if (!_font.loadFromFile("Nostalgia.ttf"))
@@ -11,34 +13,22 @@ MenuFight::MenuFight(float width, float height)
 		std::cout<<"No se pudo cargar el archivo Nostalgia.ttf";
 	}
 
-	if (!_backTexture.loadFromFile("interface/mFightPrincipal.png")) {
+	if (!_backMenuTexture.loadFromFile("interface/mFightPrincipal.png")) {
 		std::cout << "No se pudo cargar mFightPrincipal.png" << std::endl;
 	}
+	if (!_backMenuEnemyTexture.loadFromFile("interface/mFightEnemy.png")) {
+		std::cout << "No se pudo cargar mFightEnemy.png" << std::endl;
+	}
 
-	_backMenu.setTexture(_backTexture);
+
+	_backMenu.setTexture(_backMenuTexture);
 	_backMenu.setPosition(0, height - _backMenu.getGlobalBounds().height);
-
-    _menu[0].setCharacterSize(25);
-	_menu[0].setFont(_font);
-	_menu[0].setFillColor(sf::Color::Red);
-	_menu[0].setString("Attack");
-	_menu[0].setPosition({ 0, (height / 3) * 0 + height * 2 / 3 });
-
-    _menu[1].setCharacterSize(25);
-	_menu[1].setFont(_font);
-	_menu[1].setFillColor(sf::Color::White);
-	_menu[1].setString("Special");
-	_menu[1].setPosition(0, (height / 3) * 1 / 3 + height * 2 / 3 );
-	
-    _menu[2].setCharacterSize(25);
-	_menu[2].setFont(_font);
-	_menu[2].setFillColor(sf::Color::White);
-	_menu[2].setString("Escape");
-	_menu[2].setPosition(0, (height/3)*2/3+height*2/3);
+	_backMenuEnemy.setTexture(_backMenuEnemyTexture);
+	_backMenuEnemy.setPosition(width - _backMenuEnemy.getGlobalBounds().width, 0);
 
 	_selectedItemIndex = 0;
 
-	_cursor.setPosition({ _menu[0].getPosition().x + _menu[0].getGlobalBounds().width,_menu[0].getPosition().y + _menu[0].getGlobalBounds().height / 2});
+	
 	///Variables útiles para los sprites
 	 // Setea el color del relleno del HP
 	_statusHPdyvir = 2;
@@ -58,17 +48,53 @@ MenuFight::MenuFight(float width, float height)
 
 	_spriteHPenemy.setTexture(_textureHP);
 	_spriteHPenemy.setTextureRect({ 0,0,159,17 });
-	_spriteHPenemy.setPosition(0, 100);
+	_spriteHPenemy.setPosition(_backMenuEnemy.getPosition().x + 30, _backMenuEnemy.getPosition().y + 57 );
 	_spriteHPFillenemy.setTexture(_textureHP);
 	_spriteHPFillenemy.setTextureRect({ 0,17 * _statusHPenemy,160,17 });
 	_spriteHPFillenemy.setPosition(_spriteHPenemy.getPosition());
 	_textHPenemy.setTexture(_textureHP);
-	_textHPenemy.setPosition(_spriteHPdyvir.getPosition());
+	_textHPenemy.setPosition(_spriteHPenemy.getPosition());
 	_textHPenemy.setTextureRect({ 0, 17, 160, 17 });
 
+	_posIniMenu = _spriteHPdyvir.getPosition().y + 27;
+	_posMaxMenu = 120;
 	// Setea el largo del relleno del HP
 	_lenghtHPenemy = _spriteHPenemy.getGlobalBounds().width;
 	_lenghtHPdyvir = _spriteHPdyvir.getGlobalBounds().width;
+
+	_names[0].setCharacterSize(25);
+	_names[0].setFont(_font);
+	_names[0].setFillColor(sf::Color::White);
+	_names[0].setStyle(sf::Text::Italic);
+	_names[0].setString("DYVIR");
+	_names[0].setPosition({ _spriteHPdyvir.getPosition().x + _spriteHPdyvir.getGlobalBounds().width/3, _spriteHPdyvir.getPosition().y - 30});
+
+	_names[1].setCharacterSize(25);
+	_names[1].setFont(_font);
+	_names[1].setFillColor(sf::Color::White);
+	_names[1].setStyle(sf::Text::Italic);
+	_names[1].setString("ENEMY");
+	_names[1].setPosition({ _spriteHPenemy.getPosition().x + _spriteHPenemy.getGlobalBounds().width/3, _spriteHPenemy.getPosition().y - 40});
+
+	_menu[0].setCharacterSize(25);
+	_menu[0].setFont(_font);
+	_menu[0].setFillColor(sf::Color::Red);
+	_menu[0].setString("Attack");
+	_menu[0].setPosition({ 35, _posIniMenu});
+
+	_menu[1].setCharacterSize(25);
+	_menu[1].setFont(_font);
+	_menu[1].setFillColor(sf::Color::White);
+	_menu[1].setString("Special");
+	_menu[1].setPosition(35, _posIniMenu + (_posMaxMenu * 1 / 3));
+
+	_menu[2].setCharacterSize(25);
+	_menu[2].setFont(_font);
+	_menu[2].setFillColor(sf::Color::White);
+	_menu[2].setString("Escape");
+	_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 2 / 3));
+
+	_cursor.setPosition({ _menu[0].getPosition().x + 10 + _menu[0].getGlobalBounds().width,_menu[0].getPosition().y + _menu[0].getGlobalBounds().height / 2 });
 
 	
 
@@ -112,11 +138,11 @@ void MenuFight::updateSpriteHPenemy(int HP)
 		_statusHPenemy = 5;
 	}
 	if (HP == 0) {
-		_statusHPenemy = 1;
+		_statusHPenemy = 2;
 	}
-	_lenghtHPenemy = HP * 1.5;
+	_lenghtHPenemy = HP * 1.6;
 
-	_spriteHPFillenemy.setTextureRect({ 0,160 * _statusHPenemy,_lenghtHPenemy,160 });
+	_spriteHPFillenemy.setTextureRect({ 0,17 * _statusHPenemy,_lenghtHPenemy,17 });
 }
 
 
@@ -127,15 +153,21 @@ void MenuFight::setOption(int option) {
 void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(_backMenu);
+	target.draw(_backMenuEnemy);
 	target.draw(_spriteHPdyvir);
 	target.draw(_spriteHPFilldyvir);
 	target.draw(_textHPdyvir);
 	target.draw(_spriteHPenemy);
 	target.draw(_spriteHPFillenemy);
-	/*for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
+	target.draw(_textHPenemy);
+	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
 		{
 		target.draw(_menu[i], states);
-		}*/
+		}
+	for (int i = 0; i < 2; i++)
+	{
+		target.draw(_names[i], states);
+	}
 	target.draw(_cursor, states);
 }
 
@@ -151,7 +183,7 @@ void MenuFight::MoveUp()
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex--;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
-		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
+		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
 	}
 }
 
@@ -162,7 +194,7 @@ void MenuFight::MoveDown()
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex++;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
-		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
+		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10  + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
 	}
 }
 

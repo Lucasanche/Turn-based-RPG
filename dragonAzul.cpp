@@ -14,7 +14,7 @@ dragonAzul::dragonAzul()
     _sprite.setTexture(_texture);
     _sprite.setTextureRect({ 0,0,92,92 });
     _sprite.setScale(2, 2);
-    _sprite.setPosition(750 - _sprite.getGlobalBounds().width, 500 - _sprite.getGlobalBounds().height);
+    _sprite.setPosition(750 - _sprite.getGlobalBounds().width, 480 - _sprite.getGlobalBounds().height);
 
 
     ///Variables útiles para los sprites
