@@ -1,11 +1,15 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "iostream"
 #include "DyvirFight.h"
 #include "dragonAzul.h"
 #include "Fight.h"
 #include "Cursor.h"
 #include "Menu.h"
-#include "iostream"
+#include "Map.h"
+#include "DyvirMap.h"
+
+
 
 
 int main()
@@ -22,6 +26,8 @@ int main()
     Fight fight;
     dragonAzul enemy;
     DyvirFight dyvir;
+    Map map;
+    DyvirMap dyvirMap;
     sf::Event event;
     int option = 0, dead=60;
     int optionFight = 0;
@@ -69,7 +75,7 @@ int main()
                     break;
 
                 case 2:
-
+                    map.update(background, dyvirMap, window);
                     break;
 
                 case 3:

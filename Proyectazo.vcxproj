@@ -136,8 +136,10 @@
     <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="dragonAzul.cpp" />
     <ClCompile Include="DyvirFight.cpp" />
+    <ClCompile Include="DyvirMap.cpp" />
     <ClCompile Include="Fight.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuFight.cpp" />
   </ItemGroup>
@@ -146,7 +148,9 @@
     <ClInclude Include="Dragon.h" />
     <ClInclude Include="dragonAzul.h" />
     <ClInclude Include="DyvirFight.h" />
+    <ClInclude Include="DyvirMap.h" />
     <ClInclude Include="Fight.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuFight.h" />
   </ItemGroup>

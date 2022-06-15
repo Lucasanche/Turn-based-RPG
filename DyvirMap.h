@@ -5,6 +5,7 @@ class DyvirMap : public sf::Drawable
 {
 private:
 	float _frame;
+	sf::Vector2f _velocity = {0, 0};
 	sf::Texture _texture;
 	sf::Sprite _sprite;
 public:
@@ -13,4 +14,5 @@ public:
 	void update();
 	DyvirMap();
 };
+
 
