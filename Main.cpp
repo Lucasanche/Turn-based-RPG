@@ -8,6 +8,7 @@
 #include "Menu.h"
 #include "Map.h"
 #include "DyvirMap.h"
+#include "Boss1.h"
 
 
 
@@ -26,6 +27,7 @@ int main()
     Fight fight;
     dragonAzul enemy;
     DyvirFight dyvir;
+    Boss1 bossi;
     Map map;
     DyvirMap dyvirMap;
     sf::Event event;
@@ -82,8 +84,31 @@ int main()
                     window.close();
                     break;
             }
+            
+            if (!enemy.getIsAlive()) {
+              
+                    sf::Texture Texture;
+                    sf::Sprite Win;
+                    Texture.loadFromFile("win.png");
+                    Win.setTexture(Texture);
+                    Win.setPosition(800 - Win.getGlobalBounds().width, 380 - Win.getGlobalBounds().height);
+                    Win.setScale(1, 1);
+                    //ground.setPosition(ground.getPosition().x - ground.getGlobalBounds().width / 400, ground.getPosition().y - ground.getGlobalBounds().height / 400);
+                    window.draw(Win);
 
-            //if (!juan.getIsAlive()) {
+                }
+            else if(enemy.getIsAlive() && !dyvir.getIsAlive())
+                
+            {   sf::Texture TextureLoss;
+                sf::Sprite Loss;
+                TextureLoss.loadFromFile("loss.png");
+                Loss.setTexture(TextureLoss);
+                Loss.setPosition(560 - Loss.getGlobalBounds().width, 300 - Loss.getGlobalBounds().height);
+                Loss.setScale(1, 1);
+                window.draw(Loss);
+
+            }
+                
                 //FUNCION DE GANASTE Y KABOOM
             //}
             //david.setHP(0);

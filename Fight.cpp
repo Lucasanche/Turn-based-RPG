@@ -48,6 +48,7 @@ int Fight::update(sf::Sprite& background, DyvirFight& dyvir, dragonAzul& enemy, 
     enemy.update();
     window.draw(background);
     window.draw(*_menu);
+    
     window.draw(dyvir);
     window.draw(enemy);
     

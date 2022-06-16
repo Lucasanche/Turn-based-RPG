@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include "DyvirFight.h"
 #include "dragonAzul.h"
+#include "Boss1.h"
 #include "MenuFight.h"
 
 class Fight

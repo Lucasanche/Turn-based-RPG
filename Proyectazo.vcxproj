@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Boss1.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="dragonAzul.cpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="MenuFight.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Boss1.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Dragon.h" />
     <ClInclude Include="dragonAzul.h" />
