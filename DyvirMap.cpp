@@ -8,8 +8,9 @@ DyvirMap::DyvirMap()
     _sprite.setTextureRect({ 0, 0, 222, 169 });
     _sprite.setScale(0.5, 0.5);
     _sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
-    _sprite.setOrigin(_sprite.getLocalBounds().width/2, 0);
+    //_sprite.setOrigin(_sprite.getLocalBounds().width/2, 0);
     _frame = 0;
+    _sprite.setOrigin(_sprite.getGlobalBounds().width/2, _sprite.getGlobalBounds().height);
 
 }
 
@@ -32,63 +33,48 @@ void DyvirMap::update()
     /// MOV
     _velocity = { 0, 0 };
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-        _velocity.y = -4;
+        _velocity.y = -5;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-        _velocity.y = 4;
+        _velocity.y = 5;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        _velocity.x = -4;
+        _velocity.x = -5;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        _velocity.x = 4;
+        _velocity.x = 5;
     }
 
     ///EVITAR QUE SALGA DE LA PANTALLA;;;
-    if (_sprite.getPosition().x < 0) {
-        _sprite.setPosition(0, _sprite.getPosition().y);
-    }
 
-    if (_sprite.getPosition().y < 0) {
-        _sprite.setPosition(_sprite.getPosition().x, 0);
-    }
 
-    if (_sprite.getPosition().x > 800) {
-        _sprite.setPosition(700, _sprite.getPosition().y);
-    }
-
-    if (_sprite.getPosition().y + _sprite.getGlobalBounds().height > 700) {
-        _sprite.setPosition(_sprite.getPosition().x, 700 - _sprite.getGlobalBounds().height);
-    }
-   
     ///QUE MIRE A LOS LADOS
-    _sprite.move(_velocity); 
+    _sprite.move(_velocity);
     if (_velocity.x < 0) {
         _sprite.setScale(-0.5, 0.5);
+
     }
     if(_velocity.x > 0) {
         _sprite.setScale(0.5, 0.5);
     }
 
-    if (_sprite.getGlobalBounds().left < 0) {
-        _sprite.setPosition(_sprite.getOrigin().x, _sprite.getPosition().y);
-    }
+    ///EVITAR QUE SALGA DE LA PANTALLA;;;
+    if(_sprite.getGlobalBounds().left<0){
+            _sprite.setPosition((_sprite.getOrigin().x+_sprite.getOrigin().x/2), _sprite.getPosition().y);
+        }
+    if(_sprite.getGlobalBounds().top<0){
+            _sprite.setPosition(_sprite.getPosition().x, (_sprite.getOrigin().y/2));
+        }
 
-    if (_sprite.getGlobalBounds().top < 0) {
-        _sprite.setPosition(_sprite.getPosition().x, _sprite.getPosition().y);
-    }
-
-    if (_sprite.getGlobalBounds().left + _sprite.getGlobalBounds().width > 800) {
-        _sprite.setPosition(800 - (_sprite.getGlobalBounds().width - _sprite.getOrigin().x), _sprite.getPosition().y);
-    }
-
-    if (_sprite.getGlobalBounds().top + _sprite.getGlobalBounds().height > 800) {
-        _sprite.setPosition(_sprite.getPosition().x, 800 + (_sprite.getGlobalBounds().height - _sprite.getOrigin().y));
-    }
-
+    if(_sprite.getGlobalBounds().left+_sprite.getGlobalBounds().width>800){
+            _sprite.setPosition(800-(_sprite.getOrigin().x+_sprite.getOrigin().x/2), _sprite.getPosition().y);
+        }
+    if(_sprite.getGlobalBounds().top+_sprite.getGlobalBounds().height>700){
+            _sprite.setPosition(_sprite.getPosition().x,700+(_sprite.getOrigin().y/2-_sprite.getGlobalBounds().height));
+        }
 
 
 
