@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 class DyvirMap : public sf::Drawable
 {
@@ -13,6 +14,7 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void update();
 	DyvirMap();
+	sf::Vector2f getPosition() { return _sprite.getPosition(); }
 };
 
 

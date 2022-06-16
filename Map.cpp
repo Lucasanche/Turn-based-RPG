@@ -2,6 +2,7 @@
 
 Map::Map()
 {
+    _view = new sf::View(sf::FloatRect(200,200,800,700));
     _backTexture = new sf::Texture;
     _music = true;
     bufferPelea.loadFromFile("musicaMap.wav");
@@ -12,9 +13,11 @@ Map::Map()
 
 int Map::update(sf::Sprite& background, DyvirMap& DyvirMap, sf::RenderWindow& window)
 {
+    DyvirMap.update();
+    _view->setCenter(DyvirMap.getPosition());
+    window.setView(*_view);
     background.setTexture(*_backTexture);
     background.setScale(2, 2);
-    DyvirMap.update();
     window.draw(background);
     window.draw(DyvirMap);
 

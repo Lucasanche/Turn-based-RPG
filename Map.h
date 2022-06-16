@@ -10,6 +10,7 @@ private:
     sf::Texture* _backTexture;
     sf::SoundBuffer bufferPelea;
     sf::Sound musicaPelea;
+    sf::View* _view;
 
 public:
     Map();

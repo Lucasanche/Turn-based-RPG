@@ -61,17 +61,19 @@ void DyvirMap::update()
 
     ///EVITAR QUE SALGA DE LA PANTALLA;;;
     if(_sprite.getGlobalBounds().left<0){
-            _sprite.setPosition((_sprite.getOrigin().x+_sprite.getOrigin().x/2), _sprite.getPosition().y);
+            _sprite.setPosition(0 + _sprite.getGlobalBounds().width/2, _sprite.getPosition().y);
+            std::cout << _sprite.getGlobalBounds().width << std::endl;
         }
     if(_sprite.getGlobalBounds().top<0){
-            _sprite.setPosition(_sprite.getPosition().x, (_sprite.getOrigin().y/2));
+            _sprite.setPosition(_sprite.getPosition().x, 0 + _sprite.getGlobalBounds().height);
         }
 
     if(_sprite.getGlobalBounds().left+_sprite.getGlobalBounds().width>800){
-            _sprite.setPosition(800-(_sprite.getOrigin().x+_sprite.getOrigin().x/2), _sprite.getPosition().y);
+            _sprite.setPosition(800 - _sprite.getGlobalBounds().width/2, _sprite.getPosition().y);
         }
     if(_sprite.getGlobalBounds().top+_sprite.getGlobalBounds().height>700){
-            _sprite.setPosition(_sprite.getPosition().x,700+(_sprite.getOrigin().y/2-_sprite.getGlobalBounds().height));
+            _sprite.setPosition(_sprite.getPosition().x,700);
+            std::cout << _sprite.getGlobalBounds().height << std::endl;
         }
 
 
