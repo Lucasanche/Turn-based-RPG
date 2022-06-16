@@ -7,12 +7,13 @@ Map::Map()
     bufferPelea.loadFromFile("musicaMap.wav");
     musicaPelea.setBuffer(bufferPelea);
     musicaPelea.setVolume(30);
+    _backTexture->loadFromFile("map.png");
 }
 
 int Map::update(sf::Sprite& background, DyvirMap& DyvirMap, sf::RenderWindow& window)
 {
-    _backTexture->loadFromFile("fondoMapa.png");
     background.setTexture(*_backTexture);
+    background.setScale(2, 2);
     DyvirMap.update();
     window.draw(background);
     window.draw(DyvirMap);

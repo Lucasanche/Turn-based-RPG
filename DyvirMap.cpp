@@ -5,13 +5,12 @@ DyvirMap::DyvirMap()
 {
     _texture.loadFromFile("dyvirMap.png");
     _sprite.setTexture(_texture);
-    _sprite.setTextureRect({ 0, 0, 222, 169 });
+    _sprite.setTextureRect({ 0, 0, 183, 169 });
+    _sprite.setOrigin(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height);
     _sprite.setScale(0.5, 0.5);
     _sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
-    //_sprite.setOrigin(_sprite.getLocalBounds().width/2, 0);
     _frame = 0;
-    _sprite.setOrigin(_sprite.getGlobalBounds().width/2, _sprite.getGlobalBounds().height);
-
+    
 }
 
 
@@ -26,7 +25,7 @@ void DyvirMap::update()
     if (_frame >= 5) {
         _frame = 0;
     }
-    _sprite.setTextureRect({ int(_frame) * 222, 0, 222, 169 });
+    _sprite.setTextureRect({ int(_frame) * 222, 0, 183, 169 });
 
 
 
@@ -48,14 +47,13 @@ void DyvirMap::update()
         _velocity.x = 5;
     }
 
-    ///EVITAR QUE SALGA DE LA PANTALLA;;;
+    ///EVITAR QUE SALGA DE LA PANTALLA!!!!!!!!!!!!!!;;;
 
 
     ///QUE MIRE A LOS LADOS
     _sprite.move(_velocity);
     if (_velocity.x < 0) {
         _sprite.setScale(-0.5, 0.5);
-
     }
     if(_velocity.x > 0) {
         _sprite.setScale(0.5, 0.5);

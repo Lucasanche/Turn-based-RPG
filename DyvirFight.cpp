@@ -15,7 +15,6 @@ DyvirFight::DyvirFight()
     /////Variables útiles para los sprites
     _flagDie = true; // Usar para reproducir la animación de muerte
     _frame = 0;
-
 }
 
 void DyvirFight::draw(sf::RenderTarget& target, sf::RenderStates states) const

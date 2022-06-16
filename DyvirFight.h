@@ -11,7 +11,6 @@ public:
 	int doDamage();
 	void updateSpriteHP();
 	void damageTaken(int);
-
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 

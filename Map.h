@@ -16,3 +16,4 @@ public:
     int update(sf::Sprite&, DyvirMap&, sf::RenderWindow& window);
 };
 
+
