@@ -13,7 +13,6 @@ public:
 	int doDamage();
 	int getBack() { return _backGround; }
 	void Die();
-
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 

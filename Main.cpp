@@ -11,8 +11,6 @@
 #include "Boss1.h"
 
 
-
-
 int main()
 {
     setlocale(LC_CTYPE, "Spanish");
@@ -27,11 +25,11 @@ int main()
     Fight fight;
     dragonAzul enemy;
     DyvirFight dyvir;
-    Boss1 bossi;
+    Boss1 boss;
     Map map;
     DyvirMap dyvirMap;
     sf::Event event;
-    int option = 0, dead=60;
+    int option = 0;
     int optionFight = 0;
 
     while (window.isOpen())
