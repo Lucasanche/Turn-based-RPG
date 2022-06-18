@@ -3,6 +3,7 @@
 
 DyvirMap::DyvirMap()
 {
+
     _texture.loadFromFile("dyvirMap.png");
     _sprite.setTexture(_texture);
     _sprite.setTextureRect({ 0, 0, 183, 169 });
@@ -10,7 +11,7 @@ DyvirMap::DyvirMap()
     _sprite.setScale(0.5, 0.5);
     _sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
     _frame = 0;
-    
+
 }
 
 
@@ -75,10 +76,4 @@ void DyvirMap::update()
             _sprite.setPosition(_sprite.getPosition().x,1400);
             std::cout << _sprite.getGlobalBounds().height << std::endl;
         }
-
-
-
 }
-
-
-
