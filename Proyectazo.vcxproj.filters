@@ -54,6 +54,9 @@
     <ClCompile Include="MapWalls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DragonRojo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DyvirFight.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MapWalls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DragonRojo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

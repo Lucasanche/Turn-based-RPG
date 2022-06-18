@@ -23,7 +23,7 @@ int main()
     //menu inicio
     Menu *menu = new Menu(window.getSize().x, window.getSize().y);
     Fight fight;
-    dragonAzul enemy;
+    DragonRojo enemy;
     DyvirFight dyvir;
     Boss1 boss;
     Map map;
@@ -76,6 +76,7 @@ int main()
 
                 case 2:
                     map.update(background, dyvirMap, window);
+              
                     break;
 
                 case 3:

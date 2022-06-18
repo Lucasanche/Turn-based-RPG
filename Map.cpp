@@ -18,6 +18,8 @@ int Map::update(sf::Sprite& background, DyvirMap& DyvirMap, sf::RenderWindow& wi
     background.setScale(2, 2);
     window.draw(background);
     window.draw(DyvirMap);
+ 
+
 
     return 1;
 }
