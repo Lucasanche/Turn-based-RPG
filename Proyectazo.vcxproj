@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbilityMagic.cpp" />
     <ClCompile Include="Boss1.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Cursor.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="MenuFight.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbilityMagic.h" />
     <ClInclude Include="Boss1.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Cursor.h" />
