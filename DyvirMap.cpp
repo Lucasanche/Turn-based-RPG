@@ -29,7 +29,6 @@ void DyvirMap::update()
     _sprite.setTextureRect({ int(_frame) * 222, 0, 183, 169 });
 
 
-
     /// MOV
     _velocity = { 0, 0 };
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
