@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "AbilityMagic.h"
+
 class Dragon
 {
 protected:
@@ -13,6 +15,7 @@ protected:
 	sf::Sprite _sprite;
 	bool _isAlive;
 	bool _flagDie;
+	AbilityMagic _ability1;
 
 	////Barra de vida
 	//sf::Texture _textureHP;
