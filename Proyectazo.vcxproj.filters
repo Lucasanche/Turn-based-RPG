@@ -57,7 +57,10 @@
     <ClCompile Include="DragonRojo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AbilityMagic.cpp">
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ability.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,7 +104,10 @@
     <ClInclude Include="DragonRojo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AbilityMagic.h">
+    <ClInclude Include="Inventory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ability.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

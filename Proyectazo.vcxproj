@@ -132,7 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AbilityMagic.cpp" />
+    <ClCompile Include="Ability.cpp" />
     <ClCompile Include="Boss1.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Cursor.cpp" />
@@ -142,6 +142,7 @@
     <ClCompile Include="DyvirFight.cpp" />
     <ClCompile Include="DyvirMap.cpp" />
     <ClCompile Include="Fight.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapWalls.cpp" />
@@ -149,7 +150,7 @@
     <ClCompile Include="MenuFight.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AbilityMagic.h" />
+    <ClInclude Include="Ability.h" />
     <ClInclude Include="Boss1.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Cursor.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="DyvirFight.h" />
     <ClInclude Include="DyvirMap.h" />
     <ClInclude Include="Fight.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapWalls.h" />
     <ClInclude Include="Menu.h" />
