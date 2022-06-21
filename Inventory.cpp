@@ -1,14 +1,5 @@
 #include "Inventory.h"
-//Private functions
-
-void Inventory::nullify(const unsigned from)
-{
-	for (size_t i = from; i < this->_capacity; i++)
-	{
-		_abilityArray[i] = nullptr;
-	}
-}
-
+#include "Ability.h"
 
 //Constructors & Destructors
 Inventory::Inventory(unsigned capacity)
@@ -30,57 +21,66 @@ Inventory::~Inventory()
 
 
 
-//Modifiers
-
 //Functions
+void Inventory::nullify(const unsigned from)
+{
+	for (size_t i = from; i < this->_capacity; i++)
+	{
+		_abilityArray[i] = nullptr;
+	}
+}
 
 void Inventory::clear()
 {
-	for (size_t i = 0; i < this->nrOfItems; i++)
+	for (size_t i = 0; i < this->_nrOfAbilities; i++)
 	{
-		delete this->itemArray[i];
+		delete this-> _abilityArray[i];
 	}
 
-	this->nrOfItems = 0;
+	this->_nrOfAbilities = 0;
 
 	this->nullify();
 }
 
-const bool Inventory::empty() const
-{
-	return this->nrOfItems == 0;
-}
 
-const bool Inventory::add(Item* item)
+bool Inventory::add(Ability& _newAbility) //REVISAR -> en mi cabeza. recorre el array, siempre que encuentre algo va 
+//sumando las posiciones. Cuando deja de sumar es porque la posicion esta vacia, asi que ahi le tendriamos que poner 
+//la habilidad nueva. 
 {
-	if (this->nrOfItems < this->capacity)
+	if (_nrOfAbilities < _capacity)
 	{
-		this->itemArray[this->nrOfItems++] = item->clone();
-
+		int _position = 0;
+		while (_abilityArray[_position]) 
+		{
+			_position++;
+		}
+		_abilityArray[_position] = &_newAbility; //WTF NO SE COMO HAY Q PONER ESO AHI NO ME TIRA ERROR PERO NO ME GUSTA
 		return true;
 	}
 
 	return false;
 }
 
-const bool Inventory::remove(const unsigned index)
+bool Inventory::remove(const unsigned index) //REVISAR -> para borrar setea el espacio como vacio, lo cual tiene sentido
+//con el add que cuando recorra el while, va a encontrar un lugar vacio y ahi va a agregar la nueva habilidad
+//NO SE BIEN EL INDEX COMO FUNCIONA
 {
-	if (this->nrOfItems > 0)
+	if (_nrOfAbilities > 0)
 	{
-		if (index < 0 || index >= this->capacity)
-			return false;
-
-		delete this->itemArray[index];
-		this->itemArray[index] = nullptr;
-		--this->nrOfItems;
-
-		return true;
+		if (index < 0 || index >= _capacity) return false;
+		else
+		{
+			delete _abilityArray[index];
+			_abilityArray[index] = nullptr;
+			_nrOfAbilities--;
+			return true;
+		}
 	}
 
 	return false;
 }
 
-const bool Inventory::saveToFile(const std::string fileName)
+/*const bool Inventory::saveToFile(const std::string fileName)
 {
 	return false;
 }
@@ -89,3 +89,4 @@ const bool Inventory::loadFromFile(const std::string fileName)
 {
 	return false;
 }
+*/

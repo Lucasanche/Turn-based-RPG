@@ -8,6 +8,7 @@ private:
 	Ability** _abilityArray;
 	int _nrOfAbilities;
 	int _capacity;
+	//bool _isEmpty; la necesitamos realmente? 
 
 	//Private functions
 	void nullify(const unsigned from = 0);
@@ -20,17 +21,14 @@ public:
 	int getCapacity() { return _capacity; }
 	int getNroOfAbilities() { return _nrOfAbilities; }
 
-	//Modifiers
 
 	//Functions
 	void clear();
-	const bool empty() const;
+	bool add(Ability&); 
+	bool remove(const unsigned index); //const unsigned? 
 
-	const bool add(Item* item);
-	const bool remove(const unsigned index);
-
-	const bool saveToFile(const std::string fileName);
-	const bool loadFromFile(const std::string fileName);
+	//const bool saveToFile(const std::string fileName);
+	//const bool loadFromFile(const std::string fileName);
 };
 
 

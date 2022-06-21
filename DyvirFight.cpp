@@ -65,8 +65,9 @@ void DyvirFight::Die()
     _sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
 }
 
-int DyvirFight::doDamage()
+int DyvirFight::doDamage(AbilityMagic& ability, dragonAzul& enemy) // tiene sentido? 
 {
+    ///METER TODAS LAS SINERGIAS ACA. 
     int finalDamage;
     finalDamage = _BaseDamage;
     return finalDamage;
