@@ -9,7 +9,7 @@ public:
 	void update();
 	//bool changeStatus();
 	void Die();
-	int doDamage(AbilityMagic&, dragonAzul&);
+	int doDamage(/*AbilityMagic&*/);
 	void updateSpriteHP();
 	void damageTaken(int);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

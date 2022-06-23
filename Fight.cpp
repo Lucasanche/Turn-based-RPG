@@ -14,7 +14,7 @@ Fight::Fight() {
 }
 // Prueba modificaciones Git
 
-int Fight::update(sf::Sprite& background, DyvirFight& dyvir, Dragon& enemy, sf::RenderWindow& window)
+int Fight::update(sf::Sprite& background, DyvirFight& dyvir, DragonRojo& enemy, sf::RenderWindow& window)
 {
     if (_backFlag) {
         switch (enemy.getBack())
