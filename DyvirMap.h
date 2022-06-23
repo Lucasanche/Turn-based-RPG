@@ -14,6 +14,7 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void update();
 	DyvirMap();
+	//sf::Vector2f setVelocity(sf::Vector2f vel) { _velocity = vel; }
 	sf::Vector2f getPosition() { return _sprite.getPosition(); }
 };
 
