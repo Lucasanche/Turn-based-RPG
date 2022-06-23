@@ -21,7 +21,7 @@ int main()
     background.setTextureRect({ 0,0,800,700 });
 
     //menu inicio
-    Menu *menu = new Menu(window.getSize().x, window.getSize().y);
+    Menu *menu = new Menu(float(window.getSize().x), float(window.getSize().y));
     Fight fight;
     dragonAzul enemy;
     DyvirFight dyvir;
@@ -62,7 +62,9 @@ int main()
                     break;
 
                 case 2:
-                    map.update(background, dyvirMap, window);
+                    map.loadMap(window);
+                    
+              
                     break;
 
                 case 3:

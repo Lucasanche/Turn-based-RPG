@@ -14,7 +14,10 @@ private:
 
 public:
     Map();
+    void loadMap(sf::RenderWindow& window);
     int update(sf::Sprite&, DyvirMap&, sf::RenderWindow& window);
+    void loadMapCol();
+
 };
 
 

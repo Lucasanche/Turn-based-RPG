@@ -22,7 +22,7 @@ int Fight::update(sf::Sprite& background, DyvirFight& dyvir, Dragon& enemy, sf::
         case 1:
             _backTexture.loadFromFile("fondo.png");
             background.setTexture(_backTexture);
-            _menu = new MenuFight(window.getSize().x, window.getSize().y);
+            _menu = new MenuFight(float(window.getSize().x), float(window.getSize().y));
             _backFlag = false;
         default:
             break;
