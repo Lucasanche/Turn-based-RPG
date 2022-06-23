@@ -19,7 +19,7 @@ private:
     
 public:
     Fight();
-    int update(sf::Sprite&, DyvirFight&, Dragon&, sf::RenderWindow& window);
+    int update(sf::Sprite&, DyvirFight&, DragonRojo&, sf::RenderWindow& window);
 };
 
 

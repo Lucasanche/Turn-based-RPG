@@ -75,7 +75,8 @@ int main()
                     break;
 
                 case 2:
-                    map.update(background, dyvirMap, window);
+                    map.loadMap(window);
+                    
               
                     break;
 
