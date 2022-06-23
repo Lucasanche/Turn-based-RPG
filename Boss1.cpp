@@ -36,14 +36,13 @@ void Boss1::update()
 
 }
 
-bool Boss1::damageTaken(int damageTaken)
+void Boss1::damageTaken(int damageTaken)
 {
     _HP -= damageTaken;
     if (_HP <= 0) {
         _HP = 0;
         _isAlive = false;
     }
-    return _isAlive;
 }
 int Boss1::doDamage()
 {

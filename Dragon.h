@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "AbilityMagic.h"
 
-class Dragon
+class Dragon : public sf::Drawable
 {
 protected:
 	int _HP;
@@ -15,24 +15,20 @@ protected:
 	sf::Sprite _sprite;
 	bool _isAlive;
 	bool _flagDie;
-	//AbilityMagic _ability1;
-
-	////Barra de vida
-	//sf::Texture _textureHP;
-	//sf::Sprite _spriteHP;
-	//sf::Sprite _spriteHPFill;
-	//int _statusHP;
-	//int _lenghtHP;
+	int _backGround;
 
 public:
 	//Gets()
 	int getHP() { return _HP; }
 	int getBaseDamage() { return _BaseDamage; }
 	bool getIsAlive() { return _isAlive; }
-	void update(){}
 	//Sets()
 	void setHP(int hp) { _HP = hp; }
 	void setIsAlive(bool isAlive) { _isAlive = isAlive; }
-
+	int getBack() { return _backGround; }
+	virtual void Die() = 0;
+	virtual void update() = 0;
+	virtual int doDamage() = 0;
+	virtual void damageTaken(int) = 0;
 };
 

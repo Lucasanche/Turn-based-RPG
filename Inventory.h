@@ -9,6 +9,7 @@ private:
 	int _nrOfAbilities;
 	int _capacity;
 	//bool _isEmpty; la necesitamos realmente? 
+	// Nah que se yo
 
 	//Private functions
 	void nullify(const unsigned from = 0);

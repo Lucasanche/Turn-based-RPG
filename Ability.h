@@ -8,7 +8,7 @@ protected:
 
 public:
     Ability();
-
+    
     enum elements
     {
         neutral = 0,
@@ -19,4 +19,5 @@ public:
         poison,
         burn
     };
+    virtual ~Ability(){}
 };

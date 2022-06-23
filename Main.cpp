@@ -23,7 +23,7 @@ int main()
     //menu inicio
     Menu *menu = new Menu(window.getSize().x, window.getSize().y);
     Fight fight;
-    DragonRojo enemy;
+    dragonAzul enemy;
     DyvirFight dyvir;
     Boss1 boss;
     Map map;
@@ -58,25 +58,11 @@ int main()
 
                 case 1:
                     
-                   fight.update(background, dyvir, enemy, window);
-                    //if (!dyvir.getIsAlive()) {
-                    //        dyvir.Die();
-                    //}
-                    /*if (!enemy.getIsAlive()) {
-                        enemy.Die();
-                    }*/
-                    //background.setTexture(backTexture);
-                    /*window.draw(background);
-                    window.draw(enemy);
-                    window.draw(dyvir);*/
-                    //window.draw(m);
-
-
+                    fight.update(background, dyvir, enemy, window);
                     break;
 
                 case 2:
                     map.update(background, dyvirMap, window);
-              
                     break;
 
                 case 3:

@@ -1,8 +1,8 @@
 #include "Fight.h"
 
 
-Fight::Fight() {
-    _backTexture = new sf::Texture;
+Fight::Fight() : _backTexture() {
+    //_backTexture = new sf::Texture;
     _menu = nullptr;
     _turn = true;
     _music = true;
@@ -14,14 +14,14 @@ Fight::Fight() {
 }
 // Prueba modificaciones Git
 
-int Fight::update(sf::Sprite& background, DyvirFight& dyvir, DragonRojo& enemy, sf::RenderWindow& window)
+int Fight::update(sf::Sprite& background, DyvirFight& dyvir, Dragon& enemy, sf::RenderWindow& window)
 {
     if (_backFlag) {
         switch (enemy.getBack())
         {
         case 1:
-            _backTexture->loadFromFile("fondo.png");
-            background.setTexture(*_backTexture);
+            _backTexture.loadFromFile("fondo.png");
+            background.setTexture(_backTexture);
             _menu = new MenuFight(window.getSize().x, window.getSize().y);
             _backFlag = false;
         default:
@@ -34,13 +34,13 @@ int Fight::update(sf::Sprite& background, DyvirFight& dyvir, DragonRojo& enemy, 
         case 1:
             enemy.damageTaken(dyvir.doDamage());
             _turn = false;
-            std::cout << "Hiciste " << dyvir.doDamage() << " puntos de da�o" << std::endl << std::endl;
+            std::cout << "Hiciste " << dyvir.doDamage() << " puntos de daño" << std::endl << std::endl;
             _menu->setOption(0);
         }
     }
     else {
         dyvir.damageTaken(enemy.doDamage());
-        std::cout << "Te hicieron " << enemy.getBaseDamage() << " puntos de da�o" << std::endl << std::endl;
+        std::cout << "Te hicieron " << enemy.getBaseDamage() << " puntos de daño" << std::endl << std::endl;
         _turn = true;
        
     }

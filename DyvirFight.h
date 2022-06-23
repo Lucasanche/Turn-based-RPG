@@ -1,17 +1,16 @@
 #pragma once
 #include "Dragon.h"
 #include "dragonAzul.h"
+#include "Inventory.h"
 
-class DyvirFight : public sf::Drawable, public Dragon
+class DyvirFight : public Dragon
 {
 public:
 	DyvirFight();
-	void update();
-	//bool changeStatus();
-	void Die();
-	int doDamage(/*AbilityMagic&*/);
-	void updateSpriteHP();
-	void damageTaken(int);
+	void update() override;
+	void Die() override;
+	int doDamage() override;
+	void damageTaken(int) override;
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 

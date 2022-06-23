@@ -37,14 +37,13 @@ void DragonRojo::update()
 
 }
 
-bool DragonRojo::damageTaken(int damageTaken)
+void DragonRojo::damageTaken(int damageTaken)
 {
     _HP -= damageTaken;
     if (_HP <= 0) {
         _HP = 0;
         _isAlive = false;
     }
-    return _isAlive;
 }
 int DragonRojo::doDamage()
 {

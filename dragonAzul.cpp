@@ -37,14 +37,13 @@ void dragonAzul::update()
    
 }
 
-bool dragonAzul::damageTaken(int damageTaken)
+void dragonAzul::damageTaken(int damageTaken)
 {
     _HP -= damageTaken;
     if (_HP <= 0) {
         _HP = 0;
         _isAlive = false;
     }
-    return _isAlive;
 }
 int dragonAzul::doDamage()
 {

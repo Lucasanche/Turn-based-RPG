@@ -13,13 +13,13 @@ private:
     bool _turn;
     bool _music;
     bool _backFlag;
-    sf::Texture* _backTexture;
+    sf::Texture _backTexture;
     sf::SoundBuffer bufferPelea;
     sf::Sound musicaPelea;
     
 public:
     Fight();
-    int update(sf::Sprite&, DyvirFight&, DragonRojo&, sf::RenderWindow& window);
+    int update(sf::Sprite&, DyvirFight&, Dragon&, sf::RenderWindow& window);
 };
 
 
