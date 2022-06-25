@@ -1,4 +1,6 @@
 #pragma once
+#ifndef DYVIRFIGHT_H
+#define DYVIRFIGHT_H
 #include "Dragon.h"
 #include "dragonAzul.h"
 #include "Inventory.h"
@@ -14,4 +16,4 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 
-
+#endif

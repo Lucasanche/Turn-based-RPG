@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "dragonAzul.h"
 
 dragonAzul::dragonAzul()

@@ -1,6 +1,6 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "iostream"
+#ifndef MENU_H
+#define MENU_H
 
 #define MAX_NUMBER_OF_ITEMS 3
 
@@ -22,3 +22,5 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	~Menu();
 };
+
+#endif

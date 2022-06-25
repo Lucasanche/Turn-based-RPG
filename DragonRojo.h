@@ -1,4 +1,6 @@
 #pragma once
+#ifndef DRAGONROJO_H
+#define DRAGONROJO_H
 #include "Dragon.h"
 class DragonRojo : public Dragon
 {
@@ -14,4 +16,4 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 
-
+#endif

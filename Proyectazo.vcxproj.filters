@@ -1,120 +1,143 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fight Files">
+      <UniqueIdentifier>{f8d516f3-5892-4c9c-822f-9b580352cafb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fight Files\Menus">
+      <UniqueIdentifier>{6ff92f6b-7721-40e7-b986-fdd9290cb290}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fight Files\Enemies">
+      <UniqueIdentifier>{8b05d94d-5dfc-490f-956a-27baea4a89ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dungeon Files">
+      <UniqueIdentifier>{4799d092-d859-4de4-af47-3b956cf5b367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dungeon Files\Enemies">
+      <UniqueIdentifier>{a3a72053-1d99-477c-a11a-1fca0357a7e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DyvirFight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dragonAzul.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Fight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuFight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cursor.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Main Files</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Dragon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DyvirMap.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Main Files</Filter>
     </ClCompile>
     <ClCompile Include="Boss1.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Fight Files\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Fight Files\Menus</Filter>
     </ClCompile>
-    <ClCompile Include="MapWalls.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DyvirFight.cpp">
+      <Filter>Fight Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dragon.cpp">
+      <Filter>Fight Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fight.cpp">
+      <Filter>Fight Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dragonAzul.cpp">
+      <Filter>Fight Files\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="DragonRojo.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Fight Files\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Inventory.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DyvirMap.cpp">
+      <Filter>Dungeon Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Dungeon Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapWalls.cpp">
+      <Filter>Dungeon Files</Filter>
     </ClCompile>
     <ClCompile Include="Ability.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Dungeon Files</Filter>
     </ClCompile>
     <ClCompile Include="BrickTiles.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Dungeon Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Dungeon Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuFight.cpp">
+      <Filter>Fight Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Dungeon Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Main Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DyvirFight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dragonAzul.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Fight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MenuFight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cursor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Dragon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DyvirMap.h">
-      <Filter>Header Files</Filter>
+      <Filter>Fight Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Boss1.h">
-      <Filter>Header Files</Filter>
+      <Filter>Fight Files\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MapWalls.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="dragonAzul.h">
+      <Filter>Fight Files\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="DragonRojo.h">
-      <Filter>Header Files</Filter>
+      <Filter>Fight Files\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Inventory.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DyvirFight.h">
+      <Filter>Fight Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DyvirMap.h">
+      <Filter>Dungeon Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fight.h">
+      <Filter>Fight Files</Filter>
     </ClInclude>
     <ClInclude Include="Ability.h">
-      <Filter>Header Files</Filter>
+      <Filter>Dungeon Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Dungeon Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapWalls.h">
+      <Filter>Dungeon Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Dungeon Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Fight Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="BrickTiles.h">
-      <Filter>Header Files</Filter>
+      <Filter>Dungeon Files</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Dungeon Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dragon.h">
+      <Filter>Fight Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Main Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h">
+      <Filter>Main Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Proyectazo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

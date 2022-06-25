@@ -1,5 +1,6 @@
-#pragma once
-#include <SFML/Graphics.hpp>
+#ifndef BRICKTILES_H
+#define BRICKTILES_H
+
 #include "Collision.h"
 
 class BrickTilesq : public sf::Drawable, public Collision
@@ -22,3 +23,5 @@ class BrickTilesq : public sf::Drawable, public Collision
         int right;
         int left;
 };
+
+#endif

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef INVENTORY_H
+#define INVENTORY_H
 #include "Ability.h"
 
 class Inventory
@@ -28,6 +30,4 @@ public:
 	//const bool loadFromFile(const std::string fileName);
 };
 
-
-
-
+#endif

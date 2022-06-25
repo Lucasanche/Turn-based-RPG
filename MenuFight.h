@@ -1,7 +1,7 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#ifndef MENUFIGHT_H
+#define MENUFIGHT_H
 #include "Cursor.h"
-#include <iostream>
 
 #define MAX_NUMBER_OF_ITEMS 3
 
@@ -48,3 +48,5 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	~MenuFight();
 };
+
+#endif

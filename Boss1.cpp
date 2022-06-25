@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Boss1.h"
 
 Boss1::Boss1()

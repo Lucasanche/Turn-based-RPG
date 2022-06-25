@@ -1,4 +1,6 @@
 #pragma once
+#ifndef MAPWALLS_H
+#define MAPWALLS_H
 #include "Collision.h"
 class MapWalls : public sf::Drawable, public Collision
 {
@@ -13,3 +15,4 @@ class MapWalls : public sf::Drawable, public Collision
 		sf::FloatRect getBounds() const override;
 	};
 
+#endif

@@ -1,5 +1,7 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#ifndef COLLISION_H
+#define COLLISION_H
+
 class Collision {
 
 	public:
@@ -7,5 +9,4 @@ class Collision {
 		bool isCollision(Collision& col) const;
 	};
 
-
-
+#endif

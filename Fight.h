@@ -1,7 +1,9 @@
 #pragma once
-#include <SFML/Audio.hpp>
+#ifndef FIGHT_H
+#define FIGHT_H
+
 #include "DyvirFight.h"
-//#include "dragonAzul.h"
+#include "dragonAzul.h"
 #include "Boss1.h"
 #include "MenuFight.h"
 #include "DragonRojo.h"
@@ -22,5 +24,4 @@ public:
     int update(sf::Sprite&, DyvirFight&, Dragon&, sf::RenderWindow& window);
 };
 
-
-
+#endif

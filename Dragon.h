@@ -1,5 +1,6 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#ifndef DRAGON_H
+#define DRAGON_H
 #include "AbilityMagic.h"
 
 class Dragon : public sf::Drawable
@@ -32,3 +33,4 @@ public:
 	virtual void damageTaken(int) = 0;
 };
 
+#endif

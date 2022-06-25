@@ -1,4 +1,7 @@
 #pragma once
+#ifndef ABILITY_H
+#define ABILITY_H
+
 class Ability
 {
 protected:
@@ -21,3 +24,5 @@ public:
     };
     virtual ~Ability(){}
 };
+
+#endif

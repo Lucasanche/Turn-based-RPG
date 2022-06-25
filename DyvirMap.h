@@ -1,6 +1,6 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <iostream>
+#ifndef DYVIRMAP_H
+#define DYVIRMAP_H
 #include "Collision.h"
 #include "BrickTiles.h"
 
@@ -25,4 +25,4 @@ public:
 
 };
 
-
+#endif

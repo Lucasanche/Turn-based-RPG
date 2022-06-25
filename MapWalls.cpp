@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "MapWalls.h"
 
 MapWalls::MapWalls(int x, int y)

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "BrickTiles.h"
 
 BrickTilesq::BrickTilesq()

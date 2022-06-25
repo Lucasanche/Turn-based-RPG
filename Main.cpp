@@ -1,6 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include "iostream"
+#include "stdafx.h"
 #include "DyvirFight.h"
 #include "dragonAzul.h"
 #include "Fight.h"

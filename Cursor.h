@@ -1,5 +1,6 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#ifndef CURSOR_H
+#define CURSOR_H
 
 class Cursor : public sf::Drawable
 {
@@ -14,3 +15,4 @@ public:
 	sf::Sprite getSprite(){return _sprite;}
 };
 
+#endif

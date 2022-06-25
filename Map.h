@@ -1,10 +1,9 @@
 #pragma once
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
+#ifndef MAP_H
+#define MAP_H
 #include "DyvirMap.h"
 #include "BrickTiles.h"
-#include<string>
-#include<fstream>
+
 
 
 class Map
@@ -24,4 +23,4 @@ public:
     int update(DyvirMap&, sf::RenderWindow& window);
 };
 
-
+#endif

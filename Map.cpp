@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Map.h"
 
 Map::Map() : _view(sf::FloatRect(200, 300, 300, 250))
