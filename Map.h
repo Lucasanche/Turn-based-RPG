@@ -1,9 +1,13 @@
 #pragma once
 #include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 #include "DyvirMap.h"
+#include "BrickTiles.h"
+#include<string>
+#include<fstream>
 
 
-class Map 
+class Map
 {
 private:
     bool _music;
@@ -11,13 +15,13 @@ private:
     sf::SoundBuffer bufferPelea;
     sf::Sound musicaPelea;
     sf::View _view;
+    std::vector<std::vector<sf::Vector2i>>map;
+    std::vector<sf::Vector2i>tempMap;
+    BrickTilesq tile;
 
 public:
     Map();
-    void loadMap(sf::RenderWindow& window);
-    int update(sf::Sprite&, DyvirMap&, sf::RenderWindow& window);
-    void loadMapCol();
-
+    int update(DyvirMap&, sf::RenderWindow& window);
 };
 
 
