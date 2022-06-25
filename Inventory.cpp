@@ -22,7 +22,7 @@ Inventory::~Inventory()
 
 
 //Functions
-void Inventory::nullify(const unsigned from)
+void Inventory::nullify(const int from)
 {
 	for (size_t i = from; i < this->_capacity; i++)
 	{

@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Ability.h"
 
 class Inventory
@@ -12,17 +11,14 @@ private:
 	// Nah que se yo
 
 	//Private functions
-	void nullify(const unsigned from = 0);
+	void nullify(const int from = 0);
 
 public:
 	Inventory(unsigned capacity);
 	virtual ~Inventory();
-
 	// Gets()
 	int getCapacity() { return _capacity; }
 	int getNroOfAbilities() { return _nrOfAbilities; }
-
-
 	//Functions
 	void clear();
 	bool add(Ability&); 

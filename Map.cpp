@@ -2,7 +2,7 @@
 #include<fstream>
 #include "DyvirMap.h"
 
-Map::Map() : _view(sf::FloatRect(200, 300, 800, 700))
+Map::Map() : _view(sf::FloatRect(200, 300, 200, 125))
 {
     _music = true;
    // bufferPelea.loadFromFile("musicaMap.wav");
@@ -30,7 +30,7 @@ void Map::loadMap(sf::RenderWindow& window)
     DyvirMap d;
     sf::Vector2i map[300][300];
     sf::Vector2i loadCounter = sf::Vector2i(0, 0);
-    sf::View _view(sf::FloatRect(200, 300, 800, 700));
+    sf::View _view(sf::FloatRect(200, 300, 200, 125));
     Map map2;
 
 
@@ -100,7 +100,7 @@ int Map::update(sf::Sprite& background, DyvirMap& DyvirMap, sf::RenderWindow& wi
     _view.setCenter(DyvirMap.getPosition());
     background.setTexture(_backTexture);
     background.setTextureRect({ 0,0,700,700 });
-    background.setScale(2, 2);
+    background.setScale(4, 4);
     window.setView(_view);
     window.draw(background);
     window.draw(DyvirMap);
