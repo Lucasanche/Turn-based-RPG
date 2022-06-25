@@ -57,23 +57,23 @@ int main()
                     break;
 
                 case 1:
-                    
+
                     fight.update(background, dyvir, enemy, window);
                     break;
 
                 case 2:
-                    map.loadMap(window);
-                    
-              
+                    map.update(dyvirMap, window);
+
+
                     break;
 
                 case 3:
                     window.close();
                     break;
             }
-            
+
             if (!enemy.getIsAlive()) {
-              
+
                     sf::Texture Texture;
                     sf::Sprite Win;
                     Texture.loadFromFile("win.png");
@@ -85,7 +85,7 @@ int main()
 
                 }
             else if(enemy.getIsAlive() && !dyvir.getIsAlive())
-                
+
             {   sf::Texture TextureLoss;
                 sf::Sprite Loss;
                 TextureLoss.loadFromFile("loss.png");
@@ -95,7 +95,7 @@ int main()
                 window.draw(Loss);
 
             }
-                
+
                 //FUNCION DE GANASTE Y KABOOM
             //}
             //david.setHP(0);
