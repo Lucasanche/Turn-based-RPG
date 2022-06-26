@@ -6,7 +6,7 @@
 class Inventory
 {
 private:
-	Ability** _abilityArray;
+	Ability **_abilityArray;
 	int _nrOfAbilities;
 	int _capacity;
 	//bool _isEmpty; la necesitamos realmente? 
@@ -17,6 +17,7 @@ private:
 
 public:
 	Inventory(unsigned capacity);
+	void freeMemory();
 	virtual ~Inventory();
 	// Gets()
 	int getCapacity() { return _capacity; }
@@ -24,7 +25,8 @@ public:
 	//Functions
 	void clear();
 	bool add(Ability&); 
-	bool remove(const unsigned index); //const unsigned? 
+	bool remove(const unsigned index);
+	void listar();
 
 	//const bool saveToFile(const std::string fileName);
 	//const bool loadFromFile(const std::string fileName);

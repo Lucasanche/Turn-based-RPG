@@ -8,24 +8,16 @@ Inventory::Inventory(unsigned capacity)
 	_capacity = capacity;
 	_nrOfAbilities = 0;
 	_abilityArray = new Ability * [_capacity];
-	this->nullify();
+	this->nullify(0);
 }
 
-Inventory::~Inventory()
-{
-	for (size_t i = 0; i < _nrOfAbilities; i++)
-	{
-		delete _abilityArray[i];
-	}
-	delete[] _abilityArray;
-}
 
 
 
 //Functions
 void Inventory::nullify(const int from)
 {
-	for (size_t i = from; i < this->_capacity; i++)
+	for (size_t i = from; i < _capacity; i++)
 	{
 		_abilityArray[i] = nullptr;
 	}
@@ -44,9 +36,7 @@ void Inventory::clear()
 }
 
 
-bool Inventory::add(Ability& _newAbility) //REVISAR -> en mi cabeza. recorre el array, siempre que encuentre algo va 
-//sumando las posiciones. Cuando deja de sumar es porque la posicion esta vacia, asi que ahi le tendriamos que poner 
-//la habilidad nueva. 
+bool Inventory::add(Ability& newAbility)
 {
 	if (_nrOfAbilities < _capacity)
 	{
@@ -55,16 +45,15 @@ bool Inventory::add(Ability& _newAbility) //REVISAR -> en mi cabeza. recorre el 
 		{
 			_position++;
 		}
-		_abilityArray[_position] = &_newAbility; //WTF NO SE COMO HAY Q PONER ESO AHI NO ME TIRA ERROR PERO NO ME GUSTA
+		_abilityArray[_position] = &newAbility;
+		_nrOfAbilities++;
 		return true;
 	}
 
 	return false;
 }
 
-bool Inventory::remove(const unsigned index) //REVISAR -> para borrar setea el espacio como vacio, lo cual tiene sentido
-//con el add que cuando recorra el while, va a encontrar un lugar vacio y ahi va a agregar la nueva habilidad
-//NO SE BIEN EL INDEX COMO FUNCIONA
+bool Inventory::remove(const unsigned index) //REVISAR -> Tira un error en el debugger (quizás es algo relacionado a liberarr la memoria mal)
 {
 	if (_nrOfAbilities > 0)
 	{
@@ -73,14 +62,39 @@ bool Inventory::remove(const unsigned index) //REVISAR -> para borrar setea el e
 		{
 			delete _abilityArray[index];
 			_abilityArray[index] = nullptr;
-			_nrOfAbilities--;
+			--_nrOfAbilities;
 			return true;
 		}
 	}
-
 	return false;
 }
 
+void Inventory::listar()
+{
+	for (int i = 0; i < _capacity; i++) {
+		if (_abilityArray[i]) {
+			_abilityArray[i]->Mostrar();
+		}
+		else {
+			std::cout << "-" << std::endl;
+		}
+	}
+
+}
+
+void Inventory::freeMemory() {
+	for (size_t i = 0; i < _nrOfAbilities; i++)
+	{
+		delete _abilityArray[i];
+	}
+	delete[] _abilityArray;
+}
+
+Inventory::~Inventory()
+{
+	this->freeMemory();
+	std::cout << "se muere";
+}
 /*const bool Inventory::saveToFile(const std::string fileName)
 {
 	return false;

@@ -19,10 +19,14 @@ int main()
     background.setTextureRect({ 0,0,800,700 });
 
     //menu inicio
-    Menu *menu = new Menu(float(window.getSize().x), float(window.getSize().y));
+    Menu* menu = new Menu(float(window.getSize().x), float(window.getSize().y));
     Fight fight;
     dragonAzul enemy;
     DyvirFight dyvir;
+  /*  Inventory *inventory = new Inventory(5);
+    Ability ability;*/
+
+
     Boss1 boss;
     Map map;
     DyvirMap dyvirMap;

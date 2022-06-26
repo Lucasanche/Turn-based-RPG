@@ -2,26 +2,21 @@
 #ifndef ABILITY_H
 #define ABILITY_H
 
+#include "Dragon.h"
+
 class Ability
 {
 protected:
-    float _damage;
-    int _element;
-    int _status;
+    std::string _name;
+    std::string _description;
+    int _element1;
+    int _element2;
+    int _id;
+    int _mpCost;
 
 public:
     Ability();
-    
-    enum elements
-    {
-        neutral = 0,
-        fire,
-        water,
-        air,
-        earth,
-        poison,
-        burn
-    };
+    virtual void Mostrar() = 0;
     virtual ~Ability(){}
 };
 
