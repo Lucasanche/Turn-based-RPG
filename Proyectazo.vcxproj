@@ -152,6 +152,7 @@
     <ClCompile Include="DragonRojo.cpp" />
     <ClCompile Include="DyvirFight.cpp" />
     <ClCompile Include="DyvirMap.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Fight.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="DragonRojo.h" />
     <ClInclude Include="DyvirFight.h" />
     <ClInclude Include="DyvirMap.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Fight.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Map.h" />

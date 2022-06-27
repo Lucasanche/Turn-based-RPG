@@ -15,6 +15,7 @@ private:
     bool _turn;
     bool _music;
     bool _backFlag;
+    bool _stateFlag;
     sf::Texture _backTexture;
     sf::SoundBuffer bufferPelea;
     sf::Sound musicaPelea;

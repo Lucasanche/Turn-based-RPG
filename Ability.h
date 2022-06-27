@@ -4,13 +4,13 @@
 
 #include "Dragon.h"
 
-class Ability
+class Ability : public Dragon
 {
 protected:
     std::string _name;
     std::string _description;
-    int _element1;
-    int _element2;
+    elements _element1;
+    elements _element2;
     int _id;
     int _mpCost;
 

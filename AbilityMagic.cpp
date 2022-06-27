@@ -2,15 +2,16 @@
 
 AbilityMagic::AbilityMagic()
 {
-	_damage = 10;
+	_magicDamage = 0;
 	_element1 = neutral;
 	_element2 = neutral;
+	_damageMultiplier = _vampireishon = _stun = _reducePD = _reduceMR = _reduceAtt = _burns = _poison = _truedamash = false;
 }
 
 float AbilityMagic::useAbility(Dragon &dragon)
 {
 
-	float totalDamage = _damage;
+	float totalDamage = _magicDamage;
 
 	if (_damageMultiplier) {
 		totalDamage *= 2;
@@ -19,22 +20,22 @@ float AbilityMagic::useAbility(Dragon &dragon)
 	   // Ver como PINGO lo asemo
 	//}
 	if (_burns) {
-		dragon.setBurn();
+		//dragon.setBurn();
 	}
 	if (_poison) {
 		dragon.setPoison();
 	}
 	if (_stun) {
-		dragon.setStun();
+		//dragon.setStun();
 	}
 	if (_reduceAtt) {
-		dragon.setAttReduced();
+		//dragon.setAttReduced();
 	}
 	if (_reducePD) {
-		dragon.setPD(_PDreduced);
+		//dragon.setPD(_PDreduced);
 	}
 	if (_reduceMR){
-		dragon.setMR(_MRreduced);
+		//dragon.setMR(_MRreduced);
 	}
 	if(_element1 == dragon.getElementWeak()) {
 		totalDamage *= 1.15;
@@ -43,9 +44,9 @@ float AbilityMagic::useAbility(Dragon &dragon)
 		totalDamage *= 1.15;
 	}
 	if (!_truedamash) {
-		totalDamage *= dragon.getMR();
+		//totalDamage *= dragon.getMR();
 	}
-		
+	//dragon.addStates();
 	dragon.damageTaken(int(totalDamage));
 }
 

@@ -4,17 +4,15 @@
 class AbilityMagic : public Ability
 {
 private:
-	int _damage;
-	float _PDreduced;
-	float _MRreduced;
+	int _magicDamage;
 	bool _damageMultiplier,
 		_vampireishon,
 		_stun,
 		_reducePD,
 		_reduceMR,
+		_reduceAtt,
 		_burns,
 		_poison,
-		_reduceAtt,
 		_truedamash;
 public: 
 	AbilityMagic();

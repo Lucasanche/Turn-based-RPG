@@ -8,6 +8,7 @@ Fight::Fight() : _backTexture() {
     _turn = true;
     _music = true;
     _backFlag = true;
+    _stateFlag = true;
     bufferPelea.loadFromFile("musicaPelea.wav");
     musicaPelea.setBuffer(bufferPelea);
     musicaPelea.setVolume(30);
@@ -31,21 +32,31 @@ int Fight::update(sf::Sprite& background, DyvirFight& dyvir, Dragon& enemy, sf::
     }
     
     if (_turn) {
-        switch (_menu->update(dyvir.getHP(), enemy.getHP())) {
-        case 1:
-            dyvir.checkStates();
-            enemy.damageTaken(dyvir.doDamage());
-            _turn = false;
-            std::cout << "Hiciste " << dyvir.doDamage() << " puntos de daño" << std::endl << std::endl;
-            _menu->setOption(0);
+        if (_stateFlag) {
+            dyvir.checkStates(_turn);
+            _stateFlag = false;
         }
+        if (_turn) {
+            switch (_menu->update(dyvir.getHP(), enemy.getHP())) {
+            case 1:
+                enemy.damageTaken(dyvir.doDamage());
+                _turn = false;
+                _stateFlag = true;
+                std::cout << "Hiciste " << dyvir.doDamage() << " puntos de daño" << std::endl << std::endl;
+                _menu->setOption(0);
+            }
+        } 
     }
     else {
-        enemy.checkStates();
-        dyvir.damageTaken(enemy.doDamage());
-        std::cout << "Te hicieron " << enemy.getBaseDamage() << " puntos de daño" << std::endl << std::endl;
-        _turn = true;
-       
+        if (_stateFlag) {
+            enemy.checkStates(_turn);
+            _stateFlag = false;
+        }
+        if (!_turn) {
+            dyvir.damageTaken(enemy.doDamage());
+            std::cout << "Te hicieron " << enemy.getBaseDamage() << " puntos de daño" << std::endl << std::endl;
+            _turn = true;
+        }
     }
     dyvir.update();
     enemy.update();

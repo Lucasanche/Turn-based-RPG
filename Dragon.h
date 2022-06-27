@@ -10,6 +10,31 @@ enum elements
 	air,
 	earth
 };
+enum abilityName {
+	Fireball = 0,
+	Bubble,
+	WindBlow,
+	EarthArmor,
+	Barrier,
+	Heal,
+	Restore,
+	EarthBarrier,
+	WindBarrier,
+	WaterBarrier,
+	FireBarrier,
+	Mirror,
+	Tsunami,
+	FireTornado,
+	VampireFire,
+	Earthquake,
+	Geiser,
+	PoisonGas,
+	MagmaWave,
+	Inferno,
+	Swirl,
+	SabakuKyu,
+	Doton
+};
 
 class Dragon : public sf::Drawable
 {
@@ -20,12 +45,17 @@ protected:
 		_burnsed,
 		_poisoned,
 		_attReduced;
+	unsigned short  _burnedCount,
+		_stunedCount,
+		_reducedPDCount,
+		_reducedMRCount,
+		_reducedAttCount;
 	int _HP;
-	int _BaseDamage;
+	int _HPMax;
+	int _physicalDamage;
 	int _elementWeak;
-	/*int BaseDefense;
-	int ElectricDamage;
-	int FireDamage;*/
+	int _physicalDefense;
+	int _magicResist;
 	float _frame;
 	sf::Texture _texture;
 	sf::Sprite _sprite;
@@ -34,10 +64,13 @@ protected:
 	int _backGround;
 
 public:
-	void checkStates();
+	
+	
+	Dragon();
+	void checkStates(bool&);
 	//Gets()
 	int getHP() { return _HP; }
-	int getBaseDamage() { return _BaseDamage; }
+	int getBaseDamage() { return _physicalDamage; }
 	bool getIsAlive() { return _isAlive; }
 	int getElementWeak() { return int(_elementWeak); }
 
@@ -46,6 +79,7 @@ public:
 	void setHP(int hp) { _HP = hp; }
 	void setIsAlive(bool isAlive) { _isAlive = isAlive; }
 	int getBack() { return _backGround; }
+	virtual void setStats() = 0;
 	virtual void Die() = 0;
 	virtual void update() = 0;
 	virtual int doDamage() = 0;
