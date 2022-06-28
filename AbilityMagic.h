@@ -1,4 +1,6 @@
 #pragma once
+#ifndef ABILITYMAGIC_H
+#define ABILITYMAGIC_H
 #include "Ability.h"
 
 class AbilityMagic : public Ability
@@ -30,3 +32,4 @@ public:
 	float useAbility(Dragon &dragon) override;
 };
 
+#endif

@@ -15,13 +15,10 @@ protected:
     int _mpCost;
 
 public:
-    Ability(){}
+    Ability();
     void setName(sf::String name) { _name.setString(name); }
     void setDescription(sf::String description) { _description.setString(description); }
-    void setElements(elements element1, elements element2) {
-        _element1 = element1;
-        _element2 = element2;
-    }
+    void setElements(elements element1, elements element2);
     void setID(int id) { _id = id; }
     virtual void setMagicDamage(int magicDamage) = 0;
     virtual void setMpCost(int mpCost) = 0;

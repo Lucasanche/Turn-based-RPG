@@ -5,7 +5,7 @@ DyvirFight::DyvirFight()
 {
 	_HP = 100;
 	//_isAlive = false;
-	_BaseDamage = 10;
+    _physicalDamage = 10;
     _texture.loadFromFile("dyvir.png");
 	_sprite.setTexture(_texture);
 	_sprite.setTextureRect({ 0,0,260,230 });
@@ -70,6 +70,6 @@ int DyvirFight::doDamage()
 {
     ///METER TODAS LAS SINERGIAS ACA. 
     int finalDamage;
-    finalDamage = _BaseDamage;
+    finalDamage = _physicalDamage;
     return finalDamage;
 }

@@ -12,7 +12,7 @@ Enemy::Enemy(std::string path, int rectWidth, int rectHeight, float frameMultipl
 	_totalFrames = totalFrames;
 }
 
-void Enemy::setStats(int HP, int physicalDamage, int elementWeak, int physicalDefense, int magicResist)
+void Enemy::setStats(int HP, int physicalDamage, elements elementWeak, int physicalDefense, int magicResist)
 {
 	_HP = HP;
 	_physicalDamage = physicalDamage;

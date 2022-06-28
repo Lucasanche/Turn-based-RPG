@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Boss1.h"
-
+/*
 Boss1::Boss1()
 {///Stats
     _HP = 100;
@@ -78,3 +78,4 @@ void Boss1::Die()
     }
     _sprite.setTextureRect({ int(_frame) * 100, int(_frameY) * 100, 100, 100 });
 }
+*/

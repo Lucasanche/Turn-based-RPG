@@ -73,7 +73,7 @@ void Inventory::listar()
 {
 	for (int i = 0; i < _capacity; i++) {
 		if (_abilityArray[i]) {
-			_abilityArray[i]->Mostrar();
+			//_abilityArray[i]->Mostrar();
 		}
 		else {
 			std::cout << "-" << std::endl;

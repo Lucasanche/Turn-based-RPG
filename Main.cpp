@@ -21,13 +21,13 @@ int main()
     //menu inicio
     Menu* menu = new Menu(float(window.getSize().x), float(window.getSize().y));
     Fight fight;
-    dragonAzul enemy;
+    DragonRojo enemy;
     DyvirFight dyvir;
   /*  Inventory *inventory = new Inventory(5);
     Ability ability;*/
 
 
-    Boss1 boss;
+    //Boss1 boss;
     Map map;
     DyvirMap dyvirMap;
     sf::Event event;

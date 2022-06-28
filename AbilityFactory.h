@@ -1,11 +1,15 @@
 #pragma once
+#ifndef ABILITYFACTORY_H
+#define ABILITYFACTORY_H
 
+#include "AbilityMagic.h"
 
 class AbilityFactory
 {
 private:
 	Ability* _ability;
 public:
+	AbilityFactory();
 	Ability* createFireball();
 	Ability* createBubble();
 	Ability* createWindBlow();
@@ -19,4 +23,7 @@ public:
 	Ability* createInferno();
 	Ability* createSwirl();
 	Ability* createSabakuKyu();
+	~AbilityFactory();
 };
+
+#endif

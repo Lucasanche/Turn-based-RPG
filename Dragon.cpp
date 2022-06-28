@@ -60,7 +60,9 @@ void Dragon::checkStates(bool &turn)
 	}
 }
 
-void Dragon::setPoison()
+float Dragon::getMR()
 {
-	_poisoned = true;
+	float result = 0;
+	result = 1 - (_magicResist / (_magicResist + 50));
+	return result;
 }

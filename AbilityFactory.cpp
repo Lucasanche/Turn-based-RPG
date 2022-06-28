@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "AbilityFactory.h"
-#include "AbilityMagic.h"
+
+
+AbilityFactory::AbilityFactory()
+{
+}
 
 Ability* AbilityFactory::createFireball()
 {
@@ -144,22 +148,11 @@ Ability* AbilityFactory::createSabakuKyu()
 	return _ability;
 }
 
-
-
-
-
-
-
-
-
-int _magicDamage;
-bool _damageMultiplier,
-_vampireishon,
-_stun,
-_reducePD,
-_reduceMR,
-_reduceAtt,
-_burns,
-_poison,
-_truedamash;
-
+AbilityFactory::~AbilityFactory()
+{
+	delete _ability;
+	_ability = nullptr;
+	if (_ability != nullptr) {
+		std::cout << "no se liberó la memoria de AbilityFactory/n";
+	}
+}

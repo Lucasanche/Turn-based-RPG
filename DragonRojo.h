@@ -1,8 +1,8 @@
 #pragma once
 #ifndef DRAGONROJO_H
 #define DRAGONROJO_H
-#include "Dragon.h"
-class DragonRojo : public Dragon
+#include "Enemy.h"
+class DragonRojo : public Enemy
 {
 private:
 	int _frameY;
@@ -14,7 +14,6 @@ public:
 	int doDamage() override;
 	void Die() override;
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-	getElement();
 };
 
 #endif

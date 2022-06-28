@@ -53,7 +53,7 @@ protected:
 	int _HP;
 	int _HPMax;
 	int _physicalDamage;
-	int _elementWeak;
+	elements _elementWeak;
 	int _physicalDefense;
 	int _magicResist;
 	float _frame;
@@ -75,7 +75,7 @@ public:
 	int getHP() { return _HP; }
 	int getBaseDamage() { return _physicalDamage; }
 	bool getIsAlive() { return _isAlive; }
-	int getElementWeak() { return int(_elementWeak); }
+	elements getElementWeak() { return _elementWeak; }
 
 
 	//Sets()
@@ -87,7 +87,13 @@ public:
 	virtual void update() = 0;
 	virtual int doDamage() = 0;
 	virtual void damageTaken(int) = 0;
-	void setPoison();
+	void setBurns() {  _burnsed = true; }
+	void setPoison() { _poisoned = true; }
+	void setStun() { _stuned = true; }
+	void setAttReduce() { _attReduced = true; }
+	void setPDreduce() { _PDreduced = true; }
+	void setMRreduce() { _MRreduced = true; }
+	float getMR();
 };
 
 #endif

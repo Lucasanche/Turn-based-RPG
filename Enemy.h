@@ -12,11 +12,14 @@ public:
 	Enemy(std::string path, int widht, int height, float frameMultiplier, int totalFrames);
 	void setStats(int _HP,
 		int _physicalDamage,
-		int _elementWeak,
+		elements _elementWeak,
 		int _physicalDefense,
 		int _magicResist);
 	void setAbility1(abilityName);
 	void setAbility2(abilityName);
 	void setAbility(Ability& ability, abilityName abName);
 	void update() override;
+	void Die() = 0;
+	int doDamage() = 0;
+	void damageTaken(int) {}
 };

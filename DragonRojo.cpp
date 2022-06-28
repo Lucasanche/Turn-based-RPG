@@ -5,7 +5,7 @@ DragonRojo::DragonRojo()
 {
 ///Stats
 _HP = 100;
-_BaseDamage = 10;
+_physicalDamage = 10;
 _isAlive = true;
 _frameY = 0;
 
@@ -48,7 +48,7 @@ void DragonRojo::damageTaken(int damageTaken)
 }
 int DragonRojo::doDamage()
 {
-    int finalDamage = _BaseDamage;
+    int finalDamage = _physicalDamage;
     return finalDamage;
 }
 void DragonRojo::draw(sf::RenderTarget& target, sf::RenderStates states) const
