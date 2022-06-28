@@ -62,6 +62,9 @@ protected:
 	bool _isAlive;
 	bool _flagDie;
 	int _backGround;
+	int _rectWidth;
+	int _rectHeight;
+	int _totalFrames;
 
 public:
 	

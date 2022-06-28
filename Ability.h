@@ -4,7 +4,7 @@
 
 #include "Dragon.h"
 
-class Ability : public Dragon
+class Ability
 {
 protected:
     std::string _name;
@@ -16,7 +16,6 @@ protected:
 
 public:
     Ability();
-    virtual void Mostrar() = 0;
     virtual ~Ability(){}
 };
 

@@ -25,16 +25,7 @@ dragonAzul::dragonAzul()
 }
 void dragonAzul::update()
 {
-    if (_isAlive) {
-        _frame += 0.15;
-        if (_frame >= 4 && _isAlive) {
-            _frame = 0;
-        }
-        _sprite.setTextureRect({ int(_frame) * 96, 0, 82, 92 });
-    }
-    else {
-        this->Die();
-    }
+    
    
 }
 

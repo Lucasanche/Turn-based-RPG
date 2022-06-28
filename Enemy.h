@@ -9,7 +9,7 @@ private:
 	Ability* _ability1;
 	Ability* _ability2;
 public:
-	Enemy();
+	Enemy(std::string path, int widht, int height, float frameMultiplier, int totalFrames);
 	void setStats(int _HP,
 		int _physicalDamage,
 		int _elementWeak,
@@ -18,6 +18,5 @@ public:
 	void setAbility1(abilityName);
 	void setAbility2(abilityName);
 	void setAbility(Ability& ability, abilityName abName);
-	
+	void update() override;
 };
-

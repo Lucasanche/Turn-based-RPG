@@ -12,7 +12,6 @@
 Ability* AbilityFactory::createFireball()
 {
 	_ability = new AbilityMagic;
-
 	return _ability;
 }
 
@@ -25,3 +24,6 @@ Ability* AbilityFactory::createWindBlow()
 {
 	return _ability;
 }
+
+
+
