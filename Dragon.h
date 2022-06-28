@@ -4,11 +4,11 @@
 
 enum elements
 {
-	neutral = 0,
-	fire,
-	water,
-	air,
-	earth
+	Neutral = 0,
+	Fire,
+	Water,
+	Air,
+	Earth
 };
 enum abilityName {
 	Fireball = 0,

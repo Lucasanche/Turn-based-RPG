@@ -1,8 +1,13 @@
+#include "stdafx.h"
 #include "AbilityMagic.h"
 
 AbilityMagic::AbilityMagic()
 {
+	_name.setString("empty");
+	_description.setString("empty");
 	_magicDamage = 0;
+	_mpCost = 0;
+	_id = 0;
 	_element1 = neutral;
 	_element2 = neutral;
 	_damageMultiplier = _vampireishon = _stun = _reducePD = _reduceMR = _reduceAtt = _burns = _poison = _truedamash = false;
