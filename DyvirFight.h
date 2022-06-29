@@ -12,7 +12,7 @@ public:
 	void Die() override;
 	int doDamage() override;
 	void damageTaken(int) override;
-	void setStats()override{}
+	void setStats(){}
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 

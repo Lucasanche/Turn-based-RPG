@@ -99,10 +99,9 @@ public:
 
 
 	//Virtual
-	virtual void setStats() = 0;
 	virtual void Die() = 0;
 	virtual void update() = 0;
-	virtual int doDamage() = 0;
+	virtual int doDamage(int) = 0;
 	virtual void damageTaken(int) = 0;
 	
 	//Functions

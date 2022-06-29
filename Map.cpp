@@ -31,10 +31,10 @@ Map::Map() : _view(sf::FloatRect(200, 300, 300, 250))
     }
 }
 
-int Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir, Boss1& enemy)
+int Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir, Enemy& enemy)
 {
 
-    BrickTilesq taux;
+    BrickTiles taux;
     int x=0, iaux, jaux, win=0;
     DyvirMap.update(taux);
     for (int i=0; i<map.size(); i++){
@@ -72,9 +72,10 @@ int Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir,
                 win++;
                     }
         if (!dyvir.getIsAlive()){
-                dyvir.Reset();
-                }
-
+             window.close();
+             std::cout << "Cagaste fuego";
+             system("pause");
+        }
     }
 
     _view.setCenter(DyvirMap.getPosition());

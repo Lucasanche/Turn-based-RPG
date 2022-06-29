@@ -23,9 +23,9 @@ void DyvirMap::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(_sprite, states);
 }
 
-void DyvirMap::update(BrickTilesq tile)
+void DyvirMap::update(BrickTiles tile)
 {
-    _frame += 0.1;
+    _frame += 0.15;
     if (_frame >= 5) {
         _frame = 0;
     }
@@ -35,19 +35,19 @@ void DyvirMap::update(BrickTilesq tile)
     /// MOV
     _velocity = { 0, 0 };
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-        _velocity.y = -1;
+        _velocity.y = -2;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-        _velocity.y = 1;
+        _velocity.y = 2;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        _velocity.x = -1;
+        _velocity.x = -2;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        _velocity.x = 1;
+        _velocity.x = 2;
     }
 
     ///EVITAR QUE SALGA DE LA PANTALLA!!!!!!!!!!!!!!;;;

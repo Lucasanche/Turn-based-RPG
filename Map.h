@@ -3,7 +3,7 @@
 #include "BrickTiles.h"
 #include "Dyvirfight.h"
 #include "Fight.h"
-#include "Fight.h"
+#include "Enemy.h"
 
 class Map
 {
@@ -15,12 +15,12 @@ private:
     sf::View _view;
     std::vector<std::vector<sf::Vector2i>>map;
     std::vector<sf::Vector2i>tempMap;
-    BrickTilesq tile;
+    BrickTiles tile;
     Fight fight;
 
 public:
     Map();
-    int update(DyvirMap&, sf::RenderWindow& window, DyvirFight& , Boss1& );
+    int update(DyvirMap&, sf::RenderWindow& window, DyvirFight& , Enemy& );
 };
 
 

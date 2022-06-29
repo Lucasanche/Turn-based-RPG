@@ -2,24 +2,27 @@
 #include "Dragon.h"
 #include "AbilityFactory.h"
 #include "Ability.h"
+
 class Enemy : public Dragon
 {
 private:
+	int _frameY;
 	AbilityFactory* abilityFactory;
 	Ability* _ability1;
 	Ability* _ability2;
 public:
-	Enemy(std::string path, int widht, int height, float frameMultiplier, int totalFrames);
+	Enemy(std::string path, int widht, int height, int totalFrames);
 	void setStats(int _HP,
 		int _physicalDamage,
 		elements _elementWeak,
 		int _physicalDefense,
 		int _magicResist);
+	void setAbility(Ability& ability, abilityName abName);
 	void setAbility1(abilityName);
 	void setAbility2(abilityName);
-	void setAbility(Ability& ability, abilityName abName);
 	void update() override;
-	void Die() = 0;
-	int doDamage() = 0;
-	void damageTaken(int) {}
+	void Die() override;
+	int doDamage(int) override;
+	void damageTaken(int) override;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

@@ -3,7 +3,8 @@
 
 DyvirFight::DyvirFight()
 {
-	_HP = 100;
+    _HPMax = 100;
+    _HP = _HPMax;
 	//_isAlive = false;
     _physicalDamage = 10;
     _texture.loadFromFile("dyvir.png");
@@ -13,7 +14,7 @@ DyvirFight::DyvirFight()
 	_sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
     _isAlive = true;
 
-    /////Variables útiles para los sprites
+    //////////////////////Variables útiles para los sprites
     _flagDie = true; // Usar para reproducir la animación de muerte
     _frame = 0;
 }
@@ -30,8 +31,6 @@ void DyvirFight::damageTaken(int damageTaken)
         _isAlive = false;
     }
 }
-
-
 
 void DyvirFight::update()
 {

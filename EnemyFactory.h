@@ -5,10 +5,10 @@
 
 class EnemyFactory
 {
-    public:
-        Enemy *getEnemy(int);
+public:
+    Enemy* getEnemy(int);
 
-    private:
-        Enemy* enemy;
-
+private:
+    Enemy* enemy;
+};
 #endif // ENEMYFACTORY_H

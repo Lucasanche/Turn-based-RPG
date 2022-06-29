@@ -143,7 +143,6 @@
     <ClCompile Include="Ability.cpp" />
     <ClCompile Include="AbilityFactory.cpp" />
     <ClCompile Include="AbilityMagic.cpp" />
-    <ClCompile Include="Boss1.cpp" />
     <ClCompile Include="BrickTiles.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Cursor.cpp" />
@@ -170,7 +169,6 @@
     <ClInclude Include="Ability.h" />
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="AbilityMagic.h" />
-    <ClInclude Include="Boss1.h" />
     <ClInclude Include="BrickTiles.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Cursor.h" />

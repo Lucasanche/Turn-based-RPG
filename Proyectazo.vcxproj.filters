@@ -32,9 +32,6 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
-    <ClCompile Include="Boss1.cpp">
-      <Filter>Fight Files\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Cursor.cpp">
       <Filter>Fight Files\Menus</Filter>
     </ClCompile>
@@ -90,9 +87,6 @@
   <ItemGroup>
     <ClInclude Include="MenuFight.h">
       <Filter>Fight Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Boss1.h">
-      <Filter>Fight Files\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="DyvirFight.h">
       <Filter>Fight Files</Filter>

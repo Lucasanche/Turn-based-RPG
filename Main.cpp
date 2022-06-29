@@ -20,7 +20,6 @@ int main()
 
     //menu inicio
     Menu* menu = new Menu(float(window.getSize().x), float(window.getSize().y));
-    Fight fight;
     EnemyFactory create;
     DyvirFight dyvir;
     Enemy *enemy;
@@ -30,7 +29,6 @@ int main()
     int option = 0;
     int optionFight = 0;
     int win = 0;
-
     enemy = create.getEnemy(win);
 
     while (window.isOpen())
@@ -59,13 +57,10 @@ int main()
                     break;
 
                 case 1:
-
-                    fight.update(background, dyvir, *enemy, window);
+                    map.update(dyvirMap, window, dyvir, *enemy);
                     break;
 
                 case 2:
-                    map.update(dyvirMap, window, dyvir, enemy);
-
                     break;
 
                 case 3:
@@ -85,7 +80,7 @@ int main()
                     window.draw(Win);
 
                 }
-            else if(enemy.getIsAlive() && !dyvir.getIsAlive())
+            else if(enemy->getIsAlive() && !dyvir.getIsAlive())
 
             {   sf::Texture TextureLoss;
                 sf::Sprite Loss;

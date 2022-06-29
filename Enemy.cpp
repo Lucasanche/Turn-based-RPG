@@ -1,15 +1,18 @@
 #include "stdafx.h"
 #include "Enemy.h"
 
-
-Enemy::Enemy(std::string path, int rectWidth, int rectHeight, float frameMultiplier, int totalFrames)
+Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames)
 {
+	_frameY = 0;
+	//_backGround = 1;
 	_texture.loadFromFile(path);
 	_sprite.setTexture(_texture);
 	_totalFrames = totalFrames;
 	_rectWidth = rectWidth;
 	_rectHeight = rectHeight;
-	_totalFrames = totalFrames;
+	_sprite.setTextureRect({ int(_frame) * _rectWidth, 0, _rectHeight, _rectWidth });
+	_sprite.setScale(2, 2);
+	_sprite.setPosition(750 - _sprite.getGlobalBounds().width, 480 - _sprite.getGlobalBounds().height);
 }
 
 void Enemy::setStats(int HP, int physicalDamage, elements elementWeak, int physicalDefense, int magicResist)
@@ -25,6 +28,7 @@ void Enemy::setAbility1(abilityName abName)
 {
 	this -> setAbility(*_ability1, abName);
 }
+
 void Enemy::setAbility2(abilityName abName)
 {
 	this->setAbility(*_ability2, abName);
@@ -97,5 +101,47 @@ void Enemy::update()
 	}
 	else {
 		this->Die();
+	}
+}
+
+void Enemy::Die()
+{
+	if (_flagDie) {
+		_frame = 0;
+		_flagDie = false;
+		_texture.loadFromFile("kaboom.png");
+		_sprite.setTexture(_texture);
+		_sprite.setScale(3.5, 3.5);
+		_sprite.setPosition(_sprite.getPosition().x - _sprite.getGlobalBounds().width / 4, _sprite.getPosition().y - _sprite.getGlobalBounds().height / 4);
+
+	}
+	_frame += 0.5;
+	if (_frame >= 8) {
+		_frame = 0;
+		_frameY++;
+		if (_frameY >= 9) {
+			_frameY = 9;
+			_frame = 9;
+		}
+	}
+	_sprite.setTextureRect({ int(_frame) * 100, int(_frameY) * 100, 100, 100 });
+}
+
+void Enemy::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(_sprite, states);
+}
+
+int Enemy::doDamage(int PDenemy)
+{
+	int finalDamage = _physicalDamage * PDenemy;
+	return finalDamage;
+}
+
+void Enemy::damageTaken(int damageTaken) {
+	_HP -= damageTaken;
+	if (_HP <= 0) {
+		_HP = 0;
+		_isAlive = false;
 	}
 }
