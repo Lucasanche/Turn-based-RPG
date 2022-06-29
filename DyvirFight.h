@@ -2,7 +2,6 @@
 #ifndef DYVIRFIGHT_H
 #define DYVIRFIGHT_H
 #include "Dragon.h"
-#include "dragonAzul.h"
 #include "Inventory.h"
 
 class DyvirFight : public Dragon

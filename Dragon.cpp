@@ -3,8 +3,6 @@
 
 Dragon::Dragon()
 {
-	_burnedCount = 0;
-	_stunedCount = 0;
 	_stuned = _PDreduced = _MRreduced = _burnsed = _poisoned = _attReduced = false;
 	_burnedCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = 0;
 	_isAlive = true;
@@ -57,6 +55,34 @@ void Dragon::checkStates(bool &turn)
 	}
 	if (_attReduced) {
 		_physicalDamage *= 0.8;
+	}
+}
+
+void Dragon::clearState(alteredState state)
+{
+	switch (state) {
+	case All:
+		_stuned = _PDreduced = _MRreduced = _burnsed = _poisoned = _attReduced = false;
+		_burnedCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = 0;
+		break;
+	case Poison:
+		_poisoned = false;
+		break;
+	case Burns:
+		_burnsed = false;
+		break;
+	case AttReduce:
+		_attReduced = false;
+		break;
+	case MRreduce:
+		_MRreduced = false;
+		break;
+	case PDreduce:
+		_PDreduced = false;
+		break;
+	case Stun:
+		_stuned = false;
+		break;
 	}
 }
 

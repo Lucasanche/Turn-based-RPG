@@ -31,9 +31,11 @@ Map::Map() : _view(sf::FloatRect(200, 300, 300, 250))
     }
 }
 
-int Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window)
+int Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir, Boss1& enemy)
 {
+
     BrickTilesq taux;
+    int x=0, iaux, jaux, win=0;
     DyvirMap.update(taux);
     for (int i=0; i<map.size(); i++){
     for(int j=0; j<map[i].size(); j++){
@@ -43,6 +45,9 @@ int Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window)
             window.draw(tile);
         if(DyvirMap.isCollision(tile)){
                     taux=tile;
+                    x=map[i][j].x;
+                    iaux=i;
+                    jaux=j;
                     //DyvirMap.setCollide(true);
         }
         //else {DyvirMap.setCollide(false);}
@@ -50,9 +55,28 @@ int Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window)
         }
     }
 
-    if(DyvirMap.isCollision(taux)){
+    if(DyvirMap.isCollision(taux)&&x==0){
         DyvirMap.setCollide();
     }
+    if(DyvirMap.isCollision(taux)&&x==1){
+        DyvirMap.setCollide();
+        while(enemy.getIsAlive()&&dyvir.getIsAlive()){
+
+            window.clear();
+            fight.update(dyvir, enemy, window);
+            window.display();
+        }
+        if (!enemy.getIsAlive()){
+                map[iaux][jaux].x=9;
+                map[iaux][jaux].y=9;
+                win++;
+                    }
+        if (!dyvir.getIsAlive()){
+                dyvir.Reset();
+                }
+
+    }
+
     _view.setCenter(DyvirMap.getPosition());
     window.setView(_view);
     window.draw(DyvirMap);

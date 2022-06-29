@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "DyvirFight.h"
-#include "dragonAzul.h"
 #include "Fight.h"
 #include "Cursor.h"
 #include "Menu.h"
 #include "Map.h"
 #include "DyvirMap.h"
-#include "Boss1.h"
+#include "EnemyFactory.h"
+
 
 
 int main()
@@ -21,21 +21,21 @@ int main()
     //menu inicio
     Menu* menu = new Menu(float(window.getSize().x), float(window.getSize().y));
     Fight fight;
-    DragonRojo enemy;
+    EnemyFactory create;
     DyvirFight dyvir;
-  /*  Inventory *inventory = new Inventory(5);
-    Ability ability;*/
-
-
-    //Boss1 boss;
+    Enemy *enemy;
     Map map;
     DyvirMap dyvirMap;
     sf::Event event;
     int option = 0;
     int optionFight = 0;
+    int win = 0;
+
+    enemy = create.getEnemy(win);
 
     while (window.isOpen())
     {
+
         while (window.pollEvent(event))
         {
             window.clear();
@@ -60,12 +60,11 @@ int main()
 
                 case 1:
 
-                    fight.update(background, dyvir, enemy, window);
+                    fight.update(background, dyvir, *enemy, window);
                     break;
 
                 case 2:
-                    map.update(dyvirMap, window);
-
+                    map.update(dyvirMap, window, dyvir, enemy);
 
                     break;
 
@@ -74,7 +73,7 @@ int main()
                     break;
             }
 
-            if (!enemy.getIsAlive()) {
+            if (!enemy->getIsAlive()) {
 
                     sf::Texture Texture;
                     sf::Sprite Win;

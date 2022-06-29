@@ -1,10 +1,9 @@
 #pragma once
-#ifndef MAP_H
-#define MAP_H
 #include "DyvirMap.h"
 #include "BrickTiles.h"
-
-
+#include "Dyvirfight.h"
+#include "Fight.h"
+#include "Fight.h"
 
 class Map
 {
@@ -17,10 +16,11 @@ private:
     std::vector<std::vector<sf::Vector2i>>map;
     std::vector<sf::Vector2i>tempMap;
     BrickTilesq tile;
+    Fight fight;
 
 public:
     Map();
-    int update(DyvirMap&, sf::RenderWindow& window);
+    int update(DyvirMap&, sf::RenderWindow& window, DyvirFight& , Boss1& );
 };
 
-#endif
+

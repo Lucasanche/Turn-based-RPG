@@ -47,12 +47,6 @@
     <ClCompile Include="Fight.cpp">
       <Filter>Fight Files</Filter>
     </ClCompile>
-    <ClCompile Include="dragonAzul.cpp">
-      <Filter>Fight Files\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="DragonRojo.cpp">
-      <Filter>Fight Files\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="DyvirMap.cpp">
       <Filter>Dungeon Files</Filter>
     </ClCompile>
@@ -89,18 +83,15 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyFactory.cpp">
+      <Filter>Main Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuFight.h">
       <Filter>Fight Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Boss1.h">
-      <Filter>Fight Files\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="dragonAzul.h">
-      <Filter>Fight Files\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="DragonRojo.h">
       <Filter>Fight Files\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="DyvirFight.h">
@@ -148,6 +139,7 @@
     </ClInclude>
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Proyectazo.rc">
