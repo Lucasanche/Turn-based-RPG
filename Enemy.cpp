@@ -4,7 +4,6 @@
 Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames)
 {
 	_frameY = 0;
-	//_backGround = 1;
 	_texture.loadFromFile(path);
 	_sprite.setTexture(_texture);
 	_totalFrames = totalFrames;
@@ -125,23 +124,4 @@ void Enemy::Die()
 		}
 	}
 	_sprite.setTextureRect({ int(_frame) * 100, int(_frameY) * 100, 100, 100 });
-}
-
-void Enemy::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-	target.draw(_sprite, states);
-}
-
-int Enemy::doDamage(int PDenemy)
-{
-	int finalDamage = _physicalDamage * PDenemy;
-	return finalDamage;
-}
-
-void Enemy::damageTaken(int damageTaken) {
-	_HP -= damageTaken;
-	if (_HP <= 0) {
-		_HP = 0;
-		_isAlive = false;
-	}
 }

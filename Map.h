@@ -14,13 +14,14 @@ private:
     sf::Sound musicaPelea;
     sf::View _view;
     std::vector<std::vector<sf::Vector2i>>map;
-    std::vector<sf::Vector2i>tempMap;
     BrickTiles tile;
     Fight fight;
+    BrickTiles _taux;
+    int x, iaux, jaux, win;
 
 public:
     Map();
-    int update(DyvirMap&, sf::RenderWindow& window, DyvirFight& , Enemy& );
+    int update(DyvirMap&, sf::RenderWindow& window, DyvirFight&);
 };
 
 

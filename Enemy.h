@@ -22,7 +22,4 @@ public:
 	void setAbility2(abilityName);
 	void update() override;
 	void Die() override;
-	int doDamage(int) override;
-	void damageTaken(int) override;
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

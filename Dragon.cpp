@@ -86,9 +86,34 @@ void Dragon::clearState(alteredState state)
 	}
 }
 
+int Dragon::doDamage(int PDenemy) {
+	int finalDamage = _physicalDamage * PDenemy;
+	return finalDamage;
+}
+
 float Dragon::getMR()
 {
 	float result = 0;
 	result = 1 - (_magicResist / (_magicResist + 50));
 	return result;
+}
+
+float Dragon::getPD()
+{
+	float resultado = 0;
+	resultado = 1 - (_physicalDefense / (_physicalDefense + 50));
+	return resultado;
+}
+
+void Dragon::damageTaken(int damageTaken) {
+	_HP -= damageTaken;
+	if (_HP <= 0) {
+		_HP = 0;
+		_isAlive = false;
+	}
+}
+
+void Dragon::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(_sprite, states);
 }

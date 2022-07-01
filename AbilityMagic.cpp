@@ -14,8 +14,8 @@ float AbilityMagic::useAbility(Dragon &dragon)
 	if (_damageMultiplier) {
 		totalDamage *= 2;
 	}
+	//TODO: Implementar vampireishon
 	//if (_vampireishon) {
-	   // Ver como PINGO lo asemo
 	//}
 	if (_burns) {
 		dragon.setBurns();

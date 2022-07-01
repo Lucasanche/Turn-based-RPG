@@ -62,9 +62,9 @@ protected:
 	int _HP;
 	int _HPMax;
 	int _physicalDamage;
-	elements _elementWeak;
-	int _physicalDefense;
 	int _magicResist;
+	int _physicalDefense;
+	elements _elementWeak;
 	float _frame;
 	sf::Texture _texture;
 	sf::Sprite _sprite;
@@ -86,6 +86,7 @@ public:
 	bool getIsAlive() { return _isAlive; }
 	elements getElementWeak() { return _elementWeak; }
 	float getMR();
+	float getPD();
 
 	//Sets()
 	void setBurns() { _burnsed = true; }
@@ -101,13 +102,14 @@ public:
 	//Virtual
 	virtual void Die() = 0;
 	virtual void update() = 0;
-	virtual int doDamage(int) = 0;
-	virtual void damageTaken(int) = 0;
 	
-	//Functions
+	//Funciones pa todos
 	void checkStates(bool&);
 	void clearState(alteredState);
+	int doDamage(int);
 	
+	void damageTaken(int);
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 
 #endif

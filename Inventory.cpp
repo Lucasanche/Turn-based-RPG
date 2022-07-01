@@ -11,9 +11,6 @@ Inventory::Inventory(unsigned capacity)
 	this->nullify(0);
 }
 
-
-
-
 //Functions
 void Inventory::nullify(const int from)
 {

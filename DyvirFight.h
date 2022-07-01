@@ -6,14 +6,15 @@
 
 class DyvirFight : public Dragon
 {
+private:
+	int _wins;
 public:
 	DyvirFight();
 	void update() override;
 	void Die() override;
-	int doDamage() override;
-	void damageTaken(int) override;
-	void setStats(){}
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	void setStats(){ /*completar*/ }
+	int getWins() { return _wins; }
+	void setWins() { _wins++; }
 };
 
 #endif

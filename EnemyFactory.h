@@ -6,9 +6,9 @@
 class EnemyFactory
 {
 public:
-    Enemy* getEnemy(int);
+    Enemy* getBoss(int);
 
 private:
-    Enemy* enemy;
+    Enemy* _enemy;
 };
 #endif // ENEMYFACTORY_H

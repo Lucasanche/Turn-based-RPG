@@ -23,7 +23,7 @@ void DyvirMap::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(_sprite, states);
 }
 
-void DyvirMap::update(BrickTiles tile)
+void DyvirMap::update()
 {
     _frame += 0.15;
     if (_frame >= 5) {

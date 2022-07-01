@@ -21,7 +21,6 @@ MenuFight::MenuFight(float width, float height)
 		std::cout << "No se pudo cargar mFightEnemy.png" << std::endl;
 	}
 
-
 	_backMenu.setTexture(_backMenuTexture);
 	_backMenu.setPosition(0, height - _backMenu.getGlobalBounds().height);
 	_backMenuEnemy.setTexture(_backMenuEnemyTexture);
@@ -86,20 +85,15 @@ MenuFight::MenuFight(float width, float height)
 	_menu[1].setCharacterSize(25);
 	_menu[1].setFont(_font);
 	_menu[1].setFillColor(sf::Color::White);
-	_menu[1].setString("Special");
+	_menu[1].setString("Magic 1");
 	_menu[1].setPosition(35, _posIniMenu + (_posMaxMenu * 1 / 3));
 
 	_menu[2].setCharacterSize(25);
 	_menu[2].setFont(_font);
 	_menu[2].setFillColor(sf::Color::White);
-	_menu[2].setString("Escape");
+	_menu[2].setString("Magic 2");
 	_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 2 / 3));
-
 	_cursor.setPosition({ _menu[0].getPosition().x + 10 + _menu[0].getGlobalBounds().width,_menu[0].getPosition().y + _menu[0].getGlobalBounds().height / 2 });
-
-	
-
-
 }
 
 void MenuFight::updateSpriteHPdyvir(int HP)
@@ -146,35 +140,8 @@ void MenuFight::updateSpriteHPenemy(int HP)
 	_spriteHPFillenemy.setTextureRect({ 0,17 * _statusHPenemy,_lenghtHPenemy,17 });
 }
 
-
 void MenuFight::setOption(int option) {
 	_option = option;
-}
-
-void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-	target.draw(_backMenu);
-	target.draw(_backMenuEnemy);
-	target.draw(_spriteHPdyvir);
-	target.draw(_spriteHPFilldyvir);
-	target.draw(_textHPdyvir);
-	target.draw(_spriteHPenemy);
-	target.draw(_spriteHPFillenemy);
-	target.draw(_textHPenemy);
-	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
-		{
-		target.draw(_menu[i], states);
-		}
-	for (int i = 0; i < 2; i++)
-	{
-		target.draw(_names[i], states);
-	}
-	target.draw(_cursor, states);
-}
-
-MenuFight::~MenuFight()
-{
-	std::cout << "se murió" << std::endl << std::endl;
 }
 
 void MenuFight::MoveUp()
@@ -198,9 +165,6 @@ void MenuFight::MoveDown()
 		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10  + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
 	}
 }
-
-
-
 
 int MenuFight::update(int dyvirHP, int enemyHP)
 {
@@ -234,8 +198,6 @@ int MenuFight::update(int dyvirHP, int enemyHP)
 			}
 			_flag = false;
 		}
-		
-		
 	}
 	else {
 		_flag = true;
@@ -244,4 +206,30 @@ int MenuFight::update(int dyvirHP, int enemyHP)
 	this->updateSpriteHPdyvir(dyvirHP);
 	this->updateSpriteHPenemy(enemyHP);
 	return _option;
+}
+
+void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(_backMenu);
+	target.draw(_backMenuEnemy);
+	target.draw(_spriteHPdyvir);
+	target.draw(_spriteHPFilldyvir);
+	target.draw(_textHPdyvir);
+	target.draw(_spriteHPenemy);
+	target.draw(_spriteHPFillenemy);
+	target.draw(_textHPenemy);
+	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
+		{
+		target.draw(_menu[i], states);
+		}
+	for (int i = 0; i < 2; i++)
+	{
+		target.draw(_names[i], states);
+	}
+	target.draw(_cursor, states);
+}
+
+MenuFight::~MenuFight()
+{
+	std::cout << "se murió" << std::endl << std::endl;
 }

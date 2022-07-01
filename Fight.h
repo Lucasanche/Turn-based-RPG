@@ -4,6 +4,8 @@
 
 #include "DyvirFight.h"
 #include "MenuFight.h"
+#include "Enemy.h"
+#include "EnemyFactory.h"
 
 class Fight
 {
@@ -16,11 +18,14 @@ private:
     sf::Sprite _backSprite;
     sf::SoundBuffer bufferPelea;
     sf::Sound musicaPelea;
-
-
+    EnemyFactory _enemyFactory;
+    Enemy* _enemy;
 public:
     Fight();
-    int update(DyvirFight&, Dragon&, sf::RenderWindow& window);
+    int update(DyvirFight&, sf::RenderWindow& window);
+    void setBoss(int);
+    void deleteBoss();
+    bool getEnemyIsAlive();
 };
 
 #endif
