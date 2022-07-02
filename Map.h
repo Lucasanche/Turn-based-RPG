@@ -17,11 +17,11 @@ private:
     BrickTiles tile;
     Fight fight;
     BrickTiles _taux;
-    int x, iaux, jaux, win;
+    int x, iaux, jaux, win, _option;
 
 public:
     Map();
-    int update(DyvirMap&, sf::RenderWindow& window, DyvirFight&);
+    void update(DyvirMap&, sf::RenderWindow& window, DyvirFight&);
 };
 
 
