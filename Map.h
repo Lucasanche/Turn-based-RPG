@@ -4,6 +4,7 @@
 #include "Dyvirfight.h"
 #include "Fight.h"
 #include "Enemy.h"
+#include "MenuMap.h"
 
 class Map
 {
@@ -17,10 +18,11 @@ private:
     BrickTiles tile;
     Fight fight;
     BrickTiles _taux;
+    MenuMap menuMap;
     int x, iaux, jaux, win, _option;
 
 public:
-    Map();
+    Map(sf::RenderWindow& window);
     void update(DyvirMap&, sf::RenderWindow& window, DyvirFight&);
 };
 

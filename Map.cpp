@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Map.h"
 
-Map::Map() : _view(sf::FloatRect(200, 300, 300, 250))
+Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), menuMap(window.getSize().x, window.getSize().y)
 {
     _music = true;
     bufferPelea.loadFromFile("musicaMap.wav");
@@ -10,7 +10,7 @@ Map::Map() : _view(sf::FloatRect(200, 300, 300, 250))
     _backTexture.loadFromFile("map.png");
     x = iaux = jaux = win = 0;
     std::ifstream openfile("Mapa.txt");
-    _option = 0;
+    _option = 0;    
 
     if(openfile.is_open()){
         std::vector<sf::Vector2i>tempMap;
@@ -67,6 +67,8 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
             _option = 2;
+            window.setView(window.getDefaultView());
+            //_view.setSize(window.getSize().x, window.getSize().y);
         }
         break;
     case 1:
@@ -88,10 +90,13 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir
         }
         break;
     case 2:
-        //fight.setBoss(dyvir.getWins());
-        window.clear();
-        std::cout << "ingrese un número del 1" << std::endl;
-        std::cin >> _option;
+        menuMap.update();
+        window.draw(menuMap);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+            _option = 0;
+            window.setView(_view);
+            //_view.setSize(window.getSize().x, window.getSize().y);
+        }
         
     }
 }

@@ -83,6 +83,9 @@
     <ClCompile Include="EnemyFactory.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
+    <ClCompile Include="MenuMap.cpp">
+      <Filter>Main Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuFight.h">
@@ -134,6 +137,7 @@
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
+    <ClInclude Include="MenuMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Proyectazo.rc">

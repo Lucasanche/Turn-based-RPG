@@ -7,6 +7,7 @@
 #include "DyvirMap.h"
 #include "EnemyFactory.h"
 
+
 int main()
 {
     setlocale(LC_CTYPE, "Spanish");
@@ -18,10 +19,8 @@ int main()
 
     //menu inicio
     Menu* menu = new Menu(float(window.getSize().x), float(window.getSize().y));
-
     DyvirFight dyvir;
-
-    Map map;
+    Map map(window);
     DyvirMap dyvirMap;
     sf::Event event;
     int option = 0;
