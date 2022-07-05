@@ -2,8 +2,6 @@
 #ifndef ABILITYFACTORY_H
 #define ABILITYFACTORY_H
 
-#include "AbilityMagic.h"
-#include "AbilitySupport.h"
 #include "Ability.h"
 
 class AbilityFactory

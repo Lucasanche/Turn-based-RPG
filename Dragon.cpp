@@ -1,5 +1,6 @@
 #include "stdafx.h"
-
+#include "Ability.h"
+#include "Dragon.h"
 
 
 Dragon::Dragon()

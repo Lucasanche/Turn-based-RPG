@@ -2,50 +2,6 @@
 #ifndef DRAGON_H
 #define DRAGON_H
 
-
-enum elements
-{
-	Neutral = 0,
-	Fire,
-	Water,
-	Air,
-	Earth
-};
-enum abilityName {
-	Fireball = 0,
-	Bubble,
-	WindBlow,
-	EarthArmor,
-	Barrier,
-	Heal,
-	Restore,
-	EarthBarrier,
-	WindBarrier,
-	WaterBarrier,
-	FireBarrier,
-	Mirror,
-	Tsunami,
-	FireTornado,
-	VampireFire,
-	Earthquake,
-	Geiser,
-	PoisonGas,
-	MagmaWave,
-	Inferno,
-	Swirl,
-	SabakuKyu,
-	Doton
-};
-enum alteredState {
-	All = 0,
-	Poison,
-	Burns,
-	AttReduce,
-	MRreduce,
-	PDreduce,
-	Stun
-};
-
 class Dragon : public sf::Drawable
 {
 protected:

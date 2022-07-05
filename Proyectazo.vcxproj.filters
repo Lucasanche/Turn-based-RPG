@@ -132,6 +132,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
     <ClInclude Include="FuncionesGlobales.h" />
+    <ClInclude Include="Elements.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Proyectazo.rc">
