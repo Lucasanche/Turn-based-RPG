@@ -20,7 +20,10 @@ int main()
     Menu* menu = new Menu(float(window.getSize().x), float(window.getSize().y));
 
     DyvirFight dyvir;
-
+    //PRUEBA: se supone que esto se ve reflectado en el menufight.
+    AbilityFactory aux;
+    dyvir.setAbility1(aux.createEarthArmor());
+    
     Map map;
     DyvirMap dyvirMap;
     sf::Event event;

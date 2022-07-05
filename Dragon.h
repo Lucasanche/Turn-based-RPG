@@ -2,6 +2,7 @@
 #ifndef DRAGON_H
 #define DRAGON_H
 
+
 enum elements
 {
 	Neutral = 0,
@@ -48,6 +49,7 @@ enum alteredState {
 class Dragon : public sf::Drawable
 {
 protected:
+	///AbilityMagic resources
 	bool _stuned,
 		_PDreduced,
 		_MRreduced,
@@ -59,11 +61,31 @@ protected:
 		_reducedPDCount,
 		_reducedMRCount,
 		_reducedAttCount;
+	///AbilitySupport resources
+	int _healingCount;
+	bool _PDincreased,
+		_MRincreased,
+		_MDincreased,
+		_waterResistant,
+		_airResistant,
+		_earthResistant,
+		_fireResistant,
+		_healed,
+		_restored,
+		_dotoned;
+
+	///GENERAL
 	int _HP;
 	int _HPMax;
 	int _physicalDamage;
-	int _magicResist;
+	int _magicalDamage;
 	int _physicalDefense;
+	int _magicResist;
+	bool _fireResist;
+	bool _waterResist;
+	bool _earthResist;
+	bool _airResist;
+	
 	elements _elementWeak;
 	float _frame;
 	sf::Texture _texture;
@@ -74,10 +96,11 @@ protected:
 	int _rectWidth;
 	int _rectHeight;
 	int _totalFrames;
+	Ability _ability1;
+	Ability _ability2;
+	Ability _ability3;
 
 public:
-	
-	
 	Dragon();
 	//Gets()
 	int getHP() { return _HP; }
@@ -87,29 +110,45 @@ public:
 	elements getElementWeak() { return _elementWeak; }
 	float getMR();
 	float getPD();
-
 	//Sets()
+	void setHP(int hp) { _HP = hp; }
+	void setAbility1(Ability ability) { _ability1 = ability; }
+	void setAbility2(Ability ability) { _ability2 = ability; }
+	void setAbility3(Ability ability) { _ability3 = ability; }
+	Ability getAbility1() { return _ability1; }
+	Ability getAbility2() { return _ability2; }
+	Ability getAbility3() { return _ability3; }
+
+	//Virtual
+	virtual void Die() = 0;
+	virtual void update() = 0;
+
+	//Funciones pa todos
+	void checkStates(bool&);
+	void clearState(alteredState);
+	int doDamage(int);
+	void damageTaken(int);
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+
+	//Sets() AbilityMagic
 	void setBurns() { _burnsed = true; }
 	void setPoison() { _poisoned = true; }
 	void setStun() { _stuned = true; }
 	void setAttReduce() { _attReduced = true; }
 	void setPDreduce() { _PDreduced = true; }
 	void setMRreduce() { _MRreduced = true; }
-	void setHP(int hp) { _HP = hp; }
+	
 	void setIsAlive(bool isAlive) { _isAlive = isAlive; }
+	//Sets() AbilitySupport
+	void setIncreasePD() { _PDincreased = true; }
+	void setIncreaseMR() { _MRincreased = true; }
+	void setIncreaseMD() { _MDincreased = true; }
+	void setHeal() { _healed = true; }
+	void setDoton() { _dotoned = true; }
 
 
-	//Virtual
-	virtual void Die() = 0;
-	virtual void update() = 0;
-	
-	//Funciones pa todos
-	void checkStates(bool&);
-	void clearState(alteredState);
-	int doDamage(int);
-	
-	void damageTaken(int);
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 };
 
 #endif

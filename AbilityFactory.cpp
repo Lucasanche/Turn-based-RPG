@@ -6,9 +6,56 @@ AbilityFactory::AbilityFactory()
 {
 }
 
-Ability* AbilityFactory::createFireball()
+/*Ability AbilityFactory::crafting(Ability _ability1, Ability _ability2) {
+	if (_ability.getID() == 1 && _ability2.getID() == 2) 
+	{
+		Ability newAbility.createTsunami();
+		return newAbility;
+	} 
+}
+
+if (newAbility) {
+//la ponemos en el inventario
+}
+else {"combinacion n.dgksdjg" }*/
+
+
+
+
+
+//ABILITY SUPPORT
+Ability AbilityFactory::createEarthArmor()
 {
-	_ability = new AbilityMagic;
+	Ability _ability;
+	_ability.setName("EarthArmor");
+	_ability.setMpCost(5);
+	_ability.setElements(Earth, Neutral);
+	return _ability;
+}
+
+/*Ability AbilityFactory::createBarrier()
+{
+	_ability = new Ability;
+	_ability->setName("Barrier");
+	_ability->setMpCost(5);
+	_ability->setElements(Neutral, Neutral);
+	return _ability;
+}
+
+Ability AbilityFactory::createHeal()
+{
+	_ability = new Ability;
+	_ability->setName("Heal");
+	_ability->setMpCost(10);
+	_ability->setElements(Neutral, Neutral);
+	return _ability;
+}
+
+
+//ABILITY MAGIC
+Ability AbilityFactory::createFireball()
+{
+	_ability = new Ability;
 	_ability->setName("Fireball");
 	_ability->setMagicDamage(15);
 	_ability->setMpCost(5);
@@ -16,9 +63,9 @@ Ability* AbilityFactory::createFireball()
 	return _ability;
 }
 
-Ability* AbilityFactory::createBubble()
+Ability AbilityFactory::createBubble()
 {
-	_ability = new AbilityMagic;
+	_ability = new Ability;
 	_ability->setName("Bubble");
 	_ability->setMagicDamage(15);
 	_ability->setMpCost(5);
@@ -28,7 +75,7 @@ Ability* AbilityFactory::createBubble()
 
 Ability* AbilityFactory::createWindBlow()
 {
-	_ability = new AbilityMagic;
+	_ability = new Ability;
 	_ability->setName("WindBlow");
 	_ability->setMagicDamage(15);
 	_ability->setMpCost(5);
@@ -37,7 +84,7 @@ Ability* AbilityFactory::createWindBlow()
 }
 
 
-///ABILIDADES COMBINADAS - FALTA CRAFTEO
+///HABILIDADES COMBINADAS MAGIC - FALTA CRAFTEO
 Ability* AbilityFactory::createTsunami()
 {
 	_ability = new AbilityMagic;
@@ -156,3 +203,31 @@ AbilityFactory::~AbilityFactory()
 		std::cout << "no se liberó la memoria de AbilityFactory/n";
 	}
 }
+
+//HABILIDADES COMBINADAS SUPPORT - FALTA CRAFTEO
+AbilitySupport* AbilityFactory::createRestore()
+{
+	_abilitySupport = new AbilitySupport;
+	_abilitySupport->setName("Restore");
+	_abilitySupport->setMpCost(15);
+	_abilitySupport->setElements(Neutral, Neutral);
+	return _abilitySupport;
+}
+
+AbilitySupport* AbilityFactory::createCosmicWisdom()
+{
+	_abilitySupport = new AbilitySupport;
+	_abilitySupport->setName("Cosmic Wisdom");
+	_abilitySupport->setMpCost(10);
+	_abilitySupport->setElements(Neutral, Neutral);
+	return _abilitySupport;
+}
+
+AbilitySupport* AbilityFactory::createDoton()
+{
+	_abilitySupport = new AbilitySupport;
+	_abilitySupport->setName("Doton");
+	_abilitySupport->setMpCost(35);
+	_abilitySupport->setElements(Earth, Neutral);
+	return _abilitySupport;
+}*/

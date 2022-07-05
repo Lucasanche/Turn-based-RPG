@@ -71,9 +71,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
-    <ClCompile Include="AbilityMagic.cpp">
-      <Filter>Main Files</Filter>
-    </ClCompile>
     <ClCompile Include="AbilityFactory.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
@@ -81,6 +78,9 @@
       <Filter>Main Files</Filter>
     </ClCompile>
     <ClCompile Include="EnemyFactory.cpp">
+      <Filter>Main Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FuncionesGlobales.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,12 +128,10 @@
     <ClInclude Include="stdafx.h">
       <Filter>Main Files</Filter>
     </ClInclude>
-    <ClInclude Include="AbilityMagic.h">
-      <Filter>Main Files</Filter>
-    </ClInclude>
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
+    <ClInclude Include="FuncionesGlobales.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Proyectazo.rc">
