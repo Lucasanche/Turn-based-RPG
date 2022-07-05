@@ -30,16 +30,7 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 
 void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir)
 {
-    Hola coso = Hola::cosito;
-
-    //if (sf::Keyboard::isKeyPressed(sf::Keyboard::0)) {
-    //    _option = 0;
-    //}
-    //if (sf::Keyboard::isKeyPressed(sf::Keyboard::1)) {
-    //    _option = 1;
-    //}
     switch (_option) {
-
     case 0:
         DyvirMap.update();
         for (int i = 0; i < map.size(); i++) {
@@ -48,8 +39,12 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir
                     tile.update(j, i, map[i][j].x, map[i][j].y);
                     window.draw(tile);
                     if (DyvirMap.isCollision(tile)) {
-                        _taux = tile;
-                        x = map[i][j].x;
+                        DyvirMap.setCollide();
+                        if (map[i][j].x == 1) {
+                            _option = 1;
+                            fight.setBoss(dyvir.getWins());
+                            window.clear();
+                        }
                         iaux = i;
                         jaux = j;
                     }
@@ -59,14 +54,6 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir
         _view.setCenter(DyvirMap.getPosition());
         window.setView(_view);
         window.draw(DyvirMap);
-        if (DyvirMap.isCollision(_taux)) {
-            DyvirMap.setCollide();
-            if (x == 1) {
-                _option = 1;
-                fight.setBoss(dyvir.getWins());
-                window.clear();
-            }
-        }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
             _option = 2;
             window.setView(window.getDefaultView());
@@ -89,18 +76,18 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir
                 map[iaux][jaux].x = 9;
                 map[iaux][jaux].y = 9;
                 x = 9;
-                _taux = tile;
+                //_taux = tile;
                 dyvir.setWins();
                 _option = 0;
                 fight.setBackFlag();
                 fight.deleteBoss();
             }
-            /*if (!dyvir.getIsAlive()) {
+            if (!dyvir.getIsAlive()) {
                 window.close();
                 std::cout << "Cagaste fuego";
                 system("pause");
                 _option = 0;
-            }*/
+            }
         }
         break;
     case 3:

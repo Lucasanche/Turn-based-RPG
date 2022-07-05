@@ -8,7 +8,6 @@ AbilityFactory::AbilityFactory()
 
 }
 
-
 abilityName AbilityFactory::createAbility(abilityName ab1, abilityName ab2) {
 	if (ab1 == Fireball || ab2 == Fireball) {
 		if (ab1 == WindBlow || ab2 == WindBlow) {
@@ -49,7 +48,8 @@ abilityName AbilityFactory::createAbility(abilityName ab1, abilityName ab2) {
 		if (ab1 == EarthArmor || ab2 == EarthArmor) {
 			return EarthBarrier;
 		}
-		if (ab1 == WindBlow || ab2 ==){}
+		if (ab1 == WindBlow || ab2 == WindBlow){
+		}
 
 	}
 }

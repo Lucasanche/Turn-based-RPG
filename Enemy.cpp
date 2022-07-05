@@ -38,13 +38,13 @@ void Enemy::setAbility(Ability& ability, abilityName abName)
 {
 	switch (abName) {
 	case Fireball:
-		ability = *abilityFactory->createFireball();
+		//ability = abilityFactory->createFireball();
 		break;
 	case Bubble:
-		ability = *abilityFactory->createBubble();
+		//ability = abilityFactory->createBubble();
 		break;
 	case WindBlow:
-		ability = *abilityFactory->createWindBlow();
+		//ability = abilityFactory->createWindBlow();
 		break;
 	case EarthArmor:
 		break;
@@ -68,7 +68,7 @@ void Enemy::setAbility(Ability& ability, abilityName abName)
 		break;
 	case FireTornado:
 		break;
-	case VampireFire:
+	case HotVampire:
 		break;
 	case Earthquake:
 		break;

@@ -1,7 +1,6 @@
 #pragma once
-#ifndef DRAGON_H
-#define DRAGON_H
-
+#ifndef ELEMENTS_H
+#define ELEMENTS_H
 enum elements
 {
 	Neutral = 0,
@@ -44,7 +43,11 @@ enum alteredState {
 	PDreduce,
 	Stun
 };
+#endif
 
+#pragma once
+#ifndef DRAGON_H
+#define DRAGON_H
 class Dragon : public sf::Drawable
 {
 protected:
@@ -87,7 +90,6 @@ public:
 	elements getElementWeak() { return _elementWeak; }
 	float getMR();
 	float getPD();
-
 	//Sets()
 	void setBurns() { _burnsed = true; }
 	void setPoison() { _poisoned = true; }

@@ -1,11 +1,8 @@
 #include "stdafx.h"
 #include "DyvirMap.h"
 
-
-
 DyvirMap::DyvirMap()
 {
-
     _texture.loadFromFile("dyvirMap.png");
     _sprite.setTexture(_texture);
     _sprite.setTextureRect({ 0, 0, 184, 170 });
@@ -14,7 +11,6 @@ DyvirMap::DyvirMap()
     _sprite.setPosition(200, 200 - _sprite.getGlobalBounds().height);
     _frame = 0;
     Collide=false;
-
 }
 
 
@@ -78,10 +74,6 @@ void DyvirMap::update()
             _sprite.setPosition(_sprite.getPosition().x,1900);
             std::cout << _sprite.getGlobalBounds().height << std::endl;
         }
-
-
-
-
 }
 
 sf::FloatRect DyvirMap::getBounds() const {
@@ -94,16 +86,14 @@ void DyvirMap::setCollide()
 {
         if(_velocity.x!=0){ //1
             _sprite.move(-_velocity.x, 0);
-            std::cout<<_velocity.x<<std::endl;
-            std::cout<<"colisiona x"<<std::endl;
-
+            //std::cout<<"colisiona x"<<std::endl;
         }
         if(_velocity.y!=0){ //1
             _sprite.move(0, -_velocity.y);
             std::cout<<_velocity.x<<std::endl;
-            std::cout<<"colisiona y"<<std::endl;
+            //std::cout<<"colisiona y"<<std::endl;
         }
-        std::cout<<"colisiona"<<std::endl;
+        //std::cout<<"colisiona"<<std::endl;
 
 
 }

@@ -1,13 +1,13 @@
 #pragma once
 #ifndef ABILITYFACTORY_H
 #define ABILITYFACTORY_H
-
 #include "AbilityMagic.h"
+#include "Dragon.h"
 
 class AbilityFactory
 {
 private:
-	AbilityMagic _ability;
+	AbilityMagic *_ability;
 public:
 	AbilityFactory();
 	abilityName createAbility(abilityName, abilityName);

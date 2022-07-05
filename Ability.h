@@ -1,9 +1,7 @@
 #pragma once
 #ifndef ABILITY_H
 #define ABILITY_H
-
 #include "Dragon.h"
-
 class Ability
 {
 protected:

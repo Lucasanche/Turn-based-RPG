@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "AbilityMagic.h"
+#include "Dragon.h"
 
 AbilityMagic::AbilityMagic()
 {

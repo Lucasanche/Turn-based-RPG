@@ -177,7 +177,7 @@ int MenuFight::update(int dyvirHP, int enemyHP, bool turn)
 		}
 		sf::Text text;
 		text.getString();
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 			if (_flag) {
 				this->MoveDown();
 				_flag = false;

@@ -7,9 +7,10 @@ class Enemy : public Dragon
 {
 private:
 	int _frameY;
-	AbilityFactory* abilityFactory;
+	//AbilityFactory* abilityFactory;
 	Ability* _ability1;
 	Ability* _ability2;
+	AbilityFactory abilityFactory;
 public:
 	Enemy(std::string path, int widht, int height, int totalFrames);
 	void setStats(int _HP,

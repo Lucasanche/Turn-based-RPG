@@ -2,10 +2,11 @@
 #ifndef ABILITYMAGIC_H
 #define ABILITYMAGIC_H
 #include "Ability.h"
-
+class Dragon;
 class AbilityMagic : public Ability
 {
 private:
+	elements coso;
 	int _magicDamage;
 	bool _damageMultiplier,
 		_vampireishon,

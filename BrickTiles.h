@@ -13,7 +13,6 @@ class BrickTiles : public sf::Drawable, public Collision
     private:
         sf::Texture _texture;
         sf::Sprite _sprite;
-        int _top, _left, _right, _bottom;
 };
 
 #endif

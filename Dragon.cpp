@@ -9,6 +9,8 @@ Dragon::Dragon()
 	_HP = _HPMax;
 }
 
+
+
 void Dragon::checkStates(bool &turn)
 {
 	if (_stuned) {
