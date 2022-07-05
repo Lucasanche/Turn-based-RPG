@@ -142,7 +142,6 @@
   <ItemGroup>
     <ClCompile Include="Ability.cpp" />
     <ClCompile Include="AbilityFactory.cpp" />
-    <ClCompile Include="AbilityMagic.cpp" />
     <ClCompile Include="BrickTiles.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Cursor.cpp" />
@@ -152,6 +151,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="Fight.cpp" />
+    <ClCompile Include="FuncionesGlobales.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -169,7 +169,6 @@
   <ItemGroup>
     <ClInclude Include="Ability.h" />
     <ClInclude Include="AbilityFactory.h" />
-    <ClInclude Include="AbilityMagic.h" />
     <ClInclude Include="BrickTiles.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Cursor.h" />
@@ -179,6 +178,8 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
     <ClInclude Include="Fight.h" />
+    <ClInclude Include="FuncionesGlobales.h" />
+    <ClInclude Include="Elements.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapWalls.h" />

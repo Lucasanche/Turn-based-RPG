@@ -1,18 +1,23 @@
 #include "stdafx.h"
+#include "Ability.h"
 #include "Dragon.h"
 
+
 Dragon::Dragon()
-{
-	_stuned = _PDreduced = _MRreduced = _burnsed = _poisoned = _attReduced = false;
-	_burnedCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = 0;
+{	_HP = _HPMax;
 	_isAlive = true;
-	_HP = _HPMax;
+
+	_stuned = _PDreduced = _MRreduced = _burnsed = _poisoned = _attReduced = false;
+	_burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = 0;
+
+	_PDincreased = _MRincreased  = _MDincreased = _healed = _restored = _dotoned = false;
 }
 
 
 
 void Dragon::checkStates(bool &turn)
 {
+	//ABILITY MAGIC
 	if (_stuned) {
 		if (_stunedCount != 2) {
 			turn = !turn;
@@ -58,6 +63,30 @@ void Dragon::checkStates(bool &turn)
 	if (_attReduced) {
 		_physicalDamage *= 0.8;
 	}
+	
+	//ABILITY SUPPORT
+	if (_PDincreased)
+	{
+		_physicalDamage *= 1.2;
+	}
+	if (_MRincreased)
+	{
+		_magicResist *= 1.2;
+	}
+	if (_MDincreased)
+	{
+		_magicalDamage *= 1.2;
+	}
+	if (_healed)
+	{
+		_HP += 20;
+	}
+	if (_restored) {} //ESTA NO HACE FALTA PORQUE LA HACE EN ABILITYSUPPORT
+	if (_dotoned) //CHEQUEAR
+	{
+
+	}
+
 }
 
 void Dragon::clearState(alteredState state)

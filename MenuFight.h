@@ -2,6 +2,7 @@
 #ifndef MENUFIGHT_H
 #define MENUFIGHT_H
 #include "Cursor.h"
+#include "Dragon.h"
 
 #define MAX_NUMBER_OF_ITEMS 3
 
@@ -37,7 +38,7 @@ private:
 	float _posIniMenu;
 	int _posMaxMenu;
 public:
-	MenuFight(float width, float height);
+	MenuFight(float width, float height, Dragon& dyvir);
 	void updateSpriteHPdyvir(int);
 	void updateSpriteHPenemy(int);
 	void MoveUp();

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Enemy.h"
+#include "AbilityFactory.h"
 
 Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames)
 {
@@ -36,17 +37,19 @@ void Enemy::setAbility2(abilityName abName)
 
 void Enemy::setAbility(Ability& ability, abilityName abName)
 {
+	AbilityFactory aux;
 	switch (abName) {
 	case Fireball:
-		//ability = abilityFactory->createFireball();
+		//ability = aux.createFireball();
 		break;
 	case Bubble:
-		//ability = abilityFactory->createBubble();
+		//ability = aux.createBubble();
 		break;
 	case WindBlow:
-		//ability = abilityFactory->createWindBlow();
+		//ability = aux.createWindBlow();
 		break;
 	case EarthArmor:
+		ability = aux.createEarthArmor();
 		break;
 	case Barrier:
 		break;
