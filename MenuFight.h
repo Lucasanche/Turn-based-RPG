@@ -43,7 +43,7 @@ public:
 	void MoveUp();
 	void MoveDown();
 	void setOption(int option);
-	int update(int, int);
+	int update(int, int, bool);
 	int GetPressedItem() { return _selectedItemIndex; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	~MenuFight();

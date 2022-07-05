@@ -25,7 +25,7 @@ enum abilityName {
 	Mirror,
 	Tsunami,
 	FireTornado,
-	VampireFire,
+	HotVampire,
 	Earthquake,
 	Geiser,
 	PoisonGas,

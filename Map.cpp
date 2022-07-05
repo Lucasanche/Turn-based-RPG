@@ -30,6 +30,8 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 
 void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir)
 {
+    Hola coso = Hola::cosito;
+
     //if (sf::Keyboard::isKeyPressed(sf::Keyboard::0)) {
     //    _option = 0;
     //}
@@ -72,24 +74,36 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir
         }
         break;
     case 1:
-        fight.update(dyvir, window);
-        if (!fight.getEnemyIsAlive()) {
-            map[iaux][jaux].x = 9;
-            map[iaux][jaux].y = 9;
-            x = 9;
-            _taux = tile;
-            dyvir.setWins();
-            _option = 0;
-            fight.deleteBoss();
-        }
-        if (!dyvir.getIsAlive()) {
-            window.close();
-            std::cout << "Cagaste fuego";
-            system("pause");
-            _option = 0;
+        fight.update(dyvir, window, _clock);
+        if (!fight.getEnemyIsAlive() || !dyvir.getIsAlive()) {
+            _clock.restart();
+            _option = 2;
         }
         break;
+
+
     case 2:
+        fight.update(dyvir, window, _clock);
+        if (_clock.getElapsedTime().asSeconds() > 8) {
+            if (!fight.getEnemyIsAlive()) {
+                map[iaux][jaux].x = 9;
+                map[iaux][jaux].y = 9;
+                x = 9;
+                _taux = tile;
+                dyvir.setWins();
+                _option = 0;
+                fight.setBackFlag();
+                fight.deleteBoss();
+            }
+            /*if (!dyvir.getIsAlive()) {
+                window.close();
+                std::cout << "Cagaste fuego";
+                system("pause");
+                _option = 0;
+            }*/
+        }
+        break;
+    case 3:
         menuMap.update();
         window.draw(menuMap);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
@@ -97,11 +111,9 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir
             window.setView(_view);
             //_view.setSize(window.getSize().x, window.getSize().y);
         }
-        
+        break;
     }
 }
-
-
 
 
 

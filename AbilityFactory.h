@@ -7,9 +7,10 @@
 class AbilityFactory
 {
 private:
-	Ability* _ability;
+	AbilityMagic _ability;
 public:
 	AbilityFactory();
+	abilityName createAbility(abilityName, abilityName);
 	Ability* createFireball();
 	Ability* createBubble();
 	Ability* createWindBlow();

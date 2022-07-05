@@ -6,7 +6,7 @@ DyvirFight::DyvirFight()
     _HPMax = 100;
     _HP = _HPMax;
 	//_isAlive = false;
-    _physicalDamage = 10;
+    _physicalDamage = 30;
     _texture.loadFromFile("dyvir.png");
 	_sprite.setTexture(_texture);
 	_sprite.setTextureRect({ 0,0,260,230 });

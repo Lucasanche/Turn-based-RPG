@@ -4,6 +4,54 @@
 
 AbilityFactory::AbilityFactory()
 {
+	//Fireball
+
+}
+
+
+abilityName AbilityFactory::createAbility(abilityName ab1, abilityName ab2) {
+	if (ab1 == Fireball || ab2 == Fireball) {
+		if (ab1 == WindBlow || ab2 == WindBlow) {
+			return FireTornado;
+		}
+		if (ab1 == Heal || ab2 == Heal) {
+			return HotVampire;
+		}
+		if (ab1 == Bubble || ab2 == Bubble) {
+			return Geiser;
+		}
+		if (ab1 == EarthArmor || ab2 == EarthArmor) {
+			return MagmaWave;
+		}
+	}
+	if (ab1 == Bubble || ab2 == Bubble) {
+		if (ab1 == EarthArmor || ab2 == EarthArmor) {
+			return Earthquake;
+		}
+		if (ab1 == WindBlow || ab2 == WindBlow) {
+			return Swirl;
+		}
+	}
+	if (ab1 == WindBlow || ab2 == WindBlow) {
+		if (ab1 == Heal || ab2 == Heal) {
+			return PoisonGas;
+		}
+		if (ab1 == EarthArmor || ab2 == EarthArmor) {
+			return SabakuKyu;
+		}
+	}
+	if (ab1 == Mirror || ab2 == Mirror) {
+		if (ab1 == EarthBarrier || ab2 == EarthBarrier || ab1 == WaterBarrier || ab2 == WaterBarrier || ab1 == FireBarrier || ab2 == FireBarrier || ab1 == WindBarrier || ab2 == WindBarrier) {
+			return Restore;
+		}
+	}
+	if (ab1 == Barrier || ab2 == Barrier) {
+		if (ab1 == EarthArmor || ab2 == EarthArmor) {
+			return EarthBarrier;
+		}
+		if (ab1 == WindBlow || ab2 ==){}
+
+	}
 }
 
 Ability* AbilityFactory::createFireball()

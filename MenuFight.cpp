@@ -166,43 +166,48 @@ void MenuFight::MoveDown()
 	}
 }
 
-int MenuFight::update(int dyvirHP, int enemyHP)
+int MenuFight::update(int dyvirHP, int enemyHP, bool turn)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-		if (_flag) {
-			this->MoveUp();
-			_flag = false;
-		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-		if (_flag) {
-			this->MoveDown();
-			_flag = false;
-		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-		if (_flag) {
-			switch (this->GetPressedItem()) {
-			case 0:
-				std::cout << "Se presionó el botón ATACK" << std::endl << std::endl;
-				_option = 1;
-				break;
-			case 1:
-				std::cout << "Se presionó el botón SPECIAL" << std::endl << std::endl;
-				_option = 2;
-				break;
-			case 2:
-				std::cout << "Se presionó el botón ESCAPE" << std::endl << std::endl;
-				_option = 3;
-				break;
+	if (turn) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+			if (_flag) {
+				this->MoveUp();
+				_flag = false;
 			}
-			_flag = false;
+		}
+		sf::Text text;
+		text.getString();
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+			if (_flag) {
+				this->MoveDown();
+				_flag = false;
+			}
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+			if (_flag) {
+				switch (this->GetPressedItem()) {
+				case 0:
+					std::cout << "Se presionó el botón ATACK" << std::endl << std::endl;
+					_option = 1;
+					break;
+				case 1:
+					std::cout << "Se presionó el botón SPECIAL" << std::endl << std::endl;
+					_option = 2;
+					break;
+				case 2:
+					std::cout << "Se presionó el botón ESCAPE" << std::endl << std::endl;
+					_option = 3;
+					break;
+				}
+				_flag = false;
+			}
+		}
+		else {
+			_flag = true;
+			_option = 0;
 		}
 	}
-	else {
-		_flag = true;
-		_option = 0;
-	}
+	
 	this->updateSpriteHPdyvir(dyvirHP);
 	this->updateSpriteHPenemy(enemyHP);
 	return _option;

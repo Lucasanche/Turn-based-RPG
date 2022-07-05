@@ -6,10 +6,14 @@
 #include "Enemy.h"
 #include "MenuMap.h"
 
+
+
 class Map
 {
 private:
+    
     bool _music;
+    sf::Clock _clock;
     sf::Texture _backTexture;
     sf::SoundBuffer bufferPelea;
     sf::Sound musicaPelea;

@@ -3,6 +3,7 @@
 
 Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames)
 {
+	_flagDie = true;
 	_frameY = 0;
 	_texture.loadFromFile(path);
 	_sprite.setTexture(_texture);
@@ -112,7 +113,6 @@ void Enemy::Die()
 		_sprite.setTexture(_texture);
 		_sprite.setScale(3.5, 3.5);
 		_sprite.setPosition(_sprite.getPosition().x - _sprite.getGlobalBounds().width / 4, _sprite.getPosition().y - _sprite.getGlobalBounds().height / 4);
-
 	}
 	_frame += 0.5;
 	if (_frame >= 8) {
