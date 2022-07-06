@@ -30,7 +30,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
         case 1:
             _backTexture.loadFromFile("fondo.png");
             _backSprite.setTexture(_backTexture);
-            _menu = new MenuFight(float(window.getSize().x), float(window.getSize().y));
+            _menu = new MenuFight(float(window.getSize().x), float(window.getSize().y), dyvir);
             clock.restart();
             _backFlag = false;
         default:

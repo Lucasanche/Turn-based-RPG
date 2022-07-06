@@ -22,9 +22,9 @@ int main()
     DyvirFight dyvir;
     //PRUEBA: se supone que esto se ve reflectado en el menufight.
     AbilityFactory aux;
-    dyvir.setAbility1(aux.createEarthArmor());
+    //dyvir.setAbility1(aux.createEarthArmor());
     
-    Map map;
+    Map map(window);
     DyvirMap dyvirMap;
     sf::Event event;
     int option = 0;

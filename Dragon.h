@@ -1,24 +1,21 @@
 #pragma once
 #ifndef DRAGON_H
 #define DRAGON_H
+#include "Ability.h"
 
 class Dragon : public sf::Drawable
 {
 protected:
 	///AbilityMagic resources
+	bool negativeStates[6];
+	bool positiveStates[10];
+
 	bool _stuned,
 		_PDreduced,
 		_MRreduced,
 		_attReduced,
 		_burnsed,
 		_poisoned;
-	unsigned short  _burnedCount,
-		_stunedCount,
-		_reducedPDCount,
-		_reducedMRCount,
-		_reducedAttCount;
-	///AbilitySupport resources
-	int _healingCount;
 	bool _PDincreased,
 		_MRincreased,
 		_MDincreased,
@@ -29,6 +26,14 @@ protected:
 		_healed,
 		_restored,
 		_dotoned;
+	unsigned short  _burnedCount,
+		_stunedCount,
+		_reducedPDCount,
+		_reducedMRCount,
+		_reducedAttCount;
+	///AbilitySupport resources
+	int _healingCount;
+	
 
 	///GENERAL
 	int _HP;
@@ -52,9 +57,7 @@ protected:
 	int _rectWidth;
 	int _rectHeight;
 	int _totalFrames;
-	Ability _ability1;
-	Ability _ability2;
-	Ability _ability3;
+	Ability _ability[3];
 
 public:
 	Dragon();
@@ -68,12 +71,10 @@ public:
 	float getPD();
 	//Sets()
 	void setHP(int hp) { _HP = hp; }
-	void setAbility1(Ability ability) { _ability1 = ability; }
-	void setAbility2(Ability ability) { _ability2 = ability; }
-	void setAbility3(Ability ability) { _ability3 = ability; }
-	Ability getAbility1() { return _ability1; }
-	Ability getAbility2() { return _ability2; }
-	Ability getAbility3() { return _ability3; }
+	void setAbility(Ability ability, int i) { _ability[i] = ability; }
+	Ability getAbility(int i) { return _ability[i]; }
+
+	void useAbility(Dragon &dragon, int i);
 
 	//Virtual
 	virtual void Die() = 0;
@@ -88,7 +89,7 @@ public:
 
 
 	//Sets() AbilityMagic
-	void setBurns() { _burnsed = true; }
+	void setBurns(bool burnsed) { _burnsed = burnsed; }
 	void setPoison() { _poisoned = true; }
 	void setStun() { _stuned = true; }
 	void setAttReduce() { _attReduced = true; }
@@ -100,7 +101,7 @@ public:
 	void setIncreasePD() { _PDincreased = true; }
 	void setIncreaseMR() { _MRincreased = true; }
 	void setIncreaseMD() { _MDincreased = true; }
-	void setHeal() { _healed = true; }
+	void setHeal(bool healed) { _healed = healed; }
 	void setDoton() { _dotoned = true; }
 
 

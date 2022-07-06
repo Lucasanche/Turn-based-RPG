@@ -11,6 +11,7 @@ private:
 	//Ability* _ability;
 public:
 	AbilityFactory();
+	abilityName createAbility(abilityName ab1, abilityName ab2);
 	Ability createEarthArmor();
 	/*Ability createBarrier();
 	Ability createHeal();

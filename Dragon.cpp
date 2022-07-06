@@ -1,12 +1,14 @@
 #include "stdafx.h"
-#include "Ability.h"
 #include "Dragon.h"
-
 
 Dragon::Dragon()
 {	_HP = _HPMax;
 	_isAlive = true;
-
+	/// <summary>
+	/// 1 - stuned
+	/// 2 - pdreduced
+	/// </summary>
+	
 	_stuned = _PDreduced = _MRreduced = _burnsed = _poisoned = _attReduced = false;
 	_burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = 0;
 
@@ -15,12 +17,22 @@ Dragon::Dragon()
 
 
 
+void Dragon::useAbility(Dragon& dragon, int i) {
+	for (int x = 0; x < 6; x++) {
+		negativeStates[x] = _ability[i].getNegativeStates(x);
+	}
+	for (int x = 0; x < 10; x++) {
+		positiveStates[x] = _ability[i].getPositiveStates(x);
+	}
+}
+
 void Dragon::checkStates(bool &turn)
 {
 	//ABILITY MAGIC
 	if (_stuned) {
 		if (_stunedCount != 2) {
 			turn = !turn;
+			_stunedCount++;
 		}
 		else {
 			_stunedCount = 0;
@@ -84,9 +96,7 @@ void Dragon::checkStates(bool &turn)
 	if (_restored) {} //ESTA NO HACE FALTA PORQUE LA HACE EN ABILITYSUPPORT
 	if (_dotoned) //CHEQUEAR
 	{
-
 	}
-
 }
 
 void Dragon::clearState(alteredState state)

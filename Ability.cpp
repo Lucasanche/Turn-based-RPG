@@ -27,71 +27,71 @@ void Ability::setElements(elements element1, elements element2)
 }
 
 
-float Ability::useAbilitySupport(Dragon& dragon)
-{
-	if (_increasePD) {
-		dragon.setIncreasePD();
-	}
-	if (_increaseMR) {
-		dragon.setIncreaseMR();
-	}
-	/*if (_increaseElementDefense) {
-		dragon.setIncreaseElementDefense();
-	}*/
-	if (_increaseMD) {
-		dragon.setIncreaseMD();
-	}
-	if (_heal) {
-		dragon.setHeal();
-	}
-	if (_restore) {
-		dragon.clearState(All);
-	}
-	if (_doton) {
-		dragon.setDoton();//aja?
-	}
-	return 1;
-}
+//float Ability::useAbility(Dragon& dragon)
+//{
+//	if (_increasePD) {
+//		dragon.setIncreasePD();
+//	}
+//	if (_increaseMR) {
+//		dragon.setIncreaseMR();
+//	}
+//	/*if (_increaseElementDefense) {
+//		dragon.setIncreaseElementDefense();
+//	}*/
+//	if (_increaseMD) {
+//		dragon.setIncreaseMD();
+//	}
+//	if (_heal) {
+//		dragon.setHeal();
+//	}
+//	if (_restore) {
+//		dragon.clearState(All);
+//	}
+//	if (_doton) {
+//		dragon.setDoton();//aja?
+//	}
+//	return 1;
+//}
 
 
 
-float Ability::useAbilityMagic(Dragon& dragon)
-{
-	float totalDamage = _magicDamage;
-
-	if (_damageMultiplier) {
-		totalDamage *= 2;
-	}
-	//TODO: Implementar vampireishon
-	//if (_vampireishon) {
-	//}
-	if (_burns) {
-		dragon.setBurns();
-	}
-	if (_poison) {
-		dragon.setPoison();
-	}
-	if (_stun) {
-		dragon.setStun();
-	}
-	if (_reduceAtt) {
-		dragon.setAttReduce();
-	}
-	if (_reducePD) {
-		dragon.setPDreduce();
-	}
-	if (_reduceMR) {
-		dragon.setMRreduce();
-	}
-	if (_element1 == dragon.getElementWeak()) {
-		totalDamage *= 1.15;
-	}
-	if (_element2 == dragon.getElementWeak()) {
-		totalDamage *= 1.15;
-	}
-	if (!_truedamash) {
-		totalDamage *= dragon.getMR();
-	}
-	dragon.damageTaken(int(totalDamage));
-	return 1;
-}
+//float Ability::useAbilityMagic(Dragon& dragon)
+//{
+//	float totalDamage = _magicDamage;
+//
+//	if (_damageMultiplier) {
+//		totalDamage *= 2;
+//	}
+//	//TODO: Implementar vampireishon
+//	//if (_vampireishon) {
+//	//}
+//	if (_burns) {
+//		dragon.setBurns();
+//	}
+//	if (_poison) {
+//		dragon.setPoison();
+//	}
+//	if (_stun) {
+//		dragon.setStun();
+//	}
+//	if (_reduceAtt) {
+//		dragon.setAttReduce();
+//	}
+//	if (_reducePD) {
+//		dragon.setPDreduce();
+//	}
+//	if (_reduceMR) {
+//		dragon.setMRreduce();
+//	}
+//	if (_element1 == dragon.getElementWeak()) {
+//		totalDamage *= 1.15;
+//	}
+//	if (_element2 == dragon.getElementWeak()) {
+//		totalDamage *= 1.15;
+//	}
+//	if (!_truedamash) {
+//		totalDamage *= dragon.getMR();
+//	}
+//	dragon.damageTaken(int(totalDamage));
+//	return 1;
+//}

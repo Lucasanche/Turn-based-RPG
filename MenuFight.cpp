@@ -85,7 +85,7 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir)
 	_menu[1].setCharacterSize(25);
 	_menu[1].setFont(_font);
 	_menu[1].setFillColor(sf::Color::White);
-	_menu[1].setString(dyvir.getAbility1().getName());
+	//_menu[1].setString(/*dyvir.getAbility1().getName()*/);
 	_menu[1].setPosition(35, _posIniMenu + (_posMaxMenu * 1 / 3));
 
 	_menu[2].setCharacterSize(25);
