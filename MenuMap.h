@@ -1,6 +1,7 @@
 #ifndef MENUMAP_H
 #define MENUMAP_H
 #include "Cursor.h"
+#include "DyvirFight.h"
 
 class MenuMap : public sf::Drawable
 {
@@ -21,7 +22,7 @@ private:
 	int sizeOfMenu;
 	int sizeOfList;
 public:
-	MenuMap(float width, float height);
+	MenuMap(float width, float height, Dyvirfight);
 	void MoveUp();
 	void MoveDown();
 	void setOption(int option);

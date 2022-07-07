@@ -62,10 +62,10 @@ public:
     void setBurns(bool status) { _burns = status; }
     void setPoison(bool status) { _poison = status; }
     void setTrueDamash(bool status) { _truedamash = status; }
-    
+
 
     //AbilitySupport
-    void setIncreasePD(bool status) { _increasePD = status; }
+/*    void setIncreasePD(bool status) { _increasePD = status; }
     void setIncreaseMR(bool status) { _increaseMR = status; }
     void setWaterResist(bool status) { _waterResist = status; }
     void setFireResist(bool status) { _fireResist = status; }
@@ -73,7 +73,7 @@ public:
     void setEarthResist(bool status) { _earthResist = status; }
     void setHeal(bool status) { _heal = status; }
     void setRestore(bool status) { _restore = status; }
-    void setDoton(bool status) { _doton = status; }
+    void setDoton(bool status) { _doton = status; }*/
 
     //Gets()
     bool getNegativeStates(int i) { return negativeStates[i]; }

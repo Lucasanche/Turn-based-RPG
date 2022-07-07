@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "MenuMap.h"
 
-MenuMap::MenuMap(float width, float height)
+MenuMap::MenuMap(float width, float height, Dyvirfight dyvir)
 {
 	sizeOfMenu = 3;
-	sizeOfList = 6;
+	sizeOfList = dyvir.getAbilityAmount();
 	_menu = new sf::Text[sizeOfMenu];
 	_names = new sf::Text[sizeOfMenu];
     _inventoryList = new sf::Text[sizeOfList];
@@ -37,7 +37,7 @@ MenuMap::MenuMap(float width, float height)
     _names[0].setCharacterSize(20);
 	_names[0].setFont(_font);
 	_names[0].setFillColor(sf::Color::White);
-	_names[0].setString("Culo");
+	_names[0].setString(dyvir.getAbility(1).getName());
 	_names[0].setPosition( 35,_posIniMenu + (_posMaxMenu * 1 / 6));
 
 	_menu[1].setCharacterSize(25);
@@ -49,7 +49,7 @@ MenuMap::MenuMap(float width, float height)
     _names[1].setCharacterSize(20);
 	_names[1].setFont(_font);
 	_names[1].setFillColor(sf::Color::White);
-	_names[1].setString("Caca");
+	_names[1].setString(dyvir.getAbility(2).getName());
 	_names[1].setPosition( 35,_posIniMenu + (_posMaxMenu * 3 / 6));
 
 	_menu[2].setCharacterSize(25);
@@ -61,44 +61,19 @@ MenuMap::MenuMap(float width, float height)
     _names[2].setCharacterSize(20);
 	_names[2].setFont(_font);
 	_names[2].setFillColor(sf::Color::White);
-	_names[2].setString("gfgfggge");
+	_names[2].setString(dyvir.getAbility(3).getName());
 	_names[2].setPosition( 35,_posIniMenu + (_posMaxMenu * 5 / 6));
 
-    _inventoryList[0].setCharacterSize(20);
-	_inventoryList[0].setFont(_font);
-	_inventoryList[0].setFillColor(sf::Color::White);
-	_inventoryList[0].setString("Tetas");
-	_inventoryList[0].setPosition( 300,_posIniMenu);
 
-    _inventoryList[1].setCharacterSize(20);
-	_inventoryList[1].setFont(_font);
-	_inventoryList[1].setFillColor(sf::Color::White);
-	_inventoryList[1].setString("Pata");
-	_inventoryList[1].setPosition( 300,_posIniMenu + (_posMaxMenu * 1 / 6));
+	forb(int i=0; int<sizeOfList; i++){
 
-    _inventoryList[2].setCharacterSize(20);
-	_inventoryList[2].setFont(_font);
-	_inventoryList[2].setFillColor(sf::Color::White);
-	_inventoryList[2].setString("El pajaro Cannigia");
-	_inventoryList[2].setPosition( 300,_posIniMenu + (_posMaxMenu * 2 / 6));
+        _inventoryList[i].setCharacterSize(20);
+        _inventoryList[i].setFont(_font);
+        _inventoryList[i].setFillColor(sf::Color::White);
+        _inventoryList[i].setString(dyvir.getAbilityInv[i].getName());
+        _inventoryList[i].setPosition( 300,_posIniMenu + (_posMaxMenu * i / sizeOfList));
 
-    _inventoryList[3].setCharacterSize(20);
-	_inventoryList[3].setFont(_font);
-	_inventoryList[3].setFillColor(sf::Color::White);
-	_inventoryList[3].setString("Comandante Fort");
-	_inventoryList[3].setPosition( 300,_posIniMenu + (_posMaxMenu * 3 / 6));
-
-    _inventoryList[4].setCharacterSize(20);
-	_inventoryList[4].setFont(_font);
-	_inventoryList[4].setFillColor(sf::Color::White);
-	_inventoryList[4].setString("Kloster");
-	_inventoryList[4].setPosition( 300,_posIniMenu + (_posMaxMenu * 4 / 6));
-
-    _inventoryList[5].setCharacterSize(20);
-	_inventoryList[5].setFont(_font);
-	_inventoryList[5].setFillColor(sf::Color::White);
-	_inventoryList[5].setString("Pies de Furro");
-	_inventoryList[5].setPosition( 300,_posIniMenu + (_posMaxMenu * 5 / 6));
+	}
 
 
 	_cursor.setPosition({ _menu[0].getPosition().x + 10 + _menu[0].getGlobalBounds().width,_menu[0].getPosition().y + _menu[0].getGlobalBounds().height / 2 });
