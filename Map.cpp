@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Map.h"
 
-Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), menuMap(window.getSize().x, window.getSize().y)
+Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), menuMap(window.getSize().x, window.getSize().y, dyvir)
 {
     _music = true;
     bufferPelea.loadFromFile("musicaMap.wav");
@@ -28,7 +28,7 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
     }
 }
 
-void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir)
+void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window)
 {
     switch (_option) {
     case 0:
@@ -79,7 +79,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window, DyvirFight& dyvir
                 //_taux = tile;
                 dyvir.setWins();
                 _option = 0;
-                fight.setBackFlag();
+                //fight.setBackFlag();
                 fight.deleteBoss();
             }
             if (!dyvir.getIsAlive()) {

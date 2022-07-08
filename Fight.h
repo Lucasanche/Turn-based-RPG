@@ -11,7 +11,7 @@ class Fight
 {
 private:
     MenuFight* _menu;
-    int _turn;
+    turns _turn;
     bool _music;
     bool _backFlag;
     sf::Time _time;
@@ -31,7 +31,6 @@ public:
     void setBoss(int);
     void deleteBoss();
     bool getEnemyIsAlive();
-    void setBackFlag();
 };
 
 #endif

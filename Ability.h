@@ -11,73 +11,86 @@ private:
     elements _element2;
     int _id;
     int _mpCost;
-
-    //AbilitySupport
-    bool negativeStates[6];
-    bool positiveStates[10];
-
-
-
-    //1    _increasePD,
-    //2    _increaseMR,
-    //3    _waterResist,
-    //4    _fireResist,
-    //5    _airResist,
-    //6    _earthResist,
-    //7    _increaseMD,
-    //8    _heal,
-    //9    _restore,
-    //10    _doton;//CHEQUEAR
-
-    //AbilityMagic
+    std::vector<bool>_negativeStates;
+    std::vector<bool>_positiveStates;
     int _magicDamage;
-    bool _damageMultiplier,
-        _vampireishon,
-        _stun,
-        _reducePD,
-        _reduceMR,
-        _reduceAtt,
-        _burns,
-        _poison,
-        _truedamash;
-
 public:
     Ability();
+
+    //Sets()
     void setName(sf::String name) { _name.setString(name); }
     void setDescription(sf::String description) { _description.setString(description); }
-    void setElements(elements element1, elements element2);
-    void setID(int id) { _id = id; }
-    sf::String getName() { return _name.getString(); }
-    virtual ~Ability() {}
-
-    //AbilityMagic
     void setMagicDamage(int magicDamage) { _magicDamage = magicDamage; }
+    void setID(int id) { _id = id; }
     void setMpCost(int mpCost) { _mpCost = mpCost; }
-    void setDamageMultiplier(bool status) { _damageMultiplier = status; }
-    void setVampireishon(bool status) { _vampireishon = status; }
-    void setStun(bool status) { _stun = status; }
-    void setReducePD(bool status) { _reducePD = status; }
-    void setReduceMR(bool status) { _reduceMR = status; }
-    void setReduceAtt(bool status) { _reduceAtt = status; }
-    void setBurns(bool status) { _burns = status; }
-    void setPoison(bool status) { _poison = status; }
-    void setTrueDamash(bool status) { _truedamash = status; }
+    void setElements(elements element1, elements element2);
 
+    //Estados positivos
+    void setIncreasePD() { _positiveStates[increasePD] = true; }
+    void setIncreaseMR() { _positiveStates[increaseMR] = true;}
+    void setIncreaseMD() { _positiveStates[increaseMD] = true;}
+    void setHeal() { _positiveStates[heal] = true; }
+    void setRestore() { _positiveStates[restore] = true; }
+    void setDoton() { _positiveStates[doton] = true; }
+    void setWaterResist() { _positiveStates[waterResist] = true; }
+    void setFireResist() { _positiveStates[fireResist] = true;}
+    void setAirResist() { _positiveStates[airResist] = true; }
+    void setEarthResist() { _positiveStates[earthResist] = true; }
+    void setEamageMultiplier() { _positiveStates[damageMultiplier] = true; }
+    void setTrueDamage() { _positiveStates[trueDamage] = true; }
 
-    //AbilitySupport
-/*    void setIncreasePD(bool status) { _increasePD = status; }
-    void setIncreaseMR(bool status) { _increaseMR = status; }
-    void setWaterResist(bool status) { _waterResist = status; }
-    void setFireResist(bool status) { _fireResist = status; }
-    void setAirResist(bool status) { _airResist = status; }
-    void setEarthResist(bool status) { _earthResist = status; }
-    void setHeal(bool status) { _heal = status; }
-    void setRestore(bool status) { _restore = status; }
-    void setDoton(bool status) { _doton = status; }*/
+    //Estados negativos
+    void setVampireishon(){ _negativeStates[vampireishon]= true; }
+    void setStun(){ _negativeStates[stun]= true; }
+    void setBurns(){ _negativeStates[burns]= true; }
+    void setPoison(){ _negativeStates[poison]= true; }
+    void setReducePD(){ _negativeStates[reducePD]= true; }
+    void setReduceMR(){ _negativeStates[reduceMR]= true; }
+    void setReduceAtt(){ _negativeStates[reduceAtt]= true; }
 
     //Gets()
-    bool getNegativeStates(int i) { return negativeStates[i]; }
-    bool getPositiveStates(int i) { return positiveStates[i]; }
+    bool getNegativeStates(int i) { return _negativeStates[i]; }
+    bool getPositiveStates(int i) { return _positiveStates[i]; }
+
+    sf::String getName() { return _name.getString(); }
+    sf::String getDescription() { return _description.getString(); }
+    int getMagicDamage() {return _magicDamage; }
+    int getID() { return _id; }
+    int getMpCost() { return _mpCost; }
+    elements getElement1() { return _element1; }
+    elements getElement2() { return _element2; }
+
+    //Estados positivos
+    bool getIncreasePD(){return _positiveStates[increasePD];}
+    bool getIncreaseMR(){return _positiveStates[increaseMR];}
+    bool getIncreaseMD(){return _positiveStates[increaseMD];}
+    bool getHeal(){return _positiveStates[heal];}
+    bool getRestore(){return _positiveStates[restore];}
+    bool getDoton(){return _positiveStates[doton];}
+    bool getWaterResist(){return _positiveStates[waterResist];}
+    bool getFireResist(){return _positiveStates[fireResist];}
+    bool getAirResist(){return _positiveStates[airResist];}
+    bool getEarthResist(){return _positiveStates[earthResist];}
+    bool getDamageMultiplier(){return _positiveStates[damageMultiplier];}
+    bool getTrueDamage(){return _positiveStates[trueDamage];}
+    //Estados negativos
+    bool getVampireishon() { return _negativeStates[vampireishon]; }
+    bool getStun(){return _negativeStates[stun];}
+    bool getBurns(){return _negativeStates[burns];}
+    bool getPoison(){return _negativeStates[poison];}
+    bool getReducePD(){return _negativeStates[reducePD];}
+    bool getReduceMR(){return _negativeStates[reduceMR];}
+    bool getReduceAtt(){return _negativeStates[	reduceAtt];}
+    
+    void createInferno() {
+        //this->reset();
+        this->setBurns();
+        this->setMagicDamage(10);
+        this->setMpCost(15);
+        this->setElements(Fire, Neutral);
+    }
+
+    virtual ~Ability() {};
 };
 
 #endif

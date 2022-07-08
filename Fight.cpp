@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "Fight.h"
 
-
 Fight::Fight() : _backTexture(), _view(sf::FloatRect(0, 0, 800, 700))
 {
+    srand(unsigned(time(0)));
     _menu = nullptr;
-    _turn = 0;
+    _turn = start;
     _music = true;
     _backFlag = true;
     bufferPelea.loadFromFile("musicaPelea.wav");
@@ -39,122 +39,71 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
     }
     _menu->update(dyvir.getHP(), _enemy->getHP(), _turnTime);
     switch (_turn) {
-    case 0:
-        _turn = _menu->update(dyvir.getHP(), _enemy->getHP(), _turnTime);
+    case wait:
+        _turn = turns(_menu->update(dyvir.getHP(), _enemy->getHP(), _turnTime));
         break;
-    case 1: //Atacar
+    case attack: //Atacar
         _enemy->damageTaken(dyvir.doDamage(_enemy->getPD()));
-        std::cout << "Hiciste " << dyvir.doDamage(_enemy->getPD()) << " puntos de daño" << std::endl << std::endl;
-        _turn = 5;
         clock.restart();
-        _menu->setOption(0);
+        _turn = enemyUpdateText;
         _turnTime = false;
         break;
-    case 2: //Magic 1
-
+    case ability1: //Magic 1
         //dyvir.useAbility1(*_enemy);
-
-
+        _turn = enemyUpdateText;
         break;
-    case 3: //Magic 2
+    case ability2: //Magic 2
+        _turn = enemyUpdateText;
         break;
-    case 4: //Magic 3
+    case ability3: //Magic 3
         break;
-    case 5:
+    case enemyUpdateText:
+        _menu->setOption(0);
+        std::cout << "Hiciste " << dyvir.doDamage(_enemy->getPD()) << " puntos de daño" << std::endl << std::endl;
+        _turn = enemyWait;
+        break;
+    case enemyWait:
         if (_time.asSeconds() > 1.5) {
-        if (_enemy->getHP() <= 0) {
-            _turn = 0;
+            if (_enemy->getHP() <= 0) {
+                _turn = start;
+                break;
+            }
+            else {
+                std::cout << "Turno del enemigo" << std::endl << std::endl;
+                unsigned int random = rand() % 3;
+                switch (rand() % 3) {
+                case 1:
+                    dyvir.damageTaken(_enemy->doDamage(_enemy->getPD()));
+                    break;
+                case 2:
+                    //ability 1
+                    break;
+                case 3:
+                    //ability 2
+                    break;
+                }
+                _turn = updateText;
+                clock.restart();
+            }
             break;
-        }
-            std::cout << "Turno del enemigo" << std::endl << std::endl;
-            _turn = 6;
-            clock.restart();
-        }
-        break;
-    case 6:
-        dyvir.damageTaken(_enemy->doDamage(_enemy->getPD()));
-        _turn += 1;
-        clock.restart();
-        break;
-    case 7:
+    case updateText:
         if (_time.asSeconds() > 1.5) {
-            std::cout << "Te hicieron " << _enemy->getBaseDamage() << " puntos de daño" << std::endl << std::endl;
-            _turn += 1;
+            std::cout << "Te hicieron " << _enemy->getPhysicalDamage() << " puntos de daño" << std::endl << std::endl;
+            _turn = wait;
             clock.restart();
         }
         break;
-    case 8:
-        if (_time.asSeconds() > 1) {
-            std::cout << "Tu turno" << std::endl << std::endl;
-            _turn = 0;
-            _turnTime = true;
         }
-        break;
+        window.setView(_view);
+        dyvir.update();
+        _enemy->update();
+        window.draw(_backSprite);
+        window.draw(*_menu);
+        window.draw(dyvir);
+        window.draw(*_enemy);
+
+        return 1;
     }
-
-
-
-
-    //if (_turn) {
-    //    switch (_menu->update(dyvir.getHP(), _enemy->getHP())) {
-    //    case 0:
-    //        if (_turnTime && _time.asSeconds()>1.5) {
-    //            _turnTime = !_turnTime;
-
-    //            _turn = !_turn;
-    //            std::cout << "Turno del enemigo" << std::endl << std::endl;
-    //            clock.restart();
-    //        }
-    //        break;
-    //    case 1: //Atacar
-    //        _enemy->damageTaken(dyvir.doDamage(_enemy->getPD()));
-    //        std::cout << "Hiciste " << dyvir.doDamage(_enemy->getPD()) << " puntos de daño" << std::endl << std::endl;
-    //        _menu->setOption(0);
-    //        _turnTime = true;
-    //        clock.restart();
-    //        
-    //        break;
-    //    case 2: //Magic 1
-
-    //        //dyvir.useAbility1(*_enemy);
-
-
-    //        break;
-    //    case 3: //Magic 2
-    //        break;
-    //    }
-
-    //}
-    //else {
-    //    switch (_optionEnemy) {
-    //    case 0:
-    //        dyvir.damageTaken(_enemy->doDamage(_enemy->getPD()));
-    //        std::cout << "Te hicieron " << _enemy->getBaseDamage() << " puntos de daño" << std::endl << std::endl;
-    //        _optionEnemy = 1;
-    //        clock.restart();
-    //        break;
-    //    case 1:
-    //        if (_time.asSeconds() > 1.5) {
-    //            std::cout << "tu turno pete" << std::endl << std::endl;
-    //            _turn = !_turn;
-    //            _optionEnemy = 0;
-    //        }
-    //        break;
-    //    }
-    //}
-    window.setView(_view);
-    dyvir.update();
-    _enemy->update();
-    window.draw(_backSprite);
-    window.draw(*_menu);
-    window.draw(dyvir);
-    window.draw(*_enemy);
-
-    return 1;
-}
-
-void Fight::setBackFlag() {
-    _backFlag = true;
 }
 
 void Fight::setBoss(int winCheck)

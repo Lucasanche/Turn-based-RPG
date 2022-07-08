@@ -19,7 +19,6 @@ int main()
 
     //menu inicio
     Menu* menu = new Menu(float(window.getSize().x), float(window.getSize().y));
-    DyvirFight dyvir;
     //PRUEBA: se supone que esto se ve reflectado en el menufight.
     AbilityFactory aux;
     //dyvir.setAbility1(aux.createEarthArmor());
@@ -56,7 +55,7 @@ int main()
                     break;
 
                 case 1:
-                    map.update(dyvirMap, window, dyvir);
+                    map.update(dyvirMap, window);
                     break;
 
                 case 2:

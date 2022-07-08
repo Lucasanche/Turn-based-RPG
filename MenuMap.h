@@ -21,8 +21,9 @@ private:
 	int _posMaxMenu;
 	int sizeOfMenu;
 	int sizeOfList;
+	DyvirFight dyvir;
 public:
-	MenuMap(float width, float height, Dyvirfight);
+	MenuMap(float width, float height, DyvirFight);
 	void MoveUp();
 	void MoveDown();
 	void setOption(int option);

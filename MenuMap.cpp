@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MenuMap.h"
 
-MenuMap::MenuMap(float width, float height, Dyvirfight dyvir)
+MenuMap::MenuMap(float width, float height, DyvirFight dyvir)
 {
 	sizeOfMenu = 3;
 	sizeOfList = dyvir.getAbilityAmount();
@@ -22,7 +22,6 @@ MenuMap::MenuMap(float width, float height, Dyvirfight dyvir)
 
 	_backMenu.setTexture(_backMenuTexture);
 	_backMenu.setPosition(0, height/2 - _backMenu.getGlobalBounds().height);
-
 	_selectedItemIndex = 0;
 	_posIniMenu=height/2 - _backMenu.getGlobalBounds().height+25;
 
@@ -37,7 +36,7 @@ MenuMap::MenuMap(float width, float height, Dyvirfight dyvir)
     _names[0].setCharacterSize(20);
 	_names[0].setFont(_font);
 	_names[0].setFillColor(sf::Color::White);
-	_names[0].setString(dyvir.getAbility(1).getName());
+	_names[0].setString(dyvir.getAbility(0).getName());
 	_names[0].setPosition( 35,_posIniMenu + (_posMaxMenu * 1 / 6));
 
 	_menu[1].setCharacterSize(25);
@@ -49,7 +48,7 @@ MenuMap::MenuMap(float width, float height, Dyvirfight dyvir)
     _names[1].setCharacterSize(20);
 	_names[1].setFont(_font);
 	_names[1].setFillColor(sf::Color::White);
-	_names[1].setString(dyvir.getAbility(2).getName());
+	_names[1].setString(dyvir.getAbility(1).getName());
 	_names[1].setPosition( 35,_posIniMenu + (_posMaxMenu * 3 / 6));
 
 	_menu[2].setCharacterSize(25);
@@ -61,16 +60,16 @@ MenuMap::MenuMap(float width, float height, Dyvirfight dyvir)
     _names[2].setCharacterSize(20);
 	_names[2].setFont(_font);
 	_names[2].setFillColor(sf::Color::White);
-	_names[2].setString(dyvir.getAbility(3).getName());
+	_names[2].setString(dyvir.getAbility(2).getName());
 	_names[2].setPosition( 35,_posIniMenu + (_posMaxMenu * 5 / 6));
 
 
-	forb(int i=0; int<sizeOfList; i++){
+	for(int i=0; i < sizeOfList; i++){
 
         _inventoryList[i].setCharacterSize(20);
         _inventoryList[i].setFont(_font);
         _inventoryList[i].setFillColor(sf::Color::White);
-        _inventoryList[i].setString(dyvir.getAbilityInv[i].getName());
+        _inventoryList[i].setString(dyvir.getAbilityInv(i).getName());
         _inventoryList[i].setPosition( 300,_posIniMenu + (_posMaxMenu * i / sizeOfList));
 
 	}

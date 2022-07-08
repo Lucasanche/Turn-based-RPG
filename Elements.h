@@ -34,14 +34,46 @@ enum abilityName {
 	SabakuKyu,
 	Doton
 };
-enum alteredState {
-	All = 0,
-	Poison,
-	Burns,
-	AttReduce,
-	MRreduce,
-	PDreduce,
-	Stun
+enum positiveStates {
+	increasePD = 0,
+	increaseMR,
+	increaseMD,
+	heal,
+	restore,
+	doton,
+	waterResist,
+	fireResist,
+	airResist,
+	earthResist,
+	damageMultiplier,
+	trueDamage
 };
+
+enum negativeStates {
+	vampireishon = 0,
+	stun,
+	burns,
+	poison,
+	reducePD,
+	reduceMR,
+	reduceAtt,
+};
+
+enum turns {
+	start = 0,
+	wait,
+	attack,
+	ability1,
+	ability2,
+	ability3,
+	enemyUpdateText,
+	enemyWait,
+	enemyAttack,
+	enemyAbility1,
+	enemyAbility2,
+	updateText
+};
+
+
 
 #endif

@@ -24,10 +24,11 @@ private:
     BrickTiles _taux;
     MenuMap menuMap;
     int x, iaux, jaux, win, _option;
+    DyvirFight dyvir;
 
 public:
     Map(sf::RenderWindow& window);
-    void update(DyvirMap&, sf::RenderWindow& window, DyvirFight&);
+    void update(DyvirMap&, sf::RenderWindow& window);
 };
 
 

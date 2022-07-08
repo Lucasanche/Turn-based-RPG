@@ -1,129 +1,159 @@
 #include "stdafx.h"
 #include "Dragon.h"
 
-Dragon::Dragon()
+Dragon::Dragon() : _negativeStates(6, false), _positiveStates(12, false)
 {	_HP = _HPMax;
 	_isAlive = true;
-	/// <summary>
-	/// 1 - stuned
-	/// 2 - pdreduced
-	/// </summary>
-	
-	_stuned = _PDreduced = _MRreduced = _burnsed = _poisoned = _attReduced = false;
 	_burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = 0;
-
-	_PDincreased = _MRincreased  = _MDincreased = _healed = _restored = _dotoned = false;
 }
 
 
 
 void Dragon::useAbility(Dragon& dragon, int i) {
-	for (int x = 0; x < 6; x++) {
-		negativeStates[x] = _ability[i].getNegativeStates(x);
+	if (_ability[i].getMpCost() > _MP) {
+		std::cout << "manaos insuficiente, comprá más pobre" << std::endl;
 	}
-	for (int x = 0; x < 10; x++) {
-		positiveStates[x] = _ability[i].getPositiveStates(x);
+	else {
+		_MP -= _ability[i].getMpCost();
+		if (_ability[i].getPositiveStates(increasePD)) {
+			this->setIncreasePD();
+		}
+		if (_ability[i].getPositiveStates(increaseMR)) {
+			this->setIncreaseMR();
+		}
+		if (_ability[i].getPositiveStates(increaseMD)) {
+			this->setIncreaseMD();
+		}
+		if (_ability[i].getPositiveStates(heal)) {
+			this->setHeal();
+		}
+		if (_ability[i].getPositiveStates(restore)) {
+			this->clearStates();
+		}
+		if (_ability[i].getPositiveStates(doton)) {
+			this->setDoton();//aja?
+		}
+		/*if (_increaseElementDefense) {
+			dragon.setIncreaseElementDefense();
+		}*/
+		float totalDamage = _ability[i].getMagicDamage();
+		if (_positiveStates[damageMultiplier]) {
+			totalDamage *= 2;
+		}
+		//TODO: Implementar vampireishon
+		//if (_vampireishon) {
+		//}
+		if (_ability[i].getNegativeStates(stun)) {
+			dragon.setStun();
+		}
+		if (_ability[i].getNegativeStates(burns)) {
+			dragon.setBurns();
+		}
+		if (_ability[i].getNegativeStates(poison)) {
+			dragon.setPoison();
+		}
+		if (_ability[i].getNegativeStates(reducePD)) {
+			dragon.setReducePD();
+		}
+		if (_ability[i].getNegativeStates(reduceMR)) {
+			dragon.setReduceMR();
+		}
+		if (_ability[i].getNegativeStates(reduceAtt)) {
+			dragon.setReduceAtt();
+		}
+		if (_ability[i].getElement1() == dragon.getElementWeak()) {
+			totalDamage *= 1.15;
+		}
+		if (_ability[i].getElement2() == dragon.getElementWeak()) {
+			totalDamage *= 1.15;
+		}
+		if (!_positiveStates[trueDamage]) {
+			totalDamage *= dragon.getMR();
+		}
+		dragon.damageTaken(int(totalDamage));
 	}
+	
 }
 
-void Dragon::checkStates(bool &turn)
+void Dragon::checkStates(turns& turn)
 {
-	//ABILITY MAGIC
-	if (_stuned) {
+	//Habilidades negativas
+	if (_negativeStates[stun]) {
 		if (_stunedCount != 2) {
-			turn = !turn;
+			if (turn == wait) {
+				std::cout << "Dyvir se encuentra stuneado" << std::endl;
+				turn = enemyWait;
+			}
+			else if (turn == enemyWait) {
+				std::cout << "el enemigo se encuentra stuneado" << std::endl;
+				turn = wait;
+			}
 			_stunedCount++;
 		}
 		else {
 			_stunedCount = 0;
-			_stuned = false;
+			_negativeStates[stun] = false;
 		}
 	}
-	if (_poisoned) {
+	if (_negativeStates[poison]) {
 		_HP -= _HPMax * 0.07;
 	}
-	if (_burnsed) {
+	if (_negativeStates[burns]) {
 		if (_burnedCount != 3) {
 			_burnedCount++;
 			_HP -= _HPMax * 0.15;
 		}
 		else {
-			_burnsed = false;
+			_negativeStates[burns] = false;
 			_burnedCount = 0;
 		}
 	}
-	if (_PDreduced) {
+	if (_negativeStates[reducePD]) {
 		if (_reducedPDCount == 0) {
 			_physicalDefense *= 0.8;
 		}
 		_reducedPDCount++;
 		if (_reducedPDCount == 3) {
 			_reducedPDCount = 0;
-			_PDreduced = false;
+			_negativeStates[reducePD] = false;
 		}
 	}
-	if (_MRreduced) {
+	if (_negativeStates[reduceMR]) {
 		if (_reducedMRCount == 0) {
 			_magicResist *= 0.8;
 		}
 		_reducedMRCount++;
 		if (_reducedMRCount == 3) {
 			_reducedMRCount = 0;
-			_MRreduced = false;
+			_negativeStates[reduceMR] = false;
 		}
 	}
-	if (_attReduced) {
+	if (_negativeStates[reduceAtt]) {
 		_physicalDamage *= 0.8;
 	}
-	
-	//ABILITY SUPPORT
-	if (_PDincreased)
+
+	//Habilidades positivas
+	if (_positiveStates[increasePD])
 	{
 		_physicalDamage *= 1.2;
 	}
-	if (_MRincreased)
+	if (_positiveStates[increaseMR])
 	{
 		_magicResist *= 1.2;
 	}
-	if (_MDincreased)
+	if (_positiveStates[increaseMD])
 	{
 		_magicalDamage *= 1.2;
 	}
-	if (_healed)
+	if (_positiveStates[heal])
 	{
 		_HP += 20;
 	}
-	if (_restored) {} //ESTA NO HACE FALTA PORQUE LA HACE EN ABILITYSUPPORT
-	if (_dotoned) //CHEQUEAR
-	{
+	if (_positiveStates[restore]) {
+		this->clearStates();
 	}
-}
-
-void Dragon::clearState(alteredState state)
-{
-	switch (state) {
-	case All:
-		_stuned = _PDreduced = _MRreduced = _burnsed = _poisoned = _attReduced = false;
-		_burnedCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = 0;
-		break;
-	case Poison:
-		_poisoned = false;
-		break;
-	case Burns:
-		_burnsed = false;
-		break;
-	case AttReduce:
-		_attReduced = false;
-		break;
-	case MRreduce:
-		_MRreduced = false;
-		break;
-	case PDreduce:
-		_PDreduced = false;
-		break;
-	case Stun:
-		_stuned = false;
-		break;
+	if (_positiveStates[doton]) //CHEQUEAR
+	{
 	}
 }
 
