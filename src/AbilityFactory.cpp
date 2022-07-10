@@ -2,10 +2,8 @@
 #include "AbilityFactory.h"
 
 
-AbilityFactory::AbilityFactory()
-{
+AbilityFactory::AbilityFactory() {
 	//Fireball
-
 }
 
 abilityName AbilityFactory::createAbility(abilityName ab1, abilityName ab2) {
@@ -48,18 +46,18 @@ abilityName AbilityFactory::createAbility(abilityName ab1, abilityName ab2) {
 		if (ab1 == EarthArmor || ab2 == EarthArmor) {
 			return EarthBarrier;
 		}
-		if (ab1 == WindBlow || ab2 == WindBlow){
+		if (ab1 == WindBlow || ab2 == WindBlow) {
 		}
 
 	}
 }
 
 /*Ability AbilityFactory::crafting(Ability _ability1, Ability _ability2) {
-	if (_ability.getID() == 1 && _ability2.getID() == 2) 
+	if (_ability.getID() == 1 && _ability2.getID() == 2)
 	{
 		Ability newAbility.createTsunami();
 		return newAbility;
-	} 
+	}
 }
 
 if (newAbility) {
@@ -67,13 +65,8 @@ if (newAbility) {
 }
 else {"combinacion n.dgksdjg" }*/
 
-
-
-
-
 //ABILITY SUPPORT
-Ability AbilityFactory::createEarthArmor()
-{
+Ability AbilityFactory::createEarthArmor() {
 	Ability _ability;
 	_ability.setName("EarthArmor");
 	_ability.setMpCost(5);

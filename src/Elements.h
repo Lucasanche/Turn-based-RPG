@@ -1,6 +1,8 @@
 #pragma once
 #ifndef ELEMENTS_H
 #define ELEMENTS_H
+
+
 enum elements
 {
 	Neutral = 0,
@@ -9,7 +11,9 @@ enum elements
 	Air,
 	Earth
 };
-enum abilityName {
+
+enum abilityName
+{
 	Fireball = 0,
 	Bubble,
 	WindBlow,
@@ -34,7 +38,9 @@ enum abilityName {
 	SabakuKyu,
 	Doton
 };
-enum positiveStates {
+
+enum positiveStates
+{
 	increasePD = 0,
 	increaseMR,
 	increaseMD,
@@ -49,7 +55,8 @@ enum positiveStates {
 	trueDamage
 };
 
-enum negativeStates {
+enum negativeStates
+{
 	vampireishon = 0,
 	stun,
 	burns,
@@ -59,7 +66,8 @@ enum negativeStates {
 	reduceAtt,
 };
 
-enum turns {
+enum turns
+{
 	start = 0,
 	wait,
 	attack,
@@ -73,7 +81,5 @@ enum turns {
 	enemyAbility2,
 	updateText
 };
-
-
 
 #endif

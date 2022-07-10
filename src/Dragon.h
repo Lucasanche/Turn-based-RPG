@@ -1,7 +1,9 @@
 #pragma once
 #ifndef DRAGON_H
 #define DRAGON_H
+
 #include "Ability.h"
+
 
 class Dragon : public sf::Drawable
 {
@@ -47,14 +49,14 @@ public:
 	Dragon();
 
 	//Gets()
-	int getHP(){return _HP;}
-	int getHPMax(){return _HPMax;} 
-	int getMP(){return _MP;}
-	int getMPMax(){return _MPMax;} 
-	int getPhysicalDamage(){ return _physicalDamage; } 
-	int getMagicalDamage(){ return _magicalDamage; } 
-	int getPhysicalDefense(){return _physicalDefense;} 
-	int getMagicResist (){ return _magicResist;} 
+	int getHP() { return _HP; }
+	int getHPMax() { return _HPMax; }
+	int getMP() { return _MP; }
+	int getMPMax() { return _MPMax; }
+	int getPhysicalDamage() { return _physicalDamage; }
+	int getMagicalDamage() { return _magicalDamage; }
+	int getPhysicalDefense() { return _physicalDefense; }
+	int getMagicResist() { return _magicResist; }
 
 	int getBack() { return _backGround; }
 	bool getIsAlive() { return _isAlive; }
@@ -99,7 +101,7 @@ public:
 	void setFireResist(bool fireResist) { _fireResist = fireResist; }
 	void setWaterResist(bool waterResist) { _waterResist = waterResist; }
 	void setEarthResist(bool earthResist) { _earthResist = earthResist; }
-	void setAirResist(bool airResist) {_airResist = airResist; }
+	void setAirResist(bool airResist) { _airResist = airResist; }
 	void setAbility(Ability ability, int i) { _ability[i] = ability; }
 
 	//Estados positivos
@@ -130,20 +132,12 @@ public:
 	virtual void update() = 0;
 
 	//Functions
-	void useAbility(Dragon &dragon, int i);
-	void clearStates(){ std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
+	void useAbility(Dragon& dragon, int i);
+	void clearStates() { std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
 	void checkStates(turns& turn);
 	int	doDamage(int);
 	void damageTaken(int);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
-
-
-	
-	
-
-
-
 };
 
 #endif

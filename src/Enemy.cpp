@@ -2,8 +2,8 @@
 #include "Enemy.h"
 #include "AbilityFactory.h"
 
-Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames)
-{
+
+Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames) {
 	//TODO: Implementar dropeo de habilidades para cada enemigo
 	_flagDie = true;
 	_frameY = 0;
@@ -17,8 +17,7 @@ Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames)
 	_sprite.setPosition(750 - _sprite.getGlobalBounds().width, 480 - _sprite.getGlobalBounds().height);
 }
 
-void Enemy::setStats(int HP, int physicalDamage, elements elementWeak, int physicalDefense, int magicResist)
-{
+void Enemy::setStats(int HP, int physicalDamage, elements elementWeak, int physicalDefense, int magicResist) {
 	_HP = HP;
 	_physicalDamage = physicalDamage;
 	_elementWeak = elementWeak;
@@ -26,18 +25,15 @@ void Enemy::setStats(int HP, int physicalDamage, elements elementWeak, int physi
 	_magicResist = magicResist;
 }
 
-void Enemy::setAbility1(abilityName abName)
-{
-	this -> setAbility(*_ability1, abName);
+void Enemy::setAbility1(abilityName abName) {
+	this->setAbility(*_ability1, abName);
 }
 
-void Enemy::setAbility2(abilityName abName)
-{
+void Enemy::setAbility2(abilityName abName) {
 	this->setAbility(*_ability2, abName);
 }
 
-void Enemy::setAbility(Ability& ability, abilityName abName)
-{
+void Enemy::setAbility(Ability& ability, abilityName abName) {
 	AbilityFactory aux;
 	switch (abName) {
 	case Fireball:
@@ -91,11 +87,9 @@ void Enemy::setAbility(Ability& ability, abilityName abName)
 	case Doton:
 		break;
 	}
-
 }
 
-void Enemy::update()
-{
+void Enemy::update() {
 	if (_isAlive) {
 		_frame += 0.15;
 		if (_frame >= _totalFrames && _isAlive) {
@@ -108,8 +102,7 @@ void Enemy::update()
 	}
 }
 
-void Enemy::Die()
-{
+void Enemy::Die() {
 	if (_flagDie) {
 		_frame = 0;
 		_flagDie = false;

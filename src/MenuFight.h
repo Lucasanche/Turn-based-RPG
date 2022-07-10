@@ -1,10 +1,12 @@
 #pragma once
 #ifndef MENUFIGHT_H
 #define MENUFIGHT_H
+
 #include "Cursor.h"
 #include "Dragon.h"
 
 #define MAX_NUMBER_OF_ITEMS 3
+
 
 class MenuFight : public sf::Drawable
 {

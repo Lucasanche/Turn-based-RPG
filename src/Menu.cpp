@@ -1,12 +1,11 @@
 #include "stdafx.h"
 #include "Menu.h"
 
-Menu::Menu(float width, float height)
-{
+
+Menu::Menu(float width, float height) {
 	_flag = true;
 	_option = 0;
-	if (!font.loadFromFile("./Fonts/Nostalgia.ttf"))
-	{
+	if (!font.loadFromFile("./Fonts/Nostalgia.ttf")) {
 		std::cout << "No se pudo cargar archivo ./Fonts/Nostalgia.ttf" << std::endl;
 	}
 	menu[0].setFont(font);
@@ -27,44 +26,33 @@ Menu::Menu(float width, float height)
 	selectedItemIndex = 0;
 }
 
-void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
-		{
+void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
 		target.draw(menu[i], states);
-		}
+	}
 }
 
-Menu::~Menu()
-{
+Menu::~Menu() {
 	std::cout << "se murió" << std::endl << std::endl;
 }
 
-void Menu::MoveUp()
-{
-	if (selectedItemIndex - 1 >= 0)
-	{
+void Menu::MoveUp() {
+	if (selectedItemIndex - 1 >= 0) {
 		menu[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex--;
 		menu[selectedItemIndex].setFillColor(sf::Color::Red);
 	}
 }
 
-void Menu::MoveDown()
-{
-	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS)
-	{
+void Menu::MoveDown() {
+	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS) {
 		menu[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex++;
 		menu[selectedItemIndex].setFillColor(sf::Color::Red);
 	}
 }
 
-
-
-
-void Menu::update()
-{
+void Menu::update() {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
@@ -99,5 +87,3 @@ void Menu::update()
 		_flag = true;
 	}
 }
-
-

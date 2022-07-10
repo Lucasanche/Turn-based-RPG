@@ -3,8 +3,7 @@
 #include "Ability.h"
 
 //Constructors & Destructors
-Inventory::Inventory(unsigned capacity)
-{
+Inventory::Inventory(unsigned capacity) {
 	_capacity = capacity;
 	_nrOfAbilities = 0;
 	_abilityArray = new Ability * [_capacity];
@@ -12,51 +11,39 @@ Inventory::Inventory(unsigned capacity)
 }
 
 //Functions
-void Inventory::nullify(const int from)
-{
-	for (size_t i = from; i < _capacity; i++)
-	{
+void Inventory::nullify(const int from) {
+	for (size_t i = from; i < _capacity; i++) {
 		_abilityArray[i] = nullptr;
 	}
 }
 
-void Inventory::clear()
-{
-	for (size_t i = 0; i < this->_nrOfAbilities; i++)
-	{
-		delete this-> _abilityArray[i];
+void Inventory::clear() {
+	for (size_t i = 0; i < this->_nrOfAbilities; i++) {
+		delete this->_abilityArray[i];
 	}
-
 	this->_nrOfAbilities = 0;
-
 	this->nullify();
 }
 
 
-bool Inventory::add(Ability& newAbility)
-{
-	if (_nrOfAbilities < _capacity)
-	{
+bool Inventory::add(Ability& newAbility) {
+	if (_nrOfAbilities < _capacity) {
 		int _position = 0;
-		while (_abilityArray[_position]) 
-		{
+		while (_abilityArray[_position]) {
 			_position++;
 		}
 		_abilityArray[_position] = &newAbility;
 		_nrOfAbilities++;
 		return true;
 	}
-
 	return false;
 }
 
 bool Inventory::remove(const unsigned index) //REVISAR -> Tira un error en el debugger (quizás es algo relacionado a liberarr la memoria mal)
 {
-	if (_nrOfAbilities > 0)
-	{
+	if (_nrOfAbilities > 0) {
 		if (index < 0 || index >= _capacity) return false;
-		else
-		{
+		else {
 			delete _abilityArray[index];
 			_abilityArray[index] = nullptr;
 			--_nrOfAbilities;
@@ -66,8 +53,7 @@ bool Inventory::remove(const unsigned index) //REVISAR -> Tira un error en el de
 	return false;
 }
 
-void Inventory::listar()
-{
+void Inventory::listar() {
 	for (int i = 0; i < _capacity; i++) {
 		if (_abilityArray[i]) {
 			//_abilityArray[i]->Mostrar();
@@ -80,15 +66,13 @@ void Inventory::listar()
 }
 
 void Inventory::freeMemory() {
-	for (size_t i = 0; i < _nrOfAbilities; i++)
-	{
+	for (size_t i = 0; i < _nrOfAbilities; i++) {
 		delete _abilityArray[i];
 	}
 	delete[] _abilityArray;
 }
 
-Inventory::~Inventory()
-{
+Inventory::~Inventory() {
 	this->freeMemory();
 	std::cout << "se muere";
 }

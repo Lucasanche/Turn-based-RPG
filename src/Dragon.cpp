@@ -1,13 +1,12 @@
 #include "stdafx.h"
 #include "Dragon.h"
 
-Dragon::Dragon() : _negativeStates(6, false), _positiveStates(12, false)
-{	_HP = _HPMax;
+
+Dragon::Dragon() : _negativeStates(6, false), _positiveStates(12, false) {
+	_HP = _HPMax;
 	_isAlive = true;
 	_burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = 0;
 }
-
-
 
 void Dragon::useAbility(Dragon& dragon, int i) {
 	if (_ability[i].getMpCost() > _MP) {
@@ -72,11 +71,9 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 		}
 		dragon.damageTaken(int(totalDamage));
 	}
-	
 }
 
-void Dragon::checkStates(turns& turn)
-{
+void Dragon::checkStates(turns& turn) {
 	//TODO: Ver como hacer para que cuando termine la pelea los estados negativos vuelvan a los valores originales
 	//Habilidades negativas
 	if (_negativeStates[stun]) {
@@ -132,29 +129,24 @@ void Dragon::checkStates(turns& turn)
 	if (_negativeStates[reduceAtt]) {
 		_physicalDamage *= 0.8;
 	}
-
 	//Habilidades positivas
-	if (_positiveStates[increasePD])
-	{
+	if (_positiveStates[increasePD]) {
 		_physicalDamage *= 1.2;
 	}
-	if (_positiveStates[increaseMR])
-	{
+	if (_positiveStates[increaseMR]) {
 		_magicResist *= 1.2;
 	}
-	if (_positiveStates[increaseMD])
-	{
+	if (_positiveStates[increaseMD]) {
 		_magicalDamage *= 1.2;
 	}
-	if (_positiveStates[heal])
-	{
+	if (_positiveStates[heal]) {
 		_HP += 20;
 	}
 	if (_positiveStates[restore]) {
 		this->clearStates();
 	}
-	if (_positiveStates[doton]) //CHEQUEAR
-	{
+	if (_positiveStates[doton]) {//CHEQUEAR
+		int  i;
 	}
 }
 
@@ -163,15 +155,13 @@ int Dragon::doDamage(int PDenemy) {
 	return finalDamage;
 }
 
-float Dragon::getMR()
-{
+float Dragon::getMR() {
 	float result = 0;
 	result = 1 - (_magicResist / (_magicResist + 50));
 	return result;
 }
 
-float Dragon::getPD()
-{
+float Dragon::getPD() {
 	float resultado = 0;
 	resultado = 1 - (_physicalDefense / (_physicalDefense + 50));
 	return resultado;
@@ -185,7 +175,6 @@ void Dragon::damageTaken(int damageTaken) {
 	}
 }
 
-void Dragon::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
+void Dragon::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_sprite, states);
 }

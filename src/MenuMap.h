@@ -1,7 +1,9 @@
 #ifndef MENUMAP_H
 #define MENUMAP_H
+
 #include "Cursor.h"
 #include "DyvirFight.h"
+
 
 class MenuMap : public sf::Drawable
 {
@@ -34,5 +36,4 @@ public:
 	~MenuMap();
 };
 
-
-#endif // MENUMAP_H
+#endif
