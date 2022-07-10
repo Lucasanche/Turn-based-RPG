@@ -1,51 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Ability.cpp" />
-    <ClCompile Include="AbilityFactory.cpp" />
-    <ClCompile Include="BrickTiles.cpp" />
-    <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="Cursor.cpp" />
-    <ClCompile Include="Dragon.cpp" />
-    <ClCompile Include="DyvirFight.cpp" />
-    <ClCompile Include="DyvirMap.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="EnemyFactory.cpp" />
-    <ClCompile Include="Fight.cpp" />
-    <ClCompile Include="FuncionesGlobales.cpp" />
-    <ClCompile Include="Inventory.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="MapWalls.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MenuFight.cpp" />
-    <ClCompile Include="MenuMap.cpp" />
-    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="src\BrickTiles.cpp" />
+    <ClCompile Include="src\Collision.cpp" />
+    <ClCompile Include="src\Cursor.cpp" />
+    <ClCompile Include="src\Dragon.cpp" />
+    <ClCompile Include="src\DyvirFight.cpp" />
+    <ClCompile Include="src\DyvirMap.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
+    <ClCompile Include="src\EnemyFactory.cpp" />
+    <ClCompile Include="src\Fight.cpp" />
+    <ClCompile Include="src\Inventory.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Map.cpp" />
+    <ClCompile Include="src\Menu.cpp" />
+    <ClCompile Include="src\MenuFight.cpp" />
+    <ClCompile Include="src\MenuMap.cpp" />
+    <ClCompile Include="src\stdafx.cpp" />
+    <ClCompile Include="src\AbilityFactory.cpp">
+      <Filter>Habilidades</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ability.cpp">
+      <Filter>Habilidades</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ability.h" />
-    <ClInclude Include="AbilityFactory.h" />
-    <ClInclude Include="BrickTiles.h" />
-    <ClInclude Include="Collision.h" />
-    <ClInclude Include="Cursor.h" />
-    <ClInclude Include="Dragon.h" />
-    <ClInclude Include="DyvirFight.h" />
-    <ClInclude Include="DyvirMap.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="EnemyFactory.h" />
-    <ClInclude Include="Fight.h" />
-    <ClInclude Include="FuncionesGlobales.h" />
-    <ClInclude Include="Elements.h" />
-    <ClInclude Include="Inventory.h" />
-    <ClInclude Include="Map.h" />
-    <ClInclude Include="MapWalls.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="MenuFight.h" />
-    <ClInclude Include="MenuMap.h" />
+    <ClInclude Include="src\BrickTiles.h" />
+    <ClInclude Include="src\Collision.h" />
+    <ClInclude Include="src\Cursor.h" />
+    <ClInclude Include="src\Dragon.h" />
+    <ClInclude Include="src\DyvirFight.h" />
+    <ClInclude Include="src\DyvirMap.h" />
+    <ClInclude Include="src\Enemy.h" />
+    <ClInclude Include="src\EnemyFactory.h" />
+    <ClInclude Include="src\Fight.h" />
+    <ClInclude Include="src\Elements.h" />
+    <ClInclude Include="src\Inventory.h" />
+    <ClInclude Include="src\Map.h" />
+    <ClInclude Include="src\Menu.h" />
+    <ClInclude Include="src\MenuFight.h" />
+    <ClInclude Include="src\MenuMap.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="src\stdafx.h" />
+    <ClInclude Include="src\Ability.h">
+      <Filter>Habilidades</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AbilityFactory.h">
+      <Filter>Habilidades</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Proyectazo.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Habilidades">
+      <UniqueIdentifier>{85535db9-f440-465b-aaa8-79ea79d1d71d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
