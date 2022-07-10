@@ -7,10 +7,9 @@ MenuMap::MenuMap(float width, float height, DyvirFight dyvir) {
 	//TODO: cargar las habilidades en el menu
 	//TODO: que el menu le cambie la habilidad a Dyvir
 	sizeOfMenu = 3;
-	sizeOfList = dyvir.getAbilityAmount();
 	_menu = new sf::Text[sizeOfMenu];
 	_names = new sf::Text[sizeOfMenu];
-	_inventoryList = new sf::Text[sizeOfList];
+	_inventoryList = new sf::Text[dyvir.getInventorySize()];
 	_flag = false;
 	_flagSubmenu = false;
 	_option = 0;
@@ -27,49 +26,51 @@ MenuMap::MenuMap(float width, float height, DyvirFight dyvir) {
 
 	_posMaxMenu = 120;
 	// Setea el largo del relleno del HP
-	_menu[0].setCharacterSize(25);
-	_menu[0].setFont(_font);
+	for (int i = 0; i < sizeOfMenu; i++) {
+		_menu[i].setCharacterSize(25);
+		_menu[i].setFont(_font);
+		_names[i].setCharacterSize(20);
+		_names[i].setFont(_font);
+		_menu[i].setPosition(35, _posIniMenu + (_posMaxMenu * (i*2) / 6));
+		_names[i].setPosition(35, _posIniMenu + (_posMaxMenu * ((i*2)+1) / 6));
+	}
+
 	_menu[0].setFillColor(sf::Color::Red);
 	_menu[0].setString("Habilidad 1");
-	_menu[0].setPosition({ 35, _posIniMenu });
-	_names[0].setCharacterSize(20);
-	_names[0].setFont(_font);
+	//_menu[0].setPosition({ 35, _posIniMenu });
+
+
 	_names[0].setFillColor(sf::Color::White);
 	_names[0].setString(dyvir.getAbility(0).getName());
-	_names[0].setPosition(35, _posIniMenu + (_posMaxMenu * 1 / 6));
+	_names[0].setString("hola");
+	//_names[0].setPosition(35, _posIniMenu + (_posMaxMenu * 1 / 6));
 
-	_menu[1].setCharacterSize(25);
-	_menu[1].setFont(_font);
 	_menu[1].setFillColor(sf::Color::White);
 	_menu[1].setString("Habilidad 2");
 	_menu[1].setPosition(35, _posIniMenu + (_posMaxMenu * 2 / 6));
 
-	_names[1].setCharacterSize(20);
-	_names[1].setFont(_font);
 	_names[1].setFillColor(sf::Color::White);
 	_names[1].setString(dyvir.getAbility(1).getName());
-	_names[1].setPosition(35, _posIniMenu + (_posMaxMenu * 3 / 6));
+	//_names[1].setPosition(35, _posIniMenu + (_posMaxMenu * 3 / 6));
 
-	_menu[2].setCharacterSize(25);
-	_menu[2].setFont(_font);
 	_menu[2].setFillColor(sf::Color::White);
 	_menu[2].setString("Habilidad 3");
-	_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 4 / 6));
+	//_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 4 / 6));
 
-	_names[2].setCharacterSize(20);
-	_names[2].setFont(_font);
 	_names[2].setFillColor(sf::Color::White);
 	_names[2].setString(dyvir.getAbility(2).getName());
-	_names[2].setPosition(35, _posIniMenu + (_posMaxMenu * 5 / 6));
+	//_names[2].setPosition(35, _posIniMenu + (_posMaxMenu * 5 / 6));
 
-	for (int i = 0; i < sizeOfList; i++) {
-
-		_inventoryList[i].setCharacterSize(20);
-		_inventoryList[i].setFont(_font);
-		_inventoryList[i].setFillColor(sf::Color::White);
-		_inventoryList[i].setString(dyvir.getAbilityInv(i).getName());
-		_inventoryList[i].setPosition(300, _posIniMenu + (_posMaxMenu * i / sizeOfList));
+	if (dyvir.getInventorySize() != 0) {
+		for (int i = 0; i < dyvir.getInventorySize(); i++) {
+			_inventoryList[i].setCharacterSize(20);
+			_inventoryList[i].setFont(_font);
+			_inventoryList[i].setFillColor(sf::Color::White);
+			_inventoryList[i].setString(dyvir.getAbilityInv(i).getName());
+			_inventoryList[i].setPosition(300, _posIniMenu + (_posMaxMenu * i / dyvir.getInventorySize()));
+		}
 	}
+
 	_cursor.setPosition({ _menu[0].getPosition().x + 10 + _menu[0].getGlobalBounds().width,_menu[0].getPosition().y + _menu[0].getGlobalBounds().height / 2 });
 }
 
@@ -120,7 +121,7 @@ void MenuMap::changeMenu() {
 	if (_flagSubmenu) {
 		_selectedItemAux = _selectedItemIndex;
 		_selectedItemIndex = 0;
-		for (int i = 1; i < sizeOfList; i++) {
+		for (int i = 1; i < dyvir.getInventorySize(); i++) {
 			_inventoryList[i].setFillColor(sf::Color::White);
 		}
 		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
@@ -186,5 +187,8 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 MenuMap::~MenuMap() {
+	delete[] _menu;
+	delete[] _names;
+	delete[] _inventoryList;
 	std::cout << "se murióx2" << std::endl << std::endl;
 }

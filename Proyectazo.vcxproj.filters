@@ -17,12 +17,8 @@
     <ClCompile Include="src\MenuFight.cpp" />
     <ClCompile Include="src\MenuMap.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
-    <ClCompile Include="src\AbilityFactory.cpp">
-      <Filter>Habilidades</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ability.cpp">
-      <Filter>Habilidades</Filter>
-    </ClCompile>
+    <ClCompile Include="src\Ability.cpp" />
+    <ClCompile Include="src\AbilityFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BrickTiles.h" />
@@ -42,19 +38,10 @@
     <ClInclude Include="src\MenuMap.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\stdafx.h" />
-    <ClInclude Include="src\Ability.h">
-      <Filter>Habilidades</Filter>
-    </ClInclude>
-    <ClInclude Include="src\AbilityFactory.h">
-      <Filter>Habilidades</Filter>
-    </ClInclude>
+    <ClInclude Include="src\AbilityFactory.h" />
+    <ClInclude Include="src\Ability.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Proyectazo.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Habilidades">
-      <UniqueIdentifier>{85535db9-f440-465b-aaa8-79ea79d1d71d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

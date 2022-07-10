@@ -10,8 +10,8 @@ DyvirMap::DyvirMap() {
 	_sprite.setScale(0.15, 0.15);
 	_sprite.setPosition(200, 200 - _sprite.getGlobalBounds().height);
 	_frame = 0;
-	_speedX = 10;
-	_speedY = 10;
+	_speedX = 2;
+	_speedY = 2;
 	Collide = false;
 }
 

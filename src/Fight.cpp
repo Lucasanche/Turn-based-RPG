@@ -102,7 +102,12 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
 		break;
 	}
 	window.setView(_view);
-	dyvir.update();
+	if (_enemy->getIsAlive()) {
+		dyvir.update();
+	}
+	else {
+		dyvir.Win();
+	}
 	_enemy->update();
 	window.draw(_backSprite);
 	window.draw(*_menu);

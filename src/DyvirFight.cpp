@@ -2,10 +2,9 @@
 #include "DyvirFight.h"
 
 
-DyvirFight::DyvirFight() {
+DyvirFight::DyvirFight() : _abilityInventory(10) {
 
 	//TODO: Implementar leveo, subida de stats, etc.
-
 	_HPMax = 100;
 	_HP = _HPMax;
 	_physicalDamage = 30;
@@ -55,9 +54,9 @@ void DyvirFight::Die() {
 void DyvirFight::Win() {
 	if (_flagWin) {
 		_frame = 0;
-		_texture.loadFromFile("./Textures/Characters/spritesheets/DyvirWin.png");
+		_texture.loadFromFile("./Textures/Characters/spritesheets/DyvirWin 110x200.png");
 		_sprite.setTexture(_texture);
-		_sprite.setScale(1, 1);
+		_sprite.setScale(0.5, 0.5);
 		_flagWin = false;
 	}
 	_frame += 0.15;

@@ -22,7 +22,6 @@ private:
 	float _posIniMenu;
 	int _posMaxMenu;
 	int sizeOfMenu;
-	int sizeOfList;
 	DyvirFight dyvir;
 public:
 	MenuMap(float width, float height, DyvirFight);

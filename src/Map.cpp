@@ -65,8 +65,12 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		break;
 	case 1:
 		fight.update(dyvir, window, _clock);
-		if (!fight.getEnemyIsAlive() || !dyvir.getIsAlive()) {
+		if (!fight.getEnemyIsAlive()) {
+			dyvir.Win();
 			_clock.restart();
+			_option = 2;
+		}
+		else if (!dyvir.getIsAlive()) {
 			_option = 2;
 		}
 		break;
