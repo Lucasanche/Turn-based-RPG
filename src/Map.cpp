@@ -11,7 +11,7 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 	x = iaux = jaux = win = 0;
 	std::ifstream openfile("./Docs/Mapa.txt");
 	_option = 0;
-
+	
 	if (openfile.is_open()) {
 		std::vector<sf::Vector2i>tempMap;
 		while (!openfile.eof()) {
