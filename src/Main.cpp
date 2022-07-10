@@ -26,7 +26,8 @@ int main() {
 	Map map(window);
 	DyvirMap dyvirMap;
 	sf::Event event;
-	int option = 0;
+	//OJO cambiar option a 0
+	int option = 1;
 	int optionFight = 0;
 	int win = 0;
 
