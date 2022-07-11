@@ -17,7 +17,11 @@ protected:
 		_reducedPDCount,
 		_reducedMRCount,
 		_reducedAttCount,
-		_healingCount;
+		_healingCount,
+		_increasedAttCount,
+		_increasedPDCount,
+		_increasedMRCount,
+		_increasedMDCount;
 
 	///GENERAL
 	int _HP;

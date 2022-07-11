@@ -3,7 +3,7 @@
 
 
 Dragon::Dragon() : _negativeStates(7, false), _positiveStates(12, false) {
-	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicalDamage = _magicalDamagebase = _physicalDefense = _physicalDefensebase = _magicResist = _magicResistbase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = 0;
+	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicalDamage = _magicalDamagebase = _physicalDefense = _physicalDefensebase = _magicResist = _magicResistbase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = _increasedAttCount = _increasedPDCount = _increasedMRCount = _increasedMDCount = 0;
 	_isAlive = true;
 	_physicalDamage = 10;
 	_physicalDamagebase = 10;
@@ -134,7 +134,7 @@ void Dragon::checkStates(turns& turn) {
 		}
 	}
 	if (_negativeStates[reducePD]) {
-		_physicalDefense *= 0.8;
+		_physicalDefense -= _physicalDefensebase * 0.2;
 		_reducedPDCount++;
 		if (_reducedPDCount == 3) {
 			_reducedPDCount = 0;
@@ -142,7 +142,7 @@ void Dragon::checkStates(turns& turn) {
 		}
 	}
 	if (_negativeStates[reduceMR]) {
-		_magicResist *= 0.8;
+		_magicResist -= _magicResistbase * 0.2;
 		_reducedMRCount++;
 		if (_reducedMRCount == 3) {
 			_reducedMRCount = 0;
@@ -150,7 +150,7 @@ void Dragon::checkStates(turns& turn) {
 		}
 	}
 	if (_negativeStates[reduceAtt]) {
-		_physicalDamage *= 0.8;
+		_physicalDamage -= _magicResistbase * 0.2;
 		_reducedAttCount++;
 		if (_reducedAttCount == 3) {
 			_reducedAttCount = 0;
@@ -168,19 +168,33 @@ void Dragon::checkStates(turns& turn) {
 		_positiveStates[increasePD] = false;
 	}
 	if (_positiveStates[increaseMR]) {
-		_magicResist *= 1.2;
+		_magicResist -= _magicResistbase * 0.2;
+		_increasedMRCount++;
+		if (_increasedMRCount == 3) {
+			_increasedMRCount = 0;
+			_positiveStates[increaseMR] = false;
+		}
 	}
 	if (_positiveStates[increaseMD]) {
 		_magicalDamage *= 1.2;
+		_increasedMDCount++;
+		if (_increasedMDCount == 3) {
+			_increasedMDCount = 0;
+			_positiveStates[increaseMD] = false;
+		}
 	}
 	if (_positiveStates[heal]) {
 		_HP += 20;
+		if (_HP > _HPbase) {
+			_HP = _HPbase;
+		}
+		_positiveStates[heal] = false;
 	}
 	if (_positiveStates[restore]) {
 		this->clearStates();
 	}
 	if (_positiveStates[doton]) {//CHEQUEAR
-		int  i;
+
 	}
 }
 

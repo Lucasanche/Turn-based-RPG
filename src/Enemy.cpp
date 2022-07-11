@@ -17,24 +17,28 @@ Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames) {
 	_sprite.setPosition(750 - _sprite.getGlobalBounds().width, 480 - _sprite.getGlobalBounds().height);
 }
 
-void Enemy::setStats(int HP, int physicalDamage, elements elementWeak, int physicalDefense, int magicResist) {
+void Enemy::setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalDefense, int magicResist, elements elementWeak) {
 	_HP = HP;
 	_HPbase = _HP;
+	_MP = MP;
+	_MPbase = _MP;
 	_physicalDamage = physicalDamage;
 	_physicalDamagebase = _physicalDamage;
+	_magicalDamage = magicDamage;
+	_magicalDamagebase = _magicalDamage;
 	_physicalDefense = physicalDefense;
 	_physicalDefensebase = _physicalDefense;
 	_magicResist = magicResist;
 	_magicResistbase = _magicResist;
 	_elementWeak = elementWeak;
 }
-
+//TODO: mover esto a dragon???
 void Enemy::setAbility1(abilityName abName) {
-	this->setAbility(*_ability1, abName);
+	this->setAbility(_ability[0], abName);
 }
 
 void Enemy::setAbility2(abilityName abName) {
-	this->setAbility(*_ability2, abName);
+	this->setAbility(_ability[1], abName);
 }
 
 void Enemy::setAbility(Ability& ability, abilityName abName) {

@@ -10,7 +10,7 @@ Enemy* EnemyFactory::getBoss(int wins) {
 		if (_enemy == NULL) {
 			std::cout << "no se pudo crear al enemigo" << std::endl;
 		}
-		_enemy->setStats(100, 10, Air, 0, 0);
+		_enemy->setStats(100, 100, 10, Air, 0, 0);
 		break;
 	case 1:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/boss1 680x556.png", 680, 556, 11);
@@ -26,5 +26,10 @@ Enemy* EnemyFactory::getBoss(int wins) {
 		break;
 	}
 	return _enemy;
+}
+
+Enemy* EnemyFactory::getEnemy(int) {
+
+	return nullptr;
 }
 
