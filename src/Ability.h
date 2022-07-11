@@ -17,7 +17,7 @@ private:
 	int _magicDamage;
 public:
 	Ability();
-
+	void reset();
 	//Sets()
 	void setName(sf::String name) { _name.setString(name); }
 	void setDescription(sf::String description) { _description.setString(description); }

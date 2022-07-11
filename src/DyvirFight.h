@@ -12,17 +12,19 @@ class DyvirFight : public Dragon
 private:
 	int _wins;
 	bool _flagWin;
-	std::vector <Ability> _abilityInventory;
+	std::vector <Ability> _abilityEquipment;
 public:
 	DyvirFight();
-	void update() override;
+	void update(bool) override;
 	void Die() override;
 	void Win();
 	void setStats() { /*completar*/ }
 	int getWins() { return _wins; }
 	void setWins() { _wins++; }
-	int getInventorySize() { return _abilityInventory.size(); }
-	Ability getAbilityInv(int i) { return _abilityInventory[i]; }
+	int getInventorySize() { return _abilityEquipment.size(); }
+	Ability getAbilityInv(int i) { return _abilityEquipment[i]; }
+	void setFightSprite();
+	void restoreLife();
 };
 
 #endif

@@ -52,6 +52,11 @@ abilityName AbilityFactory::createAbility(abilityName ab1, abilityName ab2) {
 	}
 }
 
+Ability AbilityFactory::createTest() {
+	_ability.reset();
+	_ability.setReduceAtt();
+	return _ability;
+}
 /*Ability AbilityFactory::crafting(Ability _ability1, Ability _ability2) {
 	if (_ability.getID() == 1 && _ability2.getID() == 2)
 	{

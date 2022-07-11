@@ -1,18 +1,20 @@
 #include "stdafx.h"
 #include "DyvirFight.h"
+#include "AbilityFactory.h" //TODO: ver como implementar AbilityFactory dentro del menuMap
 
-
-DyvirFight::DyvirFight() : _abilityInventory(10) {
-
+DyvirFight::DyvirFight() : _abilityEquipment(10) {
+	AbilityFactory _factory;
+	_ability[0] = _factory.createTest();
 	//TODO: Implementar leveo, subida de stats, etc.
-	_HPMax = 100;
-	_HP = _HPMax;
-	_physicalDamage = 30;
-	_texture.loadFromFile("./Textures/Characters/spritesheets/DyvirFight.png");
-	_sprite.setTexture(_texture);
-	_sprite.setTextureRect({ 0,0,260,230 });
-	_sprite.setScale(0.5, 0.5);
-	_sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
+	_HPbase = 100;
+	_HP = _HPbase;
+	_MPbase = 100;
+	_physicalDamagebase = 30;
+	_physicalDamage = _physicalDamagebase;
+	_physicalDefensebase = 10;
+	_magicalDamagebase = 10;
+	_magicResistbase = 10;
+	this->setFightSprite();
 	_isAlive = true;
 	_wins = 0;
 
@@ -22,16 +24,22 @@ DyvirFight::DyvirFight() : _abilityInventory(10) {
 	_frame = 0;
 }
 
-void DyvirFight::update() {
-	if (_isAlive) {
-		_frame += 0.15;
-		if (_frame >= 8 && _isAlive) {
-			_frame = 0;
+void DyvirFight::update(bool enemyIsAlive) {
+	if (enemyIsAlive) {
+		if (_isAlive) {
+			_frame += 0.15;
+			if (_frame >= 8 && _isAlive) {
+				_frame = 0;
+			}
+			_sprite.setTextureRect({ int(_frame) * 260, 0, 260, 230 });
 		}
-		_sprite.setTextureRect({ int(_frame) * 260, 0, 260, 230 });
+		else {
+			this->Die();
+		}
 	}
 	else {
-		this->Die();
+		this->Win();
+		this->resetStats();
 	}
 }
 
@@ -65,4 +73,18 @@ void DyvirFight::Win() {
 	}
 	_sprite.setTextureRect({ int(_frame) * 170, 0, 170, 110 });
 }
+void DyvirFight::restoreLife() {
+	_HP = _HPbase;
+	_MP = _MPbase;
+}
+
+void DyvirFight::setFightSprite() {
+	_texture.loadFromFile("./Textures/Characters/spritesheets/DyvirFight.png");
+	_sprite.setTexture(_texture);
+	_sprite.setTextureRect({ 0,0,260,230 });
+	_sprite.setScale(0.5, 0.5);
+	_sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
+}
+
+
 //TODO: Win()  (cambiar el sprite de animación por el de victoria)

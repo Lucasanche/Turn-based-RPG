@@ -4,7 +4,7 @@
 
 
 Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames) {
-	//TODO: Implementar dropeo de habilidades para cada enemigo
+	//TODO: Implementar dropeo de habilidades para cada enemigo   !!!!!!!!!!!!
 	_flagDie = true;
 	_frameY = 0;
 	_texture.loadFromFile(path);
@@ -19,10 +19,14 @@ Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames) {
 
 void Enemy::setStats(int HP, int physicalDamage, elements elementWeak, int physicalDefense, int magicResist) {
 	_HP = HP;
+	_HPbase = _HP;
 	_physicalDamage = physicalDamage;
-	_elementWeak = elementWeak;
+	_physicalDamagebase = _physicalDamage;
 	_physicalDefense = physicalDefense;
+	_physicalDefensebase = _physicalDefense;
 	_magicResist = magicResist;
+	_magicResistbase = _magicResist;
+	_elementWeak = elementWeak;
 }
 
 void Enemy::setAbility1(abilityName abName) {
@@ -89,16 +93,18 @@ void Enemy::setAbility(Ability& ability, abilityName abName) {
 	}
 }
 
-void Enemy::update() {
-	if (_isAlive) {
-		_frame += 0.15;
-		if (_frame >= _totalFrames && _isAlive) {
-			_frame = 0;
+void Enemy::update(bool dyvirIsAlive) {
+	if (dyvirIsAlive) {
+		if (_isAlive) {
+			_frame += 0.15;
+			if (_frame >= _totalFrames && _isAlive) {
+				_frame = 0;
+			}
+			_sprite.setTextureRect({ int(_frame) * _rectWidth, 0, _rectHeight, _rectWidth });
 		}
-		_sprite.setTextureRect({ int(_frame) * _rectWidth, 0, _rectHeight, _rectWidth });
-	}
-	else {
-		this->Die();
+		else {
+			this->Die();
+		}
 	}
 }
 

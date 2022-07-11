@@ -69,12 +69,14 @@ enum negativeStates
 enum turns
 {
 	start = 0,
+	check,
 	wait,
 	attack,
 	ability1,
 	ability2,
 	ability3,
 	enemyUpdateText,
+	enemyCheck,
 	enemyWait,
 	enemyAttack,
 	enemyAbility1,

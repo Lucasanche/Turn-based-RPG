@@ -155,9 +155,9 @@ void MenuFight::MoveDown() {
 }
 
 turns MenuFight::update(int dyvirHP, int enemyHP) {
-	//TODO: Agregar un texto que nos diga lo que va pasando en el cuadro azul
-	//TODO: Barra de MANA
-	//TODO: Implementar las habilidades dentro de la pelea
+	//TODO: Agregar un texto que nos diga lo que va pasando en el cuadro azul  !!!!
+	//TODO: Barra de MANA  !!!!!!!!!!!!
+	//TODO: Implementar las habilidades dentro de la pelea !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//TODO: Arreglar barra de vida para que se acomode a la vida del enemigo (solo está llena si HP vale 100)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
@@ -181,7 +181,7 @@ turns MenuFight::update(int dyvirHP, int enemyHP) {
 				_option = attack;
 				break;
 			case 1:
-				std::cout << "Se presionó el botón SPECIAL" << std::endl << std::endl;
+				std::cout << "Se presionó el botón HABILIDAD 1" << std::endl << std::endl;
 				_option = ability1;
 				break;
 			case 2:

@@ -7,12 +7,13 @@
 class AbilityFactory
 {
 private:
-	//Ability* _ability;
+	Ability _ability;
 	//Ability* _ability;
 public:
 	AbilityFactory();
 	abilityName createAbility(abilityName ab1, abilityName ab2);
 	Ability createEarthArmor();
+	Ability createTest();
 	/*Ability createBarrier();
 	Ability createHeal();
 	Ability createRestore();

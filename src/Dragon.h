@@ -21,13 +21,17 @@ protected:
 
 	///GENERAL
 	int _HP;
-	int _HPMax;
+	int _HPbase;
 	int _MP;
-	int _MPMax;
+	int _MPbase;
 	int _physicalDamage;
+	int _physicalDamagebase;
 	int _magicalDamage;
+	int _magicalDamagebase;
 	int _physicalDefense;
+	int _physicalDefensebase;
 	int _magicResist;
+	int _magicResistbase;
 	bool _fireResist;
 	bool _waterResist;
 	bool _earthResist;
@@ -50,9 +54,9 @@ public:
 
 	//Gets()
 	int getHP() { return _HP; }
-	int getHPMax() { return _HPMax; }
+	int getHPMax() { return _HPbase; }
 	int getMP() { return _MP; }
-	int getMPMax() { return _MPMax; }
+	int getMPMax() { return _MPbase; }
 	int getPhysicalDamage() { return _physicalDamage; }
 	int getMagicalDamage() { return _magicalDamage; }
 	int getPhysicalDefense() { return _physicalDefense; }
@@ -91,9 +95,9 @@ public:
 	//Sets()
 	void setIsAlive(bool isAlive) { _isAlive = isAlive; }
 	void setHP(int HP) { _HP = HP; }
-	void setHPMax(int HPMax) { _HPMax = HPMax; }
+	void setHPMax(int HPMax) { _HPbase = HPMax; }
 	void setMP(int MP) { _MP = MP; }
-	void setMPMax(int MPMax) { _MPMax = MPMax; }
+	void setMPMax(int MPMax) { _MPbase = MPMax; }
 	void setPhysicalDamage(int physicalDamage) { _physicalDamage = physicalDamage; }
 	void setMagicalDamage(int magicalDamage) { _magicalDamage = magicalDamage; }
 	void setPhysicalDefense(int physicalDefense) { _physicalDefense = _physicalDefense; }
@@ -129,13 +133,14 @@ public:
 
 	//Virtual
 	virtual void Die() = 0;
-	virtual void update() = 0;
+	virtual void update(bool) = 0;
 
 	//Functions
 	void useAbility(Dragon& dragon, int i);
 	void clearStates() { std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
 	void checkStates(turns& turn);
 	int	doDamage(int);
+	void resetStats();
 	void damageTaken(int);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

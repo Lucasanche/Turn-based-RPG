@@ -22,6 +22,6 @@ public:
 	void setAbility(Ability& ability, abilityName abName);
 	void setAbility1(abilityName);
 	void setAbility2(abilityName);
-	void update() override;
+	void update(bool) override;
 	void Die() override;
 };

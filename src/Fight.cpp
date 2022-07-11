@@ -42,10 +42,14 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
 	_menu->update(dyvir.getHP(), _enemy->getHP());
 	switch (_turn) {
 	case start:
-		if (_time.asSeconds() > 1.5) {
-			std::cout << "Tu turno" << std::endl;
-			_turn = wait;
-		}
+		//if (_time.asSeconds() > 1.5) {
+		std::cout << "Tu turno" << std::endl;
+		//	_turn = wait;
+		//}
+		_turn = check;
+		break;
+	case check:
+		dyvir.checkStates(_turn);
 		_turn = wait;
 		break;
 	case wait:
@@ -54,10 +58,11 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
 	case attack: //Atacar
 		_enemy->damageTaken(dyvir.doDamage(_enemy->getPD()));
 		clock.restart();
+		std::cout << "Hiciste " << dyvir.doDamage(_enemy->getPD()) << " puntos de daño" << std::endl << std::endl;
 		_turn = enemyUpdateText;
 		break;
 	case ability1: //Magic 1
-		//dyvir.useAbility1(*_enemy);
+		dyvir.useAbility(*_enemy, 0);
 		_turn = enemyUpdateText;
 		break;
 	case ability2: //Magic 2
@@ -66,9 +71,13 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
 	case ability3: //Magic 3
 		break;
 	case enemyUpdateText:
-		_menu->setOption(enemyWait);
-		std::cout << "Hiciste " << dyvir.doDamage(_enemy->getPD()) << " puntos de daño" << std::endl << std::endl;
-		_turn = enemyWait;
+		//_menu->setOption(enemyWait);
+		
+		_turn = enemyCheck;
+		break;
+	case enemyCheck:
+		_enemy->checkStates(_turn);
+		//_turn = enemyWait;
 		break;
 	case enemyWait:
 		if (_time.asSeconds() > 1.5) {
@@ -102,13 +111,8 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
 		break;
 	}
 	window.setView(_view);
-	if (_enemy->getIsAlive()) {
-		dyvir.update();
-	}
-	else {
-		dyvir.Win();
-	}
-	_enemy->update();
+	dyvir.update(_enemy->getIsAlive());
+	_enemy->update(dyvir.getIsAlive());
 	window.draw(_backSprite);
 	window.draw(*_menu);
 	window.draw(*_enemy);

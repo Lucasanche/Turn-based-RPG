@@ -2,10 +2,11 @@
 #include "Dragon.h"
 
 
-Dragon::Dragon() : _negativeStates(6, false), _positiveStates(12, false) {
-	_HP = _HPMax;
+Dragon::Dragon() : _negativeStates(7, false), _positiveStates(12, false) {
+	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicalDamage = _magicalDamagebase = _physicalDefense = _physicalDefensebase = _magicResist = _magicResistbase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = 0;
 	_isAlive = true;
-	_burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = 0;
+	_physicalDamage = 10;
+	_physicalDamagebase = 10;
 }
 
 void Dragon::useAbility(Dragon& dragon, int i) {
@@ -76,15 +77,16 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 void Dragon::checkStates(turns& turn) {
 	//TODO: Ver como hacer para que cuando termine la pelea los estados negativos vuelvan a los valores originales
 	//Habilidades negativas
+	this->resetStats();
 	if (_negativeStates[stun]) {
-		if (_stunedCount != 2) {
-			if (turn == wait) {
+		if (_stunedCount != 2) { //OK
+			if (turn == check) {
 				std::cout << "Dyvir se encuentra stuneado" << std::endl;
-				turn = enemyWait;
+				turn = enemyCheck;
 			}
-			else if (turn == enemyWait) {
+			else if (turn == enemyCheck) {
 				std::cout << "el enemigo se encuentra stuneado" << std::endl;
-				turn = wait;
+				turn = start;
 			}
 			_stunedCount++;
 		}
@@ -93,13 +95,38 @@ void Dragon::checkStates(turns& turn) {
 			_negativeStates[stun] = false;
 		}
 	}
-	if (_negativeStates[poison]) {
-		_HP -= _HPMax * 0.07;
+	else if (turn == check) {
+		turn = wait;
 	}
-	if (_negativeStates[burns]) {
+	else if (turn == enemyCheck) {
+		turn = enemyWait;
+	}
+	if (_negativeStates[poison]) { //OK
+		if (turn == enemyWait) {
+			std::cout << "El enemigo se encuentra envenenado" << std::endl;
+			std::cout << "El enemigo recibió " << _HPbase * 0.07 << " de daño por el veneno " << std::endl;
+
+		}
+		if (turn == wait) {
+			std::cout << "Estás envenenao" << std::endl;
+			std::cout << "Recibiste " << _HPbase * 0.05 << " de daño por veneno" << std::endl;
+		}
+		_HP -= _HPbase * 0.07;
+		std::cout << "despues del poison" << _HP << " por el veneno " << std::endl;
+
+	}
+	if (_negativeStates[burns]) { //OK
+		if (turn == enemyWait) {
+			std::cout << "El enemigo se encuentra quemado" << std::endl;
+			std::cout << "El enemigo recibió " << _HPbase * 0.10 << " por el fuego " << std::endl;
+		}
+		if (turn == wait) {
+			std::cout << "Estás prendido fuego D: " << std::endl;
+			std::cout << "Recibiste " << _HPbase * 0.10 << " de daño por fuego" << std::endl;
+		}
 		if (_burnedCount != 3) {
 			_burnedCount++;
-			_HP -= _HPMax * 0.15;
+			_HP -= _HPbase * 0.10;
 		}
 		else {
 			_negativeStates[burns] = false;
@@ -107,9 +134,7 @@ void Dragon::checkStates(turns& turn) {
 		}
 	}
 	if (_negativeStates[reducePD]) {
-		if (_reducedPDCount == 0) {
-			_physicalDefense *= 0.8;
-		}
+		_physicalDefense *= 0.8;
 		_reducedPDCount++;
 		if (_reducedPDCount == 3) {
 			_reducedPDCount = 0;
@@ -117,9 +142,7 @@ void Dragon::checkStates(turns& turn) {
 		}
 	}
 	if (_negativeStates[reduceMR]) {
-		if (_reducedMRCount == 0) {
-			_magicResist *= 0.8;
-		}
+		_magicResist *= 0.8;
 		_reducedMRCount++;
 		if (_reducedMRCount == 3) {
 			_reducedMRCount = 0;
@@ -128,10 +151,21 @@ void Dragon::checkStates(turns& turn) {
 	}
 	if (_negativeStates[reduceAtt]) {
 		_physicalDamage *= 0.8;
+		_reducedAttCount++;
+		if (_reducedAttCount == 3) {
+			_reducedAttCount = 0;
+			_negativeStates[reduceAtt] = false;
+		}
 	}
 	//Habilidades positivas
 	if (_positiveStates[increasePD]) {
-		_physicalDamage *= 1.2;
+		if (_negativeStates[reducePD]) {
+			_negativeStates[reducePD] = false;
+			_reducedPDCount = 0;
+			_physicalDamage = _physicalDamagebase;
+		}
+		_physicalDamage *= 2;
+		_positiveStates[increasePD] = false;
 	}
 	if (_positiveStates[increaseMR]) {
 		_magicResist *= 1.2;
@@ -173,6 +207,13 @@ void Dragon::damageTaken(int damageTaken) {
 		_HP = 0;
 		_isAlive = false;
 	}
+}
+
+void Dragon::resetStats() {
+	_physicalDamage = _physicalDamagebase;
+	_physicalDefense = _physicalDefensebase;
+	_magicalDamage = _magicalDamagebase;
+	_magicResist = _magicResistbase;
 }
 
 void Dragon::draw(sf::RenderTarget& target, sf::RenderStates states) const {

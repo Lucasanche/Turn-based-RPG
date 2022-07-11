@@ -29,8 +29,8 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 }
 
 void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
-	//TODO: Agregar encuentros aleatorios
-	//TODO: Agregar checkpoint
+	//TODO: Agregar encuentros aleatorios !!!!!!!!!!!!
+	//TODO: Agregar checkpoint !!!!!!!!!!!!
 	//TODO: Modificar los sprites de los jefes en el mapa
 
 	switch (_option) {
@@ -66,7 +66,6 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 	case 1:
 		fight.update(dyvir, window, _clock);
 		if (!fight.getEnemyIsAlive()) {
-			dyvir.Win();
 			_clock.restart();
 			_option = 2;
 		}
@@ -84,6 +83,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 				//_taux = tile;
 				dyvir.setWins();
 				_option = 0;
+				dyvir.setFightSprite();
 				fight.setBackFlag();
 				fight.deleteBoss();
 			}
