@@ -5,6 +5,7 @@
 Ability::Ability() : _negativeStates(7, false), _positiveStates(12, false) {
 	_name.setString("empty");
 	_description.setString("empty");
+	_magicDamage = 0;
 	_mpCost = 0;
 	_id = 0;
 	_element1 = Neutral;

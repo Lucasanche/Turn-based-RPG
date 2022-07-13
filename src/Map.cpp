@@ -29,13 +29,14 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 }
 
 void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
-	//TODO: Agregar encuentros aleatorios !!!!!!!!!!!!
-	//TODO: Agregar checkpoint !!!!!!!!!!!!
-	//TODO: Modificar los sprites de los jefes en el mapa
+	//TODO: Agregar checkpoint !!!!!!!!!!!! - Lucas
+	//TODO: Modificar los sprites de los jefes en el mapa - Juli
 
 	switch (_option) {
 	case 0:
-		DyvirMap.update();
+		if (DyvirMap.update()) {
+			_option = 3;
+		}
 		for (int i = 0; i < map.size(); i++) {
 			for (int j = 0; j < map[i].size(); j++) {
 				if (map[i][j].x == 0 || map[i][j].y == 0) {
@@ -64,7 +65,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		}
 		break;
 	case 1:
-		fight.update(dyvir, window, _clock);
+		fight.update(dyvir, window, _clock, true);
 		if (!fight.getEnemyIsAlive()) {
 			_clock.restart();
 			_option = 2;
@@ -74,7 +75,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		}
 		break;
 	case 2:
-		fight.update(dyvir, window, _clock);
+		fight.update(dyvir, window, _clock, true);
 		if (_clock.getElapsedTime().asSeconds() > 3) {
 			if (!fight.getEnemyIsAlive()) {
 				map[iaux][jaux].x = 9;
@@ -96,6 +97,33 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		}
 		break;
 	case 3:
+		fight.update(dyvir, window, _clock, false);
+		if (!fight.getEnemyIsAlive()) {
+			_clock.restart();
+			_option = 4;
+		}
+		else if (!dyvir.getIsAlive()) {
+			_option = 4;
+		}
+		break;
+	case 4:
+		fight.update(dyvir, window, _clock, true);
+		if (_clock.getElapsedTime().asSeconds() > 3) {
+			if (!fight.getEnemyIsAlive()) {
+				_option = 0;
+				dyvir.setFightSprite();
+				fight.setBackFlag();
+				fight.deleteBoss();
+			}
+			if (!dyvir.getIsAlive()) {
+				window.close();
+				std::cout << "Cagaste fuego";
+				system("pause");
+				_option = 0;
+			}
+		}
+		break;
+	case 5:
 		menuMap.update();
 		window.draw(menuMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {

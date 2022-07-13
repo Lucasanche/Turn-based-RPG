@@ -83,13 +83,6 @@ public:
 	bool getReduceMR() { return _negativeStates[reduceMR]; }
 	bool getReduceAtt() { return _negativeStates[reduceAtt]; }
 
-	void createInferno() {
-		//this->reset();
-		this->setBurns();
-		this->setMagicDamage(10);
-		this->setMpCost(15);
-		this->setElements(Fire, Neutral);
-	}
 	virtual ~Ability() {};
 };
 

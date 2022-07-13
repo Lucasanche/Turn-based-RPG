@@ -28,8 +28,9 @@ private:
 	int _optionEnemy;
 public:
 	Fight();
-	int update(DyvirFight&, sf::RenderWindow& window, sf::Clock& clock);
+	int update(DyvirFight&, sf::RenderWindow& window, sf::Clock& clock, bool enemyType);
 	void setBoss(int);
+	void setEnemy(int);
 	void deleteBoss();
 	bool getEnemyIsAlive();
 	void setBackFlag() { _backFlag = true; }

@@ -3,14 +3,14 @@
 
 
 Enemy* EnemyFactory::getBoss(int wins) {
-	//TODO: Arreglar tamaños de los sprites, ver si lo agregamos como parámetros o como métodos
+	//TODO: Arreglar tamaños de los sprites - Juli
 	switch (wins) {
 	case 0:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/Enemy1.png", 96, 82, 4);
 		if (_enemy == NULL) {
 			std::cout << "no se pudo crear al enemigo" << std::endl;
 		}
-		_enemy->setStats(100, 100, 10, Air, 0, 0);
+		_enemy->setStats(100, 100, 10, 10, 0, 0, Air);
 		break;
 	case 1:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/boss1 680x556.png", 680, 556, 11);
@@ -28,8 +28,21 @@ Enemy* EnemyFactory::getBoss(int wins) {
 	return _enemy;
 }
 
-Enemy* EnemyFactory::getEnemy(int) {
+Enemy* EnemyFactory::getEnemy(int wins) {
+	srand(time(0));
+	int numerito = rand() % (wins + 1);
+	std::cout << numerito << std::endl;
 
-	return nullptr;
+	switch (numerito) {
+	case 0:
+		_enemy = new Enemy("./Textures/Characters/spritesheets/Enemy1.png", 96, 82, 4);
+		if (_enemy == nullptr) {
+			std::cout << "no se pudo crear al enemigo en EnemyFactory" << std::endl;
+		}
+		_enemy->setStats(100, 100, 10, 10, 0, 0, Air);
+		break;
+	}
+
+	return _enemy;
 }
 

@@ -3,14 +3,15 @@
 
 
 MenuFight::MenuFight(float width, float height, Dragon& dyvir) {
-	_menu = new sf::Text[3];
-	_names = new sf::Text[2];
+	unsigned short menuSize = 3;
+	unsigned short nameSize = 2;
+	_menu = new sf::Text[menuSize];
+	_names = new sf::Text[nameSize];
 	_flag = false;
 	_option = wait;
 	if (!_font.loadFromFile("./Fonts/Nostalgia.ttf")) {
 		std::cout << "No se pudo cargar el archivo ./Fonts/Nostalgia.ttf";
 	}
-
 	if (!_backMenuTexture.loadFromFile("./Textures/Interface/mFightPrincipal.png")) {
 		std::cout << "No se pudo cargar mFightPrincipal.png" << std::endl;
 	}
@@ -92,43 +93,45 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) {
 	_cursor.setPosition({ _menu[0].getPosition().x + 10 + _menu[0].getGlobalBounds().width,_menu[0].getPosition().y + _menu[0].getGlobalBounds().height / 2 });
 }
 
-void MenuFight::updateSpriteHPdyvir(int HP) {
-	if (HP < 80 && HP > 60) {
+void MenuFight::updateSpriteHPdyvir(int HP, int HPbase) {
+	int result = HP * 100 / HPbase;
+	if (result < 80 && result > 60) {
 		_statusHPdyvir = 2;
-	}
-	if (HP <= 60 && HP > 40) {
+	} 
+	if (result <= 60 && result > 40) {
 		_statusHPdyvir = 3;
 	}
-	if (HP <= 40 && HP > 20) {
+	if (result <= 40 && result > 20) {
 		_statusHPdyvir = 4;
 	}
-	if (HP <= 20 && HP > 0) {
+	if (result <= 20 && result > 0) {
 		_statusHPdyvir = 5;
 	}
-	if (HP == 0) {
+	if (result == 0) {
 		_statusHPdyvir = 2;
 	}
-	_lenghtHPdyvir = HP * 1.6;
+	_lenghtHPdyvir = result * 1.6;
 	_spriteHPFilldyvir.setTextureRect({ 0,17 * _statusHPdyvir,_lenghtHPdyvir,17 });
 }
 
-void MenuFight::updateSpriteHPenemy(int HP) {
-	if (HP < 80 && HP > 60) {
+void MenuFight::updateSpriteHPenemy(int HP, int HPbase) {
+	int result = HP * 100 / HPbase;
+	if (result < 80 && result > 60) {
 		_statusHPenemy = 2;
 	}
-	if (HP <= 60 && HP > 40) {
+	if (result <= 60 && result > 40) {
 		_statusHPenemy = 3;
 	}
-	if (HP <= 40 && HP > 20) {
+	if (result <= 40 && result > 20) {
 		_statusHPenemy = 4;
 	}
-	if (HP <= 20 && HP > 0) {
+	if (result <= 20 && result > 0) {
 		_statusHPenemy = 5;
 	}
-	if (HP == 0) {
+	if (result == 0) {
 		_statusHPenemy = 2;
 	}
-	_lenghtHPenemy = HP * 1.6;
+	_lenghtHPenemy = result * 1.6;
 	_spriteHPFillenemy.setTextureRect({ 0,17 * _statusHPenemy,_lenghtHPenemy,17 });
 }
 
@@ -154,11 +157,9 @@ void MenuFight::MoveDown() {
 	}
 }
 
-turns MenuFight::update(int dyvirHP, int enemyHP) {
-	//TODO: Agregar un texto que nos diga lo que va pasando en el cuadro azul  !!!!
-	//TODO: Barra de MANA  !!!!!!!!!!!!
-	//TODO: Implementar las habilidades dentro de la pelea !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//TODO: Arreglar barra de vida para que se acomode a la vida del enemigo (solo está llena si HP vale 100)
+turns MenuFight::update(Dragon& dyvir, Dragon& enemy) {
+	//TODO: Agregar un texto que nos diga lo que va pasando en el cuadro azul  !!!! - Lucas
+	//TODO: Barra de MANA  !!!!!!!!!!!! - Lucas
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
 			this->MoveUp();
@@ -196,8 +197,8 @@ turns MenuFight::update(int dyvirHP, int enemyHP) {
 		_flag = true;
 		_option = wait;
 	}
-	this->updateSpriteHPdyvir(dyvirHP);
-	this->updateSpriteHPenemy(enemyHP);
+	this->updateSpriteHPdyvir(dyvir.getHP(), dyvir.getHPbase());
+	this->updateSpriteHPenemy(enemy.getHP(), enemy.getHPbase());
 	return _option;
 }
 

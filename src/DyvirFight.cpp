@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "DyvirFight.h"
-#include "AbilityFactory.h" //TODO: ver como implementar AbilityFactory dentro del menuMap
+#include "AbilityFactory.h" //TODO: ver como implementar AbilityFactory dentro del menuMap - Giuli
 
 DyvirFight::DyvirFight() : _abilityEquipment(10) {
 	AbilityFactory _factory;
 	_ability[0] = _factory.createTest();
-	//TODO: Implementar leveo, subida de stats, etc.
+	//TODO: Implementar leveo, subida de stats, etc.  DEJAR!!!!!!!!!!!!!!!!!!!!!!!!!
 	_HPbase = 100;
 	_HP = _HPbase;
 	_MPbase = 100;
@@ -71,6 +71,7 @@ void DyvirFight::Win() {
 	if (_frame >= 5) {
 		_frame = 0;
 	}
+	//TODO: arreglar el sprite de victoria de Dyvir - Juli
 	_sprite.setTextureRect({ int(_frame) * 170, 0, 170, 110 });
 }
 void DyvirFight::restoreLife() {
@@ -85,6 +86,3 @@ void DyvirFight::setFightSprite() {
 	_sprite.setScale(0.5, 0.5);
 	_sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
 }
-
-
-//TODO: Win()  (cambiar el sprite de animación por el de victoria)

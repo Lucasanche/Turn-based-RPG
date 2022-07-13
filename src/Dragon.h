@@ -3,6 +3,7 @@
 #define DRAGON_H
 
 #include "Ability.h"
+#include "AbilityFactory.h"
 
 
 class Dragon : public sf::Drawable
@@ -58,9 +59,9 @@ public:
 
 	//Gets()
 	int getHP() { return _HP; }
-	int getHPMax() { return _HPbase; }
+	int getHPbase() { return _HPbase; }
 	int getMP() { return _MP; }
-	int getMPMax() { return _MPbase; }
+	int getMPbase() { return _MPbase; }
 	int getPhysicalDamage() { return _physicalDamage; }
 	int getMagicalDamage() { return _magicalDamage; }
 	int getPhysicalDefense() { return _physicalDefense; }
@@ -110,7 +111,7 @@ public:
 	void setWaterResist(bool waterResist) { _waterResist = waterResist; }
 	void setEarthResist(bool earthResist) { _earthResist = earthResist; }
 	void setAirResist(bool airResist) { _airResist = airResist; }
-	void setAbility(Ability ability, int i) { _ability[i] = ability; }
+	void setAbility(int abilityNumber, abilityName abName);
 
 	//Estados positivos
 	void setIncreasePD() { _positiveStates[increasePD] = true; }
@@ -145,7 +146,7 @@ public:
 	void checkStates(turns& turn);
 	int	doDamage(int);
 	void resetStats();
-	void damageTaken(int);
+	int damageTaken(int);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 

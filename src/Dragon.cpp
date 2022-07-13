@@ -9,6 +9,11 @@ Dragon::Dragon() : _negativeStates(7, false), _positiveStates(12, false) {
 	_physicalDamagebase = 10;
 }
 
+void Dragon::setAbility(int abilityNumber, abilityName abName) {
+	AbilityFactory aux;
+	_ability[abilityNumber] = aux.createAbility(abName);
+}
+
 void Dragon::useAbility(Dragon& dragon, int i) {
 	if (_ability[i].getMpCost() > _MP) {
 		std::cout << "Maná insuficiente" << std::endl;
@@ -40,7 +45,7 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 		if (_positiveStates[damageMultiplier]) {
 			totalDamage *= 2;
 		}
-		//TODO: Implementar vampireishon
+		//TODO: Implementar vampireishon DEJAR!
 		//if (_vampireishon) {
 		//}
 		if (_ability[i].getNegativeStates(stun)) {
@@ -75,7 +80,6 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 }
 
 void Dragon::checkStates(turns& turn) {
-	//TODO: Ver como hacer para que cuando termine la pelea los estados negativos vuelvan a los valores originales
 	//Habilidades negativas
 	this->resetStats();
 	if (_negativeStates[stun]) {
@@ -150,7 +154,7 @@ void Dragon::checkStates(turns& turn) {
 		}
 	}
 	if (_negativeStates[reduceAtt]) {
-		_physicalDamage -= _magicResistbase * 0.2;
+		_physicalDamage -= _physicalDamagebase * 0.2;
 		_reducedAttCount++;
 		if (_reducedAttCount == 3) {
 			_reducedAttCount = 0;
@@ -194,7 +198,7 @@ void Dragon::checkStates(turns& turn) {
 		this->clearStates();
 	}
 	if (_positiveStates[doton]) {//CHEQUEAR
-
+		//Si llegamos acá es porque ya terminamos
 	}
 }
 
@@ -215,12 +219,13 @@ float Dragon::getPD() {
 	return resultado;
 }
 
-void Dragon::damageTaken(int damageTaken) {
+int Dragon::damageTaken(int damageTaken) {
 	_HP -= damageTaken;
 	if (_HP <= 0) {
 		_HP = 0;
 		_isAlive = false;
 	}
+	return damageTaken;
 }
 
 void Dragon::resetStats() {

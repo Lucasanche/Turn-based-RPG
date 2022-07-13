@@ -41,12 +41,12 @@ private:
 	int _posMaxMenu;
 public:
 	MenuFight(float width, float height, Dragon& dyvir);
-	void updateSpriteHPdyvir(int);
-	void updateSpriteHPenemy(int);
+	void updateSpriteHPdyvir(int, int);
+	void updateSpriteHPenemy(int, int);
 	void MoveUp();
 	void MoveDown();
 	void setOption(turns option);
-	turns update(int, int);
+	turns update(Dragon& dyvir, Dragon& enemy);
 	int GetPressedItem() { return _selectedItemIndex; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	~MenuFight();

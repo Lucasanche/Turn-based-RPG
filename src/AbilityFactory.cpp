@@ -3,76 +3,146 @@
 
 
 AbilityFactory::AbilityFactory() {
-	//Fireball
+	_ability.reset();
 }
 
-abilityName AbilityFactory::createAbility(abilityName ab1, abilityName ab2) {
+Ability	AbilityFactory::combineAbility(abilityName ab1, abilityName ab2) {
+
+	//TODO: ver "TO DO" de createAbility en AbilityFactory
+
 	if (ab1 == Fireball || ab2 == Fireball) {
 		if (ab1 == WindBlow || ab2 == WindBlow) {
-			return FireTornado;
+			//return this->createFireTornado();
 		}
 		if (ab1 == Heal || ab2 == Heal) {
-			return HotVampire;
+			//return this->createHotVampire();
 		}
 		if (ab1 == Bubble || ab2 == Bubble) {
-			return Geiser;
+			//return this->createGeiser();
 		}
 		if (ab1 == EarthArmor || ab2 == EarthArmor) {
-			return MagmaWave;
+			//return this->createMagmaWave();
 		}
 	}
 	if (ab1 == Bubble || ab2 == Bubble) {
 		if (ab1 == EarthArmor || ab2 == EarthArmor) {
-			return Earthquake;
+			//this->createEarthquake();
 		}
 		if (ab1 == WindBlow || ab2 == WindBlow) {
-			return Swirl;
+			//return this->createSwirl();
 		}
 	}
 	if (ab1 == WindBlow || ab2 == WindBlow) {
 		if (ab1 == Heal || ab2 == Heal) {
-			return PoisonGas;
+			//return this->createPoisonGas();
 		}
 		if (ab1 == EarthArmor || ab2 == EarthArmor) {
-			return SabakuKyu;
+			//return this->createSabakuKyu();
 		}
 	}
 	if (ab1 == Mirror || ab2 == Mirror) {
 		if (ab1 == EarthBarrier || ab2 == EarthBarrier || ab1 == WaterBarrier || ab2 == WaterBarrier || ab1 == FireBarrier || ab2 == FireBarrier || ab1 == WindBarrier || ab2 == WindBarrier) {
-			return Restore;
+			//return this->createRestore();
 		}
 	}
 	if (ab1 == Barrier || ab2 == Barrier) {
 		if (ab1 == EarthArmor || ab2 == EarthArmor) {
-			return EarthBarrier;
+			//return this->createEarthBarrier();
 		}
 		if (ab1 == WindBlow || ab2 == WindBlow) {
+			// return this->createEarthArmor();
 		}
 
 	}
+	return _ability;
+}
+
+Ability AbilityFactory::createAbility(abilityName abName) {
+	//TODO: implementar métodos correspondientes y descomentar (estos métodos también sirven para el método combineAbility) - Lucas
+	switch (abName) {
+	case Fireball:
+		//return this->createFireball();
+		break;
+	case Bubble:
+		//return this->createBubble();
+		break;
+	case WindBlow:
+		//return this->createWindBlow();
+		break;
+	case EarthArmor:
+		//return this->createEarthArmor();
+		break;
+	case Barrier:
+		//return this->createBarrier();
+		break;
+	case Heal:
+		//return this->createBarrier();
+		break;
+	case Restore:
+		//return this->createRestore();
+		break;
+	case EarthBarrier:
+		//return this->createEarthBarrier();
+		break;
+	case WindBarrier:
+		//return this->createWindBarrier();
+		break;
+	case WaterBarrier:
+		//return this->createWaterBarrier();
+		break;
+	case FireBarrier:
+		//return this->createFireBarrier();
+		break;
+	case Mirror:
+		//return this->createMirror();
+		break;
+	case Tsunami:
+		//return this->createTsunami();
+		break;
+	case FireTornado:
+		//return this->createFireTornado();
+		break;
+	case HotVampire:
+		//return this->createHotVampire();
+		break;
+	case Earthquake:
+		//return this->createEarthquake();
+		break;
+	case Geiser:
+		//return this->createGeiser();
+		break;
+	case PoisonGas:
+		//return this->createPoisonGas();
+		break;
+	case MagmaWave:
+		//return this->createMagmaWave();
+		break;
+	case Inferno:
+		//return this->createInferno();
+		break;
+	case Swirl:
+		//return this->createSwirl();
+		break;
+	case SabakuKyu:
+		//return this->createSabakuKyu();
+		break;
+	case Doton:
+		//return this->createDoton();
+		break;
+	}
+	return Ability();
 }
 
 Ability AbilityFactory::createTest() {
 	_ability.reset();
+	_ability.setName("Test");
 	_ability.setReduceAtt();
 	return _ability;
 }
-/*Ability AbilityFactory::crafting(Ability _ability1, Ability _ability2) {
-	if (_ability.getID() == 1 && _ability2.getID() == 2)
-	{
-		Ability newAbility.createTsunami();
-		return newAbility;
-	}
-}
-
-if (newAbility) {
-//la ponemos en el inventario
-}
-else {"combinacion n.dgksdjg" }*/
 
 //ABILITY SUPPORT
 Ability AbilityFactory::createEarthArmor() {
-	Ability _ability;
+	_ability.reset();
 	_ability.setName("EarthArmor");
 	_ability.setMpCost(5);
 	_ability.setElements(Earth, Neutral);

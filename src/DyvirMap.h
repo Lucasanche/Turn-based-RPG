@@ -17,7 +17,7 @@ private:
 public:
 	//Functions
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-	void update();
+	bool update();
 	DyvirMap();
 	sf::Vector2f getPosition() { return _sprite.getPosition(); }
 	sf::Vector2f _velocity = { 0, 0 };

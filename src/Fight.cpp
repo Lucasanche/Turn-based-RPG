@@ -3,7 +3,7 @@
 
 
 Fight::Fight() : _backTexture(), _view(sf::FloatRect(0, 0, 800, 700)) {
-	srand(unsigned(time(0)));
+	srand(time(0));
 	_menu = nullptr;
 	_turn = wait;
 	_music = true;
@@ -19,10 +19,18 @@ Fight::Fight() : _backTexture(), _view(sf::FloatRect(0, 0, 800, 700)) {
 //Enemy* enemy;
 //enemy = create.getEnemy(win);
 
-int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock) {
+int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock, bool enemyType) {
 	_time = clock.getElapsedTime();
 	if (_backFlag) {
-		this->setBoss(dyvir.getWins());
+		if (enemyType) {
+			this->setBoss(dyvir.getWins());
+		}
+		else {
+			this->setEnemy(dyvir.getWins());
+		}
+		if (_enemy == nullptr) {
+			std::cout << "no se pudo crear el enemigo" << std::endl;
+		}
 		/*switch (enemy.getBack())*/
 		switch (1) {
 		case 1:
@@ -39,7 +47,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
 			break;
 		}
 	}
-	_menu->update(dyvir.getHP(), _enemy->getHP());
+	_menu->update(dyvir, *_enemy);
 	switch (_turn) {
 	case start:
 		//if (_time.asSeconds() > 1.5) {
@@ -53,12 +61,12 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
 		_turn = wait;
 		break;
 	case wait:
-		_turn = _menu->update(dyvir.getHP(), _enemy->getHP());
+		_turn = _menu->update(dyvir, *_enemy);
 		break;
 	case attack: //Atacar
-		_enemy->damageTaken(dyvir.doDamage(_enemy->getPD()));
+		std::cout << "Hiciste " << _enemy->damageTaken(dyvir.doDamage(_enemy->getPD())) << " puntos de daño"  << std::endl << std::endl;
 		clock.restart();
-		std::cout << "Hiciste " << dyvir.doDamage(_enemy->getPD()) << " puntos de daño" << std::endl << std::endl;
+		// dyvir.doDamage(_enemy->getPD()) << " puntos de daño" 
 		_turn = enemyUpdateText;
 		break;
 	case ability1: //Magic 1
@@ -88,15 +96,15 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
 			else {
 				std::cout << "Turno del enemigo" << std::endl << std::endl;
 				unsigned int random = rand() % 3;
-				switch (rand() % 3) {
+				switch (rand() % 2) {
+				case 0:
+					std::cout << "Te hicieron " << dyvir.damageTaken(_enemy->doDamage(_enemy->getPD()))<<  " puntos de daño" << std::endl << std::endl;
+					break;
 				case 1:
-					dyvir.damageTaken(_enemy->doDamage(_enemy->getPD()));
+					std::cout << "Te hicieron " << dyvir.damageTaken(_enemy->doDamage(_enemy->getPD())) << " puntos de daño" << std::endl << std::endl;
 					break;
 				case 2:
-					dyvir.damageTaken(_enemy->doDamage(_enemy->getPD()));
-					break;
-				case 3:
-					dyvir.damageTaken(_enemy->doDamage(_enemy->getPD()));
+					std::cout << "Te hicieron " << dyvir.damageTaken(_enemy->doDamage(_enemy->getPD())) << " puntos de daño" << std::endl << std::endl;
 					break;
 				}
 				_turn = updateText;
@@ -105,7 +113,6 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
 		}
 		break;
 	case updateText:
-		std::cout << "Te hicieron " << _enemy->getPhysicalDamage() << " puntos de daño" << std::endl << std::endl;
 		_turn = start;
 		clock.restart();
 		break;
@@ -123,6 +130,10 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock)
 
 void Fight::setBoss(int winCheck) {
 	_enemy = _enemyFactory.getBoss(winCheck);
+}
+
+void Fight::setEnemy(int winCheck) {
+	_enemy = _enemyFactory.getEnemy(winCheck);
 }
 
 void Fight::deleteBoss() {

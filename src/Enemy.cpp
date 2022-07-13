@@ -4,7 +4,7 @@
 
 
 Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames) {
-	//TODO: Implementar dropeo de habilidades para cada enemigo   !!!!!!!!!!!!
+	//TODO: Implementar dropeo de habilidades para cada enemigo   !!!!!!!!!!!! DEJAR!
 	_flagDie = true;
 	_frameY = 0;
 	_texture.loadFromFile(path);
@@ -32,70 +32,7 @@ void Enemy::setStats(int HP, int MP, int physicalDamage, int magicDamage, int ph
 	_magicResistbase = _magicResist;
 	_elementWeak = elementWeak;
 }
-//TODO: mover esto a dragon???
-void Enemy::setAbility1(abilityName abName) {
-	this->setAbility(_ability[0], abName);
-}
 
-void Enemy::setAbility2(abilityName abName) {
-	this->setAbility(_ability[1], abName);
-}
-
-void Enemy::setAbility(Ability& ability, abilityName abName) {
-	AbilityFactory aux;
-	switch (abName) {
-	case Fireball:
-		//ability = aux.createFireball();
-		break;
-	case Bubble:
-		//ability = aux.createBubble();
-		break;
-	case WindBlow:
-		//ability = aux.createWindBlow();
-		break;
-	case EarthArmor:
-		ability = aux.createEarthArmor();
-		break;
-	case Barrier:
-		break;
-	case Heal:
-		break;
-	case Restore:
-		break;
-	case EarthBarrier:
-		break;
-	case WindBarrier:
-		break;
-	case WaterBarrier:
-		break;
-	case FireBarrier:
-		break;
-	case Mirror:
-		break;
-	case Tsunami:
-		break;
-	case FireTornado:
-		break;
-	case HotVampire:
-		break;
-	case Earthquake:
-		break;
-	case Geiser:
-		break;
-	case PoisonGas:
-		break;
-	case MagmaWave:
-		break;
-	case Inferno:
-		break;
-	case Swirl:
-		break;
-	case SabakuKyu:
-		break;
-	case Doton:
-		break;
-	}
-}
 
 void Enemy::update(bool dyvirIsAlive) {
 	if (dyvirIsAlive) {

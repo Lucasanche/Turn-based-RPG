@@ -19,7 +19,8 @@ void DyvirMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_sprite, states);
 }
 
-void DyvirMap::update() {
+bool DyvirMap::update() {
+	srand(time(0));
 	_frame += 0.15;
 	if (_frame >= 5) {
 		_frame = 0;
@@ -52,22 +53,13 @@ void DyvirMap::update() {
 	if (_velocity.x > 0) {
 		_sprite.setScale(0.15, 0.15);
 	}
-	///EVITAR QUE SALGA DE LA PANTALLA;;; ///NO UTILIZADO POR COLISION CON LOS TILES
-   /* if(_sprite.getGlobalBounds().left<0){
-			_sprite.setPosition(0 + _sprite.getGlobalBounds().width/2, _sprite.getPosition().y);
-			std::cout << _sprite.getGlobalBounds().width << std::endl;
+	if (_velocity != sf::Vector2f(0, 0)) {
+		if (rand() % 5 == 1) {
+			return true;
 		}
-	if(_sprite.getGlobalBounds().top<0){
-			_sprite.setPosition(_sprite.getPosition().x, 0 + _sprite.getGlobalBounds().height);
-		}
-
-	if(_sprite.getGlobalBounds().left+_sprite.getGlobalBounds().width>1550){
-			_sprite.setPosition(1550 - _sprite.getGlobalBounds().width/2, _sprite.getPosition().y);
-		}
-	if(_sprite.getGlobalBounds().top+_sprite.getGlobalBounds().height>1900){
-			_sprite.setPosition(_sprite.getPosition().x,1900);
-			std::cout << _sprite.getGlobalBounds().height << std::endl;
-		}*/
+		std::cout << rand() << std::endl;
+	}
+	return false;
 }
 
 sf::FloatRect DyvirMap::getBounds() const {
