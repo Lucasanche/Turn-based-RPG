@@ -64,15 +64,15 @@ void DyvirFight::Win() {
 		_frame = 0;
 		_texture.loadFromFile("./Textures/Characters/spritesheets/DyvirWin 110x200.png");
 		_sprite.setTexture(_texture);
-		_sprite.setScale(0.5, 0.5);
+		_sprite.setScale(1, 1);
 		_flagWin = false;
 	}
 	_frame += 0.15;
-	if (_frame >= 5) {
+	if (_frame >= 6) {
 		_frame = 0;
 	}
-	//TODO: arreglar el sprite de victoria de Dyvir - Juli
-	_sprite.setTextureRect({ int(_frame) * 170, 0, 170, 110 });
+	_sprite.setTextureRect({ int(_frame) * 110, 0, 110, 200 });
+	_sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
 }
 void DyvirFight::restoreLife() {
 	_HP = _HPbase;
@@ -85,4 +85,5 @@ void DyvirFight::setFightSprite() {
 	_sprite.setTextureRect({ 0,0,260,230 });
 	_sprite.setScale(0.5, 0.5);
 	_sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
+	_flagWin = true;
 }
