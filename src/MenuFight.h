@@ -5,9 +5,6 @@
 #include "Cursor.h"
 #include "Dragon.h"
 
-#define MAX_NUMBER_OF_ITEMS 3
-
-
 class MenuFight : public sf::Drawable
 {
 private:
@@ -18,6 +15,7 @@ private:
 	sf::Font _font;
 	std::vector<sf::Text> _menu;
 	std::vector<sf::Text> _names;
+	std::vector<sf::String> _menuStrings;
 	Cursor _cursor;
 	sf::Sprite _backMenu;
 	sf::Texture _backMenuTexture;

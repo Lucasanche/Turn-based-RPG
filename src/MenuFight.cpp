@@ -2,7 +2,7 @@
 #include "MenuFight.h"
 
 
-MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _names(2) {
+MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _names(2), _menuStrings(3) {
 	_resultBars = 0;
 	_lenghtHPdyvir = 0;
 	_lenghtMPdyvir = 0;
@@ -10,6 +10,7 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _name
 	_lenghtHPdyvir = 0;
 	_flag = false;
 	_option = wait;
+
 	if (!_font.loadFromFile("./Fonts/Nostalgia.ttf")) {
 		std::cout << "No se pudo cargar el archivo ./Fonts/Nostalgia.ttf";
 	}
@@ -71,6 +72,14 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _name
 	// Setea el largo del relleno del HP
 
 
+	for (int i : _names) {
+		aux.setCharacterSize(25);
+		aux.setFont(_font);
+		aux.setFillColor(sf::Color::White);
+		aux.setStyle(sf::Text::Italic);
+		aux.setString("DYVIR");
+	}
+
 	_names[0].setCharacterSize(25);
 	_names[0].setFont(_font);
 	_names[0].setFillColor(sf::Color::White);
@@ -78,30 +87,26 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _name
 	_names[0].setString("DYVIR");
 	_names[0].setPosition({ _spriteHPdyvir.getPosition().x + _spriteHPdyvir.getGlobalBounds().width / 3, _spriteHPdyvir.getPosition().y - 30 });
 
-	_names[1].setCharacterSize(25);
-	_names[1].setFont(_font);
-	_names[1].setFillColor(sf::Color::White);
-	_names[1].setStyle(sf::Text::Italic);
 	_names[1].setString("ENEMY");
 	_names[1].setPosition({ _spriteHPenemy.getPosition().x + _spriteHPenemy.getGlobalBounds().width / 3, _spriteHPenemy.getPosition().y - 40 });
+	
+	_menuStrings[0] = "Attack";
+	_menuStrings[1] = "Ability 1";
+	_menuStrings[2] = "Ability 2";
 
-	_menu[0].setCharacterSize(25);
-	_menu[0].setFont(_font);
+	for (int i = 0; i < _menu.size(); i++) {
+		_menu[i].setCharacterSize(25);
+		_menu[i].setFont(_font);
+		_menu[i].setFillColor(sf::Color::White);
+		_menu[i].setString(_menuStrings[i]);
+		//_menu[i].setPosition();
+	}
+
 	_menu[0].setFillColor(sf::Color::Red);
-	_menu[0].setString("Attack");
 	_menu[0].setPosition({ 35, _posIniMenu });
 
-	_menu[1].setCharacterSize(25);
-	_menu[1].setFont(_font);
-	_menu[1].setFillColor(sf::Color::White);
-	_menu[1].setString("Magic 1");
-	//_menu[1].setString(/*dyvir.getAbility1().getName()*/);
 	_menu[1].setPosition(35, _posIniMenu + (_posMaxMenu * 1 / 3));
 
-	_menu[2].setCharacterSize(25);
-	_menu[2].setFont(_font);
-	_menu[2].setFillColor(sf::Color::White);
-	_menu[2].setString("Magic 2");
 	_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 2 / 3));
 	_cursor.setPosition({ _menu[0].getPosition().x + 10 + _menu[0].getGlobalBounds().width,_menu[0].getPosition().y + _menu[0].getGlobalBounds().height / 2 });
 }
@@ -168,7 +173,7 @@ void MenuFight::MoveUp() {
 }
 
 void MenuFight::MoveDown() {
-	if (_selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS) {
+	if (_selectedItemIndex + 1 < _menu.size()) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex++;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
@@ -233,10 +238,10 @@ void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_spriteMPFilldyivir);
 	target.draw(_textMPdyvir);
 	target.draw(_textHPenemy);
-	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
+	for (int i = 0; i < _menu.size(); i++) {
 		target.draw(_menu[i], states);
 	}
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < _names.size(); i++) {
 		target.draw(_names[i], states);
 	}
 	target.draw(_cursor, states);
