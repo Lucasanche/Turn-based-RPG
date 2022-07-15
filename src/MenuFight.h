@@ -14,9 +14,10 @@ private:
 	bool _flag;
 	turns _option;
 	int _selectedItemIndex;
+	int _resultBars;
 	sf::Font _font;
-	sf::Text* _menu;
-	sf::Text* _names;
+	std::vector<sf::Text> _menu;
+	std::vector<sf::Text> _names;
 	Cursor _cursor;
 	sf::Sprite _backMenu;
 	sf::Texture _backMenuTexture;
@@ -53,6 +54,7 @@ public:
 	MenuFight(float width, float height, Dragon& dyvir);
 	void updateSpriteHPdyvir(int, int);
 	void updateSpriteHPenemy(int, int);
+	void updateSpriteMPdyvir(int, int);
 	void MoveUp();
 	void MoveDown();
 	void setOption(turns option);

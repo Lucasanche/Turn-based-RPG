@@ -36,7 +36,8 @@ enum abilityName
 	Inferno,
 	Swirl,
 	SabakuKyu,
-	Doton
+	Doton,
+	Test
 };
 
 enum positiveStates

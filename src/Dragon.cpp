@@ -3,7 +3,7 @@
 
 
 Dragon::Dragon() : _negativeStates(7, false), _positiveStates(12, false) {
-	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicalDamage = _magicalDamagebase = _physicalDefense = _physicalDefensebase = _magicResist = _magicResistbase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = _increasedAttCount = _increasedPDCount = _increasedMRCount = _increasedMDCount = 0;
+	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicalDamage = _magicalDamagebase = _physicalDefense = _physicalDefensebase = _magicResist = _magicResistbase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = _increasedAttCount = _increasedPDCount = _increasedMRCount = _increasedMDCount = 1;
 	_isAlive = true;
 	_physicalDamage = 10;
 	_physicalDamagebase = 10;
@@ -75,11 +75,12 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 		if (!_positiveStates[trueDamage]) {
 			totalDamage *= dragon.getMR();
 		}
+		this->checkPositiveStates();
 		dragon.damageTaken(int(totalDamage));
 	}
 }
 
-void Dragon::checkStates(turns& turn) {
+void Dragon::checkNegativeStates(turns& turn) {
 	//Habilidades negativas
 	this->resetStats();
 	if (_negativeStates[stun]) {
@@ -162,6 +163,9 @@ void Dragon::checkStates(turns& turn) {
 		}
 	}
 	//Habilidades positivas
+}
+
+void Dragon::checkPositiveStates() {
 	if (_positiveStates[increasePD]) {
 		if (_negativeStates[reducePD]) {
 			_negativeStates[reducePD] = false;

@@ -2,11 +2,12 @@
 #include "MenuFight.h"
 
 
-MenuFight::MenuFight(float width, float height, Dragon& dyvir) {
-	unsigned short menuSize = 3;
-	unsigned short nameSize = 2;
-	_menu = new sf::Text[menuSize];
-	_names = new sf::Text[nameSize];
+MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _names(2) {
+	_resultBars = 0;
+	_lenghtHPdyvir = 0;
+	_lenghtMPdyvir = 0;
+	_lenghtHPenemy = 0;
+	_lenghtHPdyvir = 0;
 	_flag = false;
 	_option = wait;
 	if (!_font.loadFromFile("./Fonts/Nostalgia.ttf")) {
@@ -41,9 +42,6 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) {
 	_spriteHPenemy.setTexture(_textureHP);
 	_spriteHPFillenemy.setTexture(_textureHP);
 	_textHPenemy.setTexture(_textureHP);
-	_spriteMPdyvir.setTexture(_textureHP);
-	_spriteMPFilldyivir.setTexture(_textureHP);
-	_textMPdyvir.setTexture(_textureHP);
 	//
 	spriteSize = { 158,15 };
 	positionHPdyvir = { _backMenu.getPosition().x + 40, _backMenu.getPosition().y + 50 };
@@ -57,7 +55,10 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) {
 	_textHPdyvir.setTextureRect({ {0, spriteSize.y * 8 }, spriteSize });
 	_spriteMPdyvir.setTextureRect({ {0, spriteSize.y * 0 }, spriteSize });
 	_spriteMPdyvir.setPosition(positionHPdyvir.x, positionHPdyvir.y + _spriteHPdyvir.getGlobalBounds().height + 5);
-	_spriteMPFilldyivir.setTextureRect({ {0, spriteSize.y * 7 }, spriteSize });
+	_spriteMPFilldyivir.setTextureRect({ {0, spriteSize.y * 6 }, spriteSize });
+	_spriteMPFilldyivir.setPosition(_spriteMPdyvir.getPosition());
+	_textMPdyvir.setTextureRect({ {0, spriteSize.y * 7 }, spriteSize });
+	_textMPdyvir.setPosition(_spriteMPdyvir.getPosition());
 
 	_spriteHPenemy.setTextureRect({ {0, spriteSize.y * 0 }, spriteSize });
 	_spriteHPenemy.setPosition(positionHPenemy);
@@ -68,8 +69,7 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) {
 	_posIniMenu = _spriteHPdyvir.getPosition().y + 27;
 	_posMaxMenu = 120;
 	// Setea el largo del relleno del HP
-	_lenghtHPenemy = _spriteHPenemy.getGlobalBounds().width;
-	_lenghtHPdyvir = _spriteHPdyvir.getGlobalBounds().width;
+
 
 	_names[0].setCharacterSize(25);
 	_names[0].setFont(_font);
@@ -107,44 +107,50 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) {
 }
 
 void MenuFight::updateSpriteHPdyvir(int HP, int HPbase) {
-	int result = HP * 100 / HPbase;
-	if (result < 80 && result > 60) {
+	_resultBars = HP * 100 / HPbase;
+	if (_resultBars < 80 && _resultBars > 60) {
 		_statusHPdyvir = 2;
 	}
-	if (result <= 60 && result > 40) {
+	if (_resultBars <= 60 && _resultBars > 40) {
 		_statusHPdyvir = 3;
 	}
-	if (result <= 40 && result > 20) {
+	if (_resultBars <= 40 && _resultBars > 20) {
 		_statusHPdyvir = 4;
 	}
-	if (result <= 20 && result > 0) {
+	if (_resultBars <= 20 && _resultBars > 0) {
 		_statusHPdyvir = 5;
 	}
-	if (result == 0) {
+	if (_resultBars == 0) {
 		_statusHPdyvir = 2;
 	}
-	_lenghtHPdyvir = result * spriteSize.x / 100;
+	_lenghtHPdyvir = _resultBars * spriteSize.x / 100;
 	_spriteHPFilldyvir.setTextureRect({ 0, spriteSize.y * _statusHPdyvir, _lenghtHPdyvir, spriteSize.y });
 }
 
+void MenuFight::updateSpriteMPdyvir(int MP, int MPbase) {
+	_resultBars = MP * 100 / MPbase;
+	_lenghtMPdyvir = _resultBars * spriteSize.x / 100;
+	_spriteMPFilldyivir.setTextureRect({ 0, spriteSize.y * 6, _lenghtMPdyvir, spriteSize.y });
+}
+
 void MenuFight::updateSpriteHPenemy(int HP, int HPbase) {
-	int result = HP * 100 / HPbase;
-	if (result < 80 && result > 60) {
+	_resultBars = HP * 100 / HPbase;
+	if (_resultBars < 80 && _resultBars > 60) {
 		_statusHPenemy = 2;
 	}
-	if (result <= 60 && result > 40) {
+	if (_resultBars <= 60 && _resultBars > 40) {
 		_statusHPenemy = 3;
 	}
-	if (result <= 40 && result > 20) {
+	if (_resultBars <= 40 && _resultBars > 20) {
 		_statusHPenemy = 4;
 	}
-	if (result <= 20 && result > 0) {
+	if (_resultBars <= 20 && _resultBars > 0) {
 		_statusHPenemy = 5;
 	}
-	if (result == 0) {
+	if (_resultBars == 0) {
 		_statusHPenemy = 2;
 	}
-	_lenghtHPenemy = result * spriteSize.x / 100;
+	_lenghtHPenemy = _resultBars * spriteSize.x / 100;
 	_spriteHPFillenemy.setTextureRect({ 0, spriteSize.y * _statusHPenemy, _lenghtHPenemy, spriteSize.y });
 }
 
@@ -172,7 +178,6 @@ void MenuFight::MoveDown() {
 
 turns MenuFight::update(Dragon& dyvir, Dragon& enemy) {
 	//TODO: Agregar un texto que nos diga lo que va pasando en el cuadro azul  !!!! - Lucas
-	//TODO: Barra de MANA  !!!!!!!!!!!! - Lucas
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
 			this->MoveUp();
@@ -211,6 +216,7 @@ turns MenuFight::update(Dragon& dyvir, Dragon& enemy) {
 		_option = wait;
 	}
 	this->updateSpriteHPdyvir(dyvir.getHP(), dyvir.getHPbase());
+	this->updateSpriteMPdyvir(dyvir.getMP(), dyvir.getMPbase());
 	this->updateSpriteHPenemy(enemy.getHP(), enemy.getHPbase());
 	return _option;
 }
