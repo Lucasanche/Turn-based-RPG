@@ -14,6 +14,7 @@ public:
 private:
 	sf::Texture _texture;
 	sf::Sprite _sprite;
+	float _frameVortex;
 };
 
 #endif

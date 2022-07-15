@@ -30,8 +30,6 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 
 void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 	//TODO: Agregar checkpoint !!!!!!!!!!!! - Lucas
-	//TODO: Modificar los sprites de los jefes en el mapa - Juli
-
 	switch (_option) {
 	case 0:
 		if (DyvirMap.update()) {
