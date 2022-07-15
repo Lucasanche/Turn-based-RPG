@@ -67,6 +67,7 @@ public:
 	int getPhysicalDefense() { return _physicalDefense; }
 	int getMagicResist() { return _magicResist; }
 
+
 	int getBack() { return _backGround; }
 	bool getIsAlive() { return _isAlive; }
 	elements getElementWeak() { return _elementWeak; }

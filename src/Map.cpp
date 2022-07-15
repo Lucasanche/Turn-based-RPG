@@ -32,6 +32,8 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 	//TODO: Agregar checkpoint !!!!!!!!!!!! - Lucas
 	//TODO: Modificar los sprites de los jefes en el mapa - Juli
 
+
+
 	switch (_option) {
 	case 0:
 		if (DyvirMap.update()) {
@@ -59,7 +61,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		window.setView(_view);
 		window.draw(DyvirMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
-			_option = 2;
+			_option = 5;
 			window.setView(window.getDefaultView());
 			//_view.setSize(window.getSize().x, window.getSize().y);
 		}
@@ -124,7 +126,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		}
 		break;
 	case 5:
-		menuMap.update();
+		menuMap.update(dyvir);
 		window.draw(menuMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			_option = 0;
