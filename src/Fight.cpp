@@ -57,7 +57,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		_turn = check;
 		break;
 	case check:
-		dyvir.checkStates(_turn);
+		dyvir.checkNegativeStates(_turn);
 		_turn = wait;
 		break;
 	case wait:
@@ -84,7 +84,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		_turn = enemyCheck;
 		break;
 	case enemyCheck:
-		_enemy->checkStates(_turn);
+		_enemy->checkNegativeStates(_turn);
 		//_turn = enemyWait;
 		break;
 	case enemyWait:

@@ -4,11 +4,12 @@
 
 DyvirFight::DyvirFight() : _abilityEquipment(10) {
 	AbilityFactory _factory;
-	_ability[0] = _factory.createTest();
+	this->setAbility(0, Test);
 	//TODO: Implementar leveo, subida de stats, etc.  DEJAR!!!!!!!!!!!!!!!!!!!!!!!!!
 	_HPbase = 100;
 	_HP = _HPbase;
 	_MPbase = 100;
+	_MP = _MPbase;
 	_physicalDamagebase = 30;
 	_physicalDamage = _physicalDamagebase;
 	_physicalDefensebase = 10;

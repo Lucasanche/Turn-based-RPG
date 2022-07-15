@@ -129,14 +129,19 @@ Ability AbilityFactory::createAbility(abilityName abName) {
 	case Doton:
 		//return this->createDoton();
 		break;
+	case Test:
+		return this->createTest();
 	}
 	return Ability();
 }
 
 Ability AbilityFactory::createTest() {
 	_ability.reset();
+	_ability.setMpCost(10);
+	_ability.setMagicDamage(10);
 	_ability.setName("Test");
 	_ability.setReduceAtt();
+	_ability.setHeal();
 	return _ability;
 }
 
