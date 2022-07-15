@@ -30,6 +30,11 @@ private:
 	sf::Sprite _textHPdyvir;
 	int _statusHPdyvir;
 	int _lenghtHPdyvir;
+	//Barra MP Dyvir
+	sf::Sprite _spriteMPdyvir;
+	sf::Sprite _spriteMPFilldyivir;
+	sf::Sprite _textMPdyvir;
+	int _lenghtMPdyvir;
 	//Barra de vida enemy
 	sf::Texture _textureHPenemy;
 	sf::Sprite _spriteHPenemy;
@@ -37,6 +42,11 @@ private:
 	sf::Sprite _textHPenemy;
 	int _statusHPenemy;
 	int _lenghtHPenemy;
+
+	sf::Vector2i spriteSize;
+	sf::Vector2f positionHPdyvir;
+	sf::Vector2f positionHPenemy;
+
 	float _posIniMenu;
 	int _posMaxMenu;
 public:

@@ -25,33 +25,46 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) {
 	_selectedItemIndex = 0;
 	///Variables útiles para los sprites
 	 // Setea el color del relleno del HP
-	_statusHPdyvir = 2;
-	_statusHPenemy = 2;
+	_statusHPdyvir = 1;
+	_statusHPenemy = 1;
 
-	//Barra de vida
+	//Barra de HP y MP
 
+	//Setear textura
 	_textureHP.loadFromFile("./Textures/Interface/HP_bar.png");
-
 	_spriteHPdyvir.setTexture(_textureHP);
-	_spriteHPdyvir.setTextureRect({ 0,0,159,17 });
-	_spriteHPdyvir.setPosition(_backMenu.getPosition().x + 40, _backMenu.getPosition().y + 50);
+	_spriteMPdyvir.setTexture(_textureHP);
 	_spriteHPFilldyvir.setTexture(_textureHP);
-	_spriteHPFilldyvir.setTextureRect({ 0,17 * _statusHPdyvir,160,17 });
-	_spriteHPFilldyvir.setPosition(_spriteHPdyvir.getPosition());
+	_spriteMPFilldyivir.setTexture(_textureHP);
 	_textHPdyvir.setTexture(_textureHP);
-	_textHPdyvir.setPosition(_spriteHPdyvir.getPosition());
-	_textHPdyvir.setTextureRect({ 0, 17, 160, 17 });
-
+	_textMPdyvir.setTexture(_textureHP);
 	_spriteHPenemy.setTexture(_textureHP);
-	_spriteHPenemy.setTextureRect({ 0,0,159,17 });
-	_spriteHPenemy.setPosition(_backMenuEnemy.getPosition().x + 30, _backMenuEnemy.getPosition().y + 57);
 	_spriteHPFillenemy.setTexture(_textureHP);
-	_spriteHPFillenemy.setTextureRect({ 0,17 * _statusHPenemy,160,17 });
-	_spriteHPFillenemy.setPosition(_spriteHPenemy.getPosition());
 	_textHPenemy.setTexture(_textureHP);
-	_textHPenemy.setPosition(_spriteHPenemy.getPosition());
-	_textHPenemy.setTextureRect({ 0, 17, 160, 17 });
+	_spriteMPdyvir.setTexture(_textureHP);
+	_spriteMPFilldyivir.setTexture(_textureHP);
+	_textMPdyvir.setTexture(_textureHP);
+	//
+	spriteSize = { 158,15 };
+	positionHPdyvir = { _backMenu.getPosition().x + 40, _backMenu.getPosition().y + 50 };
+	positionHPenemy = { _backMenuEnemy.getPosition().x + 30, _backMenuEnemy.getPosition().y + 57 };
 
+	_spriteHPdyvir.setTextureRect({ {0, spriteSize.y * 0 }, spriteSize });
+	_spriteHPdyvir.setPosition(_backMenu.getPosition().x + 40, _backMenu.getPosition().y + 50);
+	_spriteHPFilldyvir.setTextureRect({ {0, spriteSize.y * 1 }, spriteSize });
+	_spriteHPFilldyvir.setPosition(_spriteHPdyvir.getPosition());
+	_textHPdyvir.setPosition(_spriteHPdyvir.getPosition());
+	_textHPdyvir.setTextureRect({ {0, spriteSize.y * 8 }, spriteSize });
+	_spriteMPdyvir.setTextureRect({ {0, spriteSize.y * 0 }, spriteSize });
+	_spriteMPdyvir.setPosition(positionHPdyvir.x, positionHPdyvir.y + _spriteHPdyvir.getGlobalBounds().height + 5);
+	_spriteMPFilldyivir.setTextureRect({ {0, spriteSize.y * 7 }, spriteSize });
+
+	_spriteHPenemy.setTextureRect({ {0, spriteSize.y * 0 }, spriteSize });
+	_spriteHPenemy.setPosition(positionHPenemy);
+	_spriteHPFillenemy.setTextureRect({ {0, spriteSize.y * _statusHPenemy }, spriteSize });
+	_spriteHPFillenemy.setPosition(_spriteHPenemy.getPosition());
+	_textHPenemy.setPosition(_spriteHPenemy.getPosition());
+	_textHPenemy.setTextureRect({ {0, spriteSize.y * 8 }, spriteSize });
 	_posIniMenu = _spriteHPdyvir.getPosition().y + 27;
 	_posMaxMenu = 120;
 	// Setea el largo del relleno del HP
@@ -97,7 +110,7 @@ void MenuFight::updateSpriteHPdyvir(int HP, int HPbase) {
 	int result = HP * 100 / HPbase;
 	if (result < 80 && result > 60) {
 		_statusHPdyvir = 2;
-	} 
+	}
 	if (result <= 60 && result > 40) {
 		_statusHPdyvir = 3;
 	}
@@ -110,8 +123,8 @@ void MenuFight::updateSpriteHPdyvir(int HP, int HPbase) {
 	if (result == 0) {
 		_statusHPdyvir = 2;
 	}
-	_lenghtHPdyvir = result * 1.6;
-	_spriteHPFilldyvir.setTextureRect({ 0,17 * _statusHPdyvir,_lenghtHPdyvir,17 });
+	_lenghtHPdyvir = result * spriteSize.x / 100;
+	_spriteHPFilldyvir.setTextureRect({ 0, spriteSize.y * _statusHPdyvir, _lenghtHPdyvir, spriteSize.y });
 }
 
 void MenuFight::updateSpriteHPenemy(int HP, int HPbase) {
@@ -131,8 +144,8 @@ void MenuFight::updateSpriteHPenemy(int HP, int HPbase) {
 	if (result == 0) {
 		_statusHPenemy = 2;
 	}
-	_lenghtHPenemy = result * 1.6;
-	_spriteHPFillenemy.setTextureRect({ 0,17 * _statusHPenemy,_lenghtHPenemy,17 });
+	_lenghtHPenemy = result * spriteSize.x / 100;
+	_spriteHPFillenemy.setTextureRect({ 0, spriteSize.y * _statusHPenemy, _lenghtHPenemy, spriteSize.y });
 }
 
 void MenuFight::setOption(turns option) {
@@ -210,6 +223,9 @@ void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_textHPdyvir);
 	target.draw(_spriteHPenemy);
 	target.draw(_spriteHPFillenemy);
+	target.draw(_spriteMPdyvir);
+	target.draw(_spriteMPFilldyivir);
+	target.draw(_textMPdyvir);
 	target.draw(_textHPenemy);
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
 		target.draw(_menu[i], states);
