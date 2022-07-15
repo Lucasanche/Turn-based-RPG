@@ -8,7 +8,9 @@
 #include "EnemyFactory.h"
 
 
+
 int main() {
+
 	int numero = 0;
 	setlocale(LC_CTYPE, "Spanish");
 	sf::RenderWindow window(sf::VideoMode(800, 700), "Proyectazo");

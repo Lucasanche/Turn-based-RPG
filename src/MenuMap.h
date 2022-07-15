@@ -8,6 +8,7 @@
 class MenuMap : public sf::Drawable
 {
 private:
+	int _page;
 	bool _flag, _flagSubmenu;
 	int _option;
 	int _selectedItemIndex;
@@ -15,7 +16,7 @@ private:
 	sf::Font _font;
 	sf::Text* _menu;
 	sf::Text* _names;
-	sf::Text* _inventoryList;
+	std::vector <sf::Text> _inventoryList;
 	Cursor _cursor;
 	sf::Sprite _backMenu;
 	sf::Texture _backMenuTexture;
@@ -24,11 +25,13 @@ private:
 	int sizeOfMenu;
 	DyvirFight dyvir;
 public:
-	MenuMap(float width, float height, DyvirFight);
+	MenuMap(float width, float height, DyvirFight&);
 	void MoveUp();
 	void MoveDown();
 	void setOption(int option);
-	void update();
+	void PageUp();
+	void PageDown();
+	void update(DyvirFight& dyvir);
 	int GetPressedItem() { return _selectedItemIndex; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void changeMenu();

@@ -2,13 +2,13 @@
 #include "MenuMap.h"
 
 
-MenuMap::MenuMap(float width, float height, DyvirFight dyvir) {
+MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(15) {
 	//TODO: completar el menu (crafteo, etc) !!!!!!!!!!!!!!!!!!!!!!!! Giuli
 	//TODO: cargar las habilidades del menu en el equipo de Dyvir !!!!!!!!!!!! Giuli
 	sizeOfMenu = 3;
+	_page = 0;
 	_menu = new sf::Text[sizeOfMenu];
 	_names = new sf::Text[sizeOfMenu];
-	_inventoryList = new sf::Text[dyvir.getInventorySize()];
 	_flag = false;
 	_flagSubmenu = false;
 	_option = 0;
@@ -21,7 +21,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight dyvir) {
 	_backMenu.setTexture(_backMenuTexture);
 	_backMenu.setPosition(0, height / 2 - _backMenu.getGlobalBounds().height);
 	_selectedItemIndex = 0;
-	_posIniMenu = height / 2 - _backMenu.getGlobalBounds().height + 25;
+	_posIniMenu = height / 2 - _backMenu.getGlobalBounds().height+25;
 
 	_posMaxMenu = 120;
 	// Setea el largo del relleno del HP
@@ -30,8 +30,8 @@ MenuMap::MenuMap(float width, float height, DyvirFight dyvir) {
 		_menu[i].setFont(_font);
 		_names[i].setCharacterSize(20);
 		_names[i].setFont(_font);
-		_menu[i].setPosition(35, _posIniMenu + (_posMaxMenu * (i*2) / 6));
-		_names[i].setPosition(35, _posIniMenu + (_posMaxMenu * ((i*2)+1) / 6));
+		_menu[i].setPosition(35, _posIniMenu + (_posMaxMenu * (i * 2) / 6));
+		_names[i].setPosition(35, _posIniMenu + (_posMaxMenu * ((i * 2) + 1) / 6));
 	}
 
 	_menu[0].setFillColor(sf::Color::Red);
@@ -41,7 +41,6 @@ MenuMap::MenuMap(float width, float height, DyvirFight dyvir) {
 
 	_names[0].setFillColor(sf::Color::White);
 	_names[0].setString(dyvir.getAbility(0).getName());
-	_names[0].setString("hola");
 	//_names[0].setPosition(35, _posIniMenu + (_posMaxMenu * 1 / 6));
 
 	_menu[1].setFillColor(sf::Color::White);
@@ -60,15 +59,28 @@ MenuMap::MenuMap(float width, float height, DyvirFight dyvir) {
 	_names[2].setString(dyvir.getAbility(2).getName());
 	//_names[2].setPosition(35, _posIniMenu + (_posMaxMenu * 5 / 6));
 
-	if (dyvir.getInventorySize() != 0) {
-		for (int i = 0; i < dyvir.getInventorySize(); i++) {
-			_inventoryList[i].setCharacterSize(20);
-			_inventoryList[i].setFont(_font);
-			_inventoryList[i].setFillColor(sf::Color::White);
-			_inventoryList[i].setString(dyvir.getAbilityInv(i).getName());
-			_inventoryList[i].setPosition(300, _posIniMenu + (_posMaxMenu * i / dyvir.getInventorySize()));
+
+	int pos = 0;
+	int aux = 0;
+
+	for (int i = 0; i < _inventoryList.size(); i++) {
+		_inventoryList[i].setCharacterSize(20);
+		_inventoryList[i].setFont(_font);
+		_inventoryList[i].setFillColor(sf::Color::White);
+		_inventoryList[i].setString("Empty");
+
+		_inventoryList[i].setPosition(250+(aux*200), _posIniMenu + 30 * pos);
+
+		pos++;
+		if (pos == 5) {
+			pos = 0;
+			aux++;
 		}
+
+
 	}
+
+
 
 	_cursor.setPosition({ _menu[0].getPosition().x + 10 + _menu[0].getGlobalBounds().width,_menu[0].getPosition().y + _menu[0].getGlobalBounds().height / 2 });
 }
@@ -77,7 +89,48 @@ void MenuMap::setOption(int option) {
 	_option = option;
 }
 
-void MenuMap::update() {
+void MenuMap::PageUp() {
+	if (_page != 0) {
+		_page -= 15;
+	}
+}
+
+
+void MenuMap::PageDown() {
+	_page += 15;
+}
+
+void MenuMap::update(DyvirFight& dyvir) {
+
+	_names[0].setString(dyvir.getAbility(0).getName());
+	_names[1].setString(dyvir.getAbility(1).getName());
+	_names[2].setString(dyvir.getAbility(2).getName());
+
+	for (int i = 0; i < _inventoryList.size(); i++) {
+		_inventoryList[i].setString(dyvir.getAbilityInvName(i + _page));
+	}
+
+	if (_flagSubmenu) {
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+
+			if (_flag) {
+				this->PageUp();
+				_flag = false;
+			}
+		}
+
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+
+			if (_flag) {
+				this->PageDown();
+				_flag = false;
+			}
+		}
+
+	}
+
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
 			this->MoveUp();
@@ -153,7 +206,7 @@ void MenuMap::MoveUp() {
 
 void MenuMap::MoveDown() {
 	if (_flagSubmenu) {
-		if (_selectedItemIndex + 1 < 6) {
+		if (_selectedItemIndex + 1 < 15) {
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::White);
 			_selectedItemIndex++;
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
@@ -179,7 +232,7 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	}
 	target.draw(_cursor, states);
 	if (_flagSubmenu) {
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < _inventoryList.size(); i++) {
 			target.draw(_inventoryList[i], states);
 		}
 	}
@@ -188,6 +241,5 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 MenuMap::~MenuMap() {
 	delete[] _menu;
 	delete[] _names;
-	delete[] _inventoryList;
 	std::cout << "se murióx2" << std::endl << std::endl;
 }

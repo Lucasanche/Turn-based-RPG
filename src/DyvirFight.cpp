@@ -2,7 +2,7 @@
 #include "DyvirFight.h"
 #include "AbilityFactory.h" //TODO: ver como implementar AbilityFactory dentro del menuMap - Giuli
 
-DyvirFight::DyvirFight() : _abilityEquipment(10) {
+DyvirFight::DyvirFight() : _abilityEquipment(0) {
 	AbilityFactory _factory;
 	this->setAbility(0, Test);
 	//TODO: Implementar leveo, subida de stats, etc.  DEJAR!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -78,6 +78,13 @@ void DyvirFight::Win() {
 void DyvirFight::restoreLife() {
 	_HP = _HPbase;
 	_MP = _MPbase;
+}
+
+std::string DyvirFight::getAbilityInvName(int i) {
+	if (i >= _abilityEquipment.size()) {
+		return "Empty";
+	}
+	else return _abilityEquipment[i].getName();
 }
 
 void DyvirFight::setFightSprite() {

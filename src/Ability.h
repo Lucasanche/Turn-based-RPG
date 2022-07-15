@@ -6,7 +6,7 @@
 class Ability
 {
 private:
-	sf::Text _name;
+	std::string _name;
 	sf::Text _description;
 	elements _element1;
 	elements _element2;
@@ -19,7 +19,7 @@ public:
 	Ability();
 	void reset();
 	//Sets()
-	void setName(sf::String name) { _name.setString(name); }
+	void setName(std::string name) { _name=name; }
 	void setDescription(sf::String description) { _description.setString(description); }
 	void setMagicDamage(int magicDamage) { _magicDamage = magicDamage; }
 	void setID(int id) { _id = id; }
@@ -53,7 +53,7 @@ public:
 	bool getNegativeStates(int i) { return _negativeStates[i]; }
 	bool getPositiveStates(int i) { return _positiveStates[i]; }
 
-	sf::String getName() { return _name.getString(); }
+	const std::string getName(){ return _name;}
 	sf::String getDescription() { return _description.getString(); }
 	int getMagicDamage() { return _magicDamage; }
 	int getID() { return _id; }

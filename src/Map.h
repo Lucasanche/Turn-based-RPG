@@ -18,11 +18,11 @@ private:
 	sf::View _view;
 	std::vector<std::vector<sf::Vector2i>>map;
 	BrickTiles tile;
-	Fight fight;
 	BrickTiles _taux;
+	DyvirFight dyvir;
+	Fight fight;
 	MenuMap menuMap;
 	int x, iaux, jaux, win, _option;
-	DyvirFight dyvir;
 public:
 	Map(sf::RenderWindow& window);
 	void update(DyvirMap&, sf::RenderWindow& window);

@@ -23,6 +23,8 @@ public:
 	void setWins() { _wins++; }
 	int getInventorySize() { return _abilityEquipment.size(); }
 	Ability getAbilityInv(int i) { return _abilityEquipment[i]; }
+	std::string getAbilityInvName(int i);
+
 	void setFightSprite();
 	void restoreLife();
 };
