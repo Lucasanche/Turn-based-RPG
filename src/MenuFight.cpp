@@ -72,12 +72,12 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _name
 	// Setea el largo del relleno del HP
 
 
-	for (int i : _names) {
-		aux.setCharacterSize(25);
-		aux.setFont(_font);
-		aux.setFillColor(sf::Color::White);
-		aux.setStyle(sf::Text::Italic);
-		aux.setString("DYVIR");
+	for (int i = 0; i < _names.size(); i++) {
+		_names[i].setCharacterSize(25);
+		_names[i].setFont(_font);
+		_names[i].setFillColor(sf::Color::White);
+		_names[i].setStyle(sf::Text::Italic);
+		_names[i].setString("DYVIR");
 	}
 
 	_names[0].setCharacterSize(25);

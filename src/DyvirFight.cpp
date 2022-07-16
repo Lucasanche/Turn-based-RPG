@@ -2,10 +2,12 @@
 #include "DyvirFight.h"
 #include "AbilityFactory.h" //TODO: ver como implementar AbilityFactory dentro del menuMap - Giuli
 
-DyvirFight::DyvirFight() : _abilityEquipment(0) {
+DyvirFight::DyvirFight() : _abilityEquipment(2) {
 	AbilityFactory _factory;
 	this->setAbility(0, Test);
 	//TODO: Implementar leveo, subida de stats, etc.  DEJAR!!!!!!!!!!!!!!!!!!!!!!!!!
+	_abilityEquipment[0] = _factory.createEarthArmor();
+	_abilityEquipment[1] = _factory.createTest();
 	_HPbase = 100;
 	_HP = _HPbase;
 	_MPbase = 100;
