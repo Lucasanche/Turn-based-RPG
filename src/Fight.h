@@ -17,6 +17,7 @@ private:
 	bool _backFlag;
 	sf::Time _time;
 	sf::Time _timeAux;
+	sf::Clock _clock;
 	bool _turnTime;
 	sf::Texture _backTexture;
 	sf::Sprite _backSprite;
@@ -33,6 +34,7 @@ public:
 	void setEnemy(int);
 	void deleteBoss();
 	bool getEnemyIsAlive();
+	void Wait(int secs);
 	void setBackFlag() { _backFlag = true; }
 };
 

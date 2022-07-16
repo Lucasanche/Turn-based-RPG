@@ -11,8 +11,9 @@
 
 int main() {
 
+	setlocale(LC_CTYPE, "Spanish"); 
 	int numero = 0;
-	setlocale(LC_CTYPE, "Spanish");
+	std::cout << "daño" << std::endl;
 	sf::RenderWindow window(sf::VideoMode(800, 700), "Proyectazo");
 	window.setFramerateLimit(60);
 	sf::Texture backTexture;
@@ -33,6 +34,7 @@ int main() {
 	int win = 0;
 
 	while (window.isOpen()) {
+		setlocale(LC_CTYPE, "Spanish");
 		while (window.pollEvent(event)) {
 			window.clear();
 			if (event.type == sf::Event::Closed) {
