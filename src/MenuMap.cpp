@@ -5,7 +5,7 @@
 MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(15) {
 	//TODO: completar el menu (crafteo, etc) !!!!!!!!!!!!!!!!!!!!!!!! Giuli
 	//TODO: cargar las habilidades del menu en el equipo de Dyvir !!!!!!!!!!!! Giuli
-	sizeOfMenu = 3;
+	sizeOfMenu = 4;
 	_page = 0;
 	_menu = new sf::Text[sizeOfMenu];
 	_names = new sf::Text[sizeOfMenu];
@@ -21,7 +21,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 	_backMenu.setTexture(_backMenuTexture);
 	_backMenu.setPosition(0, height / 2 - _backMenu.getGlobalBounds().height);
 	_selectedItemIndex = 0;
-	_posIniMenu = height / 2 - _backMenu.getGlobalBounds().height+25;
+	_posIniMenu = height / 2 - _backMenu.getGlobalBounds().height + 25;
 
 	_posMaxMenu = 120;
 	// Setea el largo del relleno del HP
@@ -30,8 +30,8 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 		_menu[i].setFont(_font);
 		_names[i].setCharacterSize(20);
 		_names[i].setFont(_font);
-		_menu[i].setPosition(35, _posIniMenu + (_posMaxMenu * (i * 2) / 6));
-		_names[i].setPosition(35, _posIniMenu + (_posMaxMenu * ((i * 2) + 1) / 6));
+		_menu[i].setPosition(35, _posIniMenu + (_posMaxMenu * (i * 2) / 7));
+		_names[i].setPosition(35, _posIniMenu + (_posMaxMenu * ((i * 2) + 1) / 7));
 	}
 
 	_menu[0].setFillColor(sf::Color::Red);
@@ -45,7 +45,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 
 	_menu[1].setFillColor(sf::Color::White);
 	_menu[1].setString("Habilidad 2");
-	_menu[1].setPosition(35, _posIniMenu + (_posMaxMenu * 2 / 6));
+	//_menu[1].setPosition(35, _posIniMenu + (_posMaxMenu * 2 / 6));
 
 	_names[1].setFillColor(sf::Color::White);
 	_names[1].setString(dyvir.getAbility(1).getName());
@@ -59,6 +59,10 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 	_names[2].setString(dyvir.getAbility(2).getName());
 	//_names[2].setPosition(35, _posIniMenu + (_posMaxMenu * 5 / 6));
 
+	_menu[3].setFillColor(sf::Color::White);
+	_menu[3].setString("Craftear");
+	//_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 4 / 6));
+
 
 	int pos = 0;
 	int aux = 0;
@@ -69,7 +73,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 		_inventoryList[i].setFillColor(sf::Color::White);
 		_inventoryList[i].setString("Empty");
 
-		_inventoryList[i].setPosition(250+(aux*200), _posIniMenu + 30 * pos);
+		_inventoryList[i].setPosition(250 + (aux * 200), _posIniMenu + 30 * pos);
 
 		pos++;
 		if (pos == 5) {
@@ -97,33 +101,11 @@ void MenuMap::PageDown() {
 
 void MenuMap::update(DyvirFight& dyvir) {
 
-	_names[0].setString(dyvir.getAbility(0).getName());
-	_names[1].setString(dyvir.getAbility(1).getName());
-	_names[2].setString(dyvir.getAbility(2).getName());
 
 	for (int i = 0; i < _inventoryList.size(); i++) {
 		_inventoryList[i].setString(dyvir.getAbilityInvName(i + _page));
 	}
 
-	if (_flagSubmenu) {
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-
-			if (_flag) {
-				this->PageUp();
-				_flag = false;
-			}
-		}
-
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-
-			if (_flag) {
-				this->PageDown();
-				_flag = false;
-			}
-		}
-
-	}
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
@@ -139,29 +121,56 @@ void MenuMap::update(DyvirFight& dyvir) {
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+
 		if (_flag) {
-			switch (this->GetPressedItem()) {
-			case 0:
-				std::cout << "Se presionó el botón H1" << std::endl << std::endl;
-				break;
-			case 1:
-				std::cout << "Se presionó el botón H2" << std::endl << std::endl;
-				_option = 2;
-				break;
-			case 2:
-				std::cout << "Se presionó el botón H3" << std::endl << std::endl;
-				_option = 3;
-				break;
+			if (!_flagSubmenu) {
+				switch (this->GetPressedItem()) {
+				case 0:
+					_option = 0;
+					break;
+				case 1:
+					_option = 1;
+					break;
+				case 2:
+					_option = 2;
+					break;
+				}
+				_flagSubmenu = !_flagSubmenu;
+				this->changeMenu();
+				_flag = false;
 			}
-			_flagSubmenu = !_flagSubmenu;
-			this->changeMenu();
+
+			else {
+				//cambiar habilidad por el elemento seleccionado
+				if (_option == 5) {
+
+				}
+
+				_names[_option].setString(dyvir.setAbilityEquiped(_option, _selectedItemIndex + _page));
+				_flagSubmenu = !_flagSubmenu;
+				this->changeMenu();
+			}
+			_flag = false;
+		}
+
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _flagSubmenu) {
+		if (_flag) {
+			this->PageUp();
+			_flag = false;
+		}
+	}
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && _flagSubmenu) {
+		if (_flag) {
+			this->PageDown();
 			_flag = false;
 		}
 	}
 	else {
 		_flag = true;
-		_option = 0;
 	}
+
 }
 
 void MenuMap::changeMenu() {

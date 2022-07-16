@@ -9,6 +9,7 @@ class MenuMap : public sf::Drawable
 {
 private:
 	int _page;
+	int _abilitySelect;
 	bool _flag, _flagSubmenu;
 	int _option;
 	int _selectedItemIndex;

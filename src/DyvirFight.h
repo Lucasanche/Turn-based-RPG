@@ -19,8 +19,15 @@ public:
 	void Die() override;
 	void Win();
 	void setStats() { /*completar*/ }
-	int getWins() { return _wins; }
+	int getWins() { return _wins; }	
 	void setWins() { _wins++; }
+	std::string setAbilityEquiped(int i, int ability) {
+		if (ability < _abilityEquipment.size()) {
+			_ability[i] = _abilityEquipment[ability];
+			return _ability[i].getName();
+		}
+		else return _ability[i].getName();
+	}
 	int getInventorySize() { return _abilityEquipment.size(); }
 	Ability getAbilityInv(int i) { return _abilityEquipment[i]; }
 	std::string getAbilityInvName(int i);
