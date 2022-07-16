@@ -11,9 +11,11 @@ private:
 	int _page;
 	int _abilitySelect;
 	bool _flag, _flagSubmenu;
-	int _option;
+	int _optionAbility;
+	int _optionMenu;
 	int _selectedItemIndex;
 	int _selectedItemAux;
+	int _selectedItemCraft;
 	sf::Font _font;
 	sf::Text* _menu;
 	sf::Text* _names;

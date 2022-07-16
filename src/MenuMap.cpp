@@ -11,7 +11,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 	_names = new sf::Text[sizeOfMenu];
 	_flag = false;
 	_flagSubmenu = false;
-	_option = 0;
+	_optionAbility = 0;
 	if (!_font.loadFromFile("./Fonts/Nostalgia.ttf")) {
 		std::cout << "No se pudo cargar el archivo ./Fonts/Nostalgia.ttf";
 	}
@@ -85,7 +85,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 }
 
 void MenuMap::setOption(int option) {
-	_option = option;
+	_optionAbility = option;
 }
 
 void MenuMap::PageUp() {
@@ -101,13 +101,9 @@ void MenuMap::PageDown() {
 
 void MenuMap::update(DyvirFight& dyvir) {
 
-
 	for (int i = 0; i < _inventoryList.size(); i++) {
 		_inventoryList[i].setString(dyvir.getAbilityInvName(i + _page));
 	}
-
-
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
 			this->MoveUp();
@@ -121,47 +117,61 @@ void MenuMap::update(DyvirFight& dyvir) {
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
-
 		if (_flag) {
-			if (!_flagSubmenu) {
+			switch (_optionMenu) {
+			case 0:
 				switch (this->GetPressedItem()) {
 				case 0:
-					_option = 0;
+					_optionAbility = 0;
+					_optionMenu = 1;
+					this->changeMenu();
 					break;
 				case 1:
-					_option = 1;
+					_optionAbility = 1;
+					_optionMenu = 1;
+					this->changeMenu();
 					break;
 				case 2:
-					_option = 2;
+					_optionAbility = 2;
+					_optionMenu = 1;
+					this->changeMenu();
+					break;
+				case 3:
+					_optionMenu = 2;
+					this->changeMenu();
+					break;
+				case 4:
+					_optionMenu = 4;
+					this->changeMenu();
 					break;
 				}
-				_flagSubmenu = !_flagSubmenu;
+				break;
+			case 1:
+				_optionMenu = 0;
+				_names[_optionAbility].setString(dyvir.setAbilityEquiped(_optionAbility, _selectedItemIndex + _page));
 				this->changeMenu();
 				_flag = false;
-			}
-
-			else {
-				//cambiar habilidad por el elemento seleccionado
-				if (_option == 5) {
-
-				}
-
-				_names[_option].setString(dyvir.setAbilityEquiped(_option, _selectedItemIndex + _page));
-				_flagSubmenu = !_flagSubmenu;
+				break;
+			case 2:
 				this->changeMenu();
+				break;
+			case 3:
+				this->changeMenu();
+				break;
+			case 4:
+				this->changeMenu();
+				break;
 			}
-			_flag = false;
 		}
-
+		_flag = false;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _flagSubmenu) {
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && (_optionMenu != 0)) {
 		if (_flag) {
 			this->PageUp();
 			_flag = false;
 		}
 	}
-
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && _flagSubmenu) {
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && (_optionMenu != 0)) {
 		if (_flag) {
 			this->PageDown();
 			_flag = false;
@@ -170,29 +180,59 @@ void MenuMap::update(DyvirFight& dyvir) {
 	else {
 		_flag = true;
 	}
-
 }
 
 void MenuMap::changeMenu() {
-	if (_flagSubmenu) {
-		_selectedItemAux = _selectedItemIndex;
-		_selectedItemIndex = 0;
-		for (int i = 1; i < dyvir.getInventorySize(); i++) {
-			_inventoryList[i].setFillColor(sf::Color::White);
-		}
-		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
-		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
-	}
-	else {
+	switch (_optionMenu) {
+	case 0:
 		_names[_selectedItemAux].setString(_inventoryList[_selectedItemIndex].getString());
 		_selectedItemIndex = _selectedItemAux;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
+		break;
+	case 1:
+		_selectedItemAux = _selectedItemIndex;
+		_selectedItemIndex = 0;
+		for (int i = 1; i < _inventoryList.size(); i++) {
+			_inventoryList[i].setFillColor(sf::Color::White);
+		}
+		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
+		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+		break;
+	case 2:
+		_selectedItemAux = _selectedItemIndex;
+		_selectedItemIndex = 0;
+		for (int i = 1; i < _inventoryList.size(); i++) {
+			_inventoryList[i].setFillColor(sf::Color::White);
+		}
+		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
+		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+		_optionMenu = 3;
+		break;
+	case 3:
+		_selectedItemCraft = _selectedItemIndex;
+		_selectedItemIndex = 0;
+		for (int i = 1; i < _inventoryList.size(); i++) {
+			_inventoryList[i].setFillColor(sf::Color::White);
+		}
+		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Yellow);
+		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+		_optionMenu = 4;
+		break;
+	case 4:
+		_selectedItemIndex = 0;
+		for (int i = 1; i < _inventoryList.size(); i++) {
+			_inventoryList[i].setFillColor(sf::Color::White);
+		}
+		_inventoryList[_selectedItemCraft].setFillColor(sf::Color::Yellow);
+		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+		_optionMenu = 0;
+		break;
 	}
 }
 
 void MenuMap::MoveUp() {
-	if (_flagSubmenu) {
+	if (_optionMenu != 0) {
 		if (_selectedItemIndex - 1 >= 0) {
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::White);
 			_selectedItemIndex--;
@@ -206,10 +246,13 @@ void MenuMap::MoveUp() {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
 	}
+	if (_optionMenu == 3) {
+		_inventoryList[_selectedItemCraft].setFillColor(sf::Color::Yellow);
+	}
 }
 
 void MenuMap::MoveDown() {
-	if (_flagSubmenu) {
+	if (_optionMenu != 0) {
 		if (_selectedItemIndex + 1 < 15) {
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::White);
 			_selectedItemIndex++;
@@ -235,7 +278,7 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 		target.draw(_names[i], states);
 	}
 	target.draw(_cursor, states);
-	if (_flagSubmenu) {
+	if (_optionMenu != 0) {
 		for (int i = 0; i < _inventoryList.size(); i++) {
 			target.draw(_inventoryList[i], states);
 		}

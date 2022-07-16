@@ -253,7 +253,8 @@ void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_spriteMPFilldyivir);
 	target.draw(_textMPdyvir);
 	target.draw(_textHPenemy);
-	target.draw(_textBoxAux);
+	target.draw(_textBox);
+	//TODO ver qué hacer con textBoxAux - Lucas
 	
 	for (int i = 0; i < _menu.size(); i++) {
 		target.draw(_menu[i], states);
