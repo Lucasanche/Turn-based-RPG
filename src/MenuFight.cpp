@@ -2,7 +2,7 @@
 #include "MenuFight.h"
 
 
-MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _names(2), _menuStrings(3) {
+MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _dragonNames(2), _menuStrings(3) {
 	_resultBars = 0;
 	_lenghtHPdyvir = 0;
 	_lenghtMPdyvir = 0;
@@ -72,23 +72,19 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _name
 	// Setea el largo del relleno del HP
 
 
-	for (int i = 0; i < _names.size(); i++) {
-		_names[i].setCharacterSize(25);
-		_names[i].setFont(_font);
-		_names[i].setFillColor(sf::Color::White);
-		_names[i].setStyle(sf::Text::Italic);
-		_names[i].setString("DYVIR");
+	for (int i = 0; i < _dragonNames.size(); i++) {
+		_dragonNames[i].setCharacterSize(25);
+		_dragonNames[i].setFont(_font);
+		_dragonNames[i].setFillColor(sf::Color::White);
+		_dragonNames[i].setStyle(sf::Text::Italic);
+		_dragonNames[i].setString("DYVIR");
 	}
 
-	_names[0].setCharacterSize(25);
-	_names[0].setFont(_font);
-	_names[0].setFillColor(sf::Color::White);
-	_names[0].setStyle(sf::Text::Italic);
-	_names[0].setString("DYVIR");
-	_names[0].setPosition({ _spriteHPdyvir.getPosition().x + _spriteHPdyvir.getGlobalBounds().width / 3, _spriteHPdyvir.getPosition().y - 30 });
+	_dragonNames[0].setString("DYVIR");
+	_dragonNames[0].setPosition({ _spriteHPdyvir.getPosition().x + _spriteHPdyvir.getGlobalBounds().width / 3, _spriteHPdyvir.getPosition().y - 30 });
 
-	_names[1].setString("ENEMY");
-	_names[1].setPosition({ _spriteHPenemy.getPosition().x + _spriteHPenemy.getGlobalBounds().width / 3, _spriteHPenemy.getPosition().y - 40 });
+	_dragonNames[1].setString("ENEMY");
+	_dragonNames[1].setPosition({ _spriteHPenemy.getPosition().x + _spriteHPenemy.getGlobalBounds().width / 3, _spriteHPenemy.getPosition().y - 40 });
 	
 	_menuStrings[0] = "Attack";
 	_menuStrings[1] = "Ability 1";
@@ -109,6 +105,12 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _name
 
 	_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 2 / 3));
 	_cursor.setPosition({ _menu[0].getPosition().x + 10 + _menu[0].getGlobalBounds().width,_menu[0].getPosition().y + _menu[0].getGlobalBounds().height / 2 });
+
+	_textBox.setCharacterSize(25);
+	_textBox.setFont(_font);
+	_textBox.setFillColor(sf::Color::White);
+	_textBox.setString(" ");
+	_textBox.setPosition(_spriteHPdyvir.getPosition().x + 220, _spriteHPdyvir.getPosition().y);
 }
 
 void MenuFight::updateSpriteHPdyvir(int HP, int HPbase) {
@@ -163,6 +165,16 @@ void MenuFight::setOption(turns option) {
 	_option = option;
 }
 
+void MenuFight::setTextBoxString(turns option, int dmg) {
+	switch (option) {
+	case attack:
+		_textBox.setString(L"Hiciste " + std::to_wstring(dmg) + L" puntos de daño");
+		break;
+	case enemyAttack:
+		_textBox.setString(L"Te hicieron " + std::to_wstring(dmg) + L" puntos de daño");
+	}
+}
+
 void MenuFight::MoveUp() {
 	if (_selectedItemIndex - 1 >= 0) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
@@ -182,7 +194,6 @@ void MenuFight::MoveDown() {
 }
 
 turns MenuFight::update(Dragon& dyvir, Dragon& enemy) {
-	//TODO: Agregar un texto que nos diga lo que va pasando en el cuadro azul  !!!! - Lucas
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
 			this->MoveUp();
@@ -225,8 +236,12 @@ turns MenuFight::update(Dragon& dyvir, Dragon& enemy) {
 	this->updateSpriteHPenemy(enemy.getHP(), enemy.getHPbase());
 	return _option;
 }
+void MenuFight::chargeText(int pos) {
+	_textBoxAux.setString(_textBox.getString().substring(pos));
+}
 
 void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+
 	target.draw(_backMenu);
 	target.draw(_backMenuEnemy);
 	target.draw(_spriteHPdyvir);
@@ -238,11 +253,13 @@ void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_spriteMPFilldyivir);
 	target.draw(_textMPdyvir);
 	target.draw(_textHPenemy);
+	target.draw(_textBoxAux);
+	
 	for (int i = 0; i < _menu.size(); i++) {
 		target.draw(_menu[i], states);
 	}
-	for (int i = 0; i < _names.size(); i++) {
-		target.draw(_names[i], states);
+	for (int i = 0; i < _dragonNames.size(); i++) {
+		target.draw(_dragonNames[i], states);
 	}
 	target.draw(_cursor, states);
 }

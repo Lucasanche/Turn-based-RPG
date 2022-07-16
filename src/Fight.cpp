@@ -14,10 +14,7 @@ Fight::Fight() : _backTexture(), _view(sf::FloatRect(0, 0, 800, 700)) {
 	_turnTime = true;
 	_optionEnemy = 0;
 }
-/// implementacion original del enemigo
-//EnemyFactory create;
-//Enemy* enemy;
-//enemy = create.getEnemy(win);
+
 
 int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock, bool enemyType) {
 	_time = clock.getElapsedTime();
@@ -32,6 +29,8 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 			std::cout << "no se pudo crear el enemigo" << std::endl;
 		}
 		/*switch (enemy.getBack())*/
+
+		//Setea el background para la pelea 
 		switch (1) {
 		case 1:
 			_backTexture.loadFromFile("./Textures/Backgrounds/FightBackground1.png");
@@ -50,10 +49,6 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 	_menu->update(dyvir, *_enemy);
 	switch (_turn) {
 	case start:
-		//if (_time.asSeconds() > 1.5) {
-		std::cout << "Tu turno" << std::endl;
-		//	_turn = wait;
-		//}
 		_turn = check;
 		break;
 	case check:
@@ -64,9 +59,8 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		_turn = _menu->update(dyvir, *_enemy);
 		break;
 	case attack: //Atacar
-		std::cout << "Hiciste " << _enemy->damageTaken(dyvir.doDamage(_enemy->getPD())) << " puntos de daño"  << std::endl << std::endl;
+		_menu->setTextBoxString(_turn, _enemy->damageTaken(dyvir.doDamage(_enemy->getPD())));
 		clock.restart();
-		// dyvir.doDamage(_enemy->getPD()) << " puntos de daño" 
 		_turn = enemyUpdateText;
 		break;
 	case ability1: //Magic 1
@@ -80,7 +74,6 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		break;
 	case enemyUpdateText:
 		//_menu->setOption(enemyWait);
-		
 		_turn = enemyCheck;
 		break;
 	case enemyCheck:
@@ -90,7 +83,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 	case enemyWait:
 		if (_time.asSeconds() > 1.5) {
 			if (_enemy->getHP() <= 0) {
-				_turn = wait;
+				//_turn = endBattle;
 				break;
 			}
 			else {
@@ -98,13 +91,16 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 				unsigned int random = rand() % 3;
 				switch (rand() % 2) {
 				case 0:
-					std::cout << "Te hicieron " << dyvir.damageTaken(_enemy->doDamage(_enemy->getPD()))<<  " puntos de daño" << std::endl << std::endl;
+					_turn = enemyAttack;
+					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPD())));
 					break;
 				case 1:
-					std::cout << "Te hicieron " << dyvir.damageTaken(_enemy->doDamage(_enemy->getPD())) << " puntos de daño" << std::endl << std::endl;
+					_turn = enemyAttack;
+					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPD())));
 					break;
 				case 2:
-					std::cout << "Te hicieron " << dyvir.damageTaken(_enemy->doDamage(_enemy->getPD())) << " puntos de daño" << std::endl << std::endl;
+					_turn = enemyAttack;
+					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPD())));
 					break;
 				}
 				_turn = updateText;
@@ -150,3 +146,4 @@ void Fight::deleteBoss() {
 bool Fight::getEnemyIsAlive() {
 	return _enemy->getIsAlive();
 }
+

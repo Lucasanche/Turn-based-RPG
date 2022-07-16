@@ -6,4 +6,8 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <stdio.h>
+#include <wchar.h>
+#include <locale.h>
 #include "Elements.h"
+

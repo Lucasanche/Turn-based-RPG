@@ -14,8 +14,10 @@ private:
 	int _resultBars;
 	sf::Font _font;
 	std::vector<sf::Text> _menu;
-	std::vector<sf::Text> _names;
+	std::vector<sf::Text> _dragonNames;
 	std::vector<sf::String> _menuStrings;
+	sf::Text _textBox;
+	sf::Text _textBoxAux;
 	Cursor _cursor;
 	sf::Sprite _backMenu;
 	sf::Texture _backMenuTexture;
@@ -41,7 +43,6 @@ private:
 	sf::Sprite _textHPenemy;
 	int _statusHPenemy;
 	int _lenghtHPenemy;
-
 	sf::Vector2i spriteSize;
 	sf::Vector2f positionHPdyvir;
 	sf::Vector2f positionHPenemy;
@@ -56,10 +57,13 @@ public:
 	void MoveUp();
 	void MoveDown();
 	void setOption(turns option);
+	void setTextBoxString(turns option, int dmg);
 	turns update(Dragon& dyvir, Dragon& enemy);
 	int GetPressedItem() { return _selectedItemIndex; }
+	void chargeText(int pos);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	~MenuFight();
+
 };
 
 #endif
