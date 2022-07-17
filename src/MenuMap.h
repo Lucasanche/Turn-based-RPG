@@ -8,6 +8,12 @@
 class MenuMap : public sf::Drawable
 {
 private:
+	enum class MenuOption
+	{
+		MainMenu = 0,
+		AbilityChange,
+		Craft
+	};
 	int _page;
 	int _abilitySelect;
 	bool _flag, _flagSubmenu;
@@ -27,6 +33,7 @@ private:
 	int _posMaxMenu;
 	int sizeOfMenu;
 	DyvirFight dyvir;
+	MenuOption _menuOption;
 public:
 	MenuMap(float width, float height, DyvirFight&);
 	void MoveUp();

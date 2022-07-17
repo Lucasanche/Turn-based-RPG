@@ -94,7 +94,6 @@ void MenuMap::PageUp() {
 	}
 }
 
-
 void MenuMap::PageDown() {
 	_page += 15;
 }
@@ -118,60 +117,46 @@ void MenuMap::update(DyvirFight& dyvir) {
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
 		if (_flag) {
-			switch (_optionMenu) {
-			case 0:
+			switch (_menuOption) {
+			case MenuOption::MainMenu:
 				switch (this->GetPressedItem()) {
 				case 0:
 					_optionAbility = 0;
-					_optionMenu = 1;
-					this->changeMenu();
+					_menuOption = MenuOption::AbilityChange;
 					break;
 				case 1:
 					_optionAbility = 1;
-					_optionMenu = 1;
-					this->changeMenu();
+					_menuOption = MenuOption::AbilityChange;
 					break;
 				case 2:
 					_optionAbility = 2;
-					_optionMenu = 1;
-					this->changeMenu();
+					_menuOption = MenuOption::AbilityChange;
 					break;
 				case 3:
-					_optionMenu = 2;
-					this->changeMenu();
+					_menuOption = MenuOption::Craft;
 					break;
 				case 4:
 					_optionMenu = 4;
-					this->changeMenu();
 					break;
 				}
+				this->changeMenu();
 				break;
-			case 1:
-				_optionMenu = 0;
+			case MenuOption::AbilityChange:
 				_names[_optionAbility].setString(dyvir.setAbilityEquiped(_optionAbility, _selectedItemIndex + _page));
-				this->changeMenu();
-				_flag = false;
-				break;
-			case 2:
-				this->changeMenu();
-				break;
-			case 3:
-				this->changeMenu();
-				break;
-			case 4:
+				_menuOption = MenuOption::MainMenu;
 				this->changeMenu();
 				break;
 			}
+			_flag = false;
 		}
-		_flag = false;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && (_optionMenu != 0)) {
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && (_menuOption != MenuOption::MainMenu)) {
 		if (_flag) {
 			this->PageUp();
 			_flag = false;
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && (_optionMenu != 0)) {
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && (_menuOption != MenuOption::MainMenu)) {
 		if (_flag) {
 			this->PageDown();
 			_flag = false;
@@ -183,14 +168,13 @@ void MenuMap::update(DyvirFight& dyvir) {
 }
 
 void MenuMap::changeMenu() {
-	switch (_optionMenu) {
-	case 0:
-		_names[_selectedItemAux].setString(_inventoryList[_selectedItemIndex].getString());
+	switch (_menuOption) {
+	case MenuOption::MainMenu:
 		_selectedItemIndex = _selectedItemAux;
-		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
-		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
+		_menu[_selectedItemAux].setFillColor(sf::Color::Red);
+		_cursor.setPosition({ _menu[_selectedItemAux].getPosition().x + 10 + _menu[_selectedItemAux].getGlobalBounds().width, _menu[_selectedItemAux].getPosition().y + _menu[_selectedItemAux].getGlobalBounds().height / 2 });
 		break;
-	case 1:
+	case MenuOption::AbilityChange:
 		_selectedItemAux = _selectedItemIndex;
 		_selectedItemIndex = 0;
 		for (int i = 1; i < _inventoryList.size(); i++) {
@@ -199,40 +183,15 @@ void MenuMap::changeMenu() {
 		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		break;
-	case 2:
-		_selectedItemAux = _selectedItemIndex;
-		_selectedItemIndex = 0;
-		for (int i = 1; i < _inventoryList.size(); i++) {
-			_inventoryList[i].setFillColor(sf::Color::White);
-		}
-		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
-		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
-		_optionMenu = 3;
+	case MenuOption::Craft:
+		//TODO completar - lucas
 		break;
-	case 3:
-		_selectedItemCraft = _selectedItemIndex;
-		_selectedItemIndex = 0;
-		for (int i = 1; i < _inventoryList.size(); i++) {
-			_inventoryList[i].setFillColor(sf::Color::White);
-		}
-		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Yellow);
-		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
-		_optionMenu = 4;
-		break;
-	case 4:
-		_selectedItemIndex = 0;
-		for (int i = 1; i < _inventoryList.size(); i++) {
-			_inventoryList[i].setFillColor(sf::Color::White);
-		}
-		_inventoryList[_selectedItemCraft].setFillColor(sf::Color::Yellow);
-		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
-		_optionMenu = 0;
-		break;
+	
 	}
 }
 
 void MenuMap::MoveUp() {
-	if (_optionMenu != 0) {
+	if (_menuOption != MenuOption::MainMenu) {
 		if (_selectedItemIndex - 1 >= 0) {
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::White);
 			_selectedItemIndex--;
@@ -246,13 +205,10 @@ void MenuMap::MoveUp() {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
 	}
-	if (_optionMenu == 3) {
-		_inventoryList[_selectedItemCraft].setFillColor(sf::Color::Yellow);
-	}
 }
 
 void MenuMap::MoveDown() {
-	if (_optionMenu != 0) {
+	if (_menuOption != MenuOption::MainMenu) {
 		if (_selectedItemIndex + 1 < 15) {
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::White);
 			_selectedItemIndex++;
@@ -278,7 +234,7 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 		target.draw(_names[i], states);
 	}
 	target.draw(_cursor, states);
-	if (_optionMenu != 0) {
+	if (_menuOption != MenuOption::MainMenu) {
 		for (int i = 0; i < _inventoryList.size(); i++) {
 			target.draw(_inventoryList[i], states);
 		}
