@@ -144,8 +144,27 @@ void MenuMap::update(DyvirFight& dyvir) {
 			case MenuOption::AbilityChange:
 				_names[_optionAbility].setString(dyvir.setAbilityEquiped(_optionAbility, _selectedItemIndex + _page));
 				_menuOption = MenuOption::MainMenu;
+
+				break;
+			case MenuOption::Craft:
+				if (_inventoryList[_selectedItemIndex].getString() == "Empty") { break; }
+				_menuOption = MenuOption::Craft2;
 				this->changeMenu();
 				break;
+			case MenuOption::Craft2:
+				if (_selectedItemIndex == _selectedItemCraft && _page == _pageAux ) {
+					_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Green);
+					break;
+				}
+				else if (_inventoryList[_selectedItemIndex].getString() == "Empty") {
+					break;
+				}
+				else {
+					dyvir.craftAbility(_inventoryList[_selectedItemIndex+_page].getString(), _inventoryList[_selectedItemCraft + _pageAux].getString(), _selectedItemIndex + _page, _selectedItemCraft + _pageAux);
+					_menuOption = MenuOption::MainMenu;
+					this->changeMenu();
+					break;
+				}
 			}
 			_flag = false;
 		}
@@ -184,14 +203,46 @@ void MenuMap::changeMenu() {
 		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		break;
 	case MenuOption::Craft:
-		//TODO completar - lucas
+		_selectedItemAux = _selectedItemIndex;
+		_selectedItemIndex = 0;
+		for (int i = 1; i < _inventoryList.size(); i++) {
+			_inventoryList[i].setFillColor(sf::Color::White);
+		}
+		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
+		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		break;
-	
+	case MenuOption::Craft2:
+		_selectedItemCraft = _selectedItemIndex;
+		_selectedItemIndex = 0;
+		_pageAux = _page;
+		for (int i = 1; i < _inventoryList.size(); i++) {
+			_inventoryList[i].setFillColor(sf::Color::White);
+		}
+		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
+		if (_page == _pageAux) {
+			_inventoryList[_selectedItemCraft].setFillColor(sf::Color::Yellow);
+		}
+		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+		break;
 	}
 }
 
 void MenuMap::MoveUp() {
-	if (_menuOption != MenuOption::MainMenu) {
+	if (_menuOption == MenuOption::Craft2) {
+		if (_selectedItemIndex - 1 >= 0) {
+			if (_page == _pageAux && _selectedItemIndex == _selectedItemCraft) {
+				_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Yellow);
+			}
+			else { _inventoryList[_selectedItemIndex].setFillColor(sf::Color::White); }
+			_selectedItemIndex--;
+			if (_page == _pageAux && _selectedItemIndex == _selectedItemCraft) {
+				_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Green);
+			}
+			else { _inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red); }
+			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+		}
+	}
+	else if (_menuOption != MenuOption::MainMenu) {
 		if (_selectedItemIndex - 1 >= 0) {
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::White);
 			_selectedItemIndex--;
@@ -208,7 +259,21 @@ void MenuMap::MoveUp() {
 }
 
 void MenuMap::MoveDown() {
-	if (_menuOption != MenuOption::MainMenu) {
+	if (_menuOption == MenuOption::Craft2) {
+		if (_selectedItemIndex + 1 < 15) {
+			if (_page == _pageAux && _selectedItemIndex == _selectedItemCraft) {
+				_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Yellow);
+			}
+			else { _inventoryList[_selectedItemIndex].setFillColor(sf::Color::White); }
+			_selectedItemIndex++;
+			if (_page == _pageAux && _selectedItemIndex == _selectedItemCraft) {
+				_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Green);
+			}
+			else { _inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red); }
+			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+		}
+	}
+	else if (_menuOption != MenuOption::MainMenu) {
 		if (_selectedItemIndex + 1 < 15) {
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::White);
 			_selectedItemIndex++;
@@ -226,7 +291,6 @@ void MenuMap::MoveDown() {
 
 void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_backMenu);
-
 	for (int i = 0; i < sizeOfMenu; i++) {
 		target.draw(_menu[i], states);
 	}

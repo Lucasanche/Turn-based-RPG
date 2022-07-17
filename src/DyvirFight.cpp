@@ -2,12 +2,12 @@
 #include "DyvirFight.h"
 #include "AbilityFactory.h" //TODO: ver como implementar AbilityFactory dentro del menuMap - Giuli
 
-DyvirFight::DyvirFight() : _abilityEquipment(2) {
-	AbilityFactory _factory;
+DyvirFight::DyvirFight() : _abilityEquipment(3) {
 	this->setAbility(0, Test);
 	//TODO: Implementar leveo, subida de stats, etc.  DEJAR!!!!!!!!!!!!!!!!!!!!!!!!!
-	_abilityEquipment[0] = _factory.createEarthArmor();
-	_abilityEquipment[1] = _factory.createTest();
+	_abilityEquipment[0] = _abilityFactory.createFireball();
+	_abilityEquipment[1] = _abilityFactory.createWindBlow();
+	_abilityEquipment[2] = _abilityFactory.createHotVampire();
 	_HPbase = 100;
 	_HP = _HPbase;
 	_MPbase = 100;
@@ -82,11 +82,37 @@ void DyvirFight::restoreLife() {
 	_MP = _MPbase;
 }
 
+std::string DyvirFight::setAbilityEquiped(int i, int ability) {
+	{
+		if (ability < _abilityEquipment.size()) {
+			_ability[i] = _abilityEquipment[ability];
+			return _ability[i].getName();
+		}
+		else return _ability[i].getName();
+	}
+}
+
 std::string DyvirFight::getAbilityInvName(int i) {
 	if (i >= _abilityEquipment.size()) {
 		return "Empty";
 	}
 	else return _abilityEquipment[i].getName();
+}
+
+bool DyvirFight::craftAbility(std::string ab1, std::string ab2, int indexAb1, int indexAb2) {
+	if (_abilityFactory.craftAbility(ab1, ab2) != CraftError) {
+		if (indexAb1 < indexAb2) {
+			_abilityEquipment.erase(_abilityEquipment.begin() + indexAb1);
+			_abilityEquipment.erase(_abilityEquipment.begin() + indexAb2 - 1);
+		}
+		else {
+			_abilityEquipment.erase(_abilityEquipment.begin() + indexAb2);
+			_abilityEquipment.erase(_abilityEquipment.begin() + indexAb1 - 1);
+		}
+		_abilityEquipment.push_back(_abilityFactory.createAbility(_abilityFactory.craftAbility(ab1, ab2)));
+		return true;
+	}
+	else{ return false; }
 }
 
 void DyvirFight::setFightSprite() {

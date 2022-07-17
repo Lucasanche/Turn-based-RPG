@@ -10,8 +10,7 @@ Dragon::Dragon() : _negativeStates(7, false), _positiveStates(12, false) {
 }
 
 void Dragon::setAbility(int abilityNumber, abilityName abName) {
-	AbilityFactory aux;
-	_ability[abilityNumber] = aux.createAbility(abName);
+	_ability[abilityNumber] = _abilityFactory.createAbility(abName);
 }
 
 void Dragon::useAbility(Dragon& dragon, int i) {

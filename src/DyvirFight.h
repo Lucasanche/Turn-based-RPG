@@ -21,17 +21,11 @@ public:
 	void setStats() { /*completar*/ }
 	int getWins() { return _wins; }	
 	void setWins() { _wins++; }
-	std::string setAbilityEquiped(int i, int ability) {
-		if (ability < _abilityEquipment.size()) {
-			_ability[i] = _abilityEquipment[ability];
-			return _ability[i].getName();
-		}
-		else return _ability[i].getName();
-	}
+	std::string setAbilityEquiped(int i, int ability);
 	int getInventorySize() { return _abilityEquipment.size(); }
 	Ability getAbilityInv(int i) { return _abilityEquipment[i]; }
 	std::string getAbilityInvName(int i);
-
+	bool craftAbility(std::string, std::string, int, int);
 	void setFightSprite();
 	void restoreLife();
 };

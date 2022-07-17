@@ -10,12 +10,12 @@ private:
 	Ability _ability;
 public:
 	AbilityFactory();
-	Ability combineAbility(abilityName ab1, abilityName ab2);
+	abilityName craftAbility(std::string ab1, std::string ab2);
 	Ability createAbility(abilityName abName);
 	Ability createEarthArmor();
 	Ability createTest();
 
-	/*Ability createBarrier();
+	Ability createBarrier();
 	Ability createHeal();
 	Ability createRestore();
 	Ability createCosmicWisdom();
@@ -33,7 +33,7 @@ public:
 	Ability createInferno();
 	Ability createSwirl();
 	Ability createSabakuKyu();
-	~AbilityFactory();*/
+	~AbilityFactory();
 };
 
 #endif

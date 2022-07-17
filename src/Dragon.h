@@ -42,6 +42,7 @@ protected:
 	bool _earthResist;
 	bool _airResist;
 	Ability _ability[3];
+	AbilityFactory _abilityFactory;
 	elements _elementWeak;
 	bool _isAlive;
 

@@ -6,80 +6,79 @@ AbilityFactory::AbilityFactory() {
 	_ability.reset();
 }
 
-Ability	AbilityFactory::combineAbility(abilityName ab1, abilityName ab2) {
-
+abilityName	AbilityFactory::craftAbility(std::string ab1, std::string ab2) {
 	//TODO: ver "TO DO" de createAbility en AbilityFactory
-
-	if (ab1 == Fireball || ab2 == Fireball) {
-		if (ab1 == WindBlow || ab2 == WindBlow) {
-			//return this->createFireTornado();
+	if (ab1 == "Fireball" || ab2 == "Fireball") {
+		if (ab1 == "WindBlow" || ab2 == "WindBlow") {
+			return FireTornado;
 		}
-		if (ab1 == Heal || ab2 == Heal) {
-			//return this->createHotVampire();
+		if (ab1 == "Heal" || ab2 == "Heal") {
+			return HotVampire;
 		}
-		if (ab1 == Bubble || ab2 == Bubble) {
-			//return this->createGeiser();
+		if (ab1 == "Bubble" || ab2 == "Bubble") {
+			return Geiser;
 		}
-		if (ab1 == EarthArmor || ab2 == EarthArmor) {
-			//return this->createMagmaWave();
+		if (ab1 == "Earth Armor" || ab2 == "Earth Armor") {
+			return MagmaWave;
 		}
 	}
-	if (ab1 == Bubble || ab2 == Bubble) {
-		if (ab1 == EarthArmor || ab2 == EarthArmor) {
+	if (ab1 == "Bubble" || ab2 == "Bubble") {
+		if (ab1 == "Earth Armor" || ab2 == "Earth Armor") {
 			//this->createEarthquake();
 		}
-		if (ab1 == WindBlow || ab2 == WindBlow) {
-			//return this->createSwirl();
+		if (ab1 == "WindBlow" || ab2 == "WindBlow") {
+			return Swirl;
 		}
 	}
-	if (ab1 == WindBlow || ab2 == WindBlow) {
-		if (ab1 == Heal || ab2 == Heal) {
-			//return this->createPoisonGas();
+	if (ab1 == "WindBlow" || ab2 == "WindBlow") {
+		if (ab1 == "Heal" || ab2 == "Heal") {
+			return PoisonGas;
 		}
-		if (ab1 == EarthArmor || ab2 == EarthArmor) {
-			//return this->createSabakuKyu();
-		}
-	}
-	if (ab1 == Mirror || ab2 == Mirror) {
-		if (ab1 == EarthBarrier || ab2 == EarthBarrier || ab1 == WaterBarrier || ab2 == WaterBarrier || ab1 == FireBarrier || ab2 == FireBarrier || ab1 == WindBarrier || ab2 == WindBarrier) {
-			//return this->createRestore();
+		if (ab1 == "Earth Armor" || ab2 == "Earth Armor") {
+			return SabakuKyu;
 		}
 	}
-	if (ab1 == Barrier || ab2 == Barrier) {
-		if (ab1 == EarthArmor || ab2 == EarthArmor) {
+	if (ab1 == "Mirror" || ab2 == "Mirror") {
+		if (ab1 == "Earth Barrier" || ab2 == "Earth Barrier" || ab1 == "Water Barrier" || ab2 == "Water Barrier" || ab1 == "Fire Barrier" || ab2 == "Fire Barrier" || ab1 == "Wind Barrier" || ab2 == "Wind Barrier") {
+			return Restore;
+		}
+	}
+	if (ab1 == "Barrier" || ab2 == "Barrier") {
+		if (ab1 == "Earth Armor" || ab2 == "Earth Armor") {
 			//return this->createEarthBarrier();
 		}
-		if (ab1 == WindBlow || ab2 == WindBlow) {
-			// return this->createEarthArmor();
+		if (ab1 == "WindBlow" || ab2 == "WindBlow") {
+			 return EarthArmor;
 		}
-
 	}
-	return _ability;
+	else { return CraftError; }
 }
+
+
 
 Ability AbilityFactory::createAbility(abilityName abName) {
 	//TODO: implementar métodos correspondientes y descomentar (estos métodos también sirven para el método combineAbility) - Lucas
 	switch (abName) {
 	case Fireball:
-		//return this->createFireball();
+		return this->createFireball();
 		break;
 	case Bubble:
-		//return this->createBubble();
+		return this->createBubble();
 		break;
 	case WindBlow:
-		//return this->createWindBlow();
+		return this->createWindBlow();
 		break;
 	case EarthArmor:
-		//return this->createEarthArmor();
+		return this->createEarthArmor();
 		break;
 	case Barrier:
-		//return this->createBarrier();
+		return this->createBarrier();
 		break;
 	case Heal:
-		//return this->createBarrier();
+		return this->createBarrier();
 		break;
 	case Restore:
-		//return this->createRestore();
+		return this->createRestore();
 		break;
 	case EarthBarrier:
 		//return this->createEarthBarrier();
@@ -97,37 +96,37 @@ Ability AbilityFactory::createAbility(abilityName abName) {
 		//return this->createMirror();
 		break;
 	case Tsunami:
-		//return this->createTsunami();
+		return this->createTsunami();
 		break;
 	case FireTornado:
-		//return this->createFireTornado();
+		return this->createFireTornado();
 		break;
 	case HotVampire:
-		//return this->createHotVampire();
+		return this->createHotVampire();
 		break;
 	case Earthquake:
 		//return this->createEarthquake();
 		break;
 	case Geiser:
-		//return this->createGeiser();
+		return this->createGeiser();
 		break;
 	case PoisonGas:
-		//return this->createPoisonGas();
+		return this->createPoisonGas();
 		break;
 	case MagmaWave:
-		//return this->createMagmaWave();
+		return this->createMagmaWave();
 		break;
 	case Inferno:
-		//return this->createInferno();
+		return this->createInferno();
 		break;
 	case Swirl:
-		//return this->createSwirl();
+		return this->createSwirl();
 		break;
 	case SabakuKyu:
-		//return this->createSabakuKyu();
+		return this->createSabakuKyu();
 		break;
 	case Doton:
-		//return this->createDoton();
+		return this->createDoton();
 		break;
 	case Test:
 		return this->createTest();
@@ -148,27 +147,29 @@ Ability AbilityFactory::createTest() {
 //ABILITY SUPPORT
 Ability AbilityFactory::createEarthArmor() {
 	_ability.reset();
-	_ability.setName("EarthArmor");
+	_ability.setName("Earth Armor");
 	_ability.setMpCost(5);
 	_ability.setElements(Earth, Neutral);
 	return _ability;
 }
 
-/*Ability AbilityFactory::createBarrier()
+
+
+Ability AbilityFactory::createBarrier()
 {
-	_ability = new Ability;
-	_ability->setName("Barrier");
-	_ability->setMpCost(5);
-	_ability->setElements(Neutral, Neutral);
+	_ability.reset();
+	_ability.setName("Barrier");
+	_ability.setMpCost(5);
+	_ability.setElements(Neutral, Neutral);
 	return _ability;
 }
 
 Ability AbilityFactory::createHeal()
 {
-	_ability = new Ability;
-	_ability->setName("Heal");
-	_ability->setMpCost(10);
-	_ability->setElements(Neutral, Neutral);
+	_ability.reset();
+	_ability.setName("Heal");
+	_ability.setMpCost(10);
+	_ability.setElements(Neutral, Neutral);
 	return _ability;
 }
 
@@ -176,179 +177,174 @@ Ability AbilityFactory::createHeal()
 //ABILITY MAGIC
 Ability AbilityFactory::createFireball()
 {
-	_ability = new Ability;
-	_ability->setName("Fireball");
-	_ability->setMagicDamage(15);
-	_ability->setMpCost(5);
-	_ability->setElements(Fire, Neutral);
+	_ability.reset();
+	_ability.setName("Fireball");
+	_ability.setMagicDamage(15);
+	_ability.setMpCost(5);
+	_ability.setElements(Fire, Neutral);
 	return _ability;
 }
 
 Ability AbilityFactory::createBubble()
 {
-	_ability = new Ability;
-	_ability->setName("Bubble");
-	_ability->setMagicDamage(15);
-	_ability->setMpCost(5);
-	_ability->setElements(Water, Neutral);
+	_ability.reset();
+	_ability.setName("Bubble");
+	_ability.setMagicDamage(15);
+	_ability.setMpCost(5);
+	_ability.setElements(Water, Neutral);
 	return _ability;
 }
 
-Ability* AbilityFactory::createWindBlow()
+Ability AbilityFactory::createWindBlow()
 {
-	_ability = new Ability;
-	_ability->setName("WindBlow");
-	_ability->setMagicDamage(15);
-	_ability->setMpCost(5);
-	_ability->setElements(Air, Neutral);
+	_ability.reset();
+	_ability.setName("WindBlow");
+	_ability.setMagicDamage(15);
+	_ability.setMpCost(5);
+	_ability.setElements(Air, Neutral);
 	return _ability;
 }
 
 
 ///HABILIDADES COMBINADAS MAGIC - FALTA CRAFTEO
-Ability* AbilityFactory::createTsunami()
+Ability AbilityFactory::createTsunami()
 {
-	_ability = new AbilityMagic;
-	_ability->setName("Tsunami");
-	_ability->setDescription("Duplica el daño de la habilidad hacia enemigos de fuego.");
-	_ability->setMagicDamage(25);
-	_ability->setMpCost(20);
-	_ability->setElements(Water, Water);
+	_ability.reset();
+	_ability.setName("Tsunami");
+	_ability.setDescription("Duplica el daño de la habilidad hacia enemigos de fuego.");
+	_ability.setMagicDamage(25);
+	_ability.setMpCost(20);
+	_ability.setElements(Water, Water);
 	return _ability;
 }
 
-Ability* AbilityFactory::createFireTornado()
+Ability AbilityFactory::createFireTornado()
 {
-	_ability = new AbilityMagic;
-	_ability->setName("Fire Tornado");
-	_ability->setDescription("Hace daño de fuego y aire.");
-	_ability->setMagicDamage(25);
-	_ability->setMpCost(20);
-	_ability->setElements(Fire, Air);
+	_ability.reset();
+	_ability.setName("Fire Tornado");
+	_ability.setDescription("Hace daño de fuego y aire.");
+	_ability.setMagicDamage(25);
+	_ability.setMpCost(20);
+	_ability.setElements(Fire, Air);
 	return _ability;
 }
 
-Ability* AbilityFactory::createHotVampire()
+Ability AbilityFactory::createHotVampire()
 {
-	_ability = new AbilityMagic;
-	_ability->setName("Hot Vampire");
-	_ability->setDescription("Cura el 30% del daño infligido.");
-	_ability->setMagicDamage(25);
-	_ability->setMpCost(25);
-	_ability->setElements(Fire, Neutral);
+	_ability.reset();
+	_ability.setName("Hot Vampire");
+	_ability.setDescription("Cura el 30% del daño infligido.");
+	_ability.setMagicDamage(25);
+	_ability.setMpCost(25);
+	_ability.setElements(Fire, Neutral);
 	return _ability;
 }
 
-Ability* AbilityFactory::createEarthQuake()
+Ability AbilityFactory::createEarthQuake()
 {
-	_ability = new AbilityMagic;
-	_ability->setName("EarthQuake");
-	_ability->setDescription("Probabilidad de stunear al enemigo.");
-	_ability->setMagicDamage(25);
-	_ability->setMpCost(20);
-	_ability->setElements(Water, Earth);
+	_ability.reset();
+	_ability.setName("Earthquake");
+	_ability.setDescription("Probabilidad de stunear al enemigo.");
+	_ability.setMagicDamage(25);
+	_ability.setMpCost(20);
+	_ability.setElements(Water, Earth);
 	return _ability;
 }
 
-Ability* AbilityFactory::createGeiser()
+Ability AbilityFactory::createGeiser()
 {
-	_ability = new AbilityMagic;
-	_ability->setName("Geiser");
-	_ability->setDescription("Reduce la defensa mágica del enemigo.");
-	_ability->setMagicDamage(25);
-	_ability->setMpCost(20);
-	_ability->setElements(Water, Fire);
+	_ability.reset();
+	_ability.setName("Geiser");
+	_ability.setDescription("Reduce la defensa mágica del enemigo.");
+	_ability.setMagicDamage(25);
+	_ability.setMpCost(20);
+	_ability.setElements(Water, Fire);
 	return _ability;
 }
 
-Ability* AbilityFactory::createPoisonGas()
+Ability AbilityFactory::createPoisonGas()
 {
-	_ability = new AbilityMagic;
-	_ability->setName("Poison Gas");
-	_ability->setDescription("Envenena al enemigo hasta el final de la pelea.");
-	_ability->setMagicDamage(10);
-	_ability->setMpCost(25);
-	_ability->setElements(Air, Neutral);
+	_ability.reset();
+	_ability.setName("Poison Gas");
+	_ability.setDescription("Envenena al enemigo hasta el final de la pelea.");
+	_ability.setMagicDamage(10);
+	_ability.setMpCost(25);
+	_ability.setElements(Air, Neutral);
 	return _ability;
 }
 
-Ability* AbilityFactory::createMagmaWave()
+Ability AbilityFactory::createMagmaWave()
 {
-	_ability = new AbilityMagic;
-	_ability->setName("Magma wave");
-	_ability->setDescription("Reduce la defensa física.");
-	_ability->setMagicDamage(25);
-	_ability->setMpCost(20);
-	_ability->setElements(Fire, Earth);
+	_ability.reset();
+	_ability.setName("Magma Wave");
+	_ability.setDescription("Reduce la defensa física.");
+	_ability.setMagicDamage(25);
+	_ability.setMpCost(20);
+	_ability.setElements(Fire, Earth);
 	return _ability;
 }
 
-Ability* AbilityFactory::createInferno()
+Ability AbilityFactory::createInferno()
 {
-	_ability = new AbilityMagic;
-	_ability->setName("Inferno");
-	_ability->setDescription("Quema al enemigo por 3 turnos.");
-	_ability->setMagicDamage(30);
-	_ability->setMpCost(15);
-	_ability->setElements(Fire, Neutral);
+	_ability.reset();
+	_ability.setName("Inferno");
+	_ability.setDescription("Quema al enemigo por 3 turnos.");
+	_ability.setMagicDamage(30);
+	_ability.setMpCost(15);
+	_ability.setElements(Fire, Neutral);
 	return _ability;
 }
 
-Ability* AbilityFactory::createSwirl()
+Ability AbilityFactory::createSwirl()
 {
-	_ability = new AbilityMagic;
-	_ability->setName("Swirl");
-	_ability->setDescription("Reduce un 20% el siguiente ataque del enemigo.");
-	_ability->setMagicDamage(25);
-	_ability->setMpCost(30);
-	_ability->setElements(Water, Air);
+	_ability.reset();
+	_ability.setName("Swirl");
+	_ability.setDescription("Reduce un 20% el siguiente ataque del enemigo.");
+	_ability.setMagicDamage(25);
+	_ability.setMpCost(30);
+	_ability.setElements(Water, Air);
 	return _ability;
 }
 
-Ability* AbilityFactory::createSabakuKyu()
+Ability AbilityFactory::createSabakuKyu()
 {
-	_ability = new AbilityMagic;
-	_ability->setName("Sabaku Kyu");
-	_ability->setDescription("Inflige daño verdadero.");
-	_ability->setMagicDamage(25);
-	_ability->setMpCost(30);
-	_ability->setElements(Air, Earth);
+	_ability.reset();
+	_ability.setName("Sabaku Kyu");
+	_ability.setDescription("Inflige daño verdadero.");
+	_ability.setMagicDamage(25);
+	_ability.setMpCost(30);
+	_ability.setElements(Air, Earth);
 	return _ability;
 }
 
 AbilityFactory::~AbilityFactory()
 {
-	delete _ability;
-	_ability = nullptr;
-	if (_ability != nullptr) {
-		std::cout << "no se liberó la memoria de AbilityFactory/n";
-	}
+	std::cout << "se eliminó abilityFactory \n \n";
 }
 
-//HABILIDADES COMBINADAS SUPPORT - FALTA CRAFTEO
-AbilitySupport* AbilityFactory::createRestore()
+Ability AbilityFactory::createRestore()
 {
-	_abilitySupport = new AbilitySupport;
-	_abilitySupport->setName("Restore");
-	_abilitySupport->setMpCost(15);
-	_abilitySupport->setElements(Neutral, Neutral);
-	return _abilitySupport;
+	_ability.reset();
+	_ability.setName("Restore");
+	_ability.setMpCost(15);
+	_ability.setElements(Neutral, Neutral);
+	return _ability;
 }
 
-AbilitySupport* AbilityFactory::createCosmicWisdom()
+Ability AbilityFactory::createCosmicWisdom()
 {
-	_abilitySupport = new AbilitySupport;
-	_abilitySupport->setName("Cosmic Wisdom");
-	_abilitySupport->setMpCost(10);
-	_abilitySupport->setElements(Neutral, Neutral);
-	return _abilitySupport;
+	_ability.reset();
+	_ability.setName("Cosmic Wisdom");
+	_ability.setMpCost(10);
+	_ability.setElements(Neutral, Neutral);
+	return _ability;
 }
 
-AbilitySupport* AbilityFactory::createDoton()
+Ability AbilityFactory::createDoton()
 {
-	_abilitySupport = new AbilitySupport;
-	_abilitySupport->setName("Doton");
-	_abilitySupport->setMpCost(35);
-	_abilitySupport->setElements(Earth, Neutral);
-	return _abilitySupport;
-}*/
+	_ability.reset();
+	_ability.setName("Doton");
+	_ability.setMpCost(35);
+	_ability.setElements(Earth, Neutral);
+	return _ability;
+}

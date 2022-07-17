@@ -12,7 +12,8 @@ private:
 	{
 		MainMenu = 0,
 		AbilityChange,
-		Craft
+		Craft,
+		Craft2
 	};
 	int _page;
 	int _abilitySelect;
@@ -22,6 +23,7 @@ private:
 	int _selectedItemIndex;
 	int _selectedItemAux;
 	int _selectedItemCraft;
+	int _pageAux;
 	sf::Font _font;
 	sf::Text* _menu;
 	sf::Text* _names;
