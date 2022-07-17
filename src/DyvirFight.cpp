@@ -12,7 +12,7 @@ DyvirFight::DyvirFight() : _abilityEquipment(2) {
 	_HP = _HPbase;
 	_MPbase = 100;
 	_MP = _MPbase;
-	_physicalDamagebase = 30;
+	_physicalDamagebase = 100;
 	_physicalDamage = _physicalDamagebase;
 	_physicalDefensebase = 10;
 	_magicalDamagebase = 10;

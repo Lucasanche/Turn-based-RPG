@@ -57,7 +57,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		window.setView(_view);
 		window.draw(DyvirMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
-			_option = 5;
+			_option = 1;
 			window.setView(window.getDefaultView());
 			//_view.setSize(window.getSize().x, window.getSize().y);
 		}
