@@ -9,7 +9,7 @@ Enemy* EnemyFactory::getBoss(int wins) {
 		if (_enemy == NULL) {
 			std::cout << "no se pudo crear al enemigo" << std::endl;
 		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Fire);
+		_enemy->setStats(1000, 500, 100, 100, 50, 50, Fire);
 		_enemy->setAbility(0, SabakuKyu);
 		_enemy->setAbility(1, Earthquake);
 		break;
@@ -18,7 +18,7 @@ Enemy* EnemyFactory::getBoss(int wins) {
 		if (_enemy == NULL) {
 			std::cout << "no se pudo crear al enemigo" << std::endl;
 		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Air);
+		_enemy->setStats(1500, 700, 150, 150, 120, 100, Air);
 		_enemy->setAbility(0, PoisonGas);
 		_enemy->setAbility(1, Tsunami);
 		break;
@@ -27,18 +27,19 @@ Enemy* EnemyFactory::getBoss(int wins) {
 		if (_enemy == NULL) {
 			std::cout << "no se pudo crear al enemigo" << std::endl;
 		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Water);
+		_enemy->setStats(2500, 800, 200, 250, 150, 150, Water);
 		_enemy->setAbility(0, Inferno);
 		_enemy->setAbility(1, HotVampire);
 		break;
 	case 3:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/boss4 680x556-11.png", 680, 556, 11, 0.45, 1); 
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Water);
+		_enemy->setStats(3500, 1000, 300, 400, 200, 300, Water);
 		_enemy->setAbility(0, MagmaWave);
 		_enemy->setAbility(1, FireTornado);
 		break;
-	case 4:///TODO: HACER A KLOSTER
+	case 4:///TODO: HACER A KLOSTER. 3 habilidades? 
 		_enemy = new Enemy("./Textures/Characters/spritesheets/KLOSTER", 174, 103, 4, 1, 1);
+		_enemy->setStats(5000, 2000, 800, 800, 500, 500, Water);
 		break;
 	}
 	return _enemy;
@@ -46,16 +47,16 @@ Enemy* EnemyFactory::getBoss(int wins) {
 
 Enemy* EnemyFactory::getEnemy(int wins) {
 	srand(time(0));
-	int numerito = rand() % (wins + 1);
-	std::cout << numerito << std::endl;
-
-	switch (9) {
+	int _num = rand() % (wins + 2);
+	std::cout << _num << std::endl;
+	switch (_num) {
+///BASE ENEMIES -> wins = 0 --------------------------------------------------------------------------------------------------------------------------------------
 	case 0:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/enemy1 96x95-4.png", 96, 95, 4, 2.3, 1); //Water
 		if (_enemy == nullptr) {
 			std::cout << "no se pudo crear al enemigo en EnemyFactory" << std::endl;
-		}
-		_enemy->setStats(100, 120, 10, 15, 0, 0, Air); 
+		}				
+		_enemy->setStats(700, 200, 35, 35, 30, 30, Air); 
 		_enemy->setAbility(0, Bubble);
 		_enemy->setAbility(1, Mirror);
 		break;
@@ -63,17 +64,18 @@ Enemy* EnemyFactory::getEnemy(int wins) {
 		_enemy = new Enemy("./Textures/Characters/spritesheets/enemy2 500x455-2.png", 500, 455, 2, 0.6, 1); //Air
 		if (_enemy == nullptr) {
 			std::cout << "no se pudo crear al enemigo en EnemyFactory" << std::endl;
-		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Earth); 
+		}				
+		_enemy->setStats(600, 250, 50, 50, 10, 10, Earth); 
 		_enemy->setAbility(0, PoisonGas);
 		_enemy->setAbility(1, WindBlow);
 		break;
+///POWER UP -> wins = 1 --------------------------------------------------------------------------------------------------------------------------------------
 	case 2:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/enemy3 350x321-9 .png", 350, 321, 9, 0.8, 1); //Water
 		if (_enemy == nullptr) {
 			std::cout << "no se pudo crear al enemigo en EnemyFactory" << std::endl;
-		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Earth); 
+		}//(int HP, int MP, int physicalDamage, int magicDamage, int physicalDefense, int magicResist, elements elementWeak)
+		_enemy->setStats(1100, 500, 80, 80, 50, 50, Earth); 
 		_enemy->setAbility(0, Bubble);
 		_enemy->setAbility(1, WindBlow);
 		break;
@@ -82,16 +84,17 @@ Enemy* EnemyFactory::getEnemy(int wins) {
 		if (_enemy == nullptr) {
 			std::cout << "no se pudo crear al enemigo en EnemyFactory" << std::endl;
 		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Earth);
+		_enemy->setStats(1100, 600, 80, 80, 50, 50, Earth);
 		_enemy->setAbility(0, Heal);
 		_enemy->setAbility(1, WindBlow);
 		break;
+///POWER UP -> wins = 2 --------------------------------------------------------------------------------------------------------------------------------------
 	case 4:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/enemy5 256x256-5.png", 256, 256, 5, 1, 1); //Water
 		if (_enemy == nullptr) {
 			std::cout << "no se pudo crear al enemigo en EnemyFactory" << std::endl;
-		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Air); 
+		}//(int HP, int MP, int physicalDamage, int magicDamage, int physicalDefense, int magicResist, elements elementWeak)
+		_enemy->setStats(1700, 700, 150, 80, 80, 100, Air);  
 		_enemy->setAbility(0, Bubble);
 		_enemy->setAbility(1, Barrier);
 		break;
@@ -100,16 +103,17 @@ Enemy* EnemyFactory::getEnemy(int wins) {
 		if (_enemy == nullptr) {
 			std::cout << "no se pudo crear al enemigo en EnemyFactory" << std::endl;
 		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Air); 
+		_enemy->setStats(2000, 700, 80, 100, 100, 100, Water); 
 		_enemy->setAbility(0, Fireball);
 		_enemy->setAbility(1, FireBarrier);
 		break;
+///POWER UP --------------------------------------------------------------------------------------------------------------------------------------
 	case 6:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/enemy7 174x103-4.png", 174, 103, 4, 1.5, 1); //Earth
 		if (_enemy == nullptr) {
 			std::cout << "no se pudo crear al enemigo en EnemyFactory" << std::endl;
 		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Air);
+		_enemy->setStats(3000, 700, 150, 150, 500, 300, Fire);
 		_enemy->setAbility(0, EarthArmor);
 		_enemy->setAbility(1, EarthBarrier);
 		break;
@@ -118,16 +122,17 @@ Enemy* EnemyFactory::getEnemy(int wins) {
 		if (_enemy == nullptr) {
 			std::cout << "no se pudo crear al enemigo en EnemyFactory" << std::endl;
 		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Air);
+		_enemy->setStats(2800, 800, 250, 250, 200, 200, Water);
 		_enemy->setAbility(0, Fireball);
 		_enemy->setAbility(1, Inferno);
 		break;
+///POWER UP --------------------------------------------------------------------------------------------------------------------------------------
 	case 8: 
 		_enemy = new Enemy("./Textures/Characters/spritesheets/enemy9 403x324-14.png", 403, 324, 14, 0.7, 1); //Earth
 		if (_enemy == nullptr) {
 			std::cout << "no se pudo crear al enemigo en EnemyFactory" << std::endl;
 		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Air);
+		_enemy->setStats(3500, 1000, 400, 300, 300, 250, Fire);
 		_enemy->setAbility(0, Heal);
 		_enemy->setAbility(1, Doton);
 		break;
@@ -136,12 +141,11 @@ Enemy* EnemyFactory::getEnemy(int wins) {
 		if (_enemy == nullptr) {
 			std::cout << "no se pudo crear al enemigo en EnemyFactory" << std::endl;
 		}
-		_enemy->setStats(100, 100, 10, 10, 0, 0, Air);
+		_enemy->setStats(3500, 1000, 300, 250, 500, 300, Air);
 		_enemy->setAbility(0, Restore);
 		_enemy->setAbility(1, Swirl);
 		break;
 	}
-
 	return _enemy;
 }
 

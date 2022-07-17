@@ -8,15 +8,15 @@ DyvirFight::DyvirFight() : _abilityEquipment(2) {
 	//TODO: Implementar leveo, subida de stats, etc.  DEJAR!!!!!!!!!!!!!!!!!!!!!!!!!
 	_abilityEquipment[0] = _factory.createEarthArmor();
 	_abilityEquipment[1] = _factory.createTest();
-	_HPbase = 100;
+	_HPbase = 1000;
 	_HP = _HPbase;
-	_MPbase = 100;
+	_MPbase = 500;
 	_MP = _MPbase;
-	_physicalDamagebase = 100;
+	_physicalDamagebase = 150;
 	_physicalDamage = _physicalDamagebase;
-	_physicalDefensebase = 10;
-	_magicalDamagebase = 10;
-	_magicResistbase = 10;
+	_physicalDefensebase = 50;
+	_magicalDamagebase = 50;
+	_magicResistbase = 50;
 	this->setFightSprite();
 	_isAlive = true;
 	_wins = 0;
