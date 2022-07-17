@@ -7,11 +7,13 @@
 class Enemy : public Dragon
 {
 private:
+	float scale;
 	int _frameY;
+	int _filas;
 	//AbilityFactory* abilityFactory;
 	AbilityFactory abilityFactory;
 public:
-	Enemy(std::string path, int widht, int height, int totalFrames);
+	Enemy(std::string path, int widht, int height, int totalFrames, float scale, int filas);
 	void setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalDefense, int magicResist, elements elementWeak);
 	void update(bool) override;
 	void Die() override;

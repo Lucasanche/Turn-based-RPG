@@ -15,7 +15,7 @@ void BrickTiles::update(int j, int i, int x, int y) {
 	}
 	else
 	{
-		_frameVortex += 0.15;
+		_frameVortex += 0.05;
 		if (_frameVortex >= 10) {
 			_frameVortex = 1;
 		}

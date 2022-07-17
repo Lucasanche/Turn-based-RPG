@@ -3,8 +3,9 @@
 #include "AbilityFactory.h"
 
 
-Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames) {
+Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames, float scale, int filas) {
 	//TODO: Implementar dropeo de habilidades para cada enemigo   !!!!!!!!!!!! DEJAR!
+	_filas = filas;
 	_flagDie = true;
 	_frameY = 0;
 	_texture.loadFromFile(path);
@@ -13,8 +14,10 @@ Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames) {
 	_rectWidth = rectWidth;
 	_rectHeight = rectHeight;
 	_sprite.setTextureRect({ int(_frame) * _rectWidth, 0, _rectHeight, _rectWidth });
-	_sprite.setScale(2, 2);
+	_sprite.setTextureRect({ int(_frame) * 100, int(_frameY) * 100, 100, 100 });
+	_sprite.setScale(scale, scale);
 	_sprite.setPosition(750 - _sprite.getGlobalBounds().width, 480 - _sprite.getGlobalBounds().height);
+	std::cout << _sprite.getGlobalBounds().height << std::endl;
 }
 
 void Enemy::setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalDefense, int magicResist, elements elementWeak) {
@@ -34,29 +37,15 @@ void Enemy::setStats(int HP, int MP, int physicalDamage, int magicDamage, int ph
 }
 
 
-void Enemy::update(bool dyvirIsAlive) {
-	if (dyvirIsAlive) {
-		if (_isAlive) {
-			_frame += 0.15;
-			if (_frame >= _totalFrames && _isAlive) {
-				_frame = 0;
-			}
-			_sprite.setTextureRect({ int(_frame) * _rectWidth, 0, _rectHeight, _rectWidth });
-		}
-		else {
-			this->Die();
-		}
-	}
-}
-
 void Enemy::Die() {
 	if (_flagDie) {
 		_frame = 0;
+		_frameY=0;
 		_flagDie = false;
 		_texture.loadFromFile("./Textures/Characters/spritesheets/EnemyDeath.png");
 		_sprite.setTexture(_texture);
-		_sprite.setScale(3.5, 3.5);
-		_sprite.setPosition(_sprite.getPosition().x - _sprite.getGlobalBounds().width / 4, _sprite.getPosition().y - _sprite.getGlobalBounds().height / 4);
+		_sprite.setScale(4, 4);
+		_sprite.setPosition(400, 150);
 	}
 	_frame += 0.5;
 	if (_frame >= 8) {
@@ -69,3 +58,51 @@ void Enemy::Die() {
 	}
 	_sprite.setTextureRect({ int(_frame) * 100, int(_frameY) * 100, 100, 100 });
 }
+
+void Enemy::update(bool dyvirIsAlive) {
+	if (dyvirIsAlive) {
+		if (_isAlive) {
+			if (_filas == 1) {
+				_frame += 0.15;
+				if (_frame >= _totalFrames && _isAlive) {
+					_frame = 0;
+				}
+				_sprite.setTextureRect({ int(_frame) * _rectWidth, 0, _rectWidth, _rectHeight });
+			}
+			if (_filas > 1) {
+				_frame += 0.15;
+				if (_frame >= _totalFrames && _isAlive) {
+					_frame = 0;
+					std::cout << _frameY << std::endl;
+					_frameY++;
+					if (_frameY >= _filas) {
+						_frameY =0;
+						_frame = 0;
+					}
+				}
+				_sprite.setTextureRect({ int(_frame) * _rectWidth, int(_frameY) * _rectHeight, _rectWidth, _rectHeight });
+			}
+			_sprite.setPosition(750 - _sprite.getGlobalBounds().width, 480 - _sprite.getGlobalBounds().height);
+		}
+		else {
+			this->Die();
+		}
+	}
+}
+
+//UPDATE VIEJO
+/*void Enemy::update(bool dyvirIsAlive) {
+	if (dyvirIsAlive) {
+		if (_isAlive) {
+			_frame += 0.15;
+			if (_frame >= _totalFrames && _isAlive) {
+				_frame = 0;
+			}
+			_sprite.setPosition(750 - _sprite.getGlobalBounds().width, 480 - _sprite.getGlobalBounds().height);
+			_sprite.setTextureRect({ int(_frame) * _rectWidth, 0, _rectWidth, _rectHeight });
+		}
+		else {
+			this->Die();
+		}
+	}
+}*/
