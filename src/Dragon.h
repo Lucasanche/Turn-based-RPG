@@ -41,6 +41,7 @@ protected:
 	bool _waterResist;
 	bool _earthResist;
 	bool _airResist;
+	int _XP;
 	Ability _ability[3];
 	AbilityFactory _abilityFactory;
 	elements _elementWeak;
@@ -57,7 +58,6 @@ protected:
 
 public:
 	Dragon();
-
 	//Gets()
 	int getHP() { return _HP; }
 	int getHPbase() { return _HPbase; }
@@ -67,8 +67,7 @@ public:
 	int getMagicalDamage() { return _magicalDamage; }
 	int getPhysicalDefense() { return _physicalDefense; }
 	int getMagicResist() { return _magicResist; }
-
-
+	int getXP() { return _XP; }
 	int getBack() { return _backGround; }
 	bool getIsAlive() { return _isAlive; }
 	elements getElementWeak() { return _elementWeak; }
@@ -114,6 +113,7 @@ public:
 	void setEarthResist(bool earthResist) { _earthResist = earthResist; }
 	void setAirResist(bool airResist) { _airResist = airResist; }
 	void setAbility(int abilityNumber, abilityName abName);
+	void setXP(int XP) { _XP = XP; }
 
 	//Estados positivos
 	void setIncreasePD() { _positiveStates[increasePD] = true; }

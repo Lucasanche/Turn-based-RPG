@@ -20,7 +20,6 @@ void DyvirMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 bool DyvirMap::update() {
-	srand(time(0));
 	_frame += 0.15;
 	if (_frame >= 5) {
 		_frame = 0;

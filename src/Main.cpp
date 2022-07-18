@@ -6,11 +6,28 @@
 #include "Map.h"
 #include "DyvirMap.h"
 #include "EnemyFactory.h"
+#include <stdlib.h> 
 
 
+//TODO: ver si puedo implementar esta función - Lucas
+//bool waitSeconds(int sec, int passed) {
+//	static bool _flag = true;
+//	static int initial = 0;
+//	if (_flag) {
+//		initial = passed;
+//		_flag = false;
+//	}
+//	if (passed - initial < sec) {
+//		return false;
+//	}
+//	else {
+//		_flag = true;
+//		return true;
+//	}
+//}
 
 int main() {
-
+	srand(time(0));
 	setlocale(LC_CTYPE, "Spanish"); 
 	int numero = 0;
 	std::cout << "daño" << std::endl;
@@ -68,5 +85,3 @@ int main() {
 	}
 	return 0;
 }
-
-

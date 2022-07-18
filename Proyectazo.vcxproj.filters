@@ -30,7 +30,7 @@
     <ClInclude Include="src\Enemy.h" />
     <ClInclude Include="src\EnemyFactory.h" />
     <ClInclude Include="src\Fight.h" />
-    <ClInclude Include="src\Elements.h" />
+    <ClInclude Include="src\GlobalEnums.h" />
     <ClInclude Include="src\Inventory.h" />
     <ClInclude Include="src\Map.h" />
     <ClInclude Include="src\Menu.h" />

@@ -3,12 +3,13 @@
 #include "AbilityFactory.h"
 
 DyvirFight::DyvirFight() : _abilityEquipment(3) {
-	this->setAbility(0, Test);
 	//TODO: Implementar leveo, subida de stats, etc.  DEJAR!!!!!!!!!!!!!!!!!!!!!!!!!
 	_abilityEquipment[0] = _abilityFactory.createFireball();
 	_abilityEquipment[1] = _abilityFactory.createWindBlow();
 	_abilityEquipment[2] = _abilityFactory.createHotVampire();
-	_HPbase = 100;
+	_HPbase = 1000;
+	_XP = 0;
+	_level = 1;
 	_HP = _HPbase;
 	_MPbase = 500;
 	_MP = _MPbase;
@@ -76,6 +77,9 @@ void DyvirFight::Win() {
 	}
 	_sprite.setTextureRect({ int(_frame) * 110, 0, 110, 200 });
 	_sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
+}
+void DyvirFight::increaseXP(int XP) {
+
 }
 void DyvirFight::restoreLife() {
 	_HP = _HPbase;

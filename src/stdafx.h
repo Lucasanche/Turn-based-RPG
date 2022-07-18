@@ -9,5 +9,5 @@
 #include <stdio.h>
 #include <wchar.h>
 #include <locale.h>
-#include "Elements.h"
+#include "GlobalEnums.h"
 

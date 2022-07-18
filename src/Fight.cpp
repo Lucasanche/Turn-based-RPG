@@ -3,7 +3,6 @@
 
 
 Fight::Fight() : _backTexture(), _view(sf::FloatRect(0, 0, 800, 700)) {
-	srand(time(0));
 	_menu = nullptr;
 	_turn = wait;
 	_music = true;
@@ -81,7 +80,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		//_turn = enemyWait;
 		break;
 	case enemyWait:
-		if (_time.asSeconds() > 1.5) {
+		if (_time.asSeconds() > 1.5){
 			if (_enemy->getHP() <= 0) {
 				//_turn = endBattle;
 				break;

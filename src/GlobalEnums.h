@@ -1,6 +1,6 @@
 #pragma once
-#ifndef ELEMENTS_H
-#define ELEMENTS_H
+#ifndef GLOBALENUMS_H
+#define GLOBALENUMS_H
 
 
 enum elements
@@ -85,5 +85,4 @@ enum turns
 	enemyAbility2,
 	updateText
 };
-
 #endif
