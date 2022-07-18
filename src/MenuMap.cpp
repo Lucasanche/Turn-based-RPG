@@ -3,7 +3,6 @@
 
 
 MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(15) {
-	//TODO: completar el menu (crafteo, etc) !!!!!!!!!!!!!!!!!!!!!!!! Giuli
 	//TODO: cargar las habilidades del menu en el equipo de Dyvir !!!!!!!!!!!! Giuli
 	sizeOfMenu = 4;
 	_page = 0;

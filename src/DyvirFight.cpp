@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "DyvirFight.h"
-#include "AbilityFactory.h" //TODO: ver como implementar AbilityFactory dentro del menuMap - Giuli
+#include "AbilityFactory.h"
 
 DyvirFight::DyvirFight() : _abilityEquipment(3) {
 	this->setAbility(0, Test);
