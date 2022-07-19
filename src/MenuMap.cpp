@@ -100,7 +100,7 @@ void MenuMap::PageDown() {
 void MenuMap::update(DyvirFight& dyvir) {
 
 	for (int i = 0; i < _inventoryList.size(); i++) {
-		_inventoryList[i].setString(dyvir.getAbilityInvName(i + _page));
+		_inventoryList[i].setString(dyvir.getInventoryElementName(i + _page));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {

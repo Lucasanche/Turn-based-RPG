@@ -20,6 +20,7 @@ public:
 	bool update();
 	DyvirMap();
 	sf::Vector2f getPosition() { return _sprite.getPosition(); }
+	void setPosition(sf::Vector2f position) { _sprite.setPosition(position); }
 	sf::Vector2f _velocity = { 0, 0 };
 	sf::FloatRect getBounds() const override;
 	void setCollide();

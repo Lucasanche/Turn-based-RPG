@@ -12,7 +12,7 @@ class DyvirFight : public Dragon
 private:
 	unsigned short _wins;
 	bool _flagWin;
-	std::vector <Ability> _abilityEquipment;
+	std::vector <Ability> _abilityInventory;
 	unsigned short _level;
 	unsigned short _requiredExperience[3];
 public:
@@ -23,11 +23,15 @@ public:
 	void setStats() { /*completar*/ }
 	void increaseXP(int XP);
 	unsigned short getWins() { return _wins; }	
-	void setWins() { _wins++; }
+	void increaseWins() { _wins++; }
+	void setWins(int wins) { _wins = wins; }
 	std::string setAbilityEquiped(int i, int ability);
-	int getInventorySize() { return _abilityEquipment.size(); }
-	Ability getAbilityInv(int i) { return _abilityEquipment[i]; }
-	std::string getAbilityInvName(int i);
+	int getInventorySize() { return _abilityInventory.size(); }
+	Ability getInventoryElement(int i) { return _abilityInventory[i]; }
+	std::string getInventoryElementName(int i);
+	std::vector<Ability> getInventory() { return _abilityInventory; }
+	void setInventory(std::vector<Ability> inventory) { _abilityInventory = inventory; }
+	void setAbilityEquiped(Ability& ability, int i);
 	bool craftAbility(std::string, std::string, int, int);
 	void setFightSprite();
 	void restoreLife();

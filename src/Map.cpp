@@ -80,7 +80,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 				map[iaux][jaux].y = 9;
 				x = 9;
 				//_taux = tile;
-				dyvir.setWins();
+				dyvir.increaseWins();
 				_option = 0;
 				dyvir.setFightSprite();
 				fight.setBackFlag();

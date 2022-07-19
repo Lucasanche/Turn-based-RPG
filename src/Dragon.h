@@ -67,6 +67,10 @@ public:
 	int getMagicalDamage() { return _magicalDamage; }
 	int getPhysicalDefense() { return _physicalDefense; }
 	int getMagicResist() { return _magicResist; }
+	int getPhysicalDamageBase() { return _physicalDamagebase; }
+	int getMagicalDamageBase(){ return _magicalDamagebase; }
+	int getPhysicalDefenseBase(){ return _physicalDefensebase; }
+	int getMagicResistBase() { return _magicResistbase; }
 	int getXP() { return _XP; }
 	int getBack() { return _backGround; }
 	bool getIsAlive() { return _isAlive; }

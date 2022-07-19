@@ -6,6 +6,7 @@
 #include "Map.h"
 #include "DyvirMap.h"
 #include "EnemyFactory.h"
+#include "SaveGame.h"
 #include <stdlib.h> 
 
 
@@ -36,7 +37,6 @@ int main() {
 	sf::Texture backTexture;
 	sf::Sprite background;
 	background.setTextureRect({ 0,0,800,700 });
-
 	//menu inicio
 	Menu* menu = new Menu(float(window.getSize().x), float(window.getSize().y));
 	//PRUEBA: se supone que esto se ve reflectado en el menufight.
@@ -49,7 +49,7 @@ int main() {
 	int option = 0;
 	int optionFight = 0;
 	int win = 0;
-
+	system("pause");
 	while (window.isOpen()) {
 		setlocale(LC_CTYPE, "Spanish");
 		while (window.pollEvent(event)) {
