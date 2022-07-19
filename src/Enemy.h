@@ -14,7 +14,7 @@ private:
 	AbilityFactory abilityFactory;
 public:
 	Enemy(std::string path, int widht, int height, int totalFrames, float scale, int filas);
-	void setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalDefense, int magicResist, elements elementWeak);
-	void update(bool) override;
+	void setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalDefense, int magicResist, elements elementWeak, int _XP);
+	void update(bool, int) override;
 	void Die() override;
 };

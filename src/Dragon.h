@@ -144,7 +144,7 @@ public:
 
 	//Virtual
 	virtual void Die() = 0;
-	virtual void update(bool) = 0;
+	virtual void update(bool, int) = 0;
 
 	//Functions
 	void useAbility(Dragon& dragon, int i);
