@@ -34,6 +34,7 @@ private:
 	float _posIniMenu;
 	int _posMaxMenu;
 	int sizeOfMenu;
+	bool _checkPoint;
 	DyvirFight dyvir;
 	MenuOption _menuOption;
 public:
@@ -43,7 +44,7 @@ public:
 	void setOption(int option);
 	void PageUp();
 	void PageDown();
-	void update(DyvirFight& dyvir);
+	void update(DyvirFight& dyvir, bool);
 	int GetPressedItem() { return _selectedItemIndex; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void changeMenu();

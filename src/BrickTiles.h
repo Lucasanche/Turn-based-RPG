@@ -14,7 +14,10 @@ public:
 private:
 	sf::Texture _texture;
 	sf::Sprite _sprite;
+	sf::Texture _texture2;
+	sf::Sprite _sprite2;
 	float _frameVortex;
+	float _frameVortex2;
 };
 
 #endif

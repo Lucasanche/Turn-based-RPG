@@ -4,10 +4,11 @@
 
 MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(15) {
 	//TODO: cargar las habilidades del menu en el equipo de Dyvir !!!!!!!!!!!! Giuli
-	sizeOfMenu = 4;
+	sizeOfMenu = 5;
 	_page = 0;
 	_menu = new sf::Text[sizeOfMenu];
 	_names = new sf::Text[sizeOfMenu];
+	_checkPoint = false;
 	_flag = false;
 	_flagSubmenu = false;
 	_optionAbility = 0;
@@ -62,6 +63,10 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 	_menu[3].setString("Craftear");
 	//_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 4 / 6));
 
+	_menu[4].setFillColor(sf::Color::White);
+	_menu[4].setString("Guardar");
+
+
 
 	int pos = 0;
 	int aux = 0;
@@ -97,10 +102,18 @@ void MenuMap::PageDown() {
 	_page += 15;
 }
 
-void MenuMap::update(DyvirFight& dyvir) {
+void MenuMap::update(DyvirFight& dyvir, bool check) {
 
+
+	_checkPoint = check;
 	for (int i = 0; i < _inventoryList.size(); i++) {
 		_inventoryList[i].setString(dyvir.getAbilityInvName(i + _page));
+	}
+	if (!_checkPoint) {
+		_menu[sizeOfMenu - 1].setFillColor(sf::Color::Transparent);
+	}
+	else {
+		_menu[sizeOfMenu - 1].setFillColor(sf::Color::White);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
@@ -224,6 +237,7 @@ void MenuMap::changeMenu() {
 		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		break;
 	}
+
 }
 
 void MenuMap::MoveUp() {
@@ -280,7 +294,13 @@ void MenuMap::MoveDown() {
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		}
 	}
-	else if (_selectedItemIndex + 1 < sizeOfMenu) {
+	else if ((_selectedItemIndex + 1 < sizeOfMenu-1)&&!_checkPoint) {
+		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
+		_selectedItemIndex++;
+		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
+		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
+	}
+	else if (_selectedItemIndex + 1 < sizeOfMenu && _checkPoint) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex++;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
