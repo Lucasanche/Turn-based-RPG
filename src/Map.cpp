@@ -33,7 +33,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 	switch (_option) {
 	case 0:
 		if (DyvirMap.update()) {
-			_option = 3;
+			_option = 0;
 		}
 		for (int i = 0; i < map.size(); i++) {
 			for (int j = 0; j < map[i].size(); j++) {
@@ -46,6 +46,9 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 							_option = 2;
 							fight.setBoss(dyvir.getWins());
 							window.clear();
+						}
+						else if (map[i][j].x == 2) {
+							_option = 6;
 						}
 						iaux = i;
 						jaux = j;
@@ -76,6 +79,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		fight.update(dyvir, window, _clock, true);
 		if (_clock.getElapsedTime().asSeconds() > 3) {
 			if (!fight.getEnemyIsAlive()) {
+				//TODO: debe tomar la cantidad de wins para cambiar el tile especial
 				map[iaux][jaux].x = 9;
 				map[iaux][jaux].y = 9;
 				x = 9;
@@ -122,7 +126,17 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		}
 		break;
 	case 5:
-		menuMap.update(dyvir);
+		menuMap.update(dyvir, false);
+		window.draw(menuMap);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+			_option = 0;
+			window.setView(_view);
+			//_view.setSize(window.getSize().x, window.getSize().y);
+		}
+		break;
+	case 6:
+		window.setView(window.getDefaultView());
+		menuMap.update(dyvir, true);
 		window.draw(menuMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			_option = 0;
