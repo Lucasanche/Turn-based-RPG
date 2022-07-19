@@ -30,10 +30,13 @@ public:
 	std::string setAbilityEquiped(int i, int ability);
 	void setFightSprite();
 
+	bool craftAbility(std::string, std::string, int, int);
 	void update(bool, int) override;
 	void Die() override;
 	void Win(int enemyXP);
 	std::string increaseXP(int XP);
+	void levelUp(int level);
+	void restoreLife();
 	
 };
 

@@ -49,7 +49,6 @@ int main() {
 	int option = 0;
 	int optionFight = 0;
 	int win = 0;
-	system("pause");
 	while (window.isOpen()) {
 		setlocale(LC_CTYPE, "Spanish");
 		while (window.pollEvent(event)) {

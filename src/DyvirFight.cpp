@@ -4,9 +4,9 @@
 
 DyvirFight::DyvirFight() : _abilityInventory(3) {
 	//TODO: Implementar leveo, subida de stats, etc.  DEJAR!!!!!!!!!!!!!!!!!!!!!!!!!
-	_abilityEquipment[0] = _abilityFactory.createFireball();
-	_abilityEquipment[1] = _abilityFactory.createWindBlow();
-	_abilityEquipment[2] = _abilityFactory.createHotVampire();
+	_abilityInventory[0] = _abilityFactory.createFireball();
+	_abilityInventory[1] = _abilityFactory.createWindBlow();
+	_abilityInventory[2] = _abilityFactory.createHotVampire();
 	
 	_level = 1;
 	_XP = 0;
@@ -180,10 +180,6 @@ std::string DyvirFight::getInventoryElementName(int i) {
 		return "Empty";
 	}
 	else return _abilityInventory[i].getName();
-}
-
-void DyvirFight::setAbilityEquiped(Ability& ability, int i) {
-	ability = _ability[i];
 }
 
 bool DyvirFight::craftAbility(std::string ab1, std::string ab2, int indexAb1, int indexAb2) {
