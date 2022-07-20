@@ -7,7 +7,6 @@ AbilityFactory::AbilityFactory() {
 }
 
 abilityName	AbilityFactory::craftAbility(std::string ab1, std::string ab2) {
-	//TODO: ver "TO DO" de createAbility en AbilityFactory
 	if (ab1 == "Fireball" || ab2 == "Fireball") {
 		if (ab1 == "WindBlow" || ab2 == "WindBlow") {
 			return FireTornado;

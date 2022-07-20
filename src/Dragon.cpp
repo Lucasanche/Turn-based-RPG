@@ -9,7 +9,7 @@ Dragon::Dragon() : _negativeStates(7, false), _positiveStates(12, false) {
 	_physicalDamagebase = 10;
 }
 
-void Dragon::setAbility(int abilityNumber, abilityName abName) {
+void Dragon::setAbilityFromInventory(int abilityNumber, abilityName abName) {
 	_ability[abilityNumber] = _abilityFactory.createAbility(abName);
 }
 
