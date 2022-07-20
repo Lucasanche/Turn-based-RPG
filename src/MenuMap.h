@@ -3,6 +3,8 @@
 
 #include "Cursor.h"
 #include "DyvirFight.h"
+#include "SaveGame.h"
+#include "DyvirMap.h"
 
 
 class MenuMap : public sf::Drawable
@@ -13,9 +15,11 @@ private:
 		MainMenu = 0,
 		AbilityChange,
 		Craft,
-		Craft2
+		Craft2,
+		Save
 	};
 	int _page;
+	SaveGame _save;
 	int _abilitySelect;
 	bool _flag, _flagSubmenu;
 	int _optionAbility;
@@ -27,6 +31,7 @@ private:
 	sf::Font _font;
 	sf::Text* _menu;
 	sf::Text* _names;
+	sf::Text* _slots;
 	std::vector <sf::Text> _inventoryList;
 	Cursor _cursor;
 	sf::Sprite _backMenu;
@@ -44,10 +49,11 @@ public:
 	void setOption(int option);
 	void PageUp();
 	void PageDown();
-	void update(DyvirFight& dyvir, bool);
+	void update(DyvirFight& dyvir, bool, DyvirMap&);
 	int GetPressedItem() { return _selectedItemIndex; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void changeMenu();
+	void ResetColor();
 	~MenuMap();
 };
 

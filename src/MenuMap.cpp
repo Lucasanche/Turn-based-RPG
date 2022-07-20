@@ -9,6 +9,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 	_page = 0;
 	_menu = new sf::Text[sizeOfMenu];
 	_names = new sf::Text[sizeOfMenu];
+	_slots = new sf::Text[3];
 	_checkPoint = false;
 	_flag = false;
 	_flagSubmenu = false;
@@ -25,7 +26,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 	_posIniMenu = height / 2 - _backMenu.getGlobalBounds().height + 25;
 
 	_posMaxMenu = 120;
-	// Setea el largo del relleno del HP
+
 	for (int i = 0; i < sizeOfMenu; i++) {
 		_menu[i].setCharacterSize(25);
 		_menu[i].setFont(_font);
@@ -35,39 +36,40 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 		_names[i].setPosition(35, _posIniMenu + (_posMaxMenu * ((i * 2) + 1) / 7));
 	}
 
+	for (int i = 0; i < 3; i++) {
+		_slots[i].setFillColor(sf::Color::White);
+		_slots[i].setPosition(250, _posIniMenu + 30*i);
+		_slots[i].setCharacterSize(25);
+		_slots[i].setFont(_font);
+	}
+
 	_menu[0].setFillColor(sf::Color::Red);
 	_menu[0].setString("Habilidad 1");
-	//_menu[0].setPosition({ 35, _posIniMenu });
-
 
 	_names[0].setFillColor(sf::Color::White);
 	_names[0].setString(dyvir.getAbility(0).getName());
-	//_names[0].setPosition(35, _posIniMenu + (_posMaxMenu * 1 / 6));
 
 	_menu[1].setFillColor(sf::Color::White);
 	_menu[1].setString("Habilidad 2");
-	//_menu[1].setPosition(35, _posIniMenu + (_posMaxMenu * 2 / 6));
 
 	_names[1].setFillColor(sf::Color::White);
 	_names[1].setString(dyvir.getAbility(1).getName());
-	//_names[1].setPosition(35, _posIniMenu + (_posMaxMenu * 3 / 6));
 
 	_menu[2].setFillColor(sf::Color::White);
 	_menu[2].setString("Habilidad 3");
-	//_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 4 / 6));
 
 	_names[2].setFillColor(sf::Color::White);
 	_names[2].setString(dyvir.getAbility(2).getName());
-	//_names[2].setPosition(35, _posIniMenu + (_posMaxMenu * 5 / 6));
 
 	_menu[3].setFillColor(sf::Color::White);
 	_menu[3].setString("Craftear");
-	//_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 4 / 6));
 
 	_menu[4].setFillColor(sf::Color::White);
 	_menu[4].setString("Guardar");
 
-
+	_slots[0].setString("Slot 1");
+	_slots[1].setString("Slot 2");
+	_slots[2].setString("Slot 3");
 
 	int pos = 0;
 	int aux = 0;
@@ -103,10 +105,13 @@ void MenuMap::PageDown() {
 	_page += 15;
 }
 
-void MenuMap::update(DyvirFight& dyvir, bool check) {
-
+void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
+	//TODO: texto descriptivo de habilidades y confirmación de crafteo, confirmación de guardado de partida
 
 	_checkPoint = check;
+	if (_checkPoint) {
+		dyvir.restoreLife();
+	}
 	for (int i = 0; i < _inventoryList.size(); i++) {
 		_inventoryList[i].setString(dyvir.getInventoryElementName(i + _page));
 	}
@@ -128,6 +133,10 @@ void MenuMap::update(DyvirFight& dyvir, bool check) {
 			_flag = false;
 		}
 	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+		_menuOption = MenuOption::MainMenu;
+	}
+
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
 		if (_flag) {
 			switch (_menuOption) {
@@ -149,7 +158,7 @@ void MenuMap::update(DyvirFight& dyvir, bool check) {
 					_menuOption = MenuOption::Craft;
 					break;
 				case 4:
-					_optionMenu = 4;
+					_menuOption = MenuOption::Save;
 					break;
 				}
 				this->changeMenu();
@@ -157,6 +166,8 @@ void MenuMap::update(DyvirFight& dyvir, bool check) {
 			case MenuOption::AbilityChange:
 				_names[_optionAbility].setString(dyvir.setAbilityEquipedElement(_optionAbility, _selectedItemIndex + _page));
 				_menuOption = MenuOption::MainMenu;
+				this->ResetColor();
+				_selectedItemIndex = 0;
 
 				break;
 			case MenuOption::Craft:
@@ -167,17 +178,29 @@ void MenuMap::update(DyvirFight& dyvir, bool check) {
 			case MenuOption::Craft2:
 				if (_selectedItemIndex == _selectedItemCraft && _page == _pageAux ) {
 					_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Green);
+					_selectedItemIndex = 0;
 					break;
 				}
 				else if (_inventoryList[_selectedItemIndex].getString() == "Empty") {
+					_selectedItemIndex = 0;
 					break;
 				}
 				else {
 					dyvir.craftAbility(_inventoryList[_selectedItemIndex+_page].getString(), _inventoryList[_selectedItemCraft + _pageAux].getString(), _selectedItemIndex + _page, _selectedItemCraft + _pageAux);
+					this->ResetColor();
 					_menuOption = MenuOption::MainMenu;
+					_selectedItemIndex = 0;
 					this->changeMenu();
 					break;
 				}
+			case MenuOption::Save:
+				_save.saveGame(dyvirMap, dyvir, _selectedItemIndex);
+				this->ResetColor();
+				_menuOption = MenuOption::MainMenu;
+				_selectedItemIndex = 0;
+				this->changeMenu();
+				break;
+
 			}
 			_flag = false;
 		}
@@ -237,6 +260,32 @@ void MenuMap::changeMenu() {
 		}
 		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		break;
+	case MenuOption::Save:
+		_selectedItemIndex = _selectedItemAux;
+		_selectedItemIndex = 0;
+		_slots[_selectedItemAux].setFillColor(sf::Color::Red);
+		_cursor.setPosition({ _slots[_selectedItemAux].getPosition().x + 10 + _slots[_selectedItemAux].getGlobalBounds().width, _slots[_selectedItemAux].getPosition().y + _slots[_selectedItemAux].getGlobalBounds().height / 2 });
+		break;
+	}
+
+}
+
+void MenuMap::ResetColor() {
+
+	if (_menuOption == MenuOption::Save) {
+		for (int i = 0; i < 3; i++) {
+			_slots[i].setFillColor(sf::Color::White);
+		}
+	}
+	else if (_menuOption == MenuOption::Craft2) {
+		for (int i = 0; i < _inventoryList.size(); i++) {
+			_inventoryList[i].setFillColor(sf::Color::White);
+		}
+	}		
+	else if (_menuOption == MenuOption::MainMenu) {
+		for (int i = 0; i < sizeOfMenu; i++) {
+			_menu[i].setFillColor(sf::Color::White);
+		}
 	}
 
 }
@@ -256,7 +305,7 @@ void MenuMap::MoveUp() {
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		}
 	}
-	else if (_menuOption != MenuOption::MainMenu) {
+	else if (_menuOption != MenuOption::MainMenu && _menuOption != MenuOption::Save) {
 		if (_selectedItemIndex - 1 >= 0) {
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::White);
 			_selectedItemIndex--;
@@ -264,11 +313,17 @@ void MenuMap::MoveUp() {
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		}
 	}
-	else if (_selectedItemIndex - 1 >= 0) {
+	else if (_selectedItemIndex - 1 >= 0 && _menuOption != MenuOption::Save) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex--;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
+	}
+	else if (_selectedItemIndex - 1 >= 0 && _menuOption == MenuOption::Save) {
+		_slots[_selectedItemIndex].setFillColor(sf::Color::White);
+		_selectedItemIndex--;
+		_slots[_selectedItemIndex].setFillColor(sf::Color::Red);
+		_cursor.setPosition({ _slots[_selectedItemIndex].getPosition().x + 10 + _slots[_selectedItemIndex].getGlobalBounds().width, _slots[_selectedItemIndex].getPosition().y + _slots[_selectedItemIndex].getGlobalBounds().height / 2 });
 	}
 }
 
@@ -287,7 +342,7 @@ void MenuMap::MoveDown() {
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		}
 	}
-	else if (_menuOption != MenuOption::MainMenu) {
+	else if (_menuOption != MenuOption::MainMenu && _menuOption != MenuOption::Save) {
 		if (_selectedItemIndex + 1 < 15) {
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::White);
 			_selectedItemIndex++;
@@ -295,17 +350,25 @@ void MenuMap::MoveDown() {
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		}
 	}
-	else if ((_selectedItemIndex + 1 < sizeOfMenu-1)&&!_checkPoint) {
+	else if ((_selectedItemIndex + 1 < sizeOfMenu-1)&&!_checkPoint&& _menuOption != MenuOption::Save) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex++;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
 	}
-	else if (_selectedItemIndex + 1 < sizeOfMenu && _checkPoint) {
+	else if (_selectedItemIndex + 1 < sizeOfMenu && _checkPoint && _menuOption != MenuOption::Save) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex++;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
+	}
+	else if (_menuOption == MenuOption::Save) {
+		if (_selectedItemIndex + 1 < 3) {
+			_slots[_selectedItemIndex].setFillColor(sf::Color::White);
+			_selectedItemIndex++;
+			_slots[_selectedItemIndex].setFillColor(sf::Color::Red);
+			_cursor.setPosition({ _slots[_selectedItemIndex].getPosition().x + 10 + _slots[_selectedItemIndex].getGlobalBounds().width, _slots[_selectedItemIndex].getPosition().y + _slots[_selectedItemIndex].getGlobalBounds().height / 2 });
+	}
 	}
 }
 
@@ -318,9 +381,14 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 		target.draw(_names[i], states);
 	}
 	target.draw(_cursor, states);
-	if (_menuOption != MenuOption::MainMenu) {
+	if ((_menuOption != MenuOption::MainMenu)&&(_menuOption != MenuOption::Save)) {
 		for (int i = 0; i < _inventoryList.size(); i++) {
 			target.draw(_inventoryList[i], states);
+		}
+	}
+	else if (_menuOption == MenuOption::Save) {
+		for (int i = 0; i < 3; i++) {
+			target.draw(_slots[i], states);
 		}
 	}
 }
@@ -328,5 +396,6 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 MenuMap::~MenuMap() {
 	delete[] _menu;
 	delete[] _names;
+	delete[] _slots;
 	std::cout << "se murióx2" << std::endl << std::endl;
 }
