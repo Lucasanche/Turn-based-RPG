@@ -175,6 +175,10 @@ void MenuFight::setTextBoxString(turns option, int dmg) {
 	}
 }
 
+void MenuFight::setTextBoxString(turns option, int dmg, std::string string) {
+
+}
+
 void MenuFight::MoveUp() {
 	if (_selectedItemIndex - 1 >= 0) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);

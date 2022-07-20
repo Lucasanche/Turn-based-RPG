@@ -10,7 +10,6 @@ class Dragon : public sf::Drawable
 {
 protected:
 	///AbilityMagic resources
-
 	std::vector<bool>_negativeStates;
 	std::vector<bool>_positiveStates;
 	unsigned short  _burnedCount,
@@ -149,8 +148,8 @@ public:
 	//Functions
 	void useAbility(Dragon& dragon, int i);
 	void clearStates() { std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
-	void checkNegativeStates(turns& turn);
-	void checkPositiveStates();
+	std::string checkNegativeStates(turns& turn);
+	std::string checkPositiveStates();
 	int	doDamage(int);
 	void resetStats();
 	int damageTaken(int);

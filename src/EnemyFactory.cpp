@@ -9,8 +9,8 @@ Enemy* EnemyFactory::getBoss(int wins) {
 			std::cout << "no se pudo crear al enemigo" << std::endl;
 		}
 		_enemy->setStats(3500, 1000, 100, 100, 50, 50, Fire, 100);
-		_enemy->setAbility(0, SabakuKyu);
-		_enemy->setAbility(1, Earthquake);
+		_enemy->setAbilityFromInventory(0, SabakuKyu);
+		_enemy->setAbilityFromInventory(1, Earthquake);
 		break;
 	case 1:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/boss2 500x310.png", 500, 310, 12, 0.8, 1); //Water
@@ -18,8 +18,8 @@ Enemy* EnemyFactory::getBoss(int wins) {
 			std::cout << "no se pudo crear al enemigo" << std::endl;
 		}
 		_enemy->setStats(5000, 1250, 150, 150, 120, 100, Air, 300);
-		_enemy->setAbility(0, PoisonGas);
-		_enemy->setAbility(1, Tsunami);
+		_enemy->setAbilityFromInventory(0, PoisonGas);
+		_enemy->setAbilityFromInventory(1, Tsunami);
 		break;
 	case 2:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/boss3 582x268-19-2.png", 582, 268, 19, 1, 2); //Fire
@@ -27,14 +27,14 @@ Enemy* EnemyFactory::getBoss(int wins) {
 			std::cout << "no se pudo crear al enemigo" << std::endl;
 		}
 		_enemy->setStats(6500, 1250, 200, 200, 150, 150, Water, 450);
-		_enemy->setAbility(0, Inferno);
-		_enemy->setAbility(1, HotVampire);
+		_enemy->setAbilityFromInventory(0, Inferno);
+		_enemy->setAbilityFromInventory(1, HotVampire);
 		break;
 	case 3:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/boss4 680x556-11.png", 680, 556, 11, 0.45, 1); 
 		_enemy->setStats(8000, 2000, 300, 400, 200, 300, Water, 800);
-		_enemy->setAbility(0, MagmaWave);
-		_enemy->setAbility(1, FireTornado);
+		_enemy->setAbilityFromInventory(0, MagmaWave);
+		_enemy->setAbilityFromInventory(1, FireTornado);
 		break;
 	case 4:///TODO: HACER A KLOSTER. -> Hermano de lucas? | 3 habilidades? 
 		_enemy = new Enemy("./Textures/Characters/spritesheets/KLOSTER", 174, 103, 4, 1, 1);
