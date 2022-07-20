@@ -17,6 +17,7 @@ protected:
 		_reducedPDCount,
 		_reducedMRCount,
 		_reducedAttCount,
+		_reducedMDCount,
 		_healingCount,
 		_increasedAttCount,
 		_increasedPDCount,
@@ -140,6 +141,7 @@ public:
 	void setReducePD() { _negativeStates[reducePD] = true; }
 	void setReduceMR() { _negativeStates[reduceMR] = true; }
 	void setReduceAtt() { _negativeStates[reduceAtt] = true; }
+	void setReduceMD() { _negativeStates[reduceMD] = true; }
 
 	//Virtual
 	virtual void Die() = 0;

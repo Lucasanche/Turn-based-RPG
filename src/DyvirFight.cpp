@@ -7,7 +7,6 @@ DyvirFight::DyvirFight() : _abilityInventory(3) {
 	_abilityInventory[1] = _abilityFactory.createWindBlow();
 	_abilityInventory[2] = _abilityFactory.createHotVampire();
 	
-	//setStats(2000, 60, 150, 50, 50, 50, _XP);
 	_level = 1;
 	_XP = 0;
 	_HPbase = 2000;

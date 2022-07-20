@@ -23,7 +23,7 @@ abilityName	AbilityFactory::craftAbility(std::string ab1, std::string ab2) {
 	}
 	if (ab1 == "Bubble" || ab2 == "Bubble") {
 		if (ab1 == "Earth Armor" || ab2 == "Earth Armor") {
-			//this->createEarthquake();
+			return Earthquake;
 		}
 		if (ab1 == "WindBlow" || ab2 == "WindBlow") {
 			return Swirl;
@@ -44,7 +44,7 @@ abilityName	AbilityFactory::craftAbility(std::string ab1, std::string ab2) {
 	}
 	if (ab1 == "Barrier" || ab2 == "Barrier") {
 		if (ab1 == "Earth Armor" || ab2 == "Earth Armor") {
-			//return this->createEarthBarrier();
+			return EarthBarrier;
 		}
 		if (ab1 == "WindBlow" || ab2 == "WindBlow") {
 			 return EarthArmor;
@@ -56,7 +56,6 @@ abilityName	AbilityFactory::craftAbility(std::string ab1, std::string ab2) {
 
 
 Ability AbilityFactory::createAbility(abilityName abName) {
-	//TODO: implementar métodos correspondientes y descomentar (estos métodos también sirven para el método combineAbility) - Lucas
 	switch (abName) {
 	case Fireball:
 		return this->createFireball();
@@ -104,7 +103,7 @@ Ability AbilityFactory::createAbility(abilityName abName) {
 		return this->createHotVampire();
 		break;
 	case Earthquake:
-		//return this->createEarthquake();
+		return this->createEarthquake();
 		break;
 	case Geiser:
 		return this->createGeiser();
@@ -143,11 +142,12 @@ Ability AbilityFactory::createTest() {
 	return _ability;
 }
 
-//ABILITY SUPPORT
 Ability AbilityFactory::createEarthArmor() {
 	_ability.reset();
 	_ability.setName("Earth Armor");
+	_ability.setDescription("Aumenta la defensa fisica");
 	_ability.setMpCost(5);
+	_ability.setIncreasePD();
 	_ability.setElements(Earth, Neutral);
 	return _ability;
 }
@@ -158,7 +158,9 @@ Ability AbilityFactory::createBarrier()
 {
 	_ability.reset();
 	_ability.setName("Barrier");
+	_ability.setDescription("Aumenta la defensa magica");
 	_ability.setMpCost(5);
+	_ability.setIncreaseMD();
 	_ability.setElements(Neutral, Neutral);
 	return _ability;
 }
@@ -167,18 +169,20 @@ Ability AbilityFactory::createHeal()
 {
 	_ability.reset();
 	_ability.setName("Heal");
-	_ability.setMpCost(10);
+	_ability.setDescription("Cura una proporcion de HP");
+	_ability.setMpCost(5);
+	_ability.setHeal();
 	_ability.setElements(Neutral, Neutral);
 	return _ability;
 }
 
 
-//ABILITY MAGIC
 Ability AbilityFactory::createFireball()
 {
 	_ability.reset();
 	_ability.setName("Fireball");
-	_ability.setMagicDamage(15);
+	_ability.setDescription("Lanza una bola de fuego\n");
+	_ability.setMagicDamage(200);
 	_ability.setMpCost(5);
 	_ability.setElements(Fire, Neutral);
 	return _ability;
@@ -188,7 +192,8 @@ Ability AbilityFactory::createBubble()
 {
 	_ability.reset();
 	_ability.setName("Bubble");
-	_ability.setMagicDamage(15);
+	_ability.setDescription("Escupe burbujas de agua\n");
+	_ability.setMagicDamage(200);
 	_ability.setMpCost(5);
 	_ability.setElements(Water, Neutral);
 	return _ability;
@@ -198,22 +203,22 @@ Ability AbilityFactory::createWindBlow()
 {
 	_ability.reset();
 	_ability.setName("WindBlow");
-	_ability.setMagicDamage(15);
+	_ability.setDescription("Lanza una rafaga de viento cortante\n");
+	_ability.setMagicDamage(200);
 	_ability.setMpCost(5);
 	_ability.setElements(Air, Neutral);
 	return _ability;
 }
 
-
-///HABILIDADES COMBINADAS MAGIC - FALTA CRAFTEO
 Ability AbilityFactory::createTsunami()
 {
 	_ability.reset();
 	_ability.setName("Tsunami");
-	_ability.setDescription("Duplica el daño de la habilidad hacia enemigos de fuego.");
-	_ability.setMagicDamage(25);
+	_ability.setDescription("Crea una ola gigante que reduce el MD del enemigo");
+	_ability.setMagicDamage(800);
+	_ability.setReduceMD();
 	_ability.setMpCost(20);
-	_ability.setElements(Water, Water);
+	_ability.setElements(Water, Neutral);
 	return _ability;
 }
 
@@ -221,31 +226,23 @@ Ability AbilityFactory::createFireTornado()
 {
 	_ability.reset();
 	_ability.setName("Fire Tornado");
-	_ability.setDescription("Hace daño de fuego y aire.");
-	_ability.setMagicDamage(25);
+	_ability.setDescription("Crea un tornado de fuego");
+	_ability.setMagicDamage(800);
 	_ability.setMpCost(20);
 	_ability.setElements(Fire, Air);
 	return _ability;
 }
 
-Ability AbilityFactory::createHotVampire()
-{
-	_ability.reset();
-	_ability.setName("Hot Vampire");
-	_ability.setDescription("Cura el 30% del daño infligido.");
-	_ability.setMagicDamage(25);
-	_ability.setMpCost(25);
-	_ability.setElements(Fire, Neutral);
-	return _ability;
-}
 
-Ability AbilityFactory::createEarthQuake()
+
+Ability AbilityFactory::createEarthquake()
 {
 	_ability.reset();
 	_ability.setName("Earthquake");
-	_ability.setDescription("Probabilidad de stunear al enemigo.");
-	_ability.setMagicDamage(25);
+	_ability.setDescription("Genera un terremoto que puede stunear al enemigo");
+	_ability.setMagicDamage(800);
 	_ability.setMpCost(20);
+	_ability.setStun();
 	_ability.setElements(Water, Earth);
 	return _ability;
 }
@@ -254,8 +251,8 @@ Ability AbilityFactory::createGeiser()
 {
 	_ability.reset();
 	_ability.setName("Geiser");
-	_ability.setDescription("Reduce la defensa mágica del enemigo.");
-	_ability.setMagicDamage(25);
+	_ability.setDescription("Dispara un chorro de vapor caliente a gran velocidad que reduce el MR del enemigo");
+	_ability.setMagicDamage(800);
 	_ability.setMpCost(20);
 	_ability.setElements(Water, Fire);
 	return _ability;
@@ -265,9 +262,10 @@ Ability AbilityFactory::createPoisonGas()
 {
 	_ability.reset();
 	_ability.setName("Poison Gas");
-	_ability.setDescription("Envenena al enemigo hasta el final de la pelea.");
-	_ability.setMagicDamage(10);
+	_ability.setDescription("Crea una nube de gas que envenena al enemigo");
+	_ability.setMagicDamage(400);
 	_ability.setMpCost(25);
+	_ability.setPoison();
 	_ability.setElements(Air, Neutral);
 	return _ability;
 }
@@ -276,9 +274,10 @@ Ability AbilityFactory::createMagmaWave()
 {
 	_ability.reset();
 	_ability.setName("Magma Wave");
-	_ability.setDescription("Reduce la defensa física.");
-	_ability.setMagicDamage(25);
+	_ability.setDescription("Invoca una ola de magma que reduce el PD del enemigo");
+	_ability.setMagicDamage(800);
 	_ability.setMpCost(20);
+	_ability.setReducePD();
 	_ability.setElements(Fire, Earth);
 	return _ability;
 }
@@ -287,9 +286,9 @@ Ability AbilityFactory::createInferno()
 {
 	_ability.reset();
 	_ability.setName("Inferno");
-	_ability.setDescription("Quema al enemigo por 3 turnos.");
-	_ability.setMagicDamage(30);
-	_ability.setMpCost(15);
+	_ability.setDescription("Ataca con llamas infernales que se mantienen encendidas durante 3 turnos");
+	_ability.setMagicDamage(1200);
+	_ability.setMpCost(30);
 	_ability.setElements(Fire, Neutral);
 	return _ability;
 }
@@ -298,9 +297,10 @@ Ability AbilityFactory::createSwirl()
 {
 	_ability.reset();
 	_ability.setName("Swirl");
-	_ability.setDescription("Reduce un 20% el siguiente ataque del enemigo.");
-	_ability.setMagicDamage(25);
+	_ability.setDescription("Crea un remolino de agua que reduce el ataque del enemigo");
+	_ability.setMagicDamage(1000);
 	_ability.setMpCost(30);
+	_ability.setReduceAtt();
 	_ability.setElements(Water, Air);
 	return _ability;
 }
@@ -309,23 +309,21 @@ Ability AbilityFactory::createSabakuKyu()
 {
 	_ability.reset();
 	_ability.setName("Sabaku Kyu");
-	_ability.setDescription("Inflige daño verdadero.");
-	_ability.setMagicDamage(25);
+	_ability.setDescription("Encierra a un enemigo en una tumba de arena que ignora cualquier defensa");
+	_ability.setMagicDamage(1000);
 	_ability.setMpCost(30);
+	_ability.setTrueDamage();
 	_ability.setElements(Air, Earth);
 	return _ability;
-}
-
-AbilityFactory::~AbilityFactory()
-{
-	std::cout << "se eliminó abilityFactory \n \n";
 }
 
 Ability AbilityFactory::createRestore()
 {
 	_ability.reset();
 	_ability.setName("Restore");
+	_ability.setDescription("Cura los estados negativos");
 	_ability.setMpCost(15);
+	_ability.setRestore();
 	_ability.setElements(Neutral, Neutral);
 	return _ability;
 }
@@ -334,7 +332,9 @@ Ability AbilityFactory::createCosmicWisdom()
 {
 	_ability.reset();
 	_ability.setName("Cosmic Wisdom");
+	_ability.setDescription("Incrementa el MD");
 	_ability.setMpCost(10);
+	_ability.getIncreaseMD();
 	_ability.setElements(Neutral, Neutral);
 	return _ability;
 }
@@ -344,6 +344,39 @@ Ability AbilityFactory::createDoton()
 	_ability.reset();
 	_ability.setName("Doton");
 	_ability.setMpCost(35);
+	_ability.setIncreaseMR();
+	//TODO: Crear funcion para setear booleano de incremento de resistencia física
+	//_ability.getIncreasePD();
 	_ability.setElements(Earth, Neutral);
 	return _ability;
+}
+//TODO: implementar estas habilidades:
+
+//Ability AbilityFactory::createElementalBarrier(){
+//_ability.setMpCost(10);
+//}
+
+Ability AbilityFactory::createHotVampire() {
+	_ability.reset();
+	_ability.setName("Hot Vampire");
+	_ability.setDescription("Cura el 30% del daño infligido.");
+	_ability.setMagicDamage(800);
+	//TODO: ver implementación de vampireishon
+	_ability.setVampireishon();
+	_ability.setMpCost(25);
+	_ability.setElements(Fire, Neutral);
+	return _ability;
+}
+
+//Ability AbilityFactory::createMirror() {
+//	_ability.reset();
+//	_ability.setName("Mirror");
+//	_ability.setDescription("Devuelve una habilidad o ataque del enemigo");
+//	_ability.setMpCost(20);
+//	_ability.setMirror();
+//	return _ability;
+//}
+
+AbilityFactory::~AbilityFactory() {
+	std::cout << "se eliminó abilityFactory \n \n";
 }

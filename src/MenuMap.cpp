@@ -4,6 +4,7 @@
 
 MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(15) {
 	//TODO: cargar las habilidades del menu en el equipo de Dyvir !!!!!!!!!!!! Giuli
+	//TODO: agregar menu para ver los stats - Lucas
 	sizeOfMenu = 5;
 	_page = 0;
 	_menu = new sf::Text[sizeOfMenu];

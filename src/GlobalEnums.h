@@ -55,6 +55,7 @@ enum positiveStates
 	earthResist,
 	damageMultiplier,
 	trueDamage
+	//TODO: diferenciar bien defensa fisica de daño fisico
 };
 
 enum negativeStates
@@ -66,6 +67,7 @@ enum negativeStates
 	reducePD,
 	reduceMR,
 	reduceAtt,
+	reduceMD
 };
 
 enum turns

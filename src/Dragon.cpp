@@ -2,8 +2,8 @@
 #include "Dragon.h"
 
 
-Dragon::Dragon() : _negativeStates(7, false), _positiveStates(12, false) {
-	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicalDamage = _magicalDamagebase = _physicalDefense = _physicalDefensebase = _magicResist = _magicResistbase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = _increasedAttCount = _increasedPDCount = _increasedMRCount = _increasedMDCount = 1;
+Dragon::Dragon() : _negativeStates(8, false), _positiveStates(12, false) {
+	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicalDamage = _magicalDamagebase = _physicalDefense = _physicalDefensebase = _magicResist = _magicResistbase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = _reducedMDCount = _increasedAttCount = _increasedPDCount = _increasedMRCount = _increasedMDCount = 1;
 	_isAlive = true;
 	_physicalDamage = 10;
 	_physicalDamagebase = 10;
@@ -35,11 +35,12 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 			this->clearStates();
 		}
 		if (_ability[i].getPositiveStates(doton)) {
-			this->setDoton();//aja?
+			this->setDoton();
 		}
 		/*if (_increaseElementDefense) {
 			dragon.setIncreaseElementDefense();
 		}*/
+		//TODO: hacer cálculo para tener en cuenta el MR, PD, etc.
 		float totalDamage = _ability[i].getMagicDamage();
 		if (_positiveStates[damageMultiplier]) {
 			totalDamage *= 2;
@@ -65,12 +66,16 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 		if (_ability[i].getNegativeStates(reduceAtt)) {
 			dragon.setReduceAtt();
 		}
+		if (_ability[i].getNegativeStates(reduceMD)) {
+			dragon.setReduceMD();
+		}
 		if (_ability[i].getElement1() == dragon.getElementWeak()) {
 			totalDamage *= 1.15;
 		}
 		if (_ability[i].getElement2() == dragon.getElementWeak()) {
 			totalDamage *= 1.15;
 		}
+		//TODO: chequear la resistencia a los elementos (solo está hecha la debilidad) 
 		if (!_positiveStates[trueDamage]) {
 			totalDamage *= dragon.getMR();
 		}
@@ -162,8 +167,15 @@ std::string Dragon::checkNegativeStates(turns& turn) {
 			_negativeStates[reduceAtt] = false;
 		}
 	}
+	if (_negativeStates[reduceMD]) {
+		_magicalDamage -= _magicalDamagebase * 0.2;
+		_reducedMDCount++;
+		if (_reducedMDCount == 3) {
+			_reducedMDCount = 0;
+			_negativeStates[reduceMD] = false;
+		}
+	}
 	return string;
-	//Habilidades positivas
 }
 
 std::string Dragon::checkPositiveStates() {

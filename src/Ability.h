@@ -19,7 +19,7 @@ public:
 	Ability();
 	void reset();
 	//Sets()
-	void setName(std::string name) { _name=name; }
+	void setName(std::string name) { _name = name; }
 	void setDescription(sf::String description) { _description.setString(description); }
 	void setMagicDamage(int magicDamage) { _magicDamage = magicDamage; }
 	void setID(int id) { _id = id; }
@@ -48,12 +48,13 @@ public:
 	void setReducePD() { _negativeStates[reducePD] = true; }
 	void setReduceMR() { _negativeStates[reduceMR] = true; }
 	void setReduceAtt() { _negativeStates[reduceAtt] = true; }
+	void setReduceMD() { _negativeStates[reduceMD] = true; }
 
 	//Gets()
 	bool getNegativeStates(int i) { return _negativeStates[i]; }
 	bool getPositiveStates(int i) { return _positiveStates[i]; }
 
-	const std::string getName(){ return _name;}
+	const std::string getName() { return _name; }
 	sf::String getDescription() { return _description.getString(); }
 	int getMagicDamage() { return _magicDamage; }
 	int getID() { return _id; }
@@ -82,6 +83,7 @@ public:
 	bool getReducePD() { return _negativeStates[reducePD]; }
 	bool getReduceMR() { return _negativeStates[reduceMR]; }
 	bool getReduceAtt() { return _negativeStates[reduceAtt]; }
+	bool getReduceMD() { return _negativeStates[reduceMD]; }
 
 	virtual ~Ability() {};
 };

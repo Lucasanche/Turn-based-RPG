@@ -26,7 +26,7 @@ public:
 	Ability createTsunami();
 	Ability createFireTornado();
 	Ability createHotVampire();
-	Ability createEarthQuake();
+	Ability createEarthquake();
 	Ability createGeiser();
 	Ability createPoisonGas();
 	Ability createMagmaWave();

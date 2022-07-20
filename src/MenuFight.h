@@ -17,7 +17,6 @@ private:
 	std::vector<sf::Text> _dragonNames;
 	std::vector<sf::String> _menuStrings;
 	sf::Text _textBox;
-	sf::Text _textBoxAux;
 	Cursor _cursor;
 	sf::Sprite _backMenu;
 	sf::Texture _backMenuTexture;
@@ -61,10 +60,8 @@ public:
 	void setTextBoxString(turns option, int dmg, std::string string);
 	turns update(Dragon& dyvir, Dragon& enemy);
 	int GetPressedItem() { return _selectedItemIndex; }
-	void chargeText(int pos);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	~MenuFight();
-
 };
 
 #endif
