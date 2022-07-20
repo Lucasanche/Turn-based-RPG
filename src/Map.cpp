@@ -126,7 +126,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		}
 		break;
 	case 5:
-		menuMap.update(dyvir, false);
+		menuMap.update(dyvir, false, DyvirMap);
 		window.draw(menuMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			_option = 0;
@@ -136,7 +136,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		break;
 	case 6:
 		window.setView(window.getDefaultView());
-		menuMap.update(dyvir, true);
+		menuMap.update(dyvir, true, DyvirMap);
 		window.draw(menuMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			_option = 0;

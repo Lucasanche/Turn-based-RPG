@@ -8,6 +8,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 	_page = 0;
 	_menu = new sf::Text[sizeOfMenu];
 	_names = new sf::Text[sizeOfMenu];
+	_slots = new sf::Text[3];
 	_checkPoint = false;
 	_flag = false;
 	_flagSubmenu = false;
@@ -66,6 +67,23 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 	_menu[4].setFillColor(sf::Color::White);
 	_menu[4].setString("Guardar");
 
+	_slots[0].setFillColor(sf::Color::White);
+	_slots[0].setString("Slot 1");
+	_slots[0].setPosition(250, _posIniMenu);
+	_slots[1].setFillColor(sf::Color::White);
+	_slots[1].setString("Slot 2");
+	_slots[1].setPosition(250, _posIniMenu + 30);
+	_slots[2].setFillColor(sf::Color::White);
+	_slots[2].setString("Slot 3");
+	_slots[2].setPosition(250, _posIniMenu + 60);
+	_slots[0].setCharacterSize(25);
+	_slots[0].setFont(_font);
+	_slots[1].setCharacterSize(25);
+	_slots[1].setFont(_font);
+	_slots[2].setCharacterSize(25);
+	_slots[2].setFont(_font);
+
+
 
 
 	int pos = 0;
@@ -102,10 +120,13 @@ void MenuMap::PageDown() {
 	_page += 15;
 }
 
-void MenuMap::update(DyvirFight& dyvir, bool check) {
+void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 
 
 	_checkPoint = check;
+	if (_checkPoint) {
+		dyvir.restoreLife();
+	}
 	for (int i = 0; i < _inventoryList.size(); i++) {
 		_inventoryList[i].setString(dyvir.getInventoryElementName(i + _page));
 	}
@@ -148,7 +169,7 @@ void MenuMap::update(DyvirFight& dyvir, bool check) {
 					_menuOption = MenuOption::Craft;
 					break;
 				case 4:
-					_optionMenu = 4;
+					_menuOption = MenuOption::Save;
 					break;
 				}
 				this->changeMenu();
@@ -177,6 +198,12 @@ void MenuMap::update(DyvirFight& dyvir, bool check) {
 					this->changeMenu();
 					break;
 				}
+			case MenuOption::Save:
+				_save.saveGame(dyvirMap, dyvir, _selectedItemIndex);
+				_menuOption = MenuOption::MainMenu;
+				this->changeMenu();
+				break;
+
 			}
 			_flag = false;
 		}
@@ -236,6 +263,12 @@ void MenuMap::changeMenu() {
 		}
 		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		break;
+	case MenuOption::Save:
+		_selectedItemIndex = _selectedItemAux;
+		_selectedItemIndex = 0;
+		_slots[_selectedItemAux].setFillColor(sf::Color::Red);
+		_cursor.setPosition({ _slots[_selectedItemAux].getPosition().x + 10 + _slots[_selectedItemAux].getGlobalBounds().width, _slots[_selectedItemAux].getPosition().y + _slots[_selectedItemAux].getGlobalBounds().height / 2 });
+		break;
 	}
 
 }
@@ -255,7 +288,7 @@ void MenuMap::MoveUp() {
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		}
 	}
-	else if (_menuOption != MenuOption::MainMenu) {
+	else if (_menuOption != MenuOption::MainMenu && _menuOption != MenuOption::Save) {
 		if (_selectedItemIndex - 1 >= 0) {
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::White);
 			_selectedItemIndex--;
@@ -263,11 +296,17 @@ void MenuMap::MoveUp() {
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		}
 	}
-	else if (_selectedItemIndex - 1 >= 0) {
+	else if (_selectedItemIndex - 1 >= 0 && _menuOption != MenuOption::Save) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex--;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
+	}
+	else if (_selectedItemIndex - 1 >= 0 && _menuOption == MenuOption::Save) {
+		_slots[_selectedItemIndex].setFillColor(sf::Color::White);
+		_selectedItemIndex--;
+		_slots[_selectedItemIndex].setFillColor(sf::Color::Red);
+		_cursor.setPosition({ _slots[_selectedItemIndex].getPosition().x + 10 + _slots[_selectedItemIndex].getGlobalBounds().width, _slots[_selectedItemIndex].getPosition().y + _slots[_selectedItemIndex].getGlobalBounds().height / 2 });
 	}
 }
 
@@ -286,7 +325,7 @@ void MenuMap::MoveDown() {
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		}
 	}
-	else if (_menuOption != MenuOption::MainMenu) {
+	else if (_menuOption != MenuOption::MainMenu && _menuOption != MenuOption::Save) {
 		if (_selectedItemIndex + 1 < 15) {
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::White);
 			_selectedItemIndex++;
@@ -294,17 +333,25 @@ void MenuMap::MoveDown() {
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		}
 	}
-	else if ((_selectedItemIndex + 1 < sizeOfMenu-1)&&!_checkPoint) {
+	else if ((_selectedItemIndex + 1 < sizeOfMenu-1)&&!_checkPoint&& _menuOption != MenuOption::Save) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex++;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
 	}
-	else if (_selectedItemIndex + 1 < sizeOfMenu && _checkPoint) {
+	else if (_selectedItemIndex + 1 < sizeOfMenu && _checkPoint && _menuOption != MenuOption::Save) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex++;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
+	}
+	else if (_menuOption == MenuOption::Save) {
+		if (_selectedItemIndex + 1 < 3) {
+			_slots[_selectedItemIndex].setFillColor(sf::Color::White);
+			_selectedItemIndex++;
+			_slots[_selectedItemIndex].setFillColor(sf::Color::Red);
+			_cursor.setPosition({ _slots[_selectedItemIndex].getPosition().x + 10 + _slots[_selectedItemIndex].getGlobalBounds().width, _slots[_selectedItemIndex].getPosition().y + _slots[_selectedItemIndex].getGlobalBounds().height / 2 });
+	}
 	}
 }
 
@@ -317,9 +364,14 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 		target.draw(_names[i], states);
 	}
 	target.draw(_cursor, states);
-	if (_menuOption != MenuOption::MainMenu) {
+	if ((_menuOption != MenuOption::MainMenu)&&(_menuOption != MenuOption::Save)) {
 		for (int i = 0; i < _inventoryList.size(); i++) {
 			target.draw(_inventoryList[i], states);
+		}
+	}
+	else if (_menuOption == MenuOption::Save) {
+		for (int i = 0; i < 3; i++) {
+			target.draw(_slots[i], states);
 		}
 	}
 }
