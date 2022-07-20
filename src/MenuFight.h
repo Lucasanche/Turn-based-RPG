@@ -40,12 +40,16 @@ private:
 	sf::Sprite _spriteHPenemy;
 	sf::Sprite _spriteHPFillenemy;
 	sf::Sprite _textHPenemy;
+	//States
+	sf::Texture _statesDyvir;
+	sf::Texture _statesEnemy;
+	sf::Sprite _statesDyvir;
+	sf::Sprite _statesEnemy;
 	int _statusHPenemy;
 	int _lenghtHPenemy;
 	sf::Vector2i spriteSize;
 	sf::Vector2f positionHPdyvir;
 	sf::Vector2f positionHPenemy;
-
 	float _posIniMenu;
 	int _posMaxMenu;
 public:
@@ -53,6 +57,8 @@ public:
 	void updateSpriteHPdyvir(int, int);
 	void updateSpriteHPenemy(int, int);
 	void updateSpriteMPdyvir(int, int);
+	void updateSpriteStatesDyvir(Dragon& dyvir);
+	void updateSpriteStatesEnemy(Dragon& enemy);
 	void MoveUp();
 	void MoveDown();
 	void setOption(turns option);
