@@ -116,7 +116,7 @@ public:
 	void setWaterResist(bool waterResist) { _waterResist = waterResist; }
 	void setEarthResist(bool earthResist) { _earthResist = earthResist; }
 	void setAirResist(bool airResist) { _airResist = airResist; }
-	void setAbility(int abilityNumber, abilityName abName);
+	void setAbilityFromInventory(int abilityNumber, abilityName abName);
 	void setXP(int XP) { _XP = XP; }
 
 	//Estados positivos

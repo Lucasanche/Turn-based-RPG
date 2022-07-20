@@ -178,13 +178,19 @@ void DyvirFight::restoreLife() {
 }
 
 
-std::string DyvirFight::setAbilityEquiped(int i, int ability) {
+std::string DyvirFight::setAbilityEquipedElement(int i, int ability) {
 	{
 		if (ability < _abilityInventory.size()) {
 			_ability[i] = _abilityInventory[ability];
 			return _ability[i].getName();
 		}
 		else return _ability[i].getName();
+	}
+}
+
+void DyvirFight::setAbilityEquiped(Ability ability[]) {
+	for (int i = 0; i < 3; i++) {
+		_ability[i] = ability[i];
 	}
 }
 

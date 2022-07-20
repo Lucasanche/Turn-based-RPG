@@ -17,9 +17,9 @@ private:
 	int _physicalDefensebase;
 	int _magicResistbase;
 	sf::Vector2f _position; // Map
+	errno_t _err;
 public:
 	bool saveGame(DyvirMap mapAux, DyvirFight fightAux, int option) {
-		errno_t err;
 		FILE* p;
 		_inventory = fightAux.getInventory();
 		_HPbase = fightAux.getHPbase();
@@ -29,55 +29,66 @@ public:
 		_physicalDefensebase = fightAux.getPhysicalDefenseBase();
 		_magicResistbase = fightAux.getMagicResistBase();
 		_XP = fightAux.getXP();
-		//_level = fightAux.getLevel();
+		_level = fightAux.getLevel();
 		_wins = fightAux.getWins();
 		_position = mapAux.getPosition();
+		_err = fopen_s(&p, "saves/savegame", "wb");
 		switch (option) {
 		case 0:
-			err = fopen_s(&p, "/saves/SaveGame1.dat", "wb");
+			_err = fopen_s(&p, "/saves/SaveGame1.dat", "wb");
 			break;
 		case 1:
-			err = fopen_s(&p, "/saves/SaveGame2.dat", "wb");
+			_err = fopen_s(&p, "/saves/SaveGame2.dat", "wb");
 			break;
 		case 2:
-			err = fopen_s(&p, "/savesSaveGame3.dat", "wb");
+			_err = fopen_s(&p, "/saves/SaveGame3.dat", "wb");
 			break;
 		}
-		if (err != 0) {
+		if (_err == 0) {
 			fwrite(this, sizeof(this), 1, p);
-			return true;
+			if (p) {
+				_err = fclose(p);
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		else { return false; }
 	}
+
 	bool loadGame(DyvirMap mapAux, DyvirFight fightAux, int option) {
-		errno_t err;
 		FILE* p;
 		switch (option) {
 		case 0:
-			err = fopen_s(&p, "/saves/SaveGame1.dat", "rb");
+			_err = fopen_s(&p, "/saves/SaveGame1.dat", "rb");
 			break;
 		case 1:
-			err = fopen_s(&p, "/saves/SaveGame2.dat", "rb");
+			_err = fopen_s(&p, "/saves/SaveGame2.dat", "rb");
 
 			break;
 		case 2:
-			err = fopen_s(&p, "/savesSaveGame3.dat", "rb");
+			_err = fopen_s(&p, "/savesSaveGame3.dat", "rb");
 			break;
 		}
-		if (err != 0) {
+		if (_err == 0) {
 			fread(this, sizeof(this), 1, p);
+
 		}
 		else { return false; }
-		//fightAux.setStats();
-		//TODO: arreglar todo esto - Lucas
-		// fightAux.setInventory(_inventory);
+		fightAux.setStats(_HPbase, _MPbase, _physicalDamagebase, _magicalDamagebase, _physicalDefensebase, _magicResistbase, _XP);
+		fightAux.setLevel(_level);
+		fightAux.setInventory(_inventory);
 		fightAux.setWins(_wins);
-		for (int i; i < 3; i++) {
-			//TODO: Arreglar esta función - Lucas
-			//fightAux.setAbilityEquiped(_abilityEquiped[i], i);
-		}
+		fightAux.setAbilityEquiped(_abilityEquiped);
 		mapAux.setPosition(_position);
-		return true;
+		if (p) {
+			_err = fclose(p);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 };
 
