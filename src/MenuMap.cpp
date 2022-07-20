@@ -3,7 +3,6 @@
 
 
 MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(15), _menu(5), _names(5), _slots(3) {
-	//TODO: cargar las habilidades del menu en el equipo de Dyvir !!!!!!!!!!!! Giuli
 	//TODO: agregar menu para ver los stats - Lucas
 	_page = 0;
 	_checkPoint = false;
@@ -75,7 +74,6 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 		_inventoryList[i].setFont(_font);
 		_inventoryList[i].setFillColor(sf::Color::White);
 		_inventoryList[i].setString("Empty");
-
 		_inventoryList[i].setPosition(250 + (aux * 200), _posIniMenu + 30 * pos);
 
 		pos++;
@@ -103,7 +101,6 @@ void MenuMap::PageDown() {
 
 void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 	//TODO: texto descriptivo de habilidades y confirmación de crafteo, confirmación de guardado de partida
-
 	_checkPoint = check;
 	if (_checkPoint) {
 		dyvir.restoreLife();

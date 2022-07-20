@@ -70,11 +70,22 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 		if (_ability[i].getNegativeStates(reduceMD)) {
 			dragon.setReduceMD();
 		}
-		if (_ability[i].getElement1() == dragon.getElementWeak()) {
-			totalDamage *= 1.15;
+		
+		if (dragon.getElementResist() != Neutral) {
+			if (_ability[i].getElement1() == dragon.getElementResist()) {
+				totalDamage *= 0.5;
+			}
+			if (_ability[i].getElement2() == dragon.getElementResist()) {
+				totalDamage *= 0.5;
+			}
 		}
-		if (_ability[i].getElement2() == dragon.getElementWeak()) {
-			totalDamage *= 1.15;
+		if (dragon.getElementWeak() != Neutral) {
+			if (_ability[i].getElement1() == dragon.getElementWeak()) {
+				totalDamage *= 1.15;
+			}
+			if (_ability[i].getElement2() == dragon.getElementWeak()) {
+				totalDamage *= 1.15;
+			}
 		}
 		//TODO: chequear la resistencia a los elementos (solo está hecha la debilidad) 
 		if (!_positiveStates[trueDamage]) {

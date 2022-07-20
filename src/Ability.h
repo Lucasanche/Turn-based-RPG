@@ -10,7 +10,6 @@ private:
 	sf::Text _description;
 	elements _element1;
 	elements _element2;
-	int _id;
 	int _mpCost;
 	std::vector<bool>_negativeStates;
 	std::vector<bool>_positiveStates;
@@ -18,11 +17,11 @@ private:
 public:
 	Ability();
 	void reset();
+
 	//Sets()
 	void setName(std::string name) { _name = name; }
 	void setDescription(sf::String description) { _description.setString(description); }
 	void setMagicDamage(int magicDamage) { _magicDamage = magicDamage; }
-	void setID(int id) { _id = id; }
 	void setMpCost(int mpCost) { _mpCost = mpCost; }
 	void setElements(elements element1, elements element2);
 
@@ -60,7 +59,6 @@ public:
 	const std::string getName() { return _name; }
 	sf::String getDescription() { return _description.getString(); }
 	int getMagicDamage() { return _magicDamage; }
-	int getID() { return _id; }
 	int getMpCost() { return _mpCost; }
 	elements getElement1() { return _element1; }
 	elements getElement2() { return _element2; }

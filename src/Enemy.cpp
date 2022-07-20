@@ -20,7 +20,7 @@ Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames, f
 	std::cout << _sprite.getGlobalBounds().height << std::endl;
 }
 
-void Enemy::setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalResistance, int magicResistance, elements elementWeak, int XP) {
+void Enemy::setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalResistance, int magicResistance, elements elementWeak, elements elementResist, int XP) {
 	_HP = HP;
 	_HPbase = _HP;
 	_MP = MP;
@@ -34,6 +34,7 @@ void Enemy::setStats(int HP, int MP, int physicalDamage, int magicDamage, int ph
 	_magicResistance = magicResistance;
 	_magicResistancebase = _magicResistance;
 	_elementWeak = elementWeak;
+	_elementResist = elementResist;
 	_XP = XP;
 }
 

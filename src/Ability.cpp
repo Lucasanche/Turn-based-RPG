@@ -7,7 +7,6 @@ Ability::Ability() : _negativeStates(9, false), _positiveStates(14, false) {
 	_description.setString("empty");
 	_magicDamage = 0;
 	_mpCost = 0;
-	_id = 0;
 	_element1 = Neutral;
 	_element2 = Neutral;
 }

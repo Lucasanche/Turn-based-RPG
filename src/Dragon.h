@@ -39,14 +39,13 @@ protected:
 	int _physicalResistancebase;
 	int _magicResistance;
 	int _magicResistancebase;
-	bool _fireResist;
-	bool _waterResist;
-	bool _earthResist;
-	bool _airResist;
+
+
 	int _XP;
 	Ability _ability[3];
 	AbilityFactory _abilityFactory;
 	elements _elementWeak;
+	elements _elementResist;
 	bool _isAlive;
 	sf::Texture _texture;
 	sf::Sprite _sprite;
@@ -75,6 +74,7 @@ public:
 	int getBack() { return _backGround; }
 	bool getIsAlive() { return _isAlive; }
 	elements getElementWeak() { return _elementWeak; }
+	elements getElementResist() { return _elementResist; }
 	float getMR();
 	float getPD();
 	Ability getAbility(int i) { return _ability[i]; }
@@ -115,10 +115,7 @@ public:
 	void setMagicDamage(int magicDamage) { _magicDamage = magicDamage; }
 	void setPhysicalResistance(int physicalResistance) { _physicalResistance = _physicalResistance; }
 	void setMagicResistance(int magicResistance) { _magicResistance = magicResistance; }
-	void setFireResist(bool fireResist) { _fireResist = fireResist; }
-	void setWaterResist(bool waterResist) { _waterResist = waterResist; }
-	void setEarthResist(bool earthResist) { _earthResist = earthResist; }
-	void setAirResist(bool airResist) { _airResist = airResist; }
+	void setElementResist(elements elementResist) { _elementResist = elementResist; }
 	void setAbilityFromInventory(int abilityNumber, abilityName abName);
 	void setXP(int XP) { _XP = XP; }
 
