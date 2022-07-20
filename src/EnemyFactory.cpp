@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "EnemyFactory.h"
 
-///TODO: Revisar MPCost de habilidades
 Enemy* EnemyFactory::getBoss(int wins) {
 	switch (wins) {
 	case 0:
@@ -9,7 +8,7 @@ Enemy* EnemyFactory::getBoss(int wins) {
 		if (_enemy == NULL) {
 			std::cout << "no se pudo crear al enemigo" << std::endl;
 		}
-		_enemy->setStats(1000, 500, 100, 100, 50, 50, Fire, 100);
+		_enemy->setStats(3500, 1000, 100, 100, 50, 50, Fire, 100);
 		_enemy->setAbility(0, SabakuKyu);
 		_enemy->setAbility(1, Earthquake);
 		break;
@@ -18,7 +17,7 @@ Enemy* EnemyFactory::getBoss(int wins) {
 		if (_enemy == NULL) {
 			std::cout << "no se pudo crear al enemigo" << std::endl;
 		}
-		_enemy->setStats(1500, 700, 150, 150, 120, 100, Air, 300);
+		_enemy->setStats(5000, 1250, 150, 150, 120, 100, Air, 300);
 		_enemy->setAbility(0, PoisonGas);
 		_enemy->setAbility(1, Tsunami);
 		break;
@@ -27,19 +26,19 @@ Enemy* EnemyFactory::getBoss(int wins) {
 		if (_enemy == NULL) {
 			std::cout << "no se pudo crear al enemigo" << std::endl;
 		}
-		_enemy->setStats(2500, 800, 200, 250, 150, 150, Water, 450);
+		_enemy->setStats(6500, 1250, 200, 200, 150, 150, Water, 450);
 		_enemy->setAbility(0, Inferno);
 		_enemy->setAbility(1, HotVampire);
 		break;
 	case 3:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/boss4 680x556-11.png", 680, 556, 11, 0.45, 1); 
-		_enemy->setStats(3500, 1000, 300, 400, 200, 300, Water, 800);
+		_enemy->setStats(8000, 2000, 300, 400, 200, 300, Water, 800);
 		_enemy->setAbility(0, MagmaWave);
 		_enemy->setAbility(1, FireTornado);
 		break;
 	case 4:///TODO: HACER A KLOSTER. -> Hermano de lucas? | 3 habilidades? 
 		_enemy = new Enemy("./Textures/Characters/spritesheets/KLOSTER", 174, 103, 4, 1, 1);
-		_enemy->setStats(5000, 2000, 800, 800, 500, 500, Water, 1500);
+		_enemy->setStats(10000, 2000, 750, 750, 350, 350, Neutral, 1500);
 		break;
 	}
 	return _enemy;

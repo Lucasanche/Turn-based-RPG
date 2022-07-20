@@ -3,15 +3,15 @@
 #include "AbilityFactory.h"
 
 DyvirFight::DyvirFight() : _abilityInventory(3) {
-	//TODO: Implementar leveo, subida de stats, etc.  DEJAR!!!!!!!!!!!!!!!!!!!!!!!!!
 	_abilityInventory[0] = _abilityFactory.createFireball();
 	_abilityInventory[1] = _abilityFactory.createWindBlow();
 	_abilityInventory[2] = _abilityFactory.createHotVampire();
 	
+	//setStats(2000, 60, 150, 50, 50, 50, _XP);
 	_level = 1;
 	_XP = 0;
-	_HPbase = 1000;
-	_MPbase = 500; 
+	_HPbase = 2000;
+	_MPbase = 60;
 	_physicalDamagebase = 150;
 	_magicalDamagebase = 50; 
 	_physicalDefensebase = 50;
@@ -104,48 +104,61 @@ std::string DyvirFight::increaseXP(int XP) {
 void DyvirFight::levelUp(int level)
 {
 	switch (level) {
-	//BASE -> setStats(1000, 500, 150, 50, 50, 50, _XP);
-	//Enemies -> _enemy->setStats(700, 200, 35, 35, 30, 30, Air, 100);
-	case 2: setStats(1200, 600, 50, 50, 25, 25, _XP);
+		//---------------------- STAGE 1 -----------------------------------
+		//BASE -> setStats(2000, 60, 150, 50, 50, 50, _XP);
+		//Enemies -> _enemy->setStats(700, 200, 35, 35, 30, 30, Air, 100); 
+	case 2: this-> setStats(3000, 75, 50, 50, 25, 25, _XP);
 		break;
-		//Boss 1|lvl 3 -> _enemy->setStats(1000, 500, 100, 100, 50, 50, Fire, 100);
-	case 3: setStats(1500, 800, 100, 50, 50, 50, _XP);
+		//Boss 1|lvl 3 -> _enemy->setStats(3500, 1000, 100, 100, 50, 50, Fire, 100);
+	case 3: this-> setStats(3500, 100, 100, 70, 50, 50, _XP);
 		break;
+		//---------------------- STAGE 2 -----------------------------------
 		//Enemies -> _enemy->setStats(1100, 600, 80, 80, 50, 50, Earth, 150);
-	case 4: setStats(1800, 1000, 100, 50, 50, 50, _XP);
+	case 4: this-> setStats(4000, 100, 100, 100, 70, 70, _XP);
 		break;
-	case 5: setStats(1800, 1000, 100, 50, 50, 50, _XP);
+	case 5: this-> setStats(4500, 100, 100, 130, 70, 70, _XP);
 		break;
-		//Boss 2|lvl 6 -> _enemy->setStats(1500, 700, 150, 150, 120, 100, Air, 300);
-	case 6: setStats(1800, 1000, 150, 150, 120, 100, _XP);
+		//Boss 2|lvl 6 -> _enemy->setStats(5000, 1250, 150, 150, 120, 100, Air, 300);
+	case 6: this-> setStats(5000, 125, 150, 150, 120, 100, _XP);
 		break;
-	case 7:
+		//---------------------- STAGE 3 -----------------------------------
+		//Enemies -> _enemy->setStats(1700, 700, 150, 80, 80, 100, Air, 300);  
+	case 7: this->setStats(5500, 125, 150, 170, 120, 120, _XP);
 		break;
-	case 8:
+	case 8: this->setStats(6000, 125, 170, 170, 150, 120, _XP);
 		break;
-	case 9:
+		//Boss 3 | lvl 9 -> _enemy->setStats(6500, 1250, 200, 200, 150, 150, Water, 450);
+	case 9: this->setStats(6500, 125, 200, 200, 150, 120, _XP);
 		break;
-	case 10:
+		//---------------------- STAGE 4 -----------------------------------
+		//Enemies -> _enemy->setStats(3000, 700, 150, 150, 500, 300, Fire, 500);
+	case 10: this-> setStats(7500, 150, 300, 200, 150, 150, _XP);
 		break;
-	case 11:
+		// Boss 4 | lvl 11 -> _enemy->setStats(8000, 2000, 300, 400, 200, 300, Water, 800);
+	case 11: this->setStats(8000, 200, 400, 300, 200, 150, _XP);
 		break;
-	case 12:
+		//---------------------- STAGE 5 -----------------------------------
+		//Enemies -> _enemy->setStats(3500, 1000, 400, 300, 300, 250, Fire, 650);
+	case 12: this->setStats(8500, 250, 500, 400, 250, 200, _XP);
 		break;
-	case 13:
+		// Boss 5 | lvl 13 -> _enemy->setStats(10000, 2000, 750, 750, 350, 350, Neutral, 1500);
+	case 13: this-> setStats(10000, 250, 700, 500, 300, 300, _XP);
 		break;
-	case 14:
+		//---------------------- STAGE EXTRA -----------------------------------
+		//Enemies ->_enemy->setStats(1700, 700, 150, 80, 80, 100, Air, 300);
+	case 14: this->setStats(10000, 250, 700, 700, 350, 350, _XP);
 		break;
-	case 15:
+	case 15: this->setStats(10000, 250, 750, 750, 350, 350, _XP);
 		break;
-	case 16:
+	case 16: this->setStats(10000, 250, 750, 750, 450, 450, _XP);
 		break;
-	case 17:
+	case 17: this->setStats(10000, 250, 800, 800, 500, 500, _XP);
 		break;
-	case 18:
+	case 18: this->setStats(10000, 250, 850, 850, 550, 550, _XP);
 		break;
-	case 19:
+	case 19: this->setStats(10000, 250, 900, 900, 900, 900, _XP);
 		break;
-	case 20:
+	case 20: this->setStats(10000, 300, 1000, 1000, 1000, 1000, _XP);
 		break;
 	}
 }
