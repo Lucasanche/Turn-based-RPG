@@ -53,6 +53,7 @@ public:
 	int GetPressedItem() { return _selectedItemIndex; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void changeMenu();
+	void ResetColor();
 	~MenuMap();
 };
 

@@ -3,7 +3,7 @@
 
 
 MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(15) {
-	//TODO: cargar las habilidades del menu en el equipo de Dyvir !!!!!!!!!!!! Giuli
+
 	sizeOfMenu = 5;
 	_page = 0;
 	_menu = new sf::Text[sizeOfMenu];
@@ -25,7 +25,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 	_posIniMenu = height / 2 - _backMenu.getGlobalBounds().height + 25;
 
 	_posMaxMenu = 120;
-	// Setea el largo del relleno del HP
+
 	for (int i = 0; i < sizeOfMenu; i++) {
 		_menu[i].setCharacterSize(25);
 		_menu[i].setFont(_font);
@@ -35,56 +35,40 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 		_names[i].setPosition(35, _posIniMenu + (_posMaxMenu * ((i * 2) + 1) / 7));
 	}
 
+	for (int i = 0; i < 3; i++) {
+		_slots[i].setFillColor(sf::Color::White);
+		_slots[i].setPosition(250, _posIniMenu + 30*i);
+		_slots[i].setCharacterSize(25);
+		_slots[i].setFont(_font);
+	}
+
 	_menu[0].setFillColor(sf::Color::Red);
 	_menu[0].setString("Habilidad 1");
-	//_menu[0].setPosition({ 35, _posIniMenu });
-
 
 	_names[0].setFillColor(sf::Color::White);
 	_names[0].setString(dyvir.getAbility(0).getName());
-	//_names[0].setPosition(35, _posIniMenu + (_posMaxMenu * 1 / 6));
 
 	_menu[1].setFillColor(sf::Color::White);
 	_menu[1].setString("Habilidad 2");
-	//_menu[1].setPosition(35, _posIniMenu + (_posMaxMenu * 2 / 6));
 
 	_names[1].setFillColor(sf::Color::White);
 	_names[1].setString(dyvir.getAbility(1).getName());
-	//_names[1].setPosition(35, _posIniMenu + (_posMaxMenu * 3 / 6));
 
 	_menu[2].setFillColor(sf::Color::White);
 	_menu[2].setString("Habilidad 3");
-	//_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 4 / 6));
 
 	_names[2].setFillColor(sf::Color::White);
 	_names[2].setString(dyvir.getAbility(2).getName());
-	//_names[2].setPosition(35, _posIniMenu + (_posMaxMenu * 5 / 6));
 
 	_menu[3].setFillColor(sf::Color::White);
 	_menu[3].setString("Craftear");
-	//_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 4 / 6));
 
 	_menu[4].setFillColor(sf::Color::White);
 	_menu[4].setString("Guardar");
 
-	_slots[0].setFillColor(sf::Color::White);
 	_slots[0].setString("Slot 1");
-	_slots[0].setPosition(250, _posIniMenu);
-	_slots[1].setFillColor(sf::Color::White);
 	_slots[1].setString("Slot 2");
-	_slots[1].setPosition(250, _posIniMenu + 30);
-	_slots[2].setFillColor(sf::Color::White);
 	_slots[2].setString("Slot 3");
-	_slots[2].setPosition(250, _posIniMenu + 60);
-	_slots[0].setCharacterSize(25);
-	_slots[0].setFont(_font);
-	_slots[1].setCharacterSize(25);
-	_slots[1].setFont(_font);
-	_slots[2].setCharacterSize(25);
-	_slots[2].setFont(_font);
-
-
-
 
 	int pos = 0;
 	int aux = 0;
@@ -121,7 +105,7 @@ void MenuMap::PageDown() {
 }
 
 void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
-
+	//TODO: texto descriptivo de habilidades y confirmación de crafteo, confirmación de guardado de partida
 
 	_checkPoint = check;
 	if (_checkPoint) {
@@ -148,6 +132,10 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 			_flag = false;
 		}
 	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+		_menuOption = MenuOption::MainMenu;
+	}
+
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
 		if (_flag) {
 			switch (_menuOption) {
@@ -177,6 +165,8 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 			case MenuOption::AbilityChange:
 				_names[_optionAbility].setString(dyvir.setAbilityEquipedElement(_optionAbility, _selectedItemIndex + _page));
 				_menuOption = MenuOption::MainMenu;
+				this->ResetColor();
+				_selectedItemIndex = 0;
 
 				break;
 			case MenuOption::Craft:
@@ -187,20 +177,26 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 			case MenuOption::Craft2:
 				if (_selectedItemIndex == _selectedItemCraft && _page == _pageAux ) {
 					_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Green);
+					_selectedItemIndex = 0;
 					break;
 				}
 				else if (_inventoryList[_selectedItemIndex].getString() == "Empty") {
+					_selectedItemIndex = 0;
 					break;
 				}
 				else {
 					dyvir.craftAbility(_inventoryList[_selectedItemIndex+_page].getString(), _inventoryList[_selectedItemCraft + _pageAux].getString(), _selectedItemIndex + _page, _selectedItemCraft + _pageAux);
+					this->ResetColor();
 					_menuOption = MenuOption::MainMenu;
+					_selectedItemIndex = 0;
 					this->changeMenu();
 					break;
 				}
 			case MenuOption::Save:
 				_save.saveGame(dyvirMap, dyvir, _selectedItemIndex);
+				this->ResetColor();
 				_menuOption = MenuOption::MainMenu;
+				_selectedItemIndex = 0;
 				this->changeMenu();
 				break;
 
@@ -269,6 +265,26 @@ void MenuMap::changeMenu() {
 		_slots[_selectedItemAux].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _slots[_selectedItemAux].getPosition().x + 10 + _slots[_selectedItemAux].getGlobalBounds().width, _slots[_selectedItemAux].getPosition().y + _slots[_selectedItemAux].getGlobalBounds().height / 2 });
 		break;
+	}
+
+}
+
+void MenuMap::ResetColor() {
+
+	if (_menuOption == MenuOption::Save) {
+		for (int i = 0; i < 3; i++) {
+			_slots[i].setFillColor(sf::Color::White);
+		}
+	}
+	else if (_menuOption == MenuOption::Craft2) {
+		for (int i = 0; i < _inventoryList.size(); i++) {
+			_inventoryList[i].setFillColor(sf::Color::White);
+		}
+	}		
+	else if (_menuOption == MenuOption::MainMenu) {
+		for (int i = 0; i < sizeOfMenu; i++) {
+			_menu[i].setFillColor(sf::Color::White);
+		}
 	}
 
 }
@@ -379,5 +395,6 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 MenuMap::~MenuMap() {
 	delete[] _menu;
 	delete[] _names;
+	delete[] _slots;
 	std::cout << "se murióx2" << std::endl << std::endl;
 }
