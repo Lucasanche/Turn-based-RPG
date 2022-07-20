@@ -2,8 +2,8 @@
 #include "Dragon.h"
 
 
-Dragon::Dragon() : _negativeStates(8, false), _positiveStates(12, false) {
-	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicalDamage = _magicalDamagebase = _physicalDefense = _physicalDefensebase = _magicResist = _magicResistbase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = _reducedMDCount = _increasedAttCount = _increasedPDCount = _increasedMRCount = _increasedMDCount = 1;
+Dragon::Dragon() : _negativeStates(9, false), _positiveStates(14, false) {
+	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicDamage = _magicDamagebase = _physicalResistance = _physicalResistancebase = _magicResistance = _magicResistancebase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = _reducedMDCount = _increasedAttCount = _increasedPDCount = _increasedMRCount = _increasedMDCount = 1;
 	_isAlive = true;
 	_physicalDamage = 10;
 	_physicalDamagebase = 10;
@@ -37,8 +37,8 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 		if (_ability[i].getPositiveStates(doton)) {
 			this->setDoton();
 		}
-		/*if (_increaseElementDefense) {
-			dragon.setIncreaseElementDefense();
+		/*if (_increaseElementResistance) {
+			dragon.setIncreaseElementResistance();
 		}*/
 		//TODO: hacer cálculo para tener en cuenta el MR, PD, etc.
 		float totalDamage = _ability[i].getMagicDamage();
@@ -144,7 +144,7 @@ std::string Dragon::checkNegativeStates(turns& turn) {
 		}
 	}
 	if (_negativeStates[reducePD]) {
-		_physicalDefense -= _physicalDefensebase * 0.2;
+		_physicalResistance -= _physicalResistancebase * 0.2;
 		_reducedPDCount++;
 		if (_reducedPDCount == 3) {
 			_reducedPDCount = 0;
@@ -152,7 +152,7 @@ std::string Dragon::checkNegativeStates(turns& turn) {
 		}
 	}
 	if (_negativeStates[reduceMR]) {
-		_magicResist -= _magicResistbase * 0.2;
+		_magicResistance -= _magicResistancebase * 0.2;
 		_reducedMRCount++;
 		if (_reducedMRCount == 3) {
 			_reducedMRCount = 0;
@@ -168,7 +168,7 @@ std::string Dragon::checkNegativeStates(turns& turn) {
 		}
 	}
 	if (_negativeStates[reduceMD]) {
-		_magicalDamage -= _magicalDamagebase * 0.2;
+		_magicDamage -= _magicDamagebase * 0.2;
 		_reducedMDCount++;
 		if (_reducedMDCount == 3) {
 			_reducedMDCount = 0;
@@ -190,7 +190,7 @@ std::string Dragon::checkPositiveStates() {
 		_positiveStates[increasePD] = false;
 	}
 	if (_positiveStates[increaseMR]) {
-		_magicResist -= _magicResistbase * 0.2;
+		_magicResistance -= _magicResistancebase * 0.2;
 		_increasedMRCount++;
 		if (_increasedMRCount == 3) {
 			_increasedMRCount = 0;
@@ -198,7 +198,7 @@ std::string Dragon::checkPositiveStates() {
 		}
 	}
 	if (_positiveStates[increaseMD]) {
-		_magicalDamage *= 1.2;
+		_magicDamage *= 1.2;
 		_increasedMDCount++;
 		if (_increasedMDCount == 3) {
 			_increasedMDCount = 0;
@@ -228,13 +228,13 @@ int Dragon::doDamage(int PDenemy) {
 
 float Dragon::getMR() {
 	float result = 0;
-	result = 1 - (_magicResist / (_magicResist + 50));
+	result = 1 - (_magicResistance / (_magicResistance + 50));
 	return result;
 }
 
 float Dragon::getPD() {
 	float resultado = 0;
-	resultado = 1 - (_physicalDefense / (_physicalDefense + 50));
+	resultado = 1 - (_physicalResistance / (_physicalResistance + 50));
 	return resultado;
 }
 
@@ -249,9 +249,9 @@ int Dragon::damageTaken(int damageTaken) {
 
 void Dragon::resetStats() {
 	_physicalDamage = _physicalDamagebase;
-	_physicalDefense = _physicalDefensebase;
-	_magicalDamage = _magicalDamagebase;
-	_magicResist = _magicResistbase;
+	_physicalResistance = _physicalResistancebase;
+	_magicDamage = _magicDamagebase;
+	_magicResistance = _magicResistancebase;
 }
 
 void Dragon::draw(sf::RenderTarget& target, sf::RenderStates states) const {

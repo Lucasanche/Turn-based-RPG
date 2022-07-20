@@ -41,10 +41,10 @@ private:
 	sf::Sprite _spriteHPFillenemy;
 	sf::Sprite _textHPenemy;
 	//States
-	sf::Texture _statesDyvir;
-	sf::Texture _statesEnemy;
-	sf::Sprite _statesDyvir;
-	sf::Sprite _statesEnemy;
+	sf::Texture _statesDyvirTexture;
+	sf::Texture _statesEnemyTexture;
+	sf::Sprite _statesDyvirSprite;
+	sf::Sprite _statesEnemySprite;
 	int _statusHPenemy;
 	int _lenghtHPenemy;
 	sf::Vector2i spriteSize;

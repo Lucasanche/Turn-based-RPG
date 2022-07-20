@@ -3,7 +3,6 @@
 #define DYVIRFIGHT_H
 
 #include "Dragon.h"
-#include "Inventory.h"
 #include "Ability.h"
 
 
@@ -28,7 +27,7 @@ public:
 
 	//Sets
 	void setWins(int wins) { _wins = wins; }
-	void setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalDefense, int magicResist, int XP);
+	void setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalResistance, int magicResist, int XP);
 	void setLevel(unsigned short level) { _level = level; }
 	std::string setAbilityEquipedElement(int i, int ability);
 	void setAbilityEquiped(Ability ability[]);

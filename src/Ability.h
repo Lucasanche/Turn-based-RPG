@@ -28,8 +28,10 @@ public:
 
 	//Estados positivos
 	void setIncreasePD() { _positiveStates[increasePD] = true; }
+	void setIncreasePR() { _positiveStates[increasePR] = true; }
 	void setIncreaseMR() { _positiveStates[increaseMR] = true; }
 	void setIncreaseMD() { _positiveStates[increaseMD] = true; }
+	void setIncreaseATT() { _positiveStates[increaseATT] = true; }
 	void setHeal() { _positiveStates[heal] = true; }
 	void setRestore() { _positiveStates[restore] = true; }
 	void setDoton() { _positiveStates[doton] = true; }
@@ -46,9 +48,10 @@ public:
 	void setBurns() { _negativeStates[burns] = true; }
 	void setPoison() { _negativeStates[poison] = true; }
 	void setReducePD() { _negativeStates[reducePD] = true; }
+	void setReducePR() { _negativeStates[reducePR] = true; }
 	void setReduceMR() { _negativeStates[reduceMR] = true; }
-	void setReduceAtt() { _negativeStates[reduceAtt] = true; }
 	void setReduceMD() { _negativeStates[reduceMD] = true; }
+	void setReduceAtt() { _negativeStates[reduceAtt] = true; }
 
 	//Gets()
 	bool getNegativeStates(int i) { return _negativeStates[i]; }
@@ -66,6 +69,8 @@ public:
 	bool getIncreasePD() { return _positiveStates[increasePD]; }
 	bool getIncreaseMR() { return _positiveStates[increaseMR]; }
 	bool getIncreaseMD() { return _positiveStates[increaseMD]; }
+	bool getIncreasePR() { return _positiveStates[increasePR]; }
+	bool getIncreaseATT() { return _positiveStates[increaseATT]; }
 	bool getHeal() { return _positiveStates[heal]; }
 	bool getRestore() { return _positiveStates[restore]; }
 	bool getDoton() { return _positiveStates[doton]; }
@@ -81,9 +86,10 @@ public:
 	bool getBurns() { return _negativeStates[burns]; }
 	bool getPoison() { return _negativeStates[poison]; }
 	bool getReducePD() { return _negativeStates[reducePD]; }
+	bool getReducePR() { return _negativeStates[reducePR]; }
 	bool getReduceMR() { return _negativeStates[reduceMR]; }
-	bool getReduceAtt() { return _negativeStates[reduceAtt]; }
 	bool getReduceMD() { return _negativeStates[reduceMD]; }
+	bool getReduceAtt() { return _negativeStates[reduceAtt]; }
 
 	virtual ~Ability() {};
 };

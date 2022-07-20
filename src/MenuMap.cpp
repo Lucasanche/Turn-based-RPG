@@ -2,14 +2,10 @@
 #include "MenuMap.h"
 
 
-MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(15) {
+MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(15), _menu(5), _names(5), _slots(3) {
 	//TODO: cargar las habilidades del menu en el equipo de Dyvir !!!!!!!!!!!! Giuli
 	//TODO: agregar menu para ver los stats - Lucas
-	sizeOfMenu = 5;
 	_page = 0;
-	_menu = new sf::Text[sizeOfMenu];
-	_names = new sf::Text[sizeOfMenu];
-	_slots = new sf::Text[3];
 	_checkPoint = false;
 	_flag = false;
 	_flagSubmenu = false;
@@ -27,7 +23,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 
 	_posMaxMenu = 120;
 
-	for (int i = 0; i < sizeOfMenu; i++) {
+	for (int i = 0; i < _menu.size(); i++) {
 		_menu[i].setCharacterSize(25);
 		_menu[i].setFont(_font);
 		_names[i].setCharacterSize(20);
@@ -116,10 +112,10 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 		_inventoryList[i].setString(dyvir.getInventoryElementName(i + _page));
 	}
 	if (!_checkPoint) {
-		_menu[sizeOfMenu - 1].setFillColor(sf::Color::Transparent);
+		_menu[_menu.size() - 1].setFillColor(sf::Color::Transparent);
 	}
 	else {
-		_menu[sizeOfMenu - 1].setFillColor(sf::Color::White);
+		_menu[_menu.size() - 1].setFillColor(sf::Color::White);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
@@ -283,7 +279,7 @@ void MenuMap::ResetColor() {
 		}
 	}		
 	else if (_menuOption == MenuOption::MainMenu) {
-		for (int i = 0; i < sizeOfMenu; i++) {
+		for (int i = 0; i < _menu.size(); i++) {
 			_menu[i].setFillColor(sf::Color::White);
 		}
 	}
@@ -350,13 +346,13 @@ void MenuMap::MoveDown() {
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
 		}
 	}
-	else if ((_selectedItemIndex + 1 < sizeOfMenu-1)&&!_checkPoint&& _menuOption != MenuOption::Save) {
+	else if ((_selectedItemIndex + 1 < _menu.size() - 1) && !_checkPoint && _menuOption != MenuOption::Save) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex++;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
 	}
-	else if (_selectedItemIndex + 1 < sizeOfMenu && _checkPoint && _menuOption != MenuOption::Save) {
+	else if (_selectedItemIndex + 1 < _menu.size() && _checkPoint && _menuOption != MenuOption::Save) {
 		_menu[_selectedItemIndex].setFillColor(sf::Color::White);
 		_selectedItemIndex++;
 		_menu[_selectedItemIndex].setFillColor(sf::Color::Red);
@@ -374,10 +370,10 @@ void MenuMap::MoveDown() {
 
 void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_backMenu);
-	for (int i = 0; i < sizeOfMenu; i++) {
+	for (int i = 0; i < _menu.size(); i++) {
 		target.draw(_menu[i], states);
 	}
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < _names.size(); i++) {
 		target.draw(_names[i], states);
 	}
 	target.draw(_cursor, states);
@@ -394,8 +390,5 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 MenuMap::~MenuMap() {
-	delete[] _menu;
-	delete[] _names;
-	delete[] _slots;
-	std::cout << "se murióx2" << std::endl << std::endl;
+	std::cout << "Se eliminó MenuMap" << std::endl << std::endl;
 }

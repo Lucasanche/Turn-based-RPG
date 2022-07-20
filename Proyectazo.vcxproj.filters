@@ -10,7 +10,6 @@
     <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\EnemyFactory.cpp" />
     <ClCompile Include="src\Fight.cpp" />
-    <ClCompile Include="src\Inventory.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Map.cpp" />
     <ClCompile Include="src\Menu.cpp" />
@@ -20,6 +19,7 @@
     <ClCompile Include="src\Ability.cpp" />
     <ClCompile Include="src\AbilityFactory.cpp" />
     <ClCompile Include="src\SaveGame.cpp" />
+    <ClCompile Include="src\Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BrickTiles.h" />
@@ -32,7 +32,6 @@
     <ClInclude Include="src\EnemyFactory.h" />
     <ClInclude Include="src\Fight.h" />
     <ClInclude Include="src\GlobalEnums.h" />
-    <ClInclude Include="src\Inventory.h" />
     <ClInclude Include="src\Map.h" />
     <ClInclude Include="src\Menu.h" />
     <ClInclude Include="src\MenuFight.h" />
@@ -42,6 +41,7 @@
     <ClInclude Include="src\AbilityFactory.h" />
     <ClInclude Include="src\Ability.h" />
     <ClInclude Include="src\SaveGame.h" />
+    <ClInclude Include="src\Game.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Proyectazo.rc" />

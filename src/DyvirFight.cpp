@@ -12,16 +12,16 @@ DyvirFight::DyvirFight() : _abilityInventory(3) {
 	_HPbase = 2000;
 	_MPbase = 60;
 	_physicalDamagebase = 150;
-	_magicalDamagebase = 50; 
-	_physicalDefensebase = 50;
-	_magicResistbase = 50;
+	_magicDamagebase = 50; 
+	_physicalResistancebase = 50;
+	_magicResistancebase = 50;
 	
 	_HP = _HPbase;
 	_MP = _MPbase;
 	_physicalDamage = _physicalDamagebase;
-	_magicalDamage = _magicalDamagebase;
-	_physicalDefense = _physicalDefensebase;
-	_magicResist = _magicResistbase;
+	_magicDamage = _magicDamagebase;
+	_physicalResistance = _physicalResistancebase;
+	_magicResistance = _magicResistancebase;
 
 	this->setFightSprite();
 	_isAlive = true;
@@ -162,13 +162,13 @@ void DyvirFight::levelUp(int level)
 	}
 }
 
-void DyvirFight::setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalDefense, int magicResist, int XP) {
+void DyvirFight::setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalResistance, int magicResistance, int XP) {
 	_HPbase = HP;
 	_MPbase = MP;
 	_physicalDamagebase = physicalDamage;
-	_magicalDamagebase = magicDamage;
-	_physicalDefensebase = _physicalDefense;
-	_magicResistbase = _magicResist;
+	_magicDamagebase = magicDamage;
+	_physicalResistancebase = _physicalResistance;
+	_magicResistancebase = _magicResistance;
 }
 
 void DyvirFight::restoreLife() {

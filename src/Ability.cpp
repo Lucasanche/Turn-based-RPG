@@ -2,7 +2,7 @@
 #include "Ability.h"
 
 
-Ability::Ability() : _negativeStates(7, false), _positiveStates(12, false) {
+Ability::Ability() : _negativeStates(9, false), _positiveStates(14, false) {
 	_name="empty";
 	_description.setString("empty");
 	_magicDamage = 0;

@@ -44,8 +44,10 @@ enum abilityName
 enum positiveStates
 {
 	increasePD = 0,
+	increasePR,
 	increaseMR,
 	increaseMD,
+	increaseATT,
 	heal,
 	restore,
 	doton,
@@ -55,7 +57,6 @@ enum positiveStates
 	earthResist,
 	damageMultiplier,
 	trueDamage
-	//TODO: diferenciar bien defensa fisica de daño fisico
 };
 
 enum negativeStates
@@ -65,9 +66,10 @@ enum negativeStates
 	burns,
 	poison,
 	reducePD,
+	reducePR,
+	reduceMD,
 	reduceMR,
-	reduceAtt,
-	reduceMD
+	reduceAtt
 };
 
 enum turns

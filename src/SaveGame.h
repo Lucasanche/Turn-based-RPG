@@ -13,9 +13,9 @@ private:
 	int _HPbase;
 	int _MPbase;
 	int _physicalDamagebase;
-	int _magicalDamagebase;
-	int _physicalDefensebase;
-	int _magicResistbase;
+	int _magicDamagebase;
+	int _physicalResistancebase;
+	int _magicResistancebase;
 	sf::Vector2f _position; // Map
 	errno_t _err;
 public:
@@ -25,9 +25,9 @@ public:
 		_HPbase = fightAux.getHPbase();
 		_MPbase = fightAux.getMPbase();
 		_physicalDamagebase = fightAux.getPhysicalDamageBase();
-		_magicalDamagebase = fightAux.getMagicalDamageBase();
-		_physicalDefensebase = fightAux.getPhysicalDefenseBase();
-		_magicResistbase = fightAux.getMagicResistBase();
+		_magicDamagebase = fightAux.getMagicDamageBase();
+		_physicalResistancebase = fightAux.getPhysicalResistanceBase();
+		_magicResistancebase = fightAux.getMagicResistanceBase();
 		_XP = fightAux.getXP();
 		_level = fightAux.getLevel();
 		_wins = fightAux.getWins();
@@ -76,7 +76,7 @@ public:
 
 		}
 		else { return false; }
-		fightAux.setStats(_HPbase, _MPbase, _physicalDamagebase, _magicalDamagebase, _physicalDefensebase, _magicResistbase, _XP);
+		fightAux.setStats(_HPbase, _MPbase, _physicalDamagebase, _magicDamagebase, _physicalResistancebase, _magicResistancebase, _XP);
 		fightAux.setLevel(_level);
 		fightAux.setInventory(_inventory);
 		fightAux.setWins(_wins);

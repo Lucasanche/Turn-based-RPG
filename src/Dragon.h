@@ -31,12 +31,12 @@ protected:
 	int _MPbase;
 	int _physicalDamage;
 	int _physicalDamagebase;
-	int _magicalDamage;
-	int _magicalDamagebase;
-	int _physicalDefense;
-	int _physicalDefensebase;
-	int _magicResist;
-	int _magicResistbase;
+	int _magicDamage;
+	int _magicDamagebase;
+	int _physicalResistance;
+	int _physicalResistancebase;
+	int _magicResistance;
+	int _magicResistancebase;
 	bool _fireResist;
 	bool _waterResist;
 	bool _earthResist;
@@ -64,13 +64,13 @@ public:
 	int getMP() { return _MP; }
 	int getMPbase() { return _MPbase; }
 	int getPhysicalDamage() { return _physicalDamage; }
-	int getMagicalDamage() { return _magicalDamage; }
-	int getPhysicalDefense() { return _physicalDefense; }
-	int getMagicResist() { return _magicResist; }
+	int getMagicDamage() { return _magicDamage; }
+	int getPhysicalResistance() { return _physicalResistance; }
+	int getMagicResistance() { return _magicResistance; }
 	int getPhysicalDamageBase() { return _physicalDamagebase; }
-	int getMagicalDamageBase(){ return _magicalDamagebase; }
-	int getPhysicalDefenseBase(){ return _physicalDefensebase; }
-	int getMagicResistBase() { return _magicResistbase; }
+	int getMagicDamageBase(){ return _magicDamagebase; }
+	int getPhysicalResistanceBase(){ return _physicalResistancebase; }
+	int getMagicResistanceBase() { return _magicResistancebase; }
 	int getXP() { return _XP; }
 	int getBack() { return _backGround; }
 	bool getIsAlive() { return _isAlive; }
@@ -82,6 +82,7 @@ public:
 	//Estados positivos
 	bool getIncreasePD() { return _positiveStates[increasePD]; }
 	bool getIncreaseMR() { return _positiveStates[increaseMR]; }
+	bool getIncreasePR() { return _positiveStates[increasePR]; }
 	bool getIncreaseMD() { return _positiveStates[increaseMD]; }
 	bool getHeal() { return _positiveStates[heal]; }
 	bool getRestore() { return _positiveStates[restore]; }
@@ -99,7 +100,9 @@ public:
 	bool getBurns() { return _negativeStates[burns]; }
 	bool getPoison() { return _negativeStates[poison]; }
 	bool getReducePD() { return _negativeStates[reducePD]; }
+	bool getReducePR() { return _negativeStates[reducePR]; }
 	bool getReduceMR() { return _negativeStates[reduceMR]; }
+	bool getReduceMD() { return _negativeStates[reduceMD]; }
 	bool getReduceAtt() { return _negativeStates[reduceAtt]; }
 
 	//Sets()
@@ -109,9 +112,9 @@ public:
 	void setMP(int MP) { _MP = MP; }
 	void setMPMax(int MPMax) { _MPbase = MPMax; }
 	void setPhysicalDamage(int physicalDamage) { _physicalDamage = physicalDamage; }
-	void setMagicalDamage(int magicalDamage) { _magicalDamage = magicalDamage; }
-	void setPhysicalDefense(int physicalDefense) { _physicalDefense = _physicalDefense; }
-	void setMagicResist(int magicResist) { _magicResist = magicResist; }
+	void setMagicDamage(int magicDamage) { _magicDamage = magicDamage; }
+	void setPhysicalResistance(int physicalResistance) { _physicalResistance = _physicalResistance; }
+	void setMagicResistance(int magicResistance) { _magicResistance = magicResistance; }
 	void setFireResist(bool fireResist) { _fireResist = fireResist; }
 	void setWaterResist(bool waterResist) { _waterResist = waterResist; }
 	void setEarthResist(bool earthResist) { _earthResist = earthResist; }
@@ -121,6 +124,7 @@ public:
 
 	//Estados positivos
 	void setIncreasePD() { _positiveStates[increasePD] = true; }
+	void setIncreasePR() { _positiveStates[increasePR] = true; }
 	void setIncreaseMR() { _positiveStates[increaseMR] = true; }
 	void setIncreaseMD() { _positiveStates[increaseMD] = true; }
 	void setHeal() { _positiveStates[heal] = true; }
