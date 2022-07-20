@@ -15,6 +15,7 @@ protected:
 	unsigned short  _burnedCount,
 		_stunedCount,
 		_reducedPDCount,
+		_reducedPRCount,
 		_reducedMRCount,
 		_reducedAttCount,
 		_reducedMDCount,
@@ -22,7 +23,8 @@ protected:
 		_increasedAttCount,
 		_increasedPDCount,
 		_increasedMRCount,
-		_increasedMDCount;
+		_increasedMDCount,
+		_increasedPRCount;
 
 	///GENERAL
 	int _HP;
@@ -46,7 +48,6 @@ protected:
 	AbilityFactory _abilityFactory;
 	elements _elementWeak;
 	bool _isAlive;
-
 	sf::Texture _texture;
 	sf::Sprite _sprite;
 	float _frame;
@@ -55,7 +56,6 @@ protected:
 	int _rectWidth;
 	int _rectHeight;
 	int _totalFrames;
-
 public:
 	Dragon();
 	//Gets()
@@ -68,8 +68,8 @@ public:
 	int getPhysicalResistance() { return _physicalResistance; }
 	int getMagicResistance() { return _magicResistance; }
 	int getPhysicalDamageBase() { return _physicalDamagebase; }
-	int getMagicDamageBase(){ return _magicDamagebase; }
-	int getPhysicalResistanceBase(){ return _physicalResistancebase; }
+	int getMagicDamageBase() { return _magicDamagebase; }
+	int getPhysicalResistanceBase() { return _physicalResistancebase; }
 	int getMagicResistanceBase() { return _magicResistancebase; }
 	int getXP() { return _XP; }
 	int getBack() { return _backGround; }

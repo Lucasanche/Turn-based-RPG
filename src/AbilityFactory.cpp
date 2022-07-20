@@ -345,8 +345,7 @@ Ability AbilityFactory::createDoton()
 	_ability.setName("Doton");
 	_ability.setMpCost(35);
 	_ability.setIncreaseMR();
-	//TODO: Crear funcion para setear booleano de incremento de resistencia física
-	//_ability.getIncreasePD();
+	_ability.setIncreasePR();
 	_ability.setElements(Earth, Neutral);
 	return _ability;
 }

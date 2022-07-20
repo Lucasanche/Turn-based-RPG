@@ -3,7 +3,8 @@
 
 
 Dragon::Dragon() : _negativeStates(9, false), _positiveStates(14, false) {
-	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicDamage = _magicDamagebase = _physicalResistance = _physicalResistancebase = _magicResistance = _magicResistancebase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = _reducedMDCount = _increasedAttCount = _increasedPDCount = _increasedMRCount = _increasedMDCount = 1;
+	_elementWeak = Neutral;
+	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicDamage = _magicDamagebase = _physicalResistance = _physicalResistancebase = _magicResistance = _magicResistancebase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = _reducedMDCount = _increasedAttCount = _increasedPDCount = _increasedMRCount = _increasedMDCount = _XP = 0;
 	_isAlive = true;
 	_physicalDamage = 10;
 	_physicalDamagebase = 10;
@@ -143,12 +144,12 @@ std::string Dragon::checkNegativeStates(turns& turn) {
 			_burnedCount = 0;
 		}
 	}
-	if (_negativeStates[reducePD]) {
+	if (_negativeStates[reducePR]) {
 		_physicalResistance -= _physicalResistancebase * 0.2;
 		_reducedPDCount++;
 		if (_reducedPDCount == 3) {
 			_reducedPDCount = 0;
-			_negativeStates[reducePD] = false;
+			_negativeStates[reducePR] = false;
 		}
 	}
 	if (_negativeStates[reduceMR]) {
@@ -159,14 +160,6 @@ std::string Dragon::checkNegativeStates(turns& turn) {
 			_negativeStates[reduceMR] = false;
 		}
 	}
-	if (_negativeStates[reduceAtt]) {
-		_physicalDamage -= _physicalDamagebase * 0.2;
-		_reducedAttCount++;
-		if (_reducedAttCount == 3) {
-			_reducedAttCount = 0;
-			_negativeStates[reduceAtt] = false;
-		}
-	}
 	if (_negativeStates[reduceMD]) {
 		_magicDamage -= _magicDamagebase * 0.2;
 		_reducedMDCount++;
@@ -175,22 +168,30 @@ std::string Dragon::checkNegativeStates(turns& turn) {
 			_negativeStates[reduceMD] = false;
 		}
 	}
+	if (_negativeStates[reducePD]) {
+		_physicalDamage -= _physicalDamagebase * 0.2;
+		_reducedAttCount++;
+		if (_reducedAttCount == 3) {
+			_reducedAttCount = 0;
+			_negativeStates[reducePD] = false;
+		}
+	}
 	return string;
 }
 
 std::string Dragon::checkPositiveStates() {
 	std::string string;
 	if (_positiveStates[increasePD]) {
-		if (_negativeStates[reducePD]) {
+		if (_negativeStates[reducePD]) { //Chequea si el daño físico está reducido y anula el estado negativo
 			_negativeStates[reducePD] = false;
 			_reducedPDCount = 0;
-			_physicalDamage = _physicalDamagebase;
 		}
-		_physicalDamage *= 2;
+		_physicalDamage = _physicalDamagebase;
+		_physicalDamage *= 3;
 		_positiveStates[increasePD] = false;
 	}
 	if (_positiveStates[increaseMR]) {
-		_magicResistance -= _magicResistancebase * 0.2;
+		_magicResistance += _magicResistancebase * 0.2;
 		_increasedMRCount++;
 		if (_increasedMRCount == 3) {
 			_increasedMRCount = 0;
@@ -198,15 +199,23 @@ std::string Dragon::checkPositiveStates() {
 		}
 	}
 	if (_positiveStates[increaseMD]) {
-		_magicDamage *= 1.2;
+		_magicDamage += _magicDamagebase*0.2;
 		_increasedMDCount++;
 		if (_increasedMDCount == 3) {
 			_increasedMDCount = 0;
 			_positiveStates[increaseMD] = false;
 		}
 	}
+	if (_positiveStates[increasePR]) {
+		_physicalResistance += _physicalResistancebase * 0.2;
+		_increasedPRCount++;
+		if (_increasedPRCount == 3) {
+			_increasedPRCount = 0;
+			_positiveStates[increasePR] = false;
+		}
+	}
 	if (_positiveStates[heal]) {
-		_HP += 20;
+		_HP += 500;
 		if (_HP > _HPbase) {
 			_HP = _HPbase;
 		}
