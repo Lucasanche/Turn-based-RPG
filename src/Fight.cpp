@@ -52,6 +52,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		break;
 	case check:
 		dyvir.checkNegativeStates(_turn);
+		//_menu->setTextBoxString(check, 0, )
 		_turn = wait;
 		break;
 	case wait:

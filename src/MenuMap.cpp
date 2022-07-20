@@ -175,7 +175,7 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 				this->changeMenu();
 				break;
 			case MenuOption::AbilityChange:
-				_names[_optionAbility].setString(dyvir.setAbilityEquiped(_optionAbility, _selectedItemIndex + _page));
+				_names[_optionAbility].setString(dyvir.setAbilityEquipedElement(_optionAbility, _selectedItemIndex + _page));
 				_menuOption = MenuOption::MainMenu;
 
 				break;

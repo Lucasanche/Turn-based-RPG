@@ -58,6 +58,7 @@ public:
 	void MoveDown();
 	void setOption(turns option);
 	void setTextBoxString(turns option, int dmg);
+	void setTextBoxString(turns option, int dmg, std::string string);
 	turns update(Dragon& dyvir, Dragon& enemy);
 	int GetPressedItem() { return _selectedItemIndex; }
 	void chargeText(int pos);
