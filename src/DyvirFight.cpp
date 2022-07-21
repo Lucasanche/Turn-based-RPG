@@ -14,7 +14,6 @@ DyvirFight::DyvirFight() {
 	_magicDamagebase = 50; 
 	_physicalResistancebase = 50;
 	_magicResistancebase = 50;
-	
 	_HP = _HPbase;
 	_MP = _MPbase;
 	_physicalDamage = _physicalDamagebase;

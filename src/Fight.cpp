@@ -115,6 +115,11 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 	}
 	window.setView(_view);
 	dyvir.update(_enemy->getIsAlive(), _enemy->getXP());
+	if (_enemy->getIsAlive()) {
+		if (rand() % 3 == 0) {
+			dyvir.getAbilityDrop(_enemy->getAbility(0).getID());
+		}
+	}
 	_enemy->update(dyvir.getIsAlive(), 1); //El 1 no se usa.
 	window.draw(_backSprite);
 	window.draw(*_menu);

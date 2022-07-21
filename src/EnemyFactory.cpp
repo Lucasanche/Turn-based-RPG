@@ -52,8 +52,7 @@ Enemy* EnemyFactory::getBoss(int wins) {
 }
 
 Enemy* EnemyFactory::getEnemy(int wins) {
-	int _num = rand() % (wins + 2);
-	std::cout << _num << std::endl;
+	int _num = rand() % (2 + (wins * 2));
 	switch (_num) {
 		///BASE ENEMIES -> wins = 0 --------------------------------------------------------------------------------------------------------------------------------------
 	case 0:

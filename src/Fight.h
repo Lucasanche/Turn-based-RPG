@@ -15,6 +15,7 @@ private:
 	turns _turn;
 	bool _music;
 	bool _backFlag;
+	bool _drop;
 	sf::Time _time;
 	sf::Time _timeAux;
 	sf::Clock _clock;

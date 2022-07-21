@@ -53,6 +53,7 @@ public:
 	void increaseWins() { _wins++; }
 	bool craftAbility(std::string, std::string, int, int);
 	void update(bool, int) override;
+	void getAbilityDrop(abilityName abilityDrop);
 	void Die() override;
 	void Win(int enemyXP);
 	std::string increaseXP(int XP);
