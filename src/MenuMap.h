@@ -32,13 +32,18 @@ private:
 	std::vector<sf::Text>_menu;
 	std::vector<sf::Text>_names;
 	std::vector<sf::Text>_slots;
+	sf::Text _description;
+	sf::Text _saveText;
 	std::vector <sf::Text> _inventoryList;
 	Cursor _cursor;
 	sf::Sprite _backMenu;
+	sf::Sprite _backMenu2;
 	sf::Texture _backMenuTexture;
+	sf::Texture _backMenuTexture2;
 	float _posIniMenu;
 	int _posMaxMenu;
 	bool _checkPoint;
+	bool _flagSave;
 	DyvirFight dyvir;
 	MenuOption _menuOption;
 public:
@@ -53,6 +58,7 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void changeMenu();
 	void ResetColor();
+	void ResetCursor();
 	~MenuMap();
 };
 

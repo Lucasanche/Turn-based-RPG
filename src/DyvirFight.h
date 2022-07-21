@@ -23,6 +23,7 @@ public:
 	int getInventorySize() { return _abilityInventory.size(); }
 	Ability getInventoryElement(int i) { return _abilityInventory[i]; }
 	std::string getInventoryElementName(int i);
+	std::string getInventoryElementDescription(int i);
 	std::vector<Ability> getInventory() { return _abilityInventory; }
 
 	//Sets
