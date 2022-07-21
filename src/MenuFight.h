@@ -40,11 +40,23 @@ private:
 	sf::Sprite _spriteHPenemy;
 	sf::Sprite _spriteHPFillenemy;
 	sf::Sprite _textHPenemy;
+
 	//States
-	sf::Texture _statesDyvirTexture;
-	sf::Texture _statesEnemyTexture;
-	sf::Sprite _statesDyvirSprite;
-	sf::Sprite _statesEnemySprite;
+	sf::Texture _textureStates;
+	sf::Sprite _spriteStunDyvir;
+	sf::Sprite _spriteBleedingDyvir;
+	sf::Sprite _spriteBurnsDyvir;
+	sf::Sprite _spritePoisonedDyvir;
+	sf::Sprite _spritePRincreaseDyvir;
+	sf::Sprite _spriteMDincreaseDyvir;
+	sf::Sprite _spritePDincreaseDyvir;
+	sf::Sprite _spriteMRincreaseDyvir;
+	sf::Sprite _spritePRdecreaseDyvir;
+	sf::Sprite _spriteMDdecreaseDyvir;
+	sf::Sprite _spritePDdecreaseDyvir;
+	sf::Sprite _spriteMRdecreaseDyvir;
+	sf::Sprite _spriteDamageMultiplierDyvir;
+	
 	int _statusHPenemy;
 	int _lenghtHPenemy;
 	sf::Vector2i spriteSize;
@@ -57,8 +69,7 @@ public:
 	void updateSpriteHPdyvir(int, int);
 	void updateSpriteHPenemy(int, int);
 	void updateSpriteMPdyvir(int, int);
-	void updateSpriteStatesDyvir(Dragon& dyvir);
-	void updateSpriteStatesEnemy(Dragon& enemy);
+	void updateStatesSprites(std::vector<bool> _negativeStates, std::vector<bool> _positiveStates);
 	void MoveUp();
 	void MoveDown();
 	void setOption(turns option);

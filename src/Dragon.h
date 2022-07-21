@@ -56,6 +56,22 @@ protected:
 	int _rectHeight;
 	int _totalFrames;
 
+	//States
+	sf::Texture _textureStates;
+	sf::Sprite _spriteStunDyvir;
+	sf::Sprite _spriteBleedingDyvir;
+	sf::Sprite _spriteBurnsDyvir;
+	sf::Sprite _spritePoisonedDyvir;
+	sf::Sprite _spritePRincreaseDyvir;
+	sf::Sprite _spriteMDincreaseDyvir;
+	sf::Sprite _spritePDincreaseDyvir;
+	sf::Sprite _spriteMRincreaseDyvir;
+	sf::Sprite _spritePRdecreaseDyvir;
+	sf::Sprite _spriteMDdecreaseDyvir;
+	sf::Sprite _spritePDdecreaseDyvir;
+	sf::Sprite _spriteMRdecreaseDyvir;
+	sf::Sprite _spriteDamageMultiplierDyvir;
+
 public:
 	Dragon();
 	//Gets()
@@ -154,8 +170,8 @@ public:
 	//Functions
 	void useAbility(Dragon& dragon, int i);
 	void clearStates() { std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
-	std::string checkNegativeStates(turns& turn);
-	std::string checkPositiveStates();
+	void checkNegativeStates(turns& turn, sf::RenderTarget& target);
+	void checkPositiveStates(sf::RenderTarget& target);
 	int	doDamage(int);
 	void resetStats();
 	int damageTaken(int);

@@ -7,6 +7,7 @@ Dragon::Dragon() : _negativeStates(9, false), _positiveStates(14, false) {
 	_isAlive = true;
 	_physicalDamage = 10;
 	_physicalDamagebase = 10;
+
 }
 
 void Dragon::setAbilityFromInventory(int abilityNumber, abilityName abName) {
@@ -84,18 +85,19 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 	}
 }
 
-std::string Dragon::checkNegativeStates(turns& turn) {
+void Dragon::checkNegativeStates(turns& turn, sf::RenderTarget& target) {
 	//Habilidades negativas
 	std::string string;
 	this->resetStats();
 	if (_negativeStates[stun]) {
 		if (_stunedCount != 2) { //OK
 			if (turn == check) {
-				string += "Dyvir se encuentra stuneado\n";
+				std::cout << "Dyvir se encuentra stuneado" << std::endl;
+
 				turn = enemyCheck;
 			}
 			else if (turn == enemyCheck) {
-				string += "el enemigo se encuentra stuneado\n";
+				std::cout << "el enemigo se encuentra stuneado" << std::endl;
 				turn = start;
 			}
 			_stunedCount++;
@@ -175,11 +177,9 @@ std::string Dragon::checkNegativeStates(turns& turn) {
 			_negativeStates[reduceMD] = false;
 		}
 	}
-	return string;
 }
 
-std::string Dragon::checkPositiveStates() {
-	std::string string;
+void  Dragon::checkPositiveStates(sf::RenderTarget& target) {
 	if (_positiveStates[increasePD]) {
 		if (_negativeStates[reducePD]) {
 			_negativeStates[reducePD] = false;
@@ -218,7 +218,6 @@ std::string Dragon::checkPositiveStates() {
 	if (_positiveStates[doton]) {//CHEQUEAR
 		//Si llegamos acá es porque ya terminamos
 	}
-	return string;
 }
 
 int Dragon::doDamage(int PDenemy) {
