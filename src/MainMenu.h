@@ -14,7 +14,9 @@ public:
 	mainMenu(float width, float height);
 	void MoveUp();
 	void MoveDown();
-	void update();
+	int update();
+	void setMainMenu();
+	int setLoadGame();
 	int GetPressedItem() { return selectedItemIndex; }
 	int getOption() { return _option; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

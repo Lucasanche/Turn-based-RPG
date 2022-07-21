@@ -4,6 +4,7 @@
 
 Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), menuMap(window.getSize().x, window.getSize().y, _dyvirFight) {
 	_music = true;
+	_gameLoaded = false;
 	bufferPelea.loadFromFile("./Sounds/FightMusic.wav");
 	musicaPelea.setBuffer(bufferPelea);
 	musicaPelea.setVolume(30);
@@ -28,7 +29,13 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 	}
 }
 
-void Map::update(sf::RenderWindow& window) {
+int Map::update(sf::RenderWindow& window, int loadGameOption) {
+	if (!_gameLoaded && loadGameOption != 0) {
+		SaveGame _loadGame;
+		if (!_loadGame.loadGame(_dyvirMap, _dyvirFight, loadGameOption)) {
+			return 0;
+		}
+	}
 	switch (_option) {
 	case 0:
 		if (_dyvirMap.update()) {
@@ -144,4 +151,5 @@ void Map::update(sf::RenderWindow& window) {
 		}
 		break;
 	}
+	return 2;
 }

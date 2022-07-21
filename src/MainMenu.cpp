@@ -13,10 +13,8 @@ mainMenu::mainMenu(float width, float height) : _menu(3) {
 		_menu[i].setPosition(sf::Vector2f(width / 2, height / (_menu.size() + 1) * (1+i)));
 		_menu[i].setFillColor(sf::Color::White);
 	}
+	this->setMainMenu();
 	_menu[0].setFillColor(sf::Color::Red);
-	_menu[0].setString("Play");
-	_menu[1].setString("Load Game");
-	_menu[2].setString("Exit");
 	selectedItemIndex = 0;
 }
 
@@ -24,10 +22,6 @@ void mainMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	for (int i = 0; i < _menu.size(); i++) {
 		target.draw(_menu[i], states);
 	}
-}
-
-mainMenu::~mainMenu() {
-	std::cout << "Se eliminó el mainMenu" << std::endl << std::endl;
 }
 
 void mainMenu::MoveUp() {
@@ -46,8 +40,7 @@ void mainMenu::MoveDown() {
 	}
 }
 //TODO: loadgame - Lucas
-void mainMenu::update() {
-
+int mainMenu::update() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
 			this->MoveUp();
@@ -63,21 +56,75 @@ void mainMenu::update() {
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
 		switch (this->GetPressedItem()) {
 		case 0:
-			std::cout << "Se presionó el botón PLAY" << std::endl;
-			_option = 1;
-			break;
-		case 1:
-			std::cout << "Se presionó el botón LOAD GAME" << std::endl;
 			_option = 2;
 			break;
+		case 1:
+			_option = 1;
+			break;
 		case 2:
-			std::cout << "Se presionó el botón EXIT" << std::endl;
 			_option = 3;
+			break;
+		}
+		
+		_flag = false;
+		return 0;
+	}
+	else {
+		_flag = true;
+		return 0;
+	}
+}
+
+void mainMenu::setMainMenu() {
+	_menu[0].setString("Nuevo juego");
+	_menu[1].setString("Cargar partida");
+	_menu[2].setString("Salir");
+}
+
+int mainMenu::setLoadGame() {
+	_menu[0].setString("Slot 1");
+	_menu[1].setString("Slot 2");
+	_menu[2].setString("Slot 3");
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		if (_flag) {
+			this->MoveUp();
+			_flag = false;
+		}
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		if (_flag) {
+			this->MoveDown();
+			_flag = false;
+		}
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+		switch (this->GetPressedItem()) {
+		case 0:
+			_option = 2;
+			return 0;
+			break;
+		case 1:
+			_option = 2;
+			return 1;
+			break;
+		case 2:
+			_option = 2;
+			return 2;
 			break;
 		}
 		_flag = false;
 	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+		this->setMainMenu();
+		_option = 0;
+		return 0;
+	}
 	else {
 		_flag = true;
+		return 1;
 	}
+}
+
+mainMenu::~mainMenu() {
+	std::cout << "Se eliminó el mainMenu" << std::endl << std::endl;
 }

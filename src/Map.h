@@ -27,9 +27,10 @@ private:
 	Fight fight;
 	MenuMap menuMap;
 	int x, iaux, jaux, win, _option;
+	bool _gameLoaded;
 public:
 	Map(sf::RenderWindow& window);
-	void update(sf::RenderWindow& window);
+	int update(sf::RenderWindow& window, int loadGameOption);
 };
 
 #endif
