@@ -15,8 +15,11 @@ public:
 	void MoveUp();
 	void MoveDown();
 	int update();
+	void setOption(int option) { _option = option; }
 	void setMainMenu();
-	int setLoadGame();
+	int getLoadGameIndex() { return selectedItemIndex+1; }
+	void setErrorLoadGame();
+	void resetIndex();
 	int GetPressedItem() { return selectedItemIndex; }
 	int getOption() { return _option; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

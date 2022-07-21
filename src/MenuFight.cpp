@@ -2,7 +2,7 @@
 #include "MenuFight.h"
 
 
-MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _dragonNames(2), _menuStrings(3) {
+MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(4), _dragonNames(2), _menuStrings(4) {
 	_resultBars = 0;
 	_lenghtHPdyvir = 0;
 	_lenghtMPdyvir = 0;
@@ -67,7 +67,7 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _drag
 	_spriteHPFillenemy.setPosition(_spriteHPenemy.getPosition());
 	_textHPenemy.setPosition(_spriteHPenemy.getPosition());
 	_textHPenemy.setTextureRect({ {0, spriteSize.y * 8 }, spriteSize });
-	_posIniMenu = _spriteHPdyvir.getPosition().y + 27;
+	_posIniMenu = _spriteHPdyvir.getPosition().y + 32;
 	_posMaxMenu = 120;
 
 	// Setea el largo del relleno del HP
@@ -85,24 +85,20 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _drag
 	_dragonNames[1].setString("ENEMY");
 	_dragonNames[1].setPosition({ _spriteHPenemy.getPosition().x + _spriteHPenemy.getGlobalBounds().width / 3, _spriteHPenemy.getPosition().y - 40 });
 	
-	_menuStrings[0] = "Attack";
-	_menuStrings[1] = "Ability 1";
-	_menuStrings[2] = "Ability 2";
+	_menuStrings[0] = "Atacar";
+	_menuStrings[1] = "Habilidad 1";
+	_menuStrings[2] = "Habilidad 2";
+	_menuStrings[3] = "Habilidad 3";
 
 	for (int i = 0; i < _menu.size(); i++) {
 		_menu[i].setCharacterSize(25);
 		_menu[i].setFont(_font);
 		_menu[i].setFillColor(sf::Color::White);
 		_menu[i].setString(_menuStrings[i]);
-		//_menu[i].setPosition();
+		_menu[i].setPosition(35, _posIniMenu + (_posMaxMenu * i / _menu.size()));
 	}
 
 	_menu[0].setFillColor(sf::Color::Red);
-	_menu[0].setPosition({ 35, _posIniMenu });
-
-	_menu[1].setPosition(35, _posIniMenu + (_posMaxMenu * 1 / 3));
-
-	_menu[2].setPosition(35, _posIniMenu + (_posMaxMenu * 2 / 3));
 	_cursor.setPosition({ _menu[0].getPosition().x + 10 + _menu[0].getGlobalBounds().width,_menu[0].getPosition().y + _menu[0].getGlobalBounds().height / 2 });
 
 	_textBox.setCharacterSize(25);

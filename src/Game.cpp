@@ -8,6 +8,8 @@ Game::Game() : _window(sf::VideoMode(800, 700), "Proyectazo"), _mainMenu(float(_
 	_loadGameOption = 0;
 }
 
+
+
 void Game::Play() {
 	while (_window.isOpen()) {
 		while (_window.pollEvent(event)) {
@@ -19,21 +21,33 @@ void Game::Play() {
 		_window.clear();
 		switch (_option) {
 		case 0:
-			_loadGameOption = _mainMenu.update();
+			_option = _mainMenu.update();
 			_backgroundTexture.loadFromFile("./Textures/Backgrounds/MenuInicio.jpg");
 			_background.setTexture(_backgroundTexture);
 			_window.draw(_background);
 			_window.draw(_mainMenu);
-			_option = _mainMenu.getOption();
 			break;
 		case 1:
-			_loadGameOption = _mainMenu.setLoadGame();
+			_option = _map.update(_window, _loadGameOption);
+			if (_option == 4) {
+				_mainMenu.setOption(4);
+			}
 			break;
 		case 2:
-			_option = _map.update(_window, _loadGameOption);
+			_option = _mainMenu.update();
+			_loadGameOption = _mainMenu.getLoadGameIndex();
+			_window.draw(_background);
+			_window.draw(_mainMenu);
 			break;
 		case 3:
 			_window.close();
+			break;
+		case 4:
+			_mainMenu.setErrorLoadGame();
+			_option = _mainMenu.update();
+			_loadGameOption = 0;
+			_window.draw(_background);
+			_window.draw(_mainMenu);
 			break;
 		}
 		_window.display();

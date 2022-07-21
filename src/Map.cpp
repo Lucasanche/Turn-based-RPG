@@ -30,17 +30,15 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 }
 
 int Map::update(sf::RenderWindow& window, int loadGameOption) {
-	if (!_gameLoaded) {
+	if (!_gameLoaded && loadGameOption != 0) {
 		SaveGame _loadGame;
-		_loadGame.loadGame(_dyvirMap, _dyvirFight, 0);
-		_gameLoaded = true;
+		if (!_loadGame.loadGame(_dyvirMap, _dyvirFight, loadGameOption)) {
+			return 4;
+		}
+		else {
+			_gameLoaded = true;
+		}
 	}
-	//if (!_gameLoaded && loadGameOption != 0) {
-	//	SaveGame _loadGame;
-	//	if (!_loadGame.loadGame(_dyvirMap, _dyvirFight, loadGameOption)) {
-	//		return 0;
-	//	}
-	//}
 	switch (_option) {
 	case 0:
 		if (_dyvirMap.update()) {
@@ -155,5 +153,5 @@ int Map::update(sf::RenderWindow& window, int loadGameOption) {
 		}
 		break;
 	}
-	return 2;
+	return 1;
 }

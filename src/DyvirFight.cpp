@@ -6,9 +6,8 @@ DyvirFight::DyvirFight() {
 	//_abilityInventory.push_back(_abilityFactory.createFireball());
 	//_abilityInventory.push_back(_abilityFactory.createWindBlow());
 	//_abilityInventory.push_back(_abilityFactory.createHotVampire());
-	_level = 2;
-	//poner a 1 y 0
-	_XP = 100;
+	_level = 1;
+	_XP = 0;
 	_HPbase = 2000;
 	_MPbase = 60;
 	_physicalDamagebase = 150;
@@ -25,8 +24,7 @@ DyvirFight::DyvirFight() {
 
 	this->setFightSprite();
 	_isAlive = true;
-	//poner a 0
-	_wins = 2;
+	_wins = 0;
 
 	//Variables útiles para los sprites
 	_flagDie = true; // Usar para reproducir la animación de muerte
