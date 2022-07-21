@@ -37,8 +37,10 @@ enum abilityName
 	Swirl,
 	SabakuKyu,
 	Doton,
+	CosmicWisdom,
 	Test,
-	CraftError
+	CraftError,
+	Empty
 };
 
 enum positiveStates

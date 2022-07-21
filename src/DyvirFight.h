@@ -31,7 +31,6 @@ private:
 	sf::Sprite _spriteDamageMultiplierDyvir;
 public:
 	DyvirFight();
-
 	//Gets
 	unsigned short getWins() { return _wins; }
 	unsigned short getLevel() { return _level; }
@@ -46,7 +45,7 @@ public:
 	void setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalResistance, int magicResist, int XP);
 	void setLevel(unsigned short level) { _level = level; }
 	std::string setAbilityEquipedElement(int i, int ability);
-	void setAbilityEquiped(Ability ability[]);
+	void setAbilityEquiped(Ability ability, int pos);
 	void setInventory(std::vector <Ability> abilityInventory) { _abilityInventory = abilityInventory; }
 	void setFightSprite();
 

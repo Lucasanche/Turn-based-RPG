@@ -181,6 +181,7 @@ Ability AbilityFactory::createFireball()
 {
 	_ability.reset();
 	_ability.setName("Fireball");
+	_ability.setID(Fireball);
 	_ability.setDescription("Lanza una bola de fuego\n");
 	_ability.setMagicDamage(200);
 	_ability.setMpCost(5);
@@ -192,6 +193,7 @@ Ability AbilityFactory::createBubble()
 {
 	_ability.reset();
 	_ability.setName("Bubble");
+	_ability.setID(Bubble);
 	_ability.setDescription("Escupe burbujas de agua\n");
 	_ability.setMagicDamage(200);
 	_ability.setMpCost(5);
@@ -203,6 +205,7 @@ Ability AbilityFactory::createWindBlow()
 {
 	_ability.reset();
 	_ability.setName("WindBlow");
+	_ability.setID(WindBlow);
 	_ability.setDescription("Lanza una rafaga de viento cortante\n");
 	_ability.setMagicDamage(200);
 	_ability.setMpCost(5);
@@ -215,6 +218,7 @@ Ability AbilityFactory::createTsunami()
 	_ability.reset();
 	_ability.setName("Tsunami");
 	_ability.setDescription("Crea una ola gigante que reduce el MD del enemigo");
+	_ability.setID(Tsunami);
 	_ability.setMagicDamage(800);
 	_ability.setReduceMD();
 	_ability.setMpCost(20);
@@ -227,6 +231,7 @@ Ability AbilityFactory::createFireTornado()
 	_ability.reset();
 	_ability.setName("Fire Tornado");
 	_ability.setDescription("Crea un tornado de fuego");
+	_ability.setID(FireTornado);
 	_ability.setMagicDamage(800);
 	_ability.setMpCost(20);
 	_ability.setElements(Fire, Air);
@@ -240,6 +245,7 @@ Ability AbilityFactory::createEarthquake()
 	_ability.reset();
 	_ability.setName("Earthquake");
 	_ability.setDescription("Genera un terremoto que puede stunear al enemigo");
+	_ability.setID(Earthquake);
 	_ability.setMagicDamage(800);
 	_ability.setMpCost(20);
 	_ability.setStun();
@@ -252,6 +258,7 @@ Ability AbilityFactory::createGeiser()
 	_ability.reset();
 	_ability.setName("Geiser");
 	_ability.setDescription("Dispara un chorro de vapor caliente a gran velocidad que reduce el MR del enemigo");
+	_ability.setID(Geiser);
 	_ability.setMagicDamage(800);
 	_ability.setMpCost(20);
 	_ability.setElements(Water, Fire);
@@ -263,6 +270,7 @@ Ability AbilityFactory::createPoisonGas()
 	_ability.reset();
 	_ability.setName("Poison Gas");
 	_ability.setDescription("Crea una nube de gas que envenena al enemigo");
+	_ability.setID(PoisonGas);
 	_ability.setMagicDamage(400);
 	_ability.setMpCost(25);
 	_ability.setPoison();
@@ -275,6 +283,7 @@ Ability AbilityFactory::createMagmaWave()
 	_ability.reset();
 	_ability.setName("Magma Wave");
 	_ability.setDescription("Invoca una ola de magma que reduce el PD del enemigo");
+	_ability.setID(MagmaWave);
 	_ability.setMagicDamage(800);
 	_ability.setMpCost(20);
 	_ability.setReducePD();
@@ -287,6 +296,7 @@ Ability AbilityFactory::createInferno()
 	_ability.reset();
 	_ability.setName("Inferno");
 	_ability.setDescription("Ataca con llamas infernales que se mantienen encendidas durante 3 turnos");
+	_ability.setID(Inferno);
 	_ability.setMagicDamage(1200);
 	_ability.setMpCost(30);
 	_ability.setElements(Fire, Neutral);
@@ -298,6 +308,7 @@ Ability AbilityFactory::createSwirl()
 	_ability.reset();
 	_ability.setName("Swirl");
 	_ability.setDescription("Crea un remolino de agua que reduce el ataque del enemigo");
+	_ability.setID(Swirl);
 	_ability.setMagicDamage(1000);
 	_ability.setMpCost(30);
 	_ability.setReduceAtt();
@@ -310,6 +321,7 @@ Ability AbilityFactory::createSabakuKyu()
 	_ability.reset();
 	_ability.setName("Sabaku Kyu");
 	_ability.setDescription("Encierra a un enemigo en una tumba de arena que ignora cualquier defensa");
+	_ability.setID(SabakuKyu);
 	_ability.setMagicDamage(1000);
 	_ability.setMpCost(30);
 	_ability.setTrueDamage();
@@ -322,6 +334,7 @@ Ability AbilityFactory::createRestore()
 	_ability.reset();
 	_ability.setName("Restore");
 	_ability.setDescription("Cura los estados negativos");
+	_ability.setID(Restore);
 	_ability.setMpCost(15);
 	_ability.setRestore();
 	_ability.setElements(Neutral, Neutral);
@@ -333,6 +346,7 @@ Ability AbilityFactory::createCosmicWisdom()
 	_ability.reset();
 	_ability.setName("Cosmic Wisdom");
 	_ability.setDescription("Incrementa el MD");
+	_ability.setID(CosmicWisdom);
 	_ability.setMpCost(10);
 	_ability.getIncreaseMD();
 	_ability.setElements(Neutral, Neutral);
@@ -343,6 +357,7 @@ Ability AbilityFactory::createDoton()
 {
 	_ability.reset();
 	_ability.setName("Doton");
+	_ability.setID(Doton);
 	_ability.setMpCost(35);
 	_ability.setIncreaseMR();
 	_ability.setIncreasePR();
@@ -359,6 +374,7 @@ Ability AbilityFactory::createHotVampire() {
 	_ability.reset();
 	_ability.setName("Hot Vampire");
 	_ability.setDescription("Cura el 30% del daño infligido.");
+	_ability.setID(HotVampire);
 	_ability.setMagicDamage(800);
 	//TODO: ver implementación de vampireishon
 	_ability.setVampireishon();
@@ -370,6 +386,7 @@ Ability AbilityFactory::createHotVampire() {
 //Ability AbilityFactory::createMirror() {
 //	_ability.reset();
 //	_ability.setName("Mirror");
+// _ability.setID(Mirror);
 //	_ability.setDescription("Devuelve una habilidad o ataque del enemigo");
 //	_ability.setMpCost(20);
 //	_ability.setMirror();

@@ -14,6 +14,7 @@ private:
 	std::vector<bool>_negativeStates;
 	std::vector<bool>_positiveStates;
 	int _magicDamage;
+	abilityName _ID;
 public:
 	Ability();
 	void reset();
@@ -24,6 +25,7 @@ public:
 	void setMagicDamage(int magicDamage) { _magicDamage = magicDamage; }
 	void setMpCost(int mpCost) { _mpCost = mpCost; }
 	void setElements(elements element1, elements element2);
+	void setID(abilityName ID) { _ID = ID; }
 
 	//Estados positivos
 	void setIncreasePD() { _positiveStates[increasePD] = true; }
@@ -55,7 +57,7 @@ public:
 	//Gets()
 	bool getNegativeStates(int i) { return _negativeStates[i]; }
 	bool getPositiveStates(int i) { return _positiveStates[i]; }
-
+	abilityName getID() { return _ID; }
 	const std::string getName() { return _name; }
 	sf::String getDescription() { return _description.getString(); }
 	int getMagicDamage() { return _magicDamage; }

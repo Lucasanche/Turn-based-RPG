@@ -2,13 +2,13 @@
 #include "DyvirFight.h"
 #include "AbilityFactory.h"
 
-DyvirFight::DyvirFight() : _abilityInventory(3) {
-	_abilityInventory[0] = _abilityFactory.createFireball();
-	_abilityInventory[1] = _abilityFactory.createWindBlow();
-	_abilityInventory[2] = _abilityFactory.createHotVampire();
-	
-	_level = 1;
-	_XP = 0;
+DyvirFight::DyvirFight() {
+	//_abilityInventory.push_back(_abilityFactory.createFireball());
+	//_abilityInventory.push_back(_abilityFactory.createWindBlow());
+	//_abilityInventory.push_back(_abilityFactory.createHotVampire());
+	_level = 2;
+	//poner a 1 y 0
+	_XP = 100;
 	_HPbase = 2000;
 	_MPbase = 60;
 	_physicalDamagebase = 150;
@@ -25,7 +25,8 @@ DyvirFight::DyvirFight() : _abilityInventory(3) {
 
 	this->setFightSprite();
 	_isAlive = true;
-	_wins = 0;
+	//poner a 0
+	_wins = 2;
 
 	//Variables útiles para los sprites
 	_flagDie = true; // Usar para reproducir la animación de muerte
@@ -236,8 +237,8 @@ void DyvirFight::setStats(int HP, int MP, int physicalDamage, int magicDamage, i
 	_MPbase = MP;
 	_physicalDamagebase = physicalDamage;
 	_magicDamagebase = magicDamage;
-	_physicalResistancebase = _physicalResistance;
-	_magicResistancebase = _magicResistance;
+	_physicalResistancebase = physicalResistance;
+	_magicResistancebase = magicResistance;
 }
 
 void DyvirFight::restoreLife() {
@@ -256,10 +257,8 @@ std::string DyvirFight::setAbilityEquipedElement(int i, int ability) {
 	}
 }
 
-void DyvirFight::setAbilityEquiped(Ability ability[]) {
-	for (int i = 0; i < 3; i++) {
-		_ability[i] = ability[i];
-	}
+void DyvirFight::setAbilityEquiped(Ability ability, int pos) {
+		_ability[pos] = ability;
 }
 
 std::string DyvirFight::getInventoryElementName(int i) {
