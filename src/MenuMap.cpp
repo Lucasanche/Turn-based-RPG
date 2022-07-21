@@ -216,7 +216,10 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 					break;
 				}
 			case MenuOption::Save:
-				_save.saveGame(dyvirMap, dyvir, _selectedItemIndex);
+				if (_save.saveGame(dyvirMap, dyvir, _selectedItemIndex)) {
+					_saveText.setString("Partida guardada correctamente");
+				}
+				else _saveText.setString("Error de guardado");
 				this->ResetColor();
 				_menuOption = MenuOption::MainMenu;
 				_selectedItemIndex = 0;
