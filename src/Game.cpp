@@ -29,6 +29,7 @@ void Game::Play() {
 			_map.update(_dyvirMap, _window);
 			break;
 		case 2:
+			_saveGame.loadGame();
 			break;
 		case 3:
 			_window.close();

@@ -2,7 +2,7 @@
 #include "DyvirFight.h"
 #include "Fight.h"
 #include "Cursor.h"
-#include "Menu.h"
+#include "mainMenu.h"
 #include "Map.h"
 #include "DyvirMap.h"
 #include "EnemyFactory.h"
@@ -14,11 +14,12 @@ private:
 	sf::RenderWindow _window;
 	sf::Sprite _background;
 	sf::Texture _backgroundTexture;
-	Menu _mainMenu;
+	mainMenu _mainMenu;
 	Map _map;
 	DyvirMap _dyvirMap;
 	sf::Event event;
 	int _option;
+	SaveGame _saveGame;
 public:
 	Game();
 	void Play();

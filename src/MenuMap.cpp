@@ -33,7 +33,7 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 
 	for (int i = 0; i < 3; i++) {
 		_slots[i].setFillColor(sf::Color::White);
-		_slots[i].setPosition(250, _posIniMenu + 30*i);
+		_slots[i].setPosition(250, _posIniMenu + 30 * i);
 		_slots[i].setCharacterSize(25);
 		_slots[i].setFont(_font);
 	}
@@ -169,7 +169,7 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 				this->changeMenu();
 				break;
 			case MenuOption::Craft2:
-				if (_selectedItemIndex == _selectedItemCraft && _page == _pageAux ) {
+				if (_selectedItemIndex == _selectedItemCraft && _page == _pageAux) {
 					_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Green);
 					_selectedItemIndex = 0;
 					break;
@@ -179,7 +179,7 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 					break;
 				}
 				else {
-					dyvir.craftAbility(_inventoryList[_selectedItemIndex+_page].getString(), _inventoryList[_selectedItemCraft + _pageAux].getString(), _selectedItemIndex + _page, _selectedItemCraft + _pageAux);
+					dyvir.craftAbility(_inventoryList[_selectedItemIndex + _page].getString(), _inventoryList[_selectedItemCraft + _pageAux].getString(), _selectedItemIndex + _page, _selectedItemCraft + _pageAux);
 					this->ResetColor();
 					_menuOption = MenuOption::MainMenu;
 					_selectedItemIndex = 0;
@@ -274,7 +274,7 @@ void MenuMap::ResetColor() {
 		for (int i = 0; i < _inventoryList.size(); i++) {
 			_inventoryList[i].setFillColor(sf::Color::White);
 		}
-	}		
+	}
 	else if (_menuOption == MenuOption::MainMenu) {
 		for (int i = 0; i < _menu.size(); i++) {
 			_menu[i].setFillColor(sf::Color::White);
@@ -361,7 +361,7 @@ void MenuMap::MoveDown() {
 			_selectedItemIndex++;
 			_slots[_selectedItemIndex].setFillColor(sf::Color::Red);
 			_cursor.setPosition({ _slots[_selectedItemIndex].getPosition().x + 10 + _slots[_selectedItemIndex].getGlobalBounds().width, _slots[_selectedItemIndex].getPosition().y + _slots[_selectedItemIndex].getGlobalBounds().height / 2 });
-	}
+		}
 	}
 }
 
@@ -374,7 +374,7 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 		target.draw(_names[i], states);
 	}
 	target.draw(_cursor, states);
-	if ((_menuOption != MenuOption::MainMenu)&&(_menuOption != MenuOption::Save)) {
+	if ((_menuOption != MenuOption::MainMenu) && (_menuOption != MenuOption::Save)) {
 		for (int i = 0; i < _inventoryList.size(); i++) {
 			target.draw(_inventoryList[i], states);
 		}

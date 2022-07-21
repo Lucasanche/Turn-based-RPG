@@ -36,7 +36,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 			_backSprite.setTexture(_backTexture);
 			_menu = new MenuFight(float(window.getSize().x), float(window.getSize().y), dyvir);
 			if (_menu == NULL) {
-				std::cout << "No se pudo cargar el menu" << std::endl;
+				std::cout << "No se pudo cargar MenuFight" << std::endl;
 			}
 			clock.restart();
 			_backFlag = false;
@@ -59,7 +59,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		_turn = _menu->update(dyvir, *_enemy);
 		break;
 	case attack: //Atacar
-		_menu->setTextBoxString(_turn, _enemy->damageTaken(dyvir.doDamage(_enemy->getPD())));
+		_menu->setTextBoxString(_turn, _enemy->damageTaken(dyvir.doDamage(_enemy->getPRmultiplier())));
 		clock.restart();
 		_turn = enemyUpdateText;
 		break;
@@ -92,15 +92,15 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 				switch (rand() % 2) {
 				case 0:
 					_turn = enemyAttack;
-					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPD())));
+					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPRmultiplier())));
 					break;
 				case 1:
 					_turn = enemyAttack;
-					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPD())));
+					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPRmultiplier())));
 					break;
 				case 2:
 					_turn = enemyAttack;
-					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPD())));
+					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPRmultiplier())));
 					break;
 				}
 				_turn = updateText;

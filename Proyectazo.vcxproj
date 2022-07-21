@@ -164,7 +164,7 @@
     <ClCompile Include="src\Fight.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Map.cpp" />
-    <ClCompile Include="src\Menu.cpp" />
+    <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\MenuFight.cpp" />
     <ClCompile Include="src\MenuMap.cpp" />
     <ClCompile Include="src\stdafx.cpp">
@@ -190,7 +190,7 @@
     <ClInclude Include="src\Fight.h" />
     <ClInclude Include="src\GlobalEnums.h" />
     <ClInclude Include="src\Map.h" />
-    <ClInclude Include="src\Menu.h" />
+    <ClInclude Include="src\MainMenu.h" />
     <ClInclude Include="src\MenuFight.h" />
     <ClInclude Include="src\MenuMap.h" />
     <ClInclude Include="resource.h" />

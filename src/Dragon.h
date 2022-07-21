@@ -75,8 +75,9 @@ public:
 	bool getIsAlive() { return _isAlive; }
 	elements getElementWeak() { return _elementWeak; }
 	elements getElementResist() { return _elementResist; }
-	float getMR();
-	float getPD();
+	float getMRmultiplier();
+	float getPRmultiplier();
+	float getMDmultiplier();
 	Ability getAbility(int i) { return _ability[i]; }
 
 	//Estados positivos

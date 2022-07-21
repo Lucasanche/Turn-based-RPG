@@ -1,8 +1,8 @@
 #include "stdafx.h"
-#include "Menu.h"
+#include "mainMenu.h"
 
 
-Menu::Menu(float width, float height) {
+mainMenu::mainMenu(float width, float height) {
 	_flag = true;
 	_option = 0;
 	if (!font.loadFromFile("./Fonts/Nostalgia.ttf")) {
@@ -15,7 +15,7 @@ Menu::Menu(float width, float height) {
 
 	menu[1].setFont(font);
 	menu[1].setFillColor(sf::Color::White);
-	menu[1].setString("Mapa");
+	menu[1].setString("Load Game");
 	menu[1].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 2));
 
 	menu[2].setFont(font);
@@ -26,17 +26,17 @@ Menu::Menu(float width, float height) {
 	selectedItemIndex = 0;
 }
 
-void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void mainMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
 		target.draw(menu[i], states);
 	}
 }
 
-Menu::~Menu() {
-	std::cout << "se murió" << std::endl << std::endl;
+mainMenu::~mainMenu() {
+	std::cout << "Se eliminó el mainMenu" << std::endl << std::endl;
 }
 
-void Menu::MoveUp() {
+void mainMenu::MoveUp() {
 	if (selectedItemIndex - 1 >= 0) {
 		menu[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex--;
@@ -44,15 +44,15 @@ void Menu::MoveUp() {
 	}
 }
 
-void Menu::MoveDown() {
+void mainMenu::MoveDown() {
 	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS) {
 		menu[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex++;
 		menu[selectedItemIndex].setFillColor(sf::Color::Red);
 	}
 }
-
-void Menu::update() {
+//TODO: loadgame - Lucas
+void mainMenu::update() {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (_flag) {
@@ -73,7 +73,7 @@ void Menu::update() {
 			_option = 1;
 			break;
 		case 1:
-			std::cout << "Se presionó el botón OPTIONS" << std::endl;
+			std::cout << "Se presionó el botón LOAD GAME" << std::endl;
 			_option = 2;
 			break;
 		case 2:

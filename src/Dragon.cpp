@@ -38,15 +38,11 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 		if (_ability[i].getPositiveStates(doton)) {
 			this->setDoton();
 		}
-		/*if (_increaseElementResistance) {
-			dragon.setIncreaseElementResistance();
-		}*/
-		//TODO: hacer cálculo para tener en cuenta el MR, PD, etc.
 		float totalDamage = _ability[i].getMagicDamage();
 		if (_positiveStates[damageMultiplier]) {
 			totalDamage *= 2;
 		}
-		//TODO: Implementar vampireishon DEJAR!
+		//TODO: Implementar vampireishon
 		//if (_vampireishon) {
 		//}
 		if (_ability[i].getNegativeStates(stun)) {
@@ -71,25 +67,25 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 			dragon.setReduceMD();
 		}
 		
-		if (dragon.getElementResist() != Neutral) {
-			if (_ability[i].getElement1() == dragon.getElementResist()) {
-				totalDamage *= 0.5;
-			}
-			if (_ability[i].getElement2() == dragon.getElementResist()) {
-				totalDamage *= 0.5;
-			}
-		}
-		if (dragon.getElementWeak() != Neutral) {
-			if (_ability[i].getElement1() == dragon.getElementWeak()) {
-				totalDamage *= 1.15;
-			}
-			if (_ability[i].getElement2() == dragon.getElementWeak()) {
-				totalDamage *= 1.15;
-			}
-		}
-		//TODO: chequear la resistencia a los elementos (solo está hecha la debilidad) 
 		if (!_positiveStates[trueDamage]) {
-			totalDamage *= dragon.getMR();
+			if (dragon.getElementResist() != Neutral) {
+				if (_ability[i].getElement1() == dragon.getElementResist()) {
+					totalDamage *= 0.5;
+				}
+				if (_ability[i].getElement2() == dragon.getElementResist()) {
+					totalDamage *= 0.5;
+				}
+			}
+			if (dragon.getElementWeak() != Neutral) {
+				if (_ability[i].getElement1() == dragon.getElementWeak()) {
+					totalDamage *= 1.15;
+				}
+				if (_ability[i].getElement2() == dragon.getElementWeak()) {
+					totalDamage *= 1.15;
+				}
+			}
+			totalDamage *= this->getMDmultiplier();
+			totalDamage *= dragon.getMRmultiplier();
 		}
 		this->checkPositiveStates();
 		dragon.damageTaken(int(totalDamage));
@@ -241,21 +237,27 @@ std::string Dragon::checkPositiveStates() {
 	return string;
 }
 
-int Dragon::doDamage(int PDenemy) {
-	int finalDamage = _physicalDamage * PDenemy;
+int Dragon::doDamage(int PRenemy) {
+	int finalDamage = _physicalDamage * PRenemy;
 	return finalDamage;
 }
 
-float Dragon::getMR() {
+float Dragon::getMRmultiplier() {
 	float result = 0;
 	result = 1 - (_magicResistance / (_magicResistance + 50));
 	return result;
 }
 
-float Dragon::getPD() {
-	float resultado = 0;
-	resultado = 1 - (_physicalResistance / (_physicalResistance + 50));
-	return resultado;
+float Dragon::getPRmultiplier() {
+	float result = 0;
+	result = 1 - (_physicalResistance / (_physicalResistance + 50));
+	return result;
+}
+
+float Dragon::getMDmultiplier() {
+	float result = 0;
+	result = 1 + (_magicDamage / (_magicDamage + 50));
+	return result;
 }
 
 int Dragon::damageTaken(int damageTaken) {

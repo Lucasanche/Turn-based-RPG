@@ -1,9 +1,9 @@
 #pragma once
-#ifndef MENU_H
-#define MENU_H
+#ifndef MAINMENU_H
+#define MAINMENU_H
 #define MAX_NUMBER_OF_ITEMS 3
 
-class Menu : public sf::Drawable
+class mainMenu : public sf::Drawable
 {
 private:
 	int _option;
@@ -12,14 +12,14 @@ private:
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_ITEMS];
 public:
-	Menu(float width, float height);
+	mainMenu(float width, float height);
 	void MoveUp();
 	void MoveDown();
 	void update();
 	int GetPressedItem() { return selectedItemIndex; }
 	int getOption() { return _option; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-	~Menu();
+	~mainMenu();
 };
 
 #endif
