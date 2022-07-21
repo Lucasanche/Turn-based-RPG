@@ -235,80 +235,80 @@ std::vector <bool>  Dragon::checkPositiveStates() {
 	return _positiveStates;
 }
 
-void Dragon::updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderTarget& target) {
+void Dragon::updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderWindow& window) {
 	//negative states
 	if (_negativeStates[stun]) {
-		target.draw(_spriteStunDyvir);
+		window.draw(_spriteStunDyvir);
 	}
 	if (_negativeStates[burns]) {
-		target.draw(_spriteBurnsDyvir);
+		window.draw(_spriteBurnsDyvir);
 	}
 	if (_negativeStates[poison]) {
-		target.draw(_spritePoisonedDyvir);
+		window.draw(_spritePoisonedDyvir);
 	}
 	if (_negativeStates[reducePR]) {
-		target.draw(_spritePRdecreaseDyvir);
+		window.draw(_spritePRdecreaseDyvir);
 	}
 	if (_negativeStates[reduceMR]) {
-		target.draw(_spriteMRdecreaseDyvir);
+		window.draw(_spriteMRdecreaseDyvir);
 	}
 	if (_negativeStates[reducePD]) {
-		target.draw(_spritePDdecreaseDyvir);
+		window.draw(_spritePDdecreaseDyvir);
 	}
 	if (_negativeStates[reduceMD]) {
-		target.draw(_spriteMDdecreaseDyvir);
+		window.draw(_spriteMDdecreaseDyvir);
 	}
 	//positive states
 	if (_positiveStates[increasePR]) {
-		target.draw(_spritePRincreaseDyvir);
+		window.draw(_spritePRincreaseDyvir);
 	}
 	if (_positiveStates[increaseMR]) {
-		target.draw(_spriteMRincreaseDyvir);
+		window.draw(_spriteMRincreaseDyvir);
 	}
 	if (_positiveStates[increasePD]) {
-		target.draw(_spritePDincreaseDyvir);
+		window.draw(_spritePDincreaseDyvir);
 	}
 	if (_positiveStates[increaseMD]) {
-		target.draw(_spriteMDincreaseDyvir);
+		window.draw(_spriteMDincreaseDyvir);
 	}
 }
 
-void Dragon::updateSpriteStatesEnemy(std::vector<bool> _positiveStates, std::vector<bool> _negativeStates, sf::RenderTarget& target)
+void Dragon:: updateSpriteStatesEnemy(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderWindow& window)
 {
 	//negative states
 	if (_negativeStates[stun]) {
-		target.draw(_spriteStunEnemy);
+		window.draw(_spriteStunEnemy);
 	}
 	if (_negativeStates[burns]) {
-		target.draw(_spriteBurnsEnemy);
+		window.draw(_spriteBurnsEnemy);
 	}
 	if (_negativeStates[poison]) {
-		target.draw(_spritePoisonedEnemy);
+		window.draw(_spritePoisonedEnemy);
 	}
 	if (_negativeStates[reducePR]) {
-		target.draw(_spritePRdecreaseEnemy);
+		window.draw(_spritePRdecreaseEnemy);
 	}
 	if (_negativeStates[reduceMR]) {
-		target.draw(_spriteMRdecreaseEnemy);
+		window.draw(_spriteMRdecreaseEnemy);
 	}
 	if (_negativeStates[reducePD]) {
-		target.draw(_spritePDdecreaseEnemy);
+		window.draw(_spritePDdecreaseEnemy);
 	}
 	if (_negativeStates[reduceMD]) {
-		target.draw(_spriteMDdecreaseEnemy);
+		window.draw(_spriteMDdecreaseEnemy);
 	}
 	//positive states
 	if (_positiveStates[increasePR]) {
-		target.draw(_spritePRincreaseEnemy);
+		window.draw(_spritePRincreaseEnemy);
 	}
 	if (_positiveStates[increaseMR]) {
-		target.draw(_spriteMRincreaseEnemy);
+		window.draw(_spriteMRincreaseEnemy);
 	}
 	if (_positiveStates[increasePD]) {
-		target.draw(_spritePDincreaseEnemy);
+		window.draw(_spritePDincreaseEnemy);
 	}
 	if (_positiveStates[increaseMD]) {
-		target.draw(_spriteMDincreaseEnemy);
+		window.draw(_spriteMDincreaseEnemy);
 	}
 }
 

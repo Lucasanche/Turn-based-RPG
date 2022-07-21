@@ -45,6 +45,8 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 			break;
 		}
 	}
+	//void updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderTarget& target);
+
 	_menu->update(dyvir, *_enemy);
 	switch (_turn) {
 	case start:
@@ -52,6 +54,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		break;
 	case check:
 		dyvir.checkNegativeStates(_turn);
+		dyvir.updateSpriteStatesDyvir(dyvir.checkNegativeStates(_turn), _enemy->checkNegativeStates(_turn), window);
 		//_menu->setTextBoxString(check, 0, )
 		_turn = wait;
 		break;
@@ -77,6 +80,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		_turn = enemyCheck;
 		break;
 	case enemyCheck:
+		_enemy->updateSpriteStatesEnemy(dyvir.checkNegativeStates(_turn), _enemy->checkNegativeStates(_turn), window);
 		_enemy->checkNegativeStates(_turn);
 		//_turn = enemyWait;
 		break;
@@ -95,12 +99,12 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPRmultiplier())));
 					break;
 				case 1:
-					_turn = enemyAttack;
-					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPRmultiplier())));
+					_turn = ability1;
+					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getMRmultiplier())));
 					break;
 				case 2:
-					_turn = enemyAttack;
-					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPRmultiplier())));
+					_turn = ability2;
+					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getMRmultiplier())));
 					break;
 				}
 				_turn = updateText;

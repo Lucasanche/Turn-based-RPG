@@ -3,18 +3,19 @@
 #include "AbilityFactory.h"
 
 DyvirFight::DyvirFight() {
-	//_abilityInventory.push_back(_abilityFactory.createFireball());
-	//_abilityInventory.push_back(_abilityFactory.createWindBlow());
-	//_abilityInventory.push_back(_abilityFactory.createHotVampire());
+	_abilityInventory.push_back(_abilityFactory.createPoisonGas());
+	_abilityInventory.push_back(_abilityFactory.createGeiser());
+	_abilityInventory.push_back(_abilityFactory.createInferno());
 	_level = 1;
 	_XP = 0;
 	_HPbase = 2000;
 	_MPbase = 60;
-	_physicalDamagebase = 150;
-	_magicDamagebase = 50; 
+	_physicalDamagebase = 200;
+	_magicDamagebase = 150; 
 	_physicalResistancebase = 50;
 	_magicResistancebase = 50;
-	
+
+
 	_HP = _HPbase;
 	_MP = _MPbase;
 	_physicalDamage = _physicalDamagebase;

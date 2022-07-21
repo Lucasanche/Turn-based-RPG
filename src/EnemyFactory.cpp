@@ -40,12 +40,14 @@ Enemy* EnemyFactory::getBoss(int wins) {
 		_enemy->setAbilityFromInventory(0, MagmaWave);
 		_enemy->setAbilityFromInventory(1, FireTornado);
 		break;
-	case 4:///TODO: HACER A KLOSTER. -> Hermano de lucas? | 3 habilidades? 
-		_enemy = new Enemy("./Textures/Characters/spritesheets/KLOSTER", 174, 103, 4, 1, 1);
+	case 4:
+		_enemy = new Enemy("./Textures/Characters/spritesheets/boss5 KLOSTER 296x242 -12.png", 296, 242, 12, 1, 1);
 		if (_enemy == nullptr) {
 			std::cout << "no se pudo crear el Boss 5" << std::endl;
 		}
 		_enemy->setStats(10000, 2000, 750, 750, 350, 350, Neutral, Neutral, 1500);
+		_enemy->setAbilityFromInventory(0, Inferno);
+		_enemy->setAbilityFromInventory(1, Doton);
 		break;
 	}
 	return _enemy;
