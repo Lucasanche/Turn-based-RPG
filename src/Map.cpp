@@ -39,10 +39,12 @@ int Map::update(sf::RenderWindow& window, int loadGameOption) {
 			_gameLoaded = true;
 		}
 	}
+
 	switch (_option) {
 	case 0:
 		if (_dyvirMap.update()) {
-			_option = 0;
+			_option = 1;
+			fight.setEnemy(_dyvirFight.getWins());
 		}
 		for (int i = 0; i < map.size(); i++) {
 			for (int j = 0; j < map[i].size(); j++) {
@@ -78,13 +80,20 @@ int Map::update(sf::RenderWindow& window, int loadGameOption) {
 		}
 		break;
 	case 1:
-		fight.update(_dyvirFight, window, _clock, true);
-		if (!fight.getEnemyIsAlive()) {
-			_clock.restart();
-			_option = 2;
-		}
-		else if (!_dyvirFight.getIsAlive()) {
-			_option = 2;
+		fight.update(_dyvirFight, window, _clock, false);
+		if (_clock.getElapsedTime().asSeconds() > 3) {
+			if (!fight.getEnemyIsAlive()) {
+				_clock.restart();
+				fight.deleteBoss();
+				_dyvirFight.setFightSprite();
+				_option = 0;
+			}
+			else if (!_dyvirFight.getIsAlive()) {
+				window.close();
+				std::cout << "Cagaste fuego";
+				system("pause");
+				_option = 0;
+			}
 		}
 		break;
 	case 2:

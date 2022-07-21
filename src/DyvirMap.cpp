@@ -53,7 +53,7 @@ bool DyvirMap::update() {
 		_sprite.setScale(0.15, 0.15);
 	}
 	if (_velocity != sf::Vector2f(0, 0)) {
-		if (rand() % 5 == 1) {
+		if (rand() % 60 == 0) {
 			return true;
 		}
 		std::cout << rand() << std::endl;
