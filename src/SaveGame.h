@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SAVEGAME_H
+#define SAVEGAME_H
 #include "DyvirFight.h"
 #include "DyvirMap.h"
 
@@ -20,7 +22,7 @@ private:
 	errno_t _err;
 public:
 	bool saveGame(DyvirMap mapAux, DyvirFight fightAux, int option) {
-		FILE* p;
+		FILE* p = nullptr;
 		_inventory = fightAux.getInventory();
 		_HPbase = fightAux.getHPbase();
 		_MPbase = fightAux.getMPbase();
@@ -44,11 +46,12 @@ public:
 			_err = fopen_s(&p, "/saves/SaveGame3.dat", "wb");
 			break;
 		}
-		if (_err == 0) {
-			fwrite(this, sizeof(this), 1, p);
-			if (p) {
+		if (p != nullptr) {
+			if (_err == 0) {
+				fwrite(this, sizeof(this), 1, p);
 				_err = fclose(p);
 				return true;
+				
 			}
 			else {
 				return false;
@@ -58,22 +61,26 @@ public:
 	}
 
 	bool loadGame(DyvirMap mapAux, DyvirFight fightAux, int option) {
-		FILE* p;
+		FILE* p = nullptr;
 		switch (option) {
 		case 0:
-			_err = fopen_s(&p, "/saves/SaveGame1.dat", "rb");
+			_err = fopen_s(&p, "../saves/SaveGame1.dat", "rb");
+			fread(this, sizeof(this), 1, p);
 			break;
 		case 1:
-			_err = fopen_s(&p, "/saves/SaveGame2.dat", "rb");
+			_err = fopen_s(&p, "../saves/SaveGame2.dat", "rb");
+			fread(this, sizeof(this), 1, p);
 
 			break;
 		case 2:
-			_err = fopen_s(&p, "/savesSaveGame3.dat", "rb");
+			_err = fopen_s(&p, "../saves/SaveGame3.dat", "rb");
+			fread(this, sizeof(this), 1, p);
 			break;
 		}
-		if (_err == 0) {
-			fread(this, sizeof(this), 1, p);
-
+		if (p != nullptr) {
+			if (_err == 0) {
+				fread(this, sizeof(this), 1, p);
+			}
 		}
 		else { return false; }
 		fightAux.setStats(_HPbase, _MPbase, _physicalDamagebase, _magicDamagebase, _physicalResistancebase, _magicResistancebase, _XP);
@@ -82,7 +89,7 @@ public:
 		fightAux.setWins(_wins);
 		fightAux.setAbilityEquiped(_abilityEquiped);
 		mapAux.setPosition(_position);
-		if (p) {
+		if (p != NULL) {
 			_err = fclose(p);
 			return true;
 		}
@@ -92,3 +99,4 @@ public:
 	}
 };
 
+#endif

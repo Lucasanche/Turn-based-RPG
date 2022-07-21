@@ -55,9 +55,10 @@ protected:
 	int _rectWidth;
 	int _rectHeight;
 	int _totalFrames;
-
-	//States DYVIR
+	
+	
 	sf::Texture _textureStates;
+	//States DYVIR
 	sf::Sprite _spriteStunDyvir;
 	sf::Sprite _spriteBleedingDyvir;
 	sf::Sprite _spriteBurnsDyvir;
@@ -187,6 +188,7 @@ public:
 	std::vector <bool> checkNegativeStates(turns& turn);
 	std::vector <bool> checkPositiveStates();
 	void updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderTarget& target);
+	void updateSpriteStatesEnemy(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderTarget& target);
 
 	int	doDamage(int);
 	void resetStats();

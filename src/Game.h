@@ -1,4 +1,7 @@
 #pragma once
+#ifndef GAME_H
+#define GAME_H
+
 #include "DyvirFight.h"
 #include "Fight.h"
 #include "Cursor.h"
@@ -18,7 +21,8 @@ private:
 	Map _map;
 	DyvirMap _dyvirMap;
 	sf::Event event;
-	int _option;
+	unsigned short _option;
+	unsigned short _loadGameOption;
 	SaveGame _saveGame;
 public:
 	Game();
@@ -27,3 +31,4 @@ public:
 	
 };
 
+#endif

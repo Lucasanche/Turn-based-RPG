@@ -2,9 +2,9 @@
 #include "Map.h"
 
 
-Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), menuMap(window.getSize().x, window.getSize().y, dyvir) {
+Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), menuMap(window.getSize().x, window.getSize().y, _dyvirFight) {
 	_music = true;
-	_checkWins = 0;
+	_gameLoaded = false;
 	bufferPelea.loadFromFile("./Sounds/FightMusic.wav");
 	musicaPelea.setBuffer(bufferPelea);
 	musicaPelea.setVolume(30);
@@ -29,10 +29,16 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 	}
 }
 
-void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
+int Map::update(sf::RenderWindow& window, int loadGameOption) {
+	if (!_gameLoaded && loadGameOption != 0) {
+		SaveGame _loadGame;
+		if (!_loadGame.loadGame(_dyvirMap, _dyvirFight, loadGameOption)) {
+			return 0;
+		}
+	}
 	switch (_option) {
 	case 0:
-		if (DyvirMap.update()) {
+		if (_dyvirMap.update()) {
 			_option = 0;
 		}
 		for (int i = 0; i < map.size(); i++) {
@@ -48,7 +54,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 						DyvirMap.setCollide();
 						if (map[i][j].x > 1) {
 							_option = 2;
-							fight.setBoss(dyvir.getWins());
+							fight.setBoss(_dyvirFight.getWins());
 							window.clear();
 						}
 						else if (map[i][j].x == 1) {
@@ -59,38 +65,38 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 					}
 				}
 			}
-		
-		_view.setCenter(DyvirMap.getPosition());
+		}
+		_view.setCenter(_dyvirMap.getPosition());
 		window.setView(_view);
-		window.draw(DyvirMap);
+		window.draw(_dyvirMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
-			_option = 5;
+			_option = 2;
 			window.setView(window.getDefaultView());
 			//_view.setSize(window.getSize().x, window.getSize().y);
 		}
 		break;
 	case 1:
-		fight.update(dyvir, window, _clock, true);
+		fight.update(_dyvirFight, window, _clock, true);
 		if (!fight.getEnemyIsAlive()) {
 			_clock.restart();
 			_option = 2;
 		}
-		else if (!dyvir.getIsAlive()) {
+		else if (!_dyvirFight.getIsAlive()) {
 			_option = 2;
 		}
 		break;
 	case 2:
-		fight.update(dyvir, window, _clock, true);
+		fight.update(_dyvirFight, window, _clock, true);
 		if (_clock.getElapsedTime().asSeconds() > 3) {
 			if (!fight.getEnemyIsAlive()) {
 				//_taux = tile;
-				dyvir.increaseWins();
+				_dyvirFight.increaseWins();
 				_option = 0;
-				dyvir.setFightSprite();
+				_dyvirFight.setFightSprite();
 				fight.setBackFlag();
 				fight.deleteBoss();
 			}
-			if (!dyvir.getIsAlive()) {
+			if (!_dyvirFight.getIsAlive()) {
 				window.close();
 				std::cout << "Cagaste fuego";
 				system("pause");
@@ -99,25 +105,25 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		}
 		break;
 	case 3:
-		fight.update(dyvir, window, _clock, false);
+		fight.update(_dyvirFight, window, _clock, false);
 		if (!fight.getEnemyIsAlive()) {
 			_clock.restart();
 			_option = 4;
 		}
-		else if (!dyvir.getIsAlive()) {
+		else if (!_dyvirFight.getIsAlive()) {
 			_option = 4;
 		}
 		break;
 	case 4:
-		fight.update(dyvir, window, _clock, true);
+		fight.update(_dyvirFight, window, _clock, true);
 		if (_clock.getElapsedTime().asSeconds() > 3) {
 			if (!fight.getEnemyIsAlive()) {
 				_option = 0;
-				dyvir.setFightSprite();
+				_dyvirFight.setFightSprite();
 				fight.setBackFlag();
 				fight.deleteBoss();
 			}
-			if (!dyvir.getIsAlive()) {
+			if (!_dyvirFight.getIsAlive()) {
 				window.close();
 				std::cout << "Cagaste fuego";
 				system("pause");
@@ -126,7 +132,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		}
 		break;
 	case 5:
-		menuMap.update(dyvir, false, DyvirMap);
+		menuMap.update(_dyvirFight, false, _dyvirMap);
 		window.draw(menuMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			_option = 0;
@@ -136,7 +142,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		break;
 	case 6:
 		window.setView(window.getDefaultView());
-		menuMap.update(dyvir, true, DyvirMap);
+		menuMap.update(_dyvirFight, true, _dyvirMap);
 		window.draw(menuMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			_option = 0;
@@ -145,4 +151,5 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		}
 		break;
 	}
+	return 2;
 }
