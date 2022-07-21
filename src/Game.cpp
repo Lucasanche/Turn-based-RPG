@@ -5,6 +5,7 @@ Game::Game() : _window(sf::VideoMode(800, 700), "Proyectazo"), _mainMenu(float(_
 	_window.setFramerateLimit(60);
 	_background.setTextureRect({ 0,0,800,700 });
 	_option = 0;
+	_loadGameOption = 0;
 }
 
 void Game::Play() {
@@ -18,7 +19,7 @@ void Game::Play() {
 		_window.clear();
 		switch (_option) {
 		case 0:
-			_mainMenu.update();
+			_loadGameOption = _mainMenu.update();
 			_backgroundTexture.loadFromFile("./Textures/Backgrounds/MenuInicio.jpg");
 			_background.setTexture(_backgroundTexture);
 			_window.draw(_background);
@@ -26,10 +27,10 @@ void Game::Play() {
 			_option = _mainMenu.getOption();
 			break;
 		case 1:
-			_map.update(_window);
+			_loadGameOption = _mainMenu.setLoadGame();
 			break;
 		case 2:
-			//_option = _saveGame.loadGame(_dyvirFi);
+			_option = _map.update(_window, _loadGameOption);
 			break;
 		case 3:
 			_window.close();
