@@ -15,10 +15,16 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 	if (!_backMenuTexture.loadFromFile("./Textures/Interface/mFightPrincipal.png")) {
 		std::cout << "No se pudo cargar mFightPrincipal.png" << std::endl;
 	}
+	if (!_backMenuTexture2.loadFromFile("./Textures/Interface/mMap.png")) {
+		std::cout << "No se pudo cargar mFightPrincipal.png" << std::endl;
+	}
 	_backMenu.setTexture(_backMenuTexture);
 	_backMenu.setPosition(0, height / 2 - _backMenu.getGlobalBounds().height);
 	_selectedItemIndex = 0;
 	_posIniMenu = height / 2 - _backMenu.getGlobalBounds().height + 25;
+	_backMenu2.setTexture(_backMenuTexture2);
+	_backMenu2.setScale(0.7, 0.7);
+	_backMenu2.setPosition(width/7, height / 3 + _backMenu2.getGlobalBounds().height);
 
 	_posMaxMenu = 120;
 
@@ -66,6 +72,20 @@ MenuMap::MenuMap(float width, float height, DyvirFight& dyvir) : _inventoryList(
 	_slots[1].setString("Slot 2");
 	_slots[2].setString("Slot 3");
 
+	_description.setCharacterSize(25);
+	_description.setFont(_font);
+	_description.setFillColor(sf::Color::White);
+	_description.setPosition(225, 450);
+
+	_saveText.setCharacterSize(25);
+	_saveText.setFont(_font);
+	_saveText.setFillColor(sf::Color::White);
+	_saveText.setPosition(225, 450);
+	_saveText.setString("Partida guardada correctamente");
+
+
+
+
 	int pos = 0;
 	int aux = 0;
 
@@ -105,6 +125,10 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 	if (_checkPoint) {
 		dyvir.restoreLife();
 	}
+
+	_description.setString(dyvir.getInventoryElementDescription(_selectedItemIndex + _page));
+	
+
 	for (int i = 0; i < _inventoryList.size(); i++) {
 		_inventoryList[i].setString(dyvir.getInventoryElementName(i + _page));
 	}
@@ -154,16 +178,20 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 					_menuOption = MenuOption::Save;
 					break;
 				}
+				_flagSave = false;
 				this->changeMenu();
 				break;
 			case MenuOption::AbilityChange:
+				_flagSave = false;
 				_names[_optionAbility].setString(dyvir.setAbilityEquipedElement(_optionAbility, _selectedItemIndex + _page));
 				_menuOption = MenuOption::MainMenu;
 				this->ResetColor();
 				_selectedItemIndex = 0;
+				this->ResetCursor();
 
 				break;
 			case MenuOption::Craft:
+				_flagSave = false;
 				if (_inventoryList[_selectedItemIndex].getString() == "Empty") { break; }
 				_menuOption = MenuOption::Craft2;
 				this->changeMenu();
@@ -183,6 +211,7 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 					this->ResetColor();
 					_menuOption = MenuOption::MainMenu;
 					_selectedItemIndex = 0;
+					this->ResetCursor();
 					this->changeMenu();
 					break;
 				}
@@ -191,6 +220,8 @@ void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
 				this->ResetColor();
 				_menuOption = MenuOption::MainMenu;
 				_selectedItemIndex = 0;
+				_flagSave = true;
+				this->ResetCursor();
 				this->changeMenu();
 				break;
 
@@ -230,6 +261,7 @@ void MenuMap::changeMenu() {
 		}
 		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+		//_description.setString(dyvir.getInventoryElementDescription(_selectedItemIndex + _page));
 		break;
 	case MenuOption::Craft:
 		_selectedItemAux = _selectedItemIndex;
@@ -239,6 +271,8 @@ void MenuMap::changeMenu() {
 		}
 		_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
 		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+		
+		//_description.setString(dyvir.getInventoryElementDescription(_selectedItemIndex + _page));
 		break;
 	case MenuOption::Craft2:
 		_selectedItemCraft = _selectedItemIndex;
@@ -252,6 +286,7 @@ void MenuMap::changeMenu() {
 			_inventoryList[_selectedItemCraft].setFillColor(sf::Color::Yellow);
 		}
 		_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+		//_description.setString(dyvir.getInventoryElementDescription(_selectedItemIndex + _page));
 		break;
 	case MenuOption::Save:
 		_selectedItemIndex = _selectedItemAux;
@@ -268,6 +303,7 @@ void MenuMap::ResetColor() {
 	if (_menuOption == MenuOption::Save) {
 		for (int i = 0; i < 3; i++) {
 			_slots[i].setFillColor(sf::Color::White);
+
 		}
 	}
 	else if (_menuOption == MenuOption::Craft2) {
@@ -280,6 +316,11 @@ void MenuMap::ResetColor() {
 			_menu[i].setFillColor(sf::Color::White);
 		}
 	}
+
+}
+void MenuMap::ResetCursor() {
+
+	_cursor.setPosition({ _menu[_selectedItemIndex].getPosition().x + 10 + _menu[_selectedItemIndex].getGlobalBounds().width, _menu[_selectedItemIndex].getPosition().y + _menu[_selectedItemIndex].getGlobalBounds().height / 2 });
 
 }
 
@@ -296,6 +337,7 @@ void MenuMap::MoveUp() {
 			}
 			else { _inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red); }
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+			//_description.setString(dyvir.getInventoryElementDescription(_selectedItemIndex + _page));
 		}
 	}
 	else if (_menuOption != MenuOption::MainMenu && _menuOption != MenuOption::Save) {
@@ -304,6 +346,7 @@ void MenuMap::MoveUp() {
 			_selectedItemIndex--;
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+			//_description.setString(dyvir.getInventoryElementDescription(_selectedItemIndex + _page));
 		}
 	}
 	else if (_selectedItemIndex - 1 >= 0 && _menuOption != MenuOption::Save) {
@@ -333,6 +376,7 @@ void MenuMap::MoveDown() {
 			}
 			else { _inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red); }
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+			//_description.setString(dyvir.getInventoryElementDescription(_selectedItemIndex + _page));
 		}
 	}
 	else if (_menuOption != MenuOption::MainMenu && _menuOption != MenuOption::Save) {
@@ -341,6 +385,7 @@ void MenuMap::MoveDown() {
 			_selectedItemIndex++;
 			_inventoryList[_selectedItemIndex].setFillColor(sf::Color::Red);
 			_cursor.setPosition({ _inventoryList[_selectedItemIndex].getPosition().x + 10 + _inventoryList[_selectedItemIndex].getGlobalBounds().width, _inventoryList[_selectedItemIndex].getPosition().y + _inventoryList[_selectedItemIndex].getGlobalBounds().height / 2 });
+			//_description.setString(dyvir.getInventoryElementDescription(_selectedItemIndex + _page));
 		}
 	}
 	else if ((_selectedItemIndex + 1 < _menu.size() - 1) && !_checkPoint && _menuOption != MenuOption::Save) {
@@ -367,6 +412,7 @@ void MenuMap::MoveDown() {
 
 void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_backMenu);
+	target.draw(_backMenu2);
 	for (int i = 0; i < _menu.size(); i++) {
 		target.draw(_menu[i], states);
 	}
@@ -377,12 +423,16 @@ void MenuMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	if ((_menuOption != MenuOption::MainMenu)&&(_menuOption != MenuOption::Save)) {
 		for (int i = 0; i < _inventoryList.size(); i++) {
 			target.draw(_inventoryList[i], states);
+			target.draw(_description, states);
 		}
 	}
 	else if (_menuOption == MenuOption::Save) {
 		for (int i = 0; i < 3; i++) {
 			target.draw(_slots[i], states);
 		}
+	}
+	if (_flagSave) {
+		target.draw(_saveText, states);
 	}
 }
 

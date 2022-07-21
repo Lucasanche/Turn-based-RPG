@@ -200,6 +200,13 @@ std::string DyvirFight::getInventoryElementName(int i) {
 	else return _abilityInventory[i].getName();
 }
 
+std::string DyvirFight::getInventoryElementDescription(int i) {
+	if (i >= _abilityInventory.size()) {
+		return "Empty";
+	}
+	else return _abilityInventory[i].getDescription();
+}
+
 bool DyvirFight::craftAbility(std::string ab1, std::string ab2, int indexAb1, int indexAb2) {
 	if (_abilityFactory.craftAbility(ab1, ab2) != CraftError) {
 		if (indexAb1 < indexAb2) {
