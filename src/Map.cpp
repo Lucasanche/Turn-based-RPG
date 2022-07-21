@@ -59,7 +59,7 @@ void Map::update(sf::RenderWindow& window) {
 		window.setView(_view);
 		window.draw(_dyvirMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
-			_option = 5;
+			_option = 2;
 			window.setView(window.getDefaultView());
 			//_view.setSize(window.getSize().x, window.getSize().y);
 		}
