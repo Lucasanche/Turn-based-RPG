@@ -15,6 +15,12 @@ void Dragon::setAbilityFromInventory(int abilityNumber, abilityName abName) {
 	_ability[abilityNumber] = _abilityFactory.createAbility(abName);
 }
 
+void Dragon::checkHP() {
+	if (_HP <= 0) {
+		_isAlive = false;
+	}
+}
+
 void Dragon::useAbility(Dragon& dragon, int i) {
 	if (_ability[i].getMpCost() > _MP) {
 		std::cout << "Maná insuficiente" << std::endl;

@@ -64,16 +64,22 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 	case attack: //Atacar
 		_menu->setTextBoxString(_turn, _enemy->damageTaken(dyvir.doDamage(_enemy->getPRmultiplier())));
 		clock.restart();
+		_enemy->checkHP();
 		_turn = enemyUpdateText;
 		break;
 	case ability1: //Magic 1
 		dyvir.useAbility(*_enemy, 0);
 		_turn = enemyUpdateText;
+		_enemy->checkHP();
 		break;
 	case ability2: //Magic 2
+		dyvir.useAbility(*_enemy, 1);
 		_turn = enemyUpdateText;
+		_enemy->checkHP();
 		break;
 	case ability3: //Magic 3
+		dyvir.useAbility(*_enemy, 1);
+		_enemy->checkHP();
 		break;
 	case enemyUpdateText:
 		//_menu->setOption(enemyWait);
@@ -97,14 +103,19 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 				case 0:
 					_turn = enemyAttack;
 					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getPRmultiplier())));
+					dyvir.checkHP();
 					break;
 				case 1:
 					_turn = ability1;
-					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getMRmultiplier())));
+					//_menu->setTextBoxString();
+					_enemy->useAbility(dyvir, 0);
+					dyvir.checkHP();
 					break;
 				case 2:
 					_turn = ability2;
-					_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getMRmultiplier())));
+					//_menu->setTextBoxString(_turn, dyvir.damageTaken(_enemy->doDamage(_enemy->getMRmultiplier())));
+					_enemy->useAbility(dyvir, 1);
+					dyvir.checkHP();
 					break;
 				}
 				_turn = updateText;

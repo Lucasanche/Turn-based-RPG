@@ -119,6 +119,10 @@ void DyvirFight::update(bool enemyIsAlive, int enemyXP) {
 	}
 }
 
+void DyvirFight::getAbilityDrop(abilityName abilityDrop) {
+	_abilityInventory.push_back(_abilityFactory.createAbility(abilityDrop));
+}
+
 void DyvirFight::Die() {
 	if (_flagDie) {
 		_frame = 0;

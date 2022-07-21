@@ -183,6 +183,7 @@ public:
 	virtual void update(bool, int) = 0;
 
 	//Functions
+	void checkHP();
 	void useAbility(Dragon& dragon, int i);
 	void clearStates() { std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
 	std::vector <bool> checkNegativeStates(turns& turn);
