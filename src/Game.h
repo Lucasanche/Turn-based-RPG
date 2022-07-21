@@ -1,4 +1,7 @@
 #pragma once
+#ifndef GAME_H
+#define GAME_H
+
 #include "DyvirFight.h"
 #include "Fight.h"
 #include "Cursor.h"
@@ -27,3 +30,4 @@ public:
 	
 };
 
+#endif

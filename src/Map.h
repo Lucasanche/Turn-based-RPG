@@ -1,4 +1,7 @@
 #pragma once
+#ifndef MAP_H
+#define MAP_H
+
 #include "DyvirMap.h"
 #include "BrickTiles.h"
 #include "Dyvirfight.h"
@@ -19,13 +22,14 @@ private:
 	std::vector<std::vector<sf::Vector2i>>map;
 	BrickTiles tile;
 	BrickTiles _taux;
-	DyvirFight dyvir;
+	DyvirFight _dyvirFight;
+	DyvirMap _dyvirMap;
 	Fight fight;
 	MenuMap menuMap;
 	int x, iaux, jaux, win, _option;
 public:
 	Map(sf::RenderWindow& window);
-	void update(DyvirMap&, sf::RenderWindow& window);
+	void update(sf::RenderWindow& window);
 };
 
-
+#endif

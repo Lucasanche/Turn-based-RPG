@@ -26,10 +26,10 @@ void Game::Play() {
 			_option = _mainMenu.getOption();
 			break;
 		case 1:
-			_map.update(_dyvirMap, _window);
+			_map.update(_window);
 			break;
 		case 2:
-			//_saveGame.loadGame();
+			//_option = _saveGame.loadGame(_dyvirFi);
 			break;
 		case 3:
 			_window.close();

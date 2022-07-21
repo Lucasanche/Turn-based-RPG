@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SAVEGAME_H
+#define SAVEGAME_H
 #include "DyvirFight.h"
 #include "DyvirMap.h"
 
@@ -92,3 +94,4 @@ public:
 	}
 };
 
+#endif
