@@ -93,7 +93,7 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 	}
 }
 
-void Dragon::checkNegativeStates(turns& turn, sf::RenderTarget& target) {
+void Dragon::checkNegativeStates(turns& turn) {
 	//Habilidades negativas
 	std::string string;
 	this->resetStats();
@@ -185,10 +185,9 @@ void Dragon::checkNegativeStates(turns& turn, sf::RenderTarget& target) {
 			_negativeStates[reducePD] = false;
 		}
 	}
-	return string;
 }
 
-void  Dragon::checkPositiveStates(sf::RenderTarget& target) {
+void  Dragon::checkPositiveStates() {
 	if (_positiveStates[increasePD]) {
 		if (_negativeStates[reducePD]) { //Chequea si el daño físico está reducido y anula el estado negativo
 			_negativeStates[reducePD] = false;

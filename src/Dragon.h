@@ -169,8 +169,8 @@ public:
 	//Functions
 	void useAbility(Dragon& dragon, int i);
 	void clearStates() { std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
-	void checkNegativeStates(turns& turn, sf::RenderTarget& target);
-	void checkPositiveStates(sf::RenderTarget& target);
+	void checkNegativeStates(turns& turn);
+	void checkPositiveStates();
 	int	doDamage(int);
 	void resetStats();
 	int damageTaken(int);
