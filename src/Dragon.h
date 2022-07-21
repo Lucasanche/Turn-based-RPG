@@ -187,8 +187,8 @@ public:
 	void clearStates() { std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
 	std::vector <bool> checkNegativeStates(turns& turn);
 	std::vector <bool> checkPositiveStates();
-	void updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderTarget& target);
-	void updateSpriteStatesEnemy(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderTarget& target);
+	void updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderWindow& window);
+	void updateSpriteStatesEnemy(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderWindow& window);
 
 	int	doDamage(int);
 	void resetStats();
