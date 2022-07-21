@@ -70,9 +70,6 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _drag
 	_posIniMenu = _spriteHPdyvir.getPosition().y + 27;
 	_posMaxMenu = 120;
 
-	
-
-
 	// Setea el largo del relleno del HP
 	for (int i = 0; i < _dragonNames.size(); i++) {
 		_dragonNames[i].setCharacterSize(25);
@@ -142,10 +139,7 @@ void MenuFight::updateSpriteMPdyvir(int MP, int MPbase) {
 	_spriteMPFilldyivir.setTextureRect({ 0, spriteSize.y * 6, _lenghtMPdyvir, spriteSize.y });
 }
 
-void MenuFight::updateStatesSprites(std::vector<bool> _negativeStates, std::vector<bool> _positiveStates)
-{
 
-}
 
 void MenuFight::updateSpriteHPenemy(int HP, int HPbase) {
 	_resultBars = HP * 100 / HPbase;
@@ -182,6 +176,44 @@ void MenuFight::setTextBoxString(turns option, int dmg) {
 	}
 }
 
+void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+
+	target.draw(_backMenu);
+	target.draw(_backMenuEnemy);
+	target.draw(_spriteHPdyvir);
+	target.draw(_spriteHPFilldyvir);
+	target.draw(_textHPdyvir);
+	target.draw(_spriteHPenemy);
+	target.draw(_spriteHPFillenemy);
+	target.draw(_spriteMPdyvir);
+	target.draw(_spriteMPFilldyivir);
+	target.draw(_textMPdyvir);
+	target.draw(_textHPenemy);
+	target.draw(_textBox);
+	
+	//AAAAAAA
+	target.draw(_spriteStunEnemy);
+	target.draw(_spriteBurnsEnemy);
+	target.draw(_spritePoisonedEnemy);
+	target.draw(_spritePRincreaseEnemy);
+	target.draw(_spriteMDincreaseEnemy);
+	target.draw(_spritePDincreaseEnemy);
+	target.draw(_spriteMRincreaseEnemy);
+	target.draw(_spritePRdecreaseEnemy);
+	target.draw(_spriteMDdecreaseEnemy);
+	target.draw(_spritePDdecreaseEnemy);
+	target.draw(_spriteMRdecreaseEnemy);
+	//target.draw(_spriteBleedingEnemy);
+	//target.draw(_spriteDamageMultiplierEnemy);
+
+	for (int i = 0; i < _menu.size(); i++) {
+		target.draw(_menu[i], states);
+	}
+	for (int i = 0; i < _dragonNames.size(); i++) {
+		target.draw(_dragonNames[i], states);
+	}
+	target.draw(_cursor, states);
+}
 void MenuFight::setTextBoxString(turns option, int dmg, std::string string) {
 
 }
@@ -248,29 +280,6 @@ turns MenuFight::update(Dragon& dyvir, Dragon& enemy) {
 	return _option;
 }
 
-void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-
-	target.draw(_backMenu);
-	target.draw(_backMenuEnemy);
-	target.draw(_spriteHPdyvir);
-	target.draw(_spriteHPFilldyvir);
-	target.draw(_textHPdyvir);
-	target.draw(_spriteHPenemy);
-	target.draw(_spriteHPFillenemy);
-	target.draw(_spriteMPdyvir);
-	target.draw(_spriteMPFilldyivir);
-	target.draw(_textMPdyvir);
-	target.draw(_textHPenemy);
-	target.draw(_textBox);
-
-	for (int i = 0; i < _menu.size(); i++) {
-		target.draw(_menu[i], states);
-	}
-	for (int i = 0; i < _dragonNames.size(); i++) {
-		target.draw(_dragonNames[i], states);
-	}
-	target.draw(_cursor, states);
-}
 
 MenuFight::~MenuFight() {
 	std::cout << "se murió" << std::endl << std::endl;

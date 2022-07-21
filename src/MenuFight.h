@@ -41,7 +41,38 @@ private:
 	sf::Sprite _spriteHPFillenemy;
 	sf::Sprite _textHPenemy;
 
-	
+	///JUERITA DE AQUI
+	sf::Texture _textureStates;
+	//States Enemigos
+	sf::Sprite _spriteStunEnemy;
+	sf::Sprite _spriteBleedingEnemy;
+	sf::Sprite _spriteBurnsEnemy;
+	sf::Sprite _spritePoisonedEnemy;
+	sf::Sprite _spritePRincreaseEnemy;
+	sf::Sprite _spriteMDincreaseEnemy;
+	sf::Sprite _spritePDincreaseEnemy;
+	sf::Sprite _spriteMRincreaseEnemy;
+	sf::Sprite _spritePRdecreaseEnemy;
+	sf::Sprite _spriteMDdecreaseEnemy;
+	sf::Sprite _spritePDdecreaseEnemy;
+	sf::Sprite _spriteMRdecreaseEnemy;
+	sf::Sprite _spriteDamageMultiplierEnemy;
+	//dyvir
+	//States DYVIR
+	sf::Sprite _spriteStunDyvir;
+	sf::Sprite _spriteBleedingDyvir;
+	sf::Sprite _spriteBurnsDyvir;
+	sf::Sprite _spritePoisonedDyvir;
+	sf::Sprite _spritePRincreaseDyvir;
+	sf::Sprite _spriteMDincreaseDyvir;
+	sf::Sprite _spritePDincreaseDyvir;
+	sf::Sprite _spriteMRincreaseDyvir;
+	sf::Sprite _spritePRdecreaseDyvir;
+	sf::Sprite _spriteMDdecreaseDyvir;
+	sf::Sprite _spritePDdecreaseDyvir;
+	sf::Sprite _spriteMRdecreaseDyvir;
+	sf::Sprite _spriteDamageMultiplierDyvir;
+
 	
 	int _statusHPenemy;
 	int _lenghtHPenemy;
@@ -55,7 +86,6 @@ public:
 	void updateSpriteHPdyvir(int, int);
 	void updateSpriteHPenemy(int, int);
 	void updateSpriteMPdyvir(int, int);
-	void updateStatesSprites(std::vector<bool> _negativeStates, std::vector<bool> _positiveStates);
 	void MoveUp();
 	void MoveDown();
 	void setOption(turns option);

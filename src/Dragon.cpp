@@ -273,6 +273,45 @@ void Dragon::updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::ve
 	}
 }
 
+void Dragon::updateSpriteStatesEnemy(std::vector<bool> _positiveStates, std::vector<bool> _negativeStates, sf::RenderTarget& target)
+{
+	//negative states
+	if (_negativeStates[stun]) {
+		target.draw(_spriteStunEnemy);
+	}
+	if (_negativeStates[burns]) {
+		target.draw(_spriteBurnsEnemy);
+	}
+	if (_negativeStates[poison]) {
+		target.draw(_spritePoisonedEnemy);
+	}
+	if (_negativeStates[reducePR]) {
+		target.draw(_spritePRdecreaseEnemy);
+	}
+	if (_negativeStates[reduceMR]) {
+		target.draw(_spriteMRdecreaseEnemy);
+	}
+	if (_negativeStates[reducePD]) {
+		target.draw(_spritePDdecreaseEnemy);
+	}
+	if (_negativeStates[reduceMD]) {
+		target.draw(_spriteMDdecreaseEnemy);
+	}
+	//positive states
+	if (_positiveStates[increasePR]) {
+		target.draw(_spritePRincreaseEnemy);
+	}
+	if (_positiveStates[increaseMR]) {
+		target.draw(_spriteMRincreaseEnemy);
+	}
+	if (_positiveStates[increasePD]) {
+		target.draw(_spritePDincreaseEnemy);
+	}
+	if (_positiveStates[increaseMD]) {
+		target.draw(_spriteMDincreaseEnemy);
+	}
+}
+
 int Dragon::doDamage(int PRenemy) {
 	int finalDamage = _physicalDamage * PRenemy;
 	return finalDamage;
