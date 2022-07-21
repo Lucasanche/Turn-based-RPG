@@ -4,6 +4,7 @@
 
 Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), menuMap(window.getSize().x, window.getSize().y, dyvir) {
 	_music = true;
+	_checkWins = 0;
 	bufferPelea.loadFromFile("./Sounds/FightMusic.wav");
 	musicaPelea.setBuffer(bufferPelea);
 	musicaPelea.setVolume(30);
@@ -36,17 +37,21 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		}
 		for (int i = 0; i < map.size(); i++) {
 			for (int j = 0; j < map[i].size(); j++) {
-				if (map[i][j].x == 0 || map[i][j].y == 0) {
-					tile.update(j, i, map[i][j].x, map[i][j].y);
+				if ((map[i][j].x == 0 || map[i][j].x == 1)&& map[i][j].y==0) {
+					tile.update(j, i, map[i][j].x, map[i][j].y, dyvir.getWins());
+					}
+				else if (map[i][j].x >= 2 && (dyvir.getWins() + 1) < map[i][j].x) {
+					tile.update(j, i, map[i][j].x, map[i][j].y, dyvir.getWins());
+				}
 					window.draw(tile);
 					if (DyvirMap.isCollision(tile)) {
 						DyvirMap.setCollide();
-						if (map[i][j].x == 1) {
+						if (map[i][j].x > 1) {
 							_option = 2;
 							fight.setBoss(dyvir.getWins());
 							window.clear();
 						}
-						else if (map[i][j].x == 2) {
+						else if (map[i][j].x == 1) {
 							_option = 6;
 						}
 						iaux = i;
@@ -54,7 +59,7 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 					}
 				}
 			}
-		}
+		
 		_view.setCenter(DyvirMap.getPosition());
 		window.setView(_view);
 		window.draw(DyvirMap);
@@ -78,10 +83,6 @@ void Map::update(DyvirMap& DyvirMap, sf::RenderWindow& window) {
 		fight.update(dyvir, window, _clock, true);
 		if (_clock.getElapsedTime().asSeconds() > 3) {
 			if (!fight.getEnemyIsAlive()) {
-				//TODO: debe tomar la cantidad de wins para cambiar el tile especial
-				map[iaux][jaux].x = 9;
-				map[iaux][jaux].y = 9;
-				x = 9;
 				//_taux = tile;
 				dyvir.increaseWins();
 				_option = 0;

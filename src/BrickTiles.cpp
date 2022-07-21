@@ -9,27 +9,30 @@ BrickTiles::BrickTiles() {
 	_frameVortex2 = 10;
 }
 
-void BrickTiles::update(int j, int i, int x, int y) {
+void BrickTiles::update(int j, int i, int x, int y, int wins) {
 
+	wins += 1;
 	_sprite.setPosition(j * 35, i * 35);
 	if (x == 0) {
 		_sprite.setTextureRect(sf::IntRect(x * 35, y * 35, 35, 35));
 	}
-	else if (x==1)
-	{
-		_frameVortex += 0.05;
-		if (_frameVortex >= 10) {
-			_frameVortex = 1;
-		}
-		_sprite.setTextureRect(sf::IntRect( int(_frameVortex) * 35, 0, 35, 35));
 
-	}
-	else {
-		_frameVortex2 += 0.05;
+	//cambiar txt 2 x 1
+	else if (x==1)
+	{	_frameVortex2 += 0.05;
 		if (_frameVortex2 >= 35) {
 			_frameVortex2 = 10;
 		}
 		_sprite.setTextureRect(sf::IntRect(int(_frameVortex2) * 35, 0, 35, 35));
+
+	}
+	else if (wins < x) {
+		
+		_frameVortex += 0.05;
+		if (_frameVortex >= 10) {
+			_frameVortex = 1;
+		}
+		_sprite.setTextureRect(sf::IntRect(int(_frameVortex) * 35, 0, 35, 35));
 
 	}
 

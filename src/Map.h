@@ -22,7 +22,7 @@ private:
 	DyvirFight dyvir;
 	Fight fight;
 	MenuMap menuMap;
-	int x, iaux, jaux, win, _option;
+	int x, iaux, jaux, win, _option, _checkWins;
 public:
 	Map(sf::RenderWindow& window);
 	void update(DyvirMap&, sf::RenderWindow& window);

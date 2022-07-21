@@ -120,7 +120,7 @@ void MenuMap::PageDown() {
 }
 
 void MenuMap::update(DyvirFight& dyvir, bool check, DyvirMap& dyvirMap) {
-	//TODO: texto descriptivo de habilidades y confirmación de crafteo, confirmación de guardado de partida
+
 	_checkPoint = check;
 	if (_checkPoint) {
 		dyvir.restoreLife();
