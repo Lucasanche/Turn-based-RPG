@@ -93,7 +93,7 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 	}
 }
 
-void Dragon::checkNegativeStates(turns& turn) {
+std::vector <bool> Dragon::checkNegativeStates(turns& turn) {
 	//Habilidades negativas
 	std::string string;
 	this->resetStats();
@@ -185,9 +185,10 @@ void Dragon::checkNegativeStates(turns& turn) {
 			_negativeStates[reducePD] = false;
 		}
 	}
+	return _negativeStates;
 }
 
-void  Dragon::checkPositiveStates() {
+std::vector <bool>  Dragon::checkPositiveStates() {
 	if (_positiveStates[increasePD]) {
 		if (_negativeStates[reducePD]) { //Chequea si el daño físico está reducido y anula el estado negativo
 			_negativeStates[reducePD] = false;
@@ -231,8 +232,44 @@ void  Dragon::checkPositiveStates() {
 	if (_positiveStates[restore]) {
 		this->clearStates();
 	}
-	if (_positiveStates[doton]) {//CHEQUEAR
-		//Si llegamos acá es porque ya terminamos
+	return _positiveStates;
+}
+
+void Dragon::updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderTarget& target) {
+	//negative states
+	if (_negativeStates[stun]) {
+		target.draw(_spriteStunDyvir);
+	}
+	if (_negativeStates[burns]) {
+		target.draw(_spriteBurnsDyvir);
+	}
+	if (_negativeStates[poison]) {
+		target.draw(_spritePoisonedDyvir);
+	}
+	if (_negativeStates[reducePR]) {
+		target.draw(_spritePRdecreaseDyvir);
+	}
+	if (_negativeStates[reduceMR]) {
+		target.draw(_spriteMRdecreaseDyvir);
+	}
+	if (_negativeStates[reducePD]) {
+		target.draw(_spritePDdecreaseDyvir);
+	}
+	if (_negativeStates[reduceMD]) {
+		target.draw(_spriteMDdecreaseDyvir);
+	}
+	//positive states
+	if (_positiveStates[increasePR]) {
+		target.draw(_spritePRincreaseDyvir);
+	}
+	if (_positiveStates[increaseMR]) {
+		target.draw(_spriteMRincreaseDyvir);
+	}
+	if (_positiveStates[increasePD]) {
+		target.draw(_spritePDincreaseDyvir);
+	}
+	if (_positiveStates[increaseMD]) {
+		target.draw(_spriteMDincreaseDyvir);
 	}
 }
 

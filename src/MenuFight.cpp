@@ -70,74 +70,7 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(3), _drag
 	_posIniMenu = _spriteHPdyvir.getPosition().y + 27;
 	_posMaxMenu = 120;
 
-	//Sprites para los estados
-	//Setear los rects para los states
-	_textureStates.loadFromFile("./Textures/Interface/states.png");
-
-	_spriteStunDyvir.setTexture(_textureStates);
-	_spriteStunDyvir.setScale(0.6, 0.6);
-	_spriteStunDyvir.setPosition(230, 510);
-	_spriteStunDyvir.setTextureRect(sf::IntRect(0, 0, 50, 50));
-
-	_spriteBurnsDyvir.setTexture(_textureStates);
-	_spriteBurnsDyvir.setScale(0.6, 0.6);
-	_spriteBurnsDyvir.setPosition(265, 510);
-	_spriteBurnsDyvir.setTextureRect(sf::IntRect(100, 0, 50, 50));
-
-	_spritePoisonedDyvir.setTexture(_textureStates);
-	_spritePoisonedDyvir.setScale(0.6, 0.6);
-	_spritePoisonedDyvir.setPosition(300, 510);
-	_spritePoisonedDyvir.setTextureRect(sf::IntRect(150, 0, 50, 50));
-
-	_spritePDdecreaseDyvir.setTexture(_textureStates);
-	_spritePDdecreaseDyvir.setScale(0.6, 0.6);
-	_spritePDdecreaseDyvir.setPosition(335, 510);
-	_spritePDdecreaseDyvir.setTextureRect(sf::IntRect(500, 0, 50, 50));
-
-	_spriteMDdecreaseDyvir.setTexture(_textureStates);
-	_spriteMDdecreaseDyvir.setScale(0.6, 0.6);
-	_spriteMDdecreaseDyvir.setPosition(370, 510);
-	_spriteMDdecreaseDyvir.setTextureRect(sf::IntRect(450, 0, 50, 50));
-
-	_spritePRdecreaseDyvir.setTexture(_textureStates);
-	_spritePRdecreaseDyvir.setScale(0.6, 0.6);
-	_spritePRdecreaseDyvir.setPosition(405, 510);
-	_spritePRdecreaseDyvir.setTextureRect(sf::IntRect(400, 0, 50, 50));
-
-	_spriteMRdecreaseDyvir.setTexture(_textureStates);
-	_spriteMRdecreaseDyvir.setScale(0.6, 0.6);
-	_spriteMRdecreaseDyvir.setPosition(440, 510);
-	_spriteMRdecreaseDyvir.setTextureRect(sf::IntRect(550, 0, 50, 50));
-
-	_spritePDincreaseDyvir.setTexture(_textureStates);
-	_spritePDincreaseDyvir.setScale(0.6, 0.6);
-	_spritePDincreaseDyvir.setPosition(475, 510);
-	_spritePDincreaseDyvir.setTextureRect(sf::IntRect(300, 0, 50, 50));
-
-	_spriteMDincreaseDyvir.setTexture(_textureStates);
-	_spriteMDincreaseDyvir.setScale(0.6, 0.6);
-	_spriteMDincreaseDyvir.setPosition(510, 510);
-	_spriteMDincreaseDyvir.setTextureRect(sf::IntRect(250, 0, 50, 50));
-
-	_spritePRincreaseDyvir.setTexture(_textureStates);
-	_spritePRincreaseDyvir.setScale(0.6, 0.6);
-	_spritePRincreaseDyvir.setPosition(545, 510);
-	_spritePRincreaseDyvir.setTextureRect(sf::IntRect(200, 0, 50, 50));
-
-	_spriteMRincreaseDyvir.setTexture(_textureStates);
-	_spriteMRincreaseDyvir.setScale(0.6, 0.6);
-	_spriteMRincreaseDyvir.setPosition(580, 510);
-	_spriteMRincreaseDyvir.setTextureRect(sf::IntRect(350, 0, 50, 50));
-
-	_spriteDamageMultiplierDyvir.setTexture(_textureStates);
-	_spriteDamageMultiplierDyvir.setScale(0.6, 0.6);
-	_spriteDamageMultiplierDyvir.setPosition(615, 510);
-	_spriteDamageMultiplierDyvir.setTextureRect(sf::IntRect(600, 0, 50, 50));
-
-	_spriteBleedingDyvir.setTexture(_textureStates);
-	_spriteBleedingDyvir.setScale(0.5, 0.5);
-	_spriteBleedingDyvir.setPosition(650, 510);
-	_spriteBleedingDyvir.setTextureRect(sf::IntRect(50, 0, 50, 50));
+	
 
 
 	// Setea el largo del relleno del HP

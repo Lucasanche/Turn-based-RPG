@@ -56,7 +56,7 @@ protected:
 	int _rectHeight;
 	int _totalFrames;
 
-	//States
+	//States DYVIR
 	sf::Texture _textureStates;
 	sf::Sprite _spriteStunDyvir;
 	sf::Sprite _spriteBleedingDyvir;
@@ -71,6 +71,21 @@ protected:
 	sf::Sprite _spritePDdecreaseDyvir;
 	sf::Sprite _spriteMRdecreaseDyvir;
 	sf::Sprite _spriteDamageMultiplierDyvir;
+
+	//States Enemigos
+	sf::Sprite _spriteStunEnemy;
+	sf::Sprite _spriteBleedingEnemy;
+	sf::Sprite _spriteBurnsEnemy;
+	sf::Sprite _spritePoisonedEnemy;
+	sf::Sprite _spritePRincreaseEnemy;
+	sf::Sprite _spriteMDincreaseEnemy;
+	sf::Sprite _spritePDincreaseEnemy;
+	sf::Sprite _spriteMRincreaseEnemy;
+	sf::Sprite _spritePRdecreaseEnemy;
+	sf::Sprite _spriteMDdecreaseEnemy;
+	sf::Sprite _spritePDdecreaseEnemy;
+	sf::Sprite _spriteMRdecreaseEnemy;
+	sf::Sprite _spriteDamageMultiplierEnemy;
 
 public:
 	Dragon();
@@ -169,8 +184,10 @@ public:
 	//Functions
 	void useAbility(Dragon& dragon, int i);
 	void clearStates() { std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
-	void checkNegativeStates(turns& turn);
-	void checkPositiveStates();
+	std::vector <bool> checkNegativeStates(turns& turn);
+	std::vector <bool> checkPositiveStates();
+	void updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderTarget& target);
+
 	int	doDamage(int);
 	void resetStats();
 	int damageTaken(int);

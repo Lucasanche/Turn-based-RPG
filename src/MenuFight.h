@@ -41,21 +41,7 @@ private:
 	sf::Sprite _spriteHPFillenemy;
 	sf::Sprite _textHPenemy;
 
-	//States
-	sf::Texture _textureStates;
-	sf::Sprite _spriteStunDyvir;
-	sf::Sprite _spriteBleedingDyvir;
-	sf::Sprite _spriteBurnsDyvir;
-	sf::Sprite _spritePoisonedDyvir;
-	sf::Sprite _spritePRincreaseDyvir;
-	sf::Sprite _spriteMDincreaseDyvir;
-	sf::Sprite _spritePDincreaseDyvir;
-	sf::Sprite _spriteMRincreaseDyvir;
-	sf::Sprite _spritePRdecreaseDyvir;
-	sf::Sprite _spriteMDdecreaseDyvir;
-	sf::Sprite _spritePDdecreaseDyvir;
-	sf::Sprite _spriteMRdecreaseDyvir;
-	sf::Sprite _spriteDamageMultiplierDyvir;
+	
 	
 	int _statusHPenemy;
 	int _lenghtHPenemy;
