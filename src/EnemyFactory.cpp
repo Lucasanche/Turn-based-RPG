@@ -2,7 +2,7 @@
 #include "EnemyFactory.h"
 
 Enemy* EnemyFactory::getBoss(int wins) {
-	switch (wins) {
+	switch (4) {
 	case 0:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/boss1 512x512-10.png", 512, 512, 10, 0.7, 1); //Earth
 		if (_enemy == nullptr) {

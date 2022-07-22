@@ -8,7 +8,6 @@ Dragon::Dragon() : _negativeStates(9, false), _positiveStates(14, false) {
 	_isAlive = true;
 	_physicalDamage = 10;
 	_physicalDamagebase = 10;
-
 }
 
 void Dragon::setAbilityFromInventory(int abilityNumber, abilityName abName) {
@@ -131,7 +130,6 @@ std::vector <bool> Dragon::checkNegativeStates(turns& turn) {
 		if (turn == enemyWait) {
 			std::cout << "El enemigo se encuentra envenenado" << std::endl;
 			std::cout << "El enemigo recibió " << _HPbase * 0.07 << " de daño por el veneno " << std::endl;
-
 		}
 		if (turn == wait) {
 			std::cout << "Estás envenenao" << std::endl;

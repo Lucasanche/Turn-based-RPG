@@ -3,14 +3,14 @@
 #include "AbilityFactory.h"
 
 DyvirFight::DyvirFight() {
-	_abilityInventory.push_back(_abilityFactory.createPoisonGas());
-	_abilityInventory.push_back(_abilityFactory.createGeiser());
+	_abilityInventory.push_back(_abilityFactory.createFireball());
 	_abilityInventory.push_back(_abilityFactory.createInferno());
+	_abilityInventory.push_back(_abilityFactory.createBubble());
 	_level = 1;
 	_XP = 0;
-	_HPbase = 2000;
+	_HPbase = 20000;
 	_MPbase = 60;
-	_physicalDamagebase = 200;
+	_physicalDamagebase = 2000;
 	_magicDamagebase = 150; 
 	_physicalResistancebase = 50;
 	_magicResistancebase = 50;

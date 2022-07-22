@@ -17,6 +17,7 @@ Fight::Fight() : _backTexture(), _view(sf::FloatRect(0, 0, 800, 700)) {
 
 int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock, bool enemyType) {
 	_time = clock.getElapsedTime();
+
 	if (_backFlag) {
 		if (enemyType) {
 			this->setBoss(dyvir.getWins());
@@ -44,6 +45,10 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		default:
 			break;
 		}
+	}
+	else {
+		window.draw(_backSprite);
+		window.draw(*_menu);
 	}
 	//void updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderTarget& target);
 
@@ -135,9 +140,8 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 			dyvir.getAbilityDrop(_enemy->getAbility(0).getID());
 		}
 	}
-	_enemy->update(dyvir.getIsAlive(), 1); //El 1 no se usa.
-	window.draw(_backSprite);
-	window.draw(*_menu);
+	_enemy->update(dyvir.getIsAlive(), 1);
+
 	window.draw(*_enemy);
 	window.draw(dyvir);
 
