@@ -299,6 +299,7 @@ Ability AbilityFactory::createInferno()
 	_ability.setID(Inferno);
 	_ability.setMagicDamage(1200);
 	_ability.setMpCost(30);
+	_ability.setBurns();
 	_ability.setElements(Fire, Neutral);
 	return _ability;
 }

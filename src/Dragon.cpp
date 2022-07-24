@@ -3,11 +3,61 @@
 
 
 Dragon::Dragon() : _negativeStates(9, false), _positiveStates(14, false) {
+
 	_elementWeak = Neutral;
-	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicDamage = _magicDamagebase = _physicalResistance = _physicalResistancebase = _magicResistance = _magicResistancebase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = _reducedMDCount = _increasedAttCount = _increasedPDCount = _increasedMRCount = _increasedMDCount = _XP = 0;
+	_elementResist = Neutral;
+	_HP = _HPbase = _MP = _MPbase = _physicalDamage = _physicalDamagebase = _magicDamage = _magicDamagebase = _physicalResistance = _physicalResistancebase = _magicResistance = _magicResistancebase = _backGround = _rectWidth = _rectHeight = _totalFrames = _burnedCount = _healingCount = _stunedCount = _reducedPDCount = _reducedMRCount = _reducedAttCount = _reducedMDCount = _increasedAttCount = _increasedPDCount = _increasedMRCount = _increasedPRCount = _increasedMDCount = _XP = _frame = 0;
 	_isAlive = true;
+	_flagDie = true;
+	_flagWin = true;
 	_physicalDamage = 10;
 	_physicalDamagebase = 10;
+
+	_textureStates.loadFromFile("./Textures/Interface/states.png");
+
+	//Texturas de sprites de estados
+	_spriteStun.setTexture(_textureStates);
+	_spriteBleeding.setTexture(_textureStates);
+	_spriteBurns.setTexture(_textureStates);
+	_spritePoisoned.setTexture(_textureStates);
+	_spritePRincrease.setTexture(_textureStates);
+	_spriteMDincrease.setTexture(_textureStates);
+	_spritePDincrease.setTexture(_textureStates);
+	_spriteMRincrease.setTexture(_textureStates);
+	_spritePRdecrease.setTexture(_textureStates);
+	_spriteMDdecrease.setTexture(_textureStates);
+	_spritePDdecrease.setTexture(_textureStates);
+	_spriteMRdecrease.setTexture(_textureStates);
+	_spriteDamageMultiplier.setTexture(_textureStates);
+
+	//Sprites de estados
+	_spriteStun.setScale(0.6, 0.6);
+	_spriteStun.setTextureRect(sf::IntRect(0, 0, 50, 50));
+	_spriteBurns.setScale(0.6, 0.6);
+	_spriteBurns.setTextureRect(sf::IntRect(100, 0, 50, 50));
+	_spritePoisoned.setScale(0.6, 0.6);
+	_spritePoisoned.setTextureRect(sf::IntRect(150, 0, 50, 50));
+	_spriteMRincrease.setScale(0.6, 0.6);
+	_spriteMRincrease.setTextureRect(sf::IntRect(500, 0, 50,
+		50));
+	_spriteMDincrease.setScale(0.6, 0.6);
+	_spriteMDincrease.setTextureRect(sf::IntRect(450, 0, 50, 50));
+	_spritePDincrease.setScale(0.6, 0.6);
+	_spritePDincrease.setTextureRect(sf::IntRect(400, 0, 50, 50));
+	_spritePRincrease.setScale(0.6, 0.6);
+	_spritePRincrease.setTextureRect(sf::IntRect(550, 0, 50, 50));
+	_spritePDdecrease.setScale(0.6, 0.6);
+	_spritePDdecrease.setTextureRect(sf::IntRect(300, 0, 50, 50));
+	_spriteMDdecrease.setScale(0.6, 0.6);
+	_spriteMDdecrease.setTextureRect(sf::IntRect(250, 0, 50, 50));
+	_spritePRdecrease.setScale(0.6, 0.6);
+	_spritePRdecrease.setTextureRect(sf::IntRect(200, 0, 50, 50));
+	_spriteMRdecrease.setScale(0.6, 0.6);
+	_spriteMRdecrease.setTextureRect(sf::IntRect(350, 0, 50, 50));
+	_spriteDamageMultiplier.setScale(0.6, 0.6);
+	_spriteDamageMultiplier.setTextureRect(sf::IntRect(600, 0, 50, 50));
+	_spriteBleeding.setScale(0.5, 0.5);
+	_spriteBleeding.setTextureRect(sf::IntRect(50, 0, 50, 50));
 }
 
 void Dragon::setAbilityFromInventory(int abilityNumber, abilityName abName) {
@@ -22,7 +72,7 @@ void Dragon::checkHP() {
 
 void Dragon::useAbility(Dragon& dragon, int i) {
 	if (_ability[i].getMpCost() > _MP) {
-		std::cout << "Maná insuficiente" << std::endl;
+		std::cout << "Maná insuficiente \n";
 	}
 	else {
 		_MP -= _ability[i].getMpCost();
@@ -72,7 +122,6 @@ void Dragon::useAbility(Dragon& dragon, int i) {
 		if (_ability[i].getNegativeStates(reduceMD)) {
 			dragon.setReduceMD();
 		}
-		
 		if (!_positiveStates[trueDamage]) {
 			if (dragon.getElementResist() != Neutral) {
 				if (_ability[i].getElement1() == dragon.getElementResist()) {
@@ -211,7 +260,7 @@ std::vector <bool>  Dragon::checkPositiveStates() {
 		}
 	}
 	if (_positiveStates[increaseMD]) {
-		_magicDamage += _magicDamagebase*0.2;
+		_magicDamage += _magicDamagebase * 0.2;
 		_increasedMDCount++;
 		if (_increasedMDCount == 3) {
 			_increasedMDCount = 0;
@@ -239,82 +288,44 @@ std::vector <bool>  Dragon::checkPositiveStates() {
 	return _positiveStates;
 }
 
-void Dragon::updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderWindow& window) {
-	//negative states
+void Dragon::updateSpriteStates(sf::RenderWindow& window) {
 	if (_negativeStates[stun]) {
-		window.draw(_spriteStunDyvir);
+		window.draw(_spriteStun);
 	}
 	if (_negativeStates[burns]) {
-		window.draw(_spriteBurnsDyvir);
+		window.draw(_spriteBurns);
 	}
 	if (_negativeStates[poison]) {
-		window.draw(_spritePoisonedDyvir);
+		window.draw(_spritePoisoned);
 	}
 	if (_negativeStates[reducePR]) {
-		window.draw(_spritePRdecreaseDyvir);
+		window.draw(_spritePRdecrease);
 	}
 	if (_negativeStates[reduceMR]) {
-		window.draw(_spriteMRdecreaseDyvir);
+		window.draw(_spriteMRdecrease);
 	}
 	if (_negativeStates[reducePD]) {
-		window.draw(_spritePDdecreaseDyvir);
+		window.draw(_spritePDdecrease);
 	}
 	if (_negativeStates[reduceMD]) {
-		window.draw(_spriteMDdecreaseDyvir);
+		window.draw(_spriteMDdecrease);
 	}
 	//positive states
 	if (_positiveStates[increasePR]) {
-		window.draw(_spritePRincreaseDyvir);
+		window.draw(_spritePRincrease);
 	}
 	if (_positiveStates[increaseMR]) {
-		window.draw(_spriteMRincreaseDyvir);
+		window.draw(_spriteMRincrease);
 	}
 	if (_positiveStates[increasePD]) {
-		window.draw(_spritePDincreaseDyvir);
+		window.draw(_spritePDincrease);
 	}
 	if (_positiveStates[increaseMD]) {
-		window.draw(_spriteMDincreaseDyvir);
+		window.draw(_spriteMDincrease);
 	}
 }
 
-void Dragon:: updateSpriteStatesEnemy(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderWindow& window)
-{
-	//negative states
-	if (_negativeStates[stun]) {
-		window.draw(_spriteStunEnemy);
-	}
-	if (_negativeStates[burns]) {
-		window.draw(_spriteBurnsEnemy);
-	}
-	if (_negativeStates[poison]) {
-		window.draw(_spritePoisonedEnemy);
-	}
-	if (_negativeStates[reducePR]) {
-		window.draw(_spritePRdecreaseEnemy);
-	}
-	if (_negativeStates[reduceMR]) {
-		window.draw(_spriteMRdecreaseEnemy);
-	}
-	if (_negativeStates[reducePD]) {
-		window.draw(_spritePDdecreaseEnemy);
-	}
-	if (_negativeStates[reduceMD]) {
-		window.draw(_spriteMDdecreaseEnemy);
-	}
-	//positive states
-	if (_positiveStates[increasePR]) {
-		window.draw(_spritePRincreaseEnemy);
-	}
-	if (_positiveStates[increaseMR]) {
-		window.draw(_spriteMRincreaseEnemy);
-	}
-	if (_positiveStates[increasePD]) {
-		window.draw(_spritePDincreaseEnemy);
-	}
-	if (_positiveStates[increaseMD]) {
-		window.draw(_spriteMDincreaseEnemy);
-	}
-}
+
 
 int Dragon::doDamage(int PRenemy) {
 	int finalDamage = _physicalDamage * PRenemy;

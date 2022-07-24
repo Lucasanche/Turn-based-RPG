@@ -4,7 +4,7 @@
 
 Fight::Fight() : _backTexture(), _view(sf::FloatRect(0, 0, 800, 700)) {
 	_menu = nullptr;
-	_turn = wait;
+	_turn = start;
 	_music = true;
 	_backFlag = true;
 	bufferPelea.loadFromFile("./Sounds/FightMusic.wav");
@@ -59,8 +59,6 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		break;
 	case check:
 		dyvir.checkNegativeStates(_turn);
-		dyvir.updateSpriteStatesDyvir(dyvir.checkNegativeStates(_turn), _enemy->checkNegativeStates(_turn), window);
-		//_menu->setTextBoxString(check, 0, )
 		_turn = wait;
 		break;
 	case wait:
@@ -83,7 +81,7 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		_enemy->checkHP();
 		break;
 	case ability3: //Magic 3
-		dyvir.useAbility(*_enemy, 1);
+		dyvir.useAbility(*_enemy, 2);
 		_enemy->checkHP();
 		break;
 	case enemyUpdateText:
@@ -91,7 +89,6 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 		_turn = enemyCheck;
 		break;
 	case enemyCheck:
-		_enemy->updateSpriteStatesEnemy(dyvir.checkNegativeStates(_turn), _enemy->checkNegativeStates(_turn), window);
 		_enemy->checkNegativeStates(_turn);
 		//_turn = enemyWait;
 		break;
@@ -135,13 +132,15 @@ int Fight::update(DyvirFight& dyvir, sf::RenderWindow& window, sf::Clock& clock,
 	}
 	window.setView(_view);
 	dyvir.update(_enemy->getIsAlive(), _enemy->getXP());
-	if (_enemy->getIsAlive()) {
+	if (!_enemy->getIsAlive()) {
 		if (rand() % 3 == 0) {
 			dyvir.getAbilityDrop(_enemy->getAbility(0).getID());
 		}
+		_turn = start;
 	}
 	_enemy->update(dyvir.getIsAlive(), 1);
-
+	dyvir.updateSpriteStates(window);
+	_enemy->updateSpriteStates(window);
 	window.draw(*_enemy);
 	window.draw(dyvir);
 

@@ -10,25 +10,9 @@ class DyvirFight : public Dragon
 {
 private:
 	unsigned short _wins;
-	bool _flagWin;
 	std::vector <Ability> _abilityInventory;
 	unsigned short _level;
 	unsigned int _XPrequired[20] = {200, 500, 900, 1400, 2000, 2800, 3800, 5100, 6700, 8700, 11100, 13900, 17400, 21400, 25900, 31100, 37100, 44300, 52700, 62700 };
-
-	//States DYVIR
-	sf::Sprite _spriteStunDyvir;
-	sf::Sprite _spriteBleedingDyvir;
-	sf::Sprite _spriteBurnsDyvir;
-	sf::Sprite _spritePoisonedDyvir;
-	sf::Sprite _spritePRincreaseDyvir;
-	sf::Sprite _spriteMDincreaseDyvir;
-	sf::Sprite _spritePDincreaseDyvir;
-	sf::Sprite _spriteMRincreaseDyvir;
-	sf::Sprite _spritePRdecreaseDyvir;
-	sf::Sprite _spriteMDdecreaseDyvir;
-	sf::Sprite _spritePDdecreaseDyvir;
-	sf::Sprite _spriteMRdecreaseDyvir;
-	sf::Sprite _spriteDamageMultiplierDyvir;
 public:
 	DyvirFight();
 	//Gets
@@ -50,6 +34,7 @@ public:
 	void setFightSprite();
 
 	//Functions
+
 	void increaseWins() { _wins++; }
 	bool craftAbility(std::string, std::string, int, int);
 	void update(bool, int) override;

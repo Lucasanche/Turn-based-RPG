@@ -6,12 +6,14 @@ DyvirFight::DyvirFight() {
 	_abilityInventory.push_back(_abilityFactory.createFireball());
 	_abilityInventory.push_back(_abilityFactory.createInferno());
 	_abilityInventory.push_back(_abilityFactory.createBubble());
+	_abilityInventory.push_back(_abilityFactory.createDoton());
+	_abilityInventory.push_back(_abilityFactory.createPoisonGas());
 	_level = 1;
 	_XP = 0;
 	_HPbase = 20000;
-	_MPbase = 60;
+	_MPbase = 2000;
 	_physicalDamagebase = 2000;
-	_magicDamagebase = 150; 
+	_magicDamagebase = 150;
 	_physicalResistancebase = 50;
 	_magicResistancebase = 50;
 	_HP = _HPbase;
@@ -20,84 +22,24 @@ DyvirFight::DyvirFight() {
 	_magicDamage = _magicDamagebase;
 	_physicalResistance = _physicalResistancebase;
 	_magicResistance = _magicResistancebase;
-
-	this->setFightSprite();
-	_isAlive = true;
 	_wins = 0;
+	this->setFightSprite();
 
-	//Variables útiles para los sprites
-	_flagDie = true; // Usar para reproducir la animación de muerte
-	_flagWin = true;
-	_frame = 0;
 
-	//Sprites para los estados
-	//Setear los rects para los states
-	_textureStates.loadFromFile("./Textures/Interface/states.png");
-
-	_spriteStunDyvir.setTexture(_textureStates);
-	_spriteStunDyvir.setScale(0.6, 0.6);
-	_spriteStunDyvir.setPosition(230, 510);
-	_spriteStunDyvir.setTextureRect(sf::IntRect(0, 0, 50, 50));
-
-	_spriteBurnsDyvir.setTexture(_textureStates);
-	_spriteBurnsDyvir.setScale(0.6, 0.6);
-	_spriteBurnsDyvir.setPosition(265, 510);
-	_spriteBurnsDyvir.setTextureRect(sf::IntRect(100, 0, 50, 50));
-
-	_spritePoisonedDyvir.setTexture(_textureStates);
-	_spritePoisonedDyvir.setScale(0.6, 0.6);
-	_spritePoisonedDyvir.setPosition(300, 510);
-	_spritePoisonedDyvir.setTextureRect(sf::IntRect(150, 0, 50, 50));
-
-	_spriteMRincreaseDyvir.setTexture(_textureStates);
-	_spriteMRincreaseDyvir.setScale(0.6, 0.6);
-	_spriteMRincreaseDyvir.setPosition(335, 510);
-	_spriteMRincreaseDyvir.setTextureRect(sf::IntRect(500, 0, 50, 50));
-
-	_spriteMDincreaseDyvir.setTexture(_textureStates);
-	_spriteMDincreaseDyvir.setScale(0.6, 0.6);
-	_spriteMDincreaseDyvir.setPosition(370, 510);
-	_spriteMDincreaseDyvir.setTextureRect(sf::IntRect(450, 0, 50, 50));
-
-	_spritePDincreaseDyvir.setTexture(_textureStates);
-	_spritePDincreaseDyvir.setScale(0.6, 0.6);
-	_spritePDincreaseDyvir.setPosition(405, 510);
-	_spritePDincreaseDyvir.setTextureRect(sf::IntRect(400, 0, 50, 50));
-
-	_spritePRincreaseDyvir.setTexture(_textureStates);
-	_spritePRincreaseDyvir.setScale(0.6, 0.6);
-	_spritePRincreaseDyvir.setPosition(440, 510);
-	_spritePRincreaseDyvir.setTextureRect(sf::IntRect(550, 0, 50, 50));
-
-	_spritePDdecreaseDyvir.setTexture(_textureStates);
-	_spritePDdecreaseDyvir.setScale(0.6, 0.6);
-	_spritePDdecreaseDyvir.setPosition(475, 510);
-	_spritePDdecreaseDyvir.setTextureRect(sf::IntRect(300, 0, 50, 50));
-
-	_spriteMDdecreaseDyvir.setTexture(_textureStates);
-	_spriteMDdecreaseDyvir.setScale(0.6, 0.6);
-	_spriteMDdecreaseDyvir.setPosition(510, 510);
-	_spriteMDdecreaseDyvir.setTextureRect(sf::IntRect(250, 0, 50, 50));
-
-	_spritePRdecreaseDyvir.setTexture(_textureStates);
-	_spritePRdecreaseDyvir.setScale(0.6, 0.6);
-	_spritePRdecreaseDyvir.setPosition(545, 510);
-	_spritePRdecreaseDyvir.setTextureRect(sf::IntRect(200, 0, 50, 50));
-
-	_spriteMRdecreaseDyvir.setTexture(_textureStates);
-	_spriteMRdecreaseDyvir.setScale(0.6, 0.6);
-	_spriteMRdecreaseDyvir.setPosition(580, 510);
-	_spriteMRdecreaseDyvir.setTextureRect(sf::IntRect(350, 0, 50, 50));
-
-	_spriteDamageMultiplierDyvir.setTexture(_textureStates);
-	_spriteDamageMultiplierDyvir.setScale(0.6, 0.6);
-	_spriteDamageMultiplierDyvir.setPosition(615, 510);
-	_spriteDamageMultiplierDyvir.setTextureRect(sf::IntRect(600, 0, 50, 50));
-
-	_spriteBleedingDyvir.setTexture(_textureStates);
-	_spriteBleedingDyvir.setScale(0.5, 0.5);
-	_spriteBleedingDyvir.setPosition(650, 510);
-	_spriteBleedingDyvir.setTextureRect(sf::IntRect(50, 0, 50, 50));
+	//Posición de los sprites de estados
+	_spriteStun.setPosition(230, 510);
+	_spriteBurns.setPosition(265, 510);
+	_spritePoisoned.setPosition(300, 510);
+	_spriteMRincrease.setPosition(335, 510);
+	_spriteMDincrease.setPosition(370, 510);
+	_spritePDincrease.setPosition(405, 510);
+	_spritePRincrease.setPosition(440, 510);
+	_spritePDdecrease.setPosition(475, 510);
+	_spriteMDdecrease.setPosition(510, 510);
+	_spritePRdecrease.setPosition(545, 510);
+	_spriteMRdecrease.setPosition(580, 510);
+	_spriteDamageMultiplier.setPosition(615, 510);
+	_spriteBleeding.setPosition(650, 510);
 }
 
 void DyvirFight::update(bool enemyIsAlive, int enemyXP) {
@@ -161,7 +103,7 @@ std::string DyvirFight::increaseXP(int XP) {
 	if (_level == 20) {
 		return "Nivel máximo alcanzado";
 	}
-	if (XP >= _XPrequired[_level-1]) {
+	if (XP >= _XPrequired[_level - 1]) {
 		_level++;
 		this->levelUp(_level);
 		return "Ganaste " + std::to_string(XP) + " puntos de experiencia. Subiste a nivel " + std::to_string(_level);
@@ -171,25 +113,24 @@ std::string DyvirFight::increaseXP(int XP) {
 	}
 }
 
-void DyvirFight::levelUp(int level)
-{
+void DyvirFight::levelUp(int level) {
 	switch (level) {
 		//---------------------- STAGE 1 -----------------------------------
 		//BASE -> setStats(2000, 60, 150, 50, 50, 50, _XP);
 		//Enemies -> _enemy->setStats(700, 200, 35, 35, 30, 30, Air, 100); 
-	case 2: this-> setStats(3000, 75, 50, 50, 25, 25, _XP);
+	case 2: this->setStats(3000, 75, 50, 50, 25, 25, _XP);
 		break;
 		//Boss 1|lvl 3 -> _enemy->setStats(3500, 1000, 100, 100, 50, 50, Fire, 100);
-	case 3: this-> setStats(3500, 100, 100, 70, 50, 50, _XP);
+	case 3: this->setStats(3500, 100, 100, 70, 50, 50, _XP);
 		break;
 		//---------------------- STAGE 2 -----------------------------------
 		//Enemies -> _enemy->setStats(1100, 600, 80, 80, 50, 50, Earth, 150);
-	case 4: this-> setStats(4000, 100, 100, 100, 70, 70, _XP);
+	case 4: this->setStats(4000, 100, 100, 100, 70, 70, _XP);
 		break;
-	case 5: this-> setStats(4500, 100, 100, 130, 70, 70, _XP);
+	case 5: this->setStats(4500, 100, 100, 130, 70, 70, _XP);
 		break;
 		//Boss 2|lvl 6 -> _enemy->setStats(5000, 1250, 150, 150, 120, 100, Air, 300);
-	case 6: this-> setStats(5000, 125, 150, 150, 120, 100, _XP);
+	case 6: this->setStats(5000, 125, 150, 150, 120, 100, _XP);
 		break;
 		//---------------------- STAGE 3 -----------------------------------
 		//Enemies -> _enemy->setStats(1700, 700, 150, 80, 80, 100, Air, 300);  
@@ -202,7 +143,7 @@ void DyvirFight::levelUp(int level)
 		break;
 		//---------------------- STAGE 4 -----------------------------------
 		//Enemies -> _enemy->setStats(3000, 700, 150, 150, 500, 300, Fire, 500);
-	case 10: this-> setStats(7500, 150, 300, 200, 150, 150, _XP);
+	case 10: this->setStats(7500, 150, 300, 200, 150, 150, _XP);
 		break;
 		// Boss 4 | lvl 11 -> _enemy->setStats(8000, 2000, 300, 400, 200, 300, Water, 800);
 	case 11: this->setStats(8000, 200, 400, 300, 200, 150, _XP);
@@ -212,7 +153,7 @@ void DyvirFight::levelUp(int level)
 	case 12: this->setStats(8500, 250, 500, 400, 250, 200, _XP);
 		break;
 		// Boss 5 | lvl 13 -> _enemy->setStats(10000, 2000, 750, 750, 350, 350, Neutral, 1500);
-	case 13: this-> setStats(10000, 250, 700, 500, 300, 300, _XP);
+	case 13: this->setStats(10000, 250, 700, 500, 300, 300, _XP);
 		break;
 		//---------------------- STAGE EXTRA -----------------------------------
 		//Enemies ->_enemy->setStats(1700, 700, 150, 80, 80, 100, Air, 300);
@@ -259,7 +200,7 @@ std::string DyvirFight::setAbilityEquipedElement(int i, int ability) {
 }
 
 void DyvirFight::setAbilityEquiped(Ability ability, int pos) {
-		_ability[pos] = ability;
+	_ability[pos] = ability;
 }
 
 std::string DyvirFight::getInventoryElementName(int i) {
@@ -289,7 +230,7 @@ bool DyvirFight::craftAbility(std::string ab1, std::string ab2, int indexAb1, in
 		_abilityInventory.push_back(_abilityFactory.createAbility(_abilityFactory.craftAbility(ab1, ab2)));
 		return true;
 	}
-	else{ return false; }
+	else { return false; }
 }
 
 void DyvirFight::setFightSprite() {

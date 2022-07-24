@@ -251,7 +251,7 @@ turns MenuFight::update(Dragon& dyvir, Dragon& enemy) {
 		if (_flag) {
 			switch (this->GetPressedItem()) {
 			case 0:
-				std::cout << "Se presionó el botón ATACK" << std::endl << std::endl;
+				std::cout << "Se presionó el botón ATTACK" << std::endl << std::endl;
 				_option = attack;
 				break;
 			case 1:
@@ -259,8 +259,12 @@ turns MenuFight::update(Dragon& dyvir, Dragon& enemy) {
 				_option = ability1;
 				break;
 			case 2:
-				std::cout << "Se presionó el botón ESCAPE" << std::endl << std::endl;
+				std::cout << "Se presionó el botón HABILIDAD 2" << std::endl << std::endl;
 				_option = ability2;
+				break;
+			case 3:
+				std::cout << "Se presionó el botón HABILIDAD 3" << std::endl << std::endl;
+				_option = ability3;
 				break;
 			}
 			_flag = false;

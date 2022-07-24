@@ -51,6 +51,7 @@ protected:
 	sf::Sprite _sprite;
 	float _frame;
 	bool _flagDie;
+	bool _flagWin;
 	int _backGround;
 	int _rectWidth;
 	int _rectHeight;
@@ -58,35 +59,21 @@ protected:
 	
 	
 	sf::Texture _textureStates;
-	//States DYVIR
-	sf::Sprite _spriteStunDyvir;
-	sf::Sprite _spriteBleedingDyvir;
-	sf::Sprite _spriteBurnsDyvir;
-	sf::Sprite _spritePoisonedDyvir;
-	sf::Sprite _spritePRincreaseDyvir;
-	sf::Sprite _spriteMDincreaseDyvir;
-	sf::Sprite _spritePDincreaseDyvir;
-	sf::Sprite _spriteMRincreaseDyvir;
-	sf::Sprite _spritePRdecreaseDyvir;
-	sf::Sprite _spriteMDdecreaseDyvir;
-	sf::Sprite _spritePDdecreaseDyvir;
-	sf::Sprite _spriteMRdecreaseDyvir;
-	sf::Sprite _spriteDamageMultiplierDyvir;
+	//States Sprites
+	sf::Sprite _spriteStun;
+	sf::Sprite _spriteBleeding;
+	sf::Sprite _spriteBurns;
+	sf::Sprite _spritePoisoned;
+	sf::Sprite _spritePRincrease;
+	sf::Sprite _spriteMDincrease;
+	sf::Sprite _spritePDincrease;
+	sf::Sprite _spriteMRincrease;
+	sf::Sprite _spritePRdecrease;
+	sf::Sprite _spriteMDdecrease;
+	sf::Sprite _spritePDdecrease;
+	sf::Sprite _spriteMRdecrease;
+	sf::Sprite _spriteDamageMultiplier;
 
-	//States Enemigos
-	sf::Sprite _spriteStunEnemy;
-	sf::Sprite _spriteBleedingEnemy;
-	sf::Sprite _spriteBurnsEnemy;
-	sf::Sprite _spritePoisonedEnemy;
-	sf::Sprite _spritePRincreaseEnemy;
-	sf::Sprite _spriteMDincreaseEnemy;
-	sf::Sprite _spritePDincreaseEnemy;
-	sf::Sprite _spriteMRincreaseEnemy;
-	sf::Sprite _spritePRdecreaseEnemy;
-	sf::Sprite _spriteMDdecreaseEnemy;
-	sf::Sprite _spritePDdecreaseEnemy;
-	sf::Sprite _spriteMRdecreaseEnemy;
-	sf::Sprite _spriteDamageMultiplierEnemy;
 
 public:
 	Dragon();
@@ -188,9 +175,7 @@ public:
 	void clearStates() { std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
 	std::vector <bool> checkNegativeStates(turns& turn);
 	std::vector <bool> checkPositiveStates();
-	void updateSpriteStatesDyvir(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderWindow& window);
-	void updateSpriteStatesEnemy(std::vector <bool> _positiveStates, std::vector <bool> _negativeStates, sf::RenderWindow& window);
-
+	void updateSpriteStates(sf::RenderWindow& window);
 	int	doDamage(int);
 	void resetStats();
 	int damageTaken(int);
