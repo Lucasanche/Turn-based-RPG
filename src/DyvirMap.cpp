@@ -10,9 +10,10 @@ DyvirMap::DyvirMap() {
 	_sprite.setScale(0.15, 0.15);
 	_sprite.setPosition(200, 200 - _sprite.getGlobalBounds().height);
 	_frame = 0;
-	_speedX = 2;
-	_speedY = 2;
+	_velocity = { 0,0 };
+	_speed = { 2, 2 };
 	Collide = false;
+	_left = _right = _up = _down = false;
 }
 
 void DyvirMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -26,26 +27,54 @@ bool DyvirMap::update() {
 	}
 	_sprite.setTextureRect({ int(_frame) * 222, 0, 184, 170 });
 
-
-	/// MOVER
-	_velocity = { 0, 0 };
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-		_velocity.y = -_speedY;
+	//Mover
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !_right) {
+		_left = true;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+			_velocity.x = _speed.x;
+		}
+		else {
+			_velocity.x = -_speed.x;
+		}
 	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-		_velocity.y = _speedY;
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !_left) {
+		_right = true;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+			_velocity.x = -_speed.x;
+		}
+		else {
+			_velocity.x = _speed.x;
+		}
 	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		_velocity.x = -_speedX;
+	else {
+		_velocity.x = 0;
+		_right = _left = false;
 	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		_velocity.x = _speedX;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !_up) {
+		_down = true;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+			_velocity.y = -_speed.y;
+		}
+		else {
+			_velocity.y = _speed.y;
+		}
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !_down) {
+		_up = true;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+			_velocity.y = _speed.y;
+		}
+		else {
+			_velocity.y = -_speed.y;
+		}
+	}
+	else {
+		_velocity.y = 0;
+		_up = _down = false;
 	}
 	///ROTAR LA ANIMACIÓN
 	_sprite.move(_velocity);
+
 	if (_velocity.x < 0) {
 		_sprite.setScale(-0.15, 0.15);
 	}
@@ -53,8 +82,9 @@ bool DyvirMap::update() {
 		_sprite.setScale(0.15, 0.15);
 	}
 	if (_velocity != sf::Vector2f(0, 0)) {
+		//Setea los encuentros aleatorios (return false para desactivarlos)
 		if (rand() % 360 == 0) {
-			return true;
+			return false;
 		}
 		std::cout << rand() << std::endl;
 	}
