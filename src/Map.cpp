@@ -12,14 +12,12 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 	x = iaux = jaux = win = 0;
 	std::ifstream openfile("./Docs/Mapa.txt");
 	_option = 0;
-
 	if (openfile.is_open()) {
-		std::vector<sf::Vector2i>tempMap;
+		std::vector<char>tempMap;
+		char aux;
+		int c = 0;
 		while (!openfile.eof()) {
-			std::string str;
-			openfile >> str;
-			char x = str[0], y = str[2];
-			tempMap.push_back(sf::Vector2i(x - '0', y - '0'));
+			tempMap.push_back(aux);
 			if (openfile.peek() == '\n') {
 				map.push_back(tempMap);
 				tempMap.clear();
@@ -48,25 +46,18 @@ int Map::update(sf::RenderWindow& window, int loadGameOption) {
 		}
 		for (int i = 0; i < map.size(); i++) {
 			for (int j = 0; j < map[i].size(); j++) {
-				if ((map[i][j].x == 0 || map[i][j].x == 1) && map[i][j].y == 0) {
-					tile.update(j, i, map[i][j].x, map[i][j].y, _dyvirFight.getWins());
-				}
-				else if (map[i][j].x >= 2 && (_dyvirFight.getWins() + 1) < map[i][j].x) {
-					tile.update(j, i, map[i][j].x, map[i][j].y, _dyvirFight.getWins());
-				}
+				tile.update(j, i, map[i][j], _dyvirFight.getWins());
 				window.draw(tile);
 				if (_dyvirMap.isCollision(tile)) {
 					_dyvirMap.setCollide();
-					if (map[i][j].x > 1) {
+					if (map[i][j] > '2') {
 						_option = 2;
 						fight.setBoss(_dyvirFight.getWins());
 						window.clear();
 					}
-					else if (map[i][j].x == 1) {
+					else if (map[i][j] == '2') {
 						_option = 6;
 					}
-					iaux = i;
-					jaux = j;
 				}
 			}
 		}
@@ -76,7 +67,6 @@ int Map::update(sf::RenderWindow& window, int loadGameOption) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
 			_option = 5;
 			window.setView(window.getDefaultView());
-			//_view.setSize(window.getSize().x, window.getSize().y);
 		}
 		break;
 	case 1:
@@ -90,7 +80,7 @@ int Map::update(sf::RenderWindow& window, int loadGameOption) {
 			}
 			else if (!_dyvirFight.getIsAlive()) {
 				window.close();
-				std::cout << "Cagaste fuego";
+				std::cout << "Moriste, juego cerrado";
 				system("pause");
 				_option = 0;
 			}

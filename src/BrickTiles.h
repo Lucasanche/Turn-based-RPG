@@ -8,7 +8,7 @@ class BrickTiles : public sf::Drawable, public Collision
 {
 public:
 	BrickTiles();
-	void update(int, int, int, int, int);
+	void update(int, int, char, int);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	sf::FloatRect getBounds() const override;
 private:

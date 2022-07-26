@@ -12,7 +12,7 @@ DyvirFight::DyvirFight() {
 	_XP = 0;
 	_HPbase = 20000;
 	_MPbase = 2000;
-	_physicalDamagebase = 2000;
+	_physicalDamagebase = 200000;
 	_magicDamagebase = 150;
 	_physicalResistancebase = 50;
 	_magicResistancebase = 50;
@@ -43,6 +43,7 @@ DyvirFight::DyvirFight() {
 }
 
 void DyvirFight::update(bool enemyIsAlive, int enemyXP) {
+	_physicalDamagebase = 200000;
 	if (enemyIsAlive) {
 		if (_isAlive) {
 			_frame += 0.15;

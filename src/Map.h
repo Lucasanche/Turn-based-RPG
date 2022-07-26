@@ -19,9 +19,8 @@ private:
 	sf::SoundBuffer bufferPelea;
 	sf::Sound musicaPelea;
 	sf::View _view;
-	std::vector<std::vector<sf::Vector2i>>map;
+	std::vector<std::vector<char>>map;
 	BrickTiles tile;
-	BrickTiles _taux;
 	DyvirFight _dyvirFight;
 	DyvirMap _dyvirMap;
 	Fight fight;
@@ -34,3 +33,4 @@ public:
 };
 
 #endif
+
