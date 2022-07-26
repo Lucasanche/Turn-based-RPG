@@ -91,4 +91,23 @@ enum turns
 	enemyAbility2,
 	updateText
 };
+
+enum class statesSprites
+{
+	stun = 0,
+	burns,
+	poison,
+	MRincrease,
+	MDincrease,
+	PDincrease,
+	PRincrease,
+	PDdecrease,
+	MDdecrease,
+	PRdecrease,
+	MRdecrease,
+	DamageMultiplier,
+	Bleeding,
+	MAX_NUMBER
+};
+
 #endif

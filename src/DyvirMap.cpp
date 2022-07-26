@@ -107,4 +107,11 @@ void DyvirMap::setCollide() {
 	}
 }
 
+bool DyvirMap::collisionDirection(Collision& obj) const {
+	if (obj.getBounds().left == getBounds().width || obj.getBounds().width == getBounds().left) {
+		return true;
+	}
+	return false;
+}
+
 

@@ -5,9 +5,9 @@
 Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), menuMap(window.getSize().x, window.getSize().y, _dyvirFight) {
 	_music = true;
 	_gameLoaded = false;
-	bufferPelea.loadFromFile("./Sounds/FightMusic.wav");
-	musicaPelea.setBuffer(bufferPelea);
-	musicaPelea.setVolume(30);
+	/*bufferPelea.loadFromFile("./Sounds/FightMusic.wav");
+	musicaPelea.setBuffer(bufferPelea);*/
+	/*musicaPelea.setVolume(30);*/
 	_backTexture.loadFromFile("./Textures/Backgrounds/Dungeon.png");
 	x = iaux = jaux = win = 0;
 	std::ifstream openfile("./Docs/Mapa.txt");
@@ -49,7 +49,10 @@ int Map::update(sf::RenderWindow& window, int loadGameOption) {
 				tile.update(j, i, map[i][j], _dyvirFight.getWins());
 				window.draw(tile);
 				if (_dyvirMap.isCollision(tile)) {
-					_dyvirMap.setCollide();
+					if (_dyvirMap.collisionDirection(tile)) {
+						_dyvirMap.setCollide();
+					}
+					
 					if (map[i][j] > '2') {
 						_option = 2;
 						fight.setBoss(_dyvirFight.getWins());

@@ -16,48 +16,49 @@ Dragon::Dragon() : _negativeStates(9, false), _positiveStates(14, false) {
 	_textureStates.loadFromFile("./Textures/Interface/states.png");
 
 	//Texturas de sprites de estados
-	_spriteStun.setTexture(_textureStates);
-	_spriteBleeding.setTexture(_textureStates);
-	_spriteBurns.setTexture(_textureStates);
-	_spritePoisoned.setTexture(_textureStates);
-	_spritePRincrease.setTexture(_textureStates);
-	_spriteMDincrease.setTexture(_textureStates);
-	_spritePDincrease.setTexture(_textureStates);
-	_spriteMRincrease.setTexture(_textureStates);
-	_spritePRdecrease.setTexture(_textureStates);
-	_spriteMDdecrease.setTexture(_textureStates);
-	_spritePDdecrease.setTexture(_textureStates);
-	_spriteMRdecrease.setTexture(_textureStates);
-	_spriteDamageMultiplier.setTexture(_textureStates);
+	_spriteStates.setTexture(_textureStates);
+	//_spriteStun.setTexture(_textureStates);
+	//_spriteBleeding.setTexture(_textureStates);
+	//_spriteBurns.setTexture(_textureStates);
+	//_spritePoisoned.setTexture(_textureStates);
+	//_spritePRincrease.setTexture(_textureStates);
+	//_spriteMDincrease.setTexture(_textureStates);
+	//_spritePDincrease.setTexture(_textureStates);
+	//_spriteMRincrease.setTexture(_textureStates);
+	//_spritePRdecrease.setTexture(_textureStates);
+	//_spriteMDdecrease.setTexture(_textureStates);
+	//_spritePDdecrease.setTexture(_textureStates);
+	//_spriteMRdecrease.setTexture(_textureStates);
+	//_spriteDamageMultiplier.setTexture(_textureStates);
 
 	//Sprites de estados
-	_spriteStun.setScale(0.6, 0.6);
-	_spriteStun.setTextureRect(sf::IntRect(0, 0, 50, 50));
-	_spriteBurns.setScale(0.6, 0.6);
-	_spriteBurns.setTextureRect(sf::IntRect(100, 0, 50, 50));
-	_spritePoisoned.setScale(0.6, 0.6);
-	_spritePoisoned.setTextureRect(sf::IntRect(150, 0, 50, 50));
-	_spriteMRincrease.setScale(0.6, 0.6);
-	_spriteMRincrease.setTextureRect(sf::IntRect(500, 0, 50,
-		50));
-	_spriteMDincrease.setScale(0.6, 0.6);
-	_spriteMDincrease.setTextureRect(sf::IntRect(450, 0, 50, 50));
-	_spritePDincrease.setScale(0.6, 0.6);
-	_spritePDincrease.setTextureRect(sf::IntRect(400, 0, 50, 50));
-	_spritePRincrease.setScale(0.6, 0.6);
-	_spritePRincrease.setTextureRect(sf::IntRect(550, 0, 50, 50));
-	_spritePDdecrease.setScale(0.6, 0.6);
-	_spritePDdecrease.setTextureRect(sf::IntRect(300, 0, 50, 50));
-	_spriteMDdecrease.setScale(0.6, 0.6);
-	_spriteMDdecrease.setTextureRect(sf::IntRect(250, 0, 50, 50));
-	_spritePRdecrease.setScale(0.6, 0.6);
-	_spritePRdecrease.setTextureRect(sf::IntRect(200, 0, 50, 50));
-	_spriteMRdecrease.setScale(0.6, 0.6);
-	_spriteMRdecrease.setTextureRect(sf::IntRect(350, 0, 50, 50));
-	_spriteDamageMultiplier.setScale(0.6, 0.6);
-	_spriteDamageMultiplier.setTextureRect(sf::IntRect(600, 0, 50, 50));
-	_spriteBleeding.setScale(0.5, 0.5);
-	_spriteBleeding.setTextureRect(sf::IntRect(50, 0, 50, 50));
+	//_spriteStun.setScale(0.6, 0.6);
+	//_spriteStun.setTextureRect(sf::IntRect(0, 0, 50, 50));
+	//_spriteBurns.setScale(0.6, 0.6);
+	//_spriteBurns.setTextureRect(sf::IntRect(100, 0, 50, 50));
+	//_spritePoisoned.setScale(0.6, 0.6);
+	//_spritePoisoned.setTextureRect(sf::IntRect(150, 0, 50, 50));
+	//_spriteMRincrease.setScale(0.6, 0.6);
+	//_spriteMRincrease.setTextureRect(sf::IntRect(500, 0, 50,
+	//	50));
+	//_spriteMDincrease.setScale(0.6, 0.6);
+	//_spriteMDincrease.setTextureRect(sf::IntRect(450, 0, 50, 50));
+	//_spritePDincrease.setScale(0.6, 0.6);
+	//_spritePDincrease.setTextureRect(sf::IntRect(400, 0, 50, 50));
+	//_spritePRincrease.setScale(0.6, 0.6);
+	//_spritePRincrease.setTextureRect(sf::IntRect(550, 0, 50, 50));
+	//_spritePDdecrease.setScale(0.6, 0.6);
+	//_spritePDdecrease.setTextureRect(sf::IntRect(300, 0, 50, 50));
+	//_spriteMDdecrease.setScale(0.6, 0.6);
+	//_spriteMDdecrease.setTextureRect(sf::IntRect(250, 0, 50, 50));
+	//_spritePRdecrease.setScale(0.6, 0.6);
+	//_spritePRdecrease.setTextureRect(sf::IntRect(200, 0, 50, 50));
+	//_spriteMRdecrease.setScale(0.6, 0.6);
+	//_spriteMRdecrease.setTextureRect(sf::IntRect(350, 0, 50, 50));
+	//_spriteDamageMultiplier.setScale(0.6, 0.6);
+	//_spriteDamageMultiplier.setTextureRect(sf::IntRect(600, 0, 50, 50));
+	//_spriteBleeding.setScale(0.5, 0.5);
+	//_spriteBleeding.setTextureRect(sf::IntRect(50, 0, 50, 50));
 }
 
 void Dragon::setAbilityFromInventory(int abilityNumber, abilityName abName) {
@@ -289,39 +290,79 @@ std::vector <bool>  Dragon::checkPositiveStates() {
 }
 
 void Dragon::updateSpriteStates(sf::RenderWindow& window) {
+
+	/*_spriteDamageMultiplier.setScale(0.6, 0.6);
+	_spriteDamageMultiplier.setTextureRect(sf::IntRect(600, 0, 50, 50));
+	_spriteBleeding.setScale(0.5, 0.5);
+	_spriteBleeding.setTextureRect(sf::IntRect(50, 0, 50, 50));*/
+
+
 	if (_negativeStates[stun]) {
-		window.draw(_spriteStun);
+		_spriteStates.setScale(0.6, 0.6);
+		_spriteStates.setTextureRect({0, 0, 50, 50});
+		_spriteStates.setPosition(_spriteStatesPosition[int(statesSprites::stun)]);
+		window.draw(_spriteStates);
 	}
 	if (_negativeStates[burns]) {
-		window.draw(_spriteBurns);
+		_spriteStates.setScale(0.6, 0.6);
+		_spriteStates.setTextureRect({100, 0, 50, 50});
+		_spriteStates.setPosition(_spriteStatesPosition[int(statesSprites::burns)]);
+		window.draw(_spriteStates);
 	}
 	if (_negativeStates[poison]) {
-		window.draw(_spritePoisoned);
+		_spriteStates.setScale(0.6, 0.6);
+		_spriteStates.setTextureRect({150, 0, 50, 50});
+		_spriteStates.setPosition(_spriteStatesPosition[int(statesSprites::poison)]);
+		window.draw(_spriteStates);
 	}
 	if (_negativeStates[reducePR]) {
-		window.draw(_spritePRdecrease);
+		_spriteStates.setScale(0.6, 0.6);
+		_spriteStates.setTextureRect({200, 0, 50, 50});
+		_spriteStates.setPosition(_spriteStatesPosition[int(statesSprites::PRdecrease)]);
+		window.draw(_spriteStates);
 	}
 	if (_negativeStates[reduceMR]) {
-		window.draw(_spriteMRdecrease);
+		_spriteStates.setScale(0.6, 0.6);
+		_spriteStates.setTextureRect({350, 0, 50, 50});
+		_spriteStates.setPosition(_spriteStatesPosition[int(statesSprites::MRdecrease)]);
+		window.draw(_spriteStates);
 	}
 	if (_negativeStates[reducePD]) {
-		window.draw(_spritePDdecrease);
+		_spriteStates.setScale(0.6, 0.6);
+		_spriteStates.setTextureRect({300, 0, 50, 50});
+		_spriteStates.setPosition(_spriteStatesPosition[int(statesSprites::PDdecrease)]);
+		window.draw(_spriteStates);
 	}
 	if (_negativeStates[reduceMD]) {
-		window.draw(_spriteMDdecrease);
+		_spriteStates.setScale(0.6, 0.6);
+		_spriteStates.setTextureRect({250, 0, 50, 50});
+		_spriteStates.setPosition(_spriteStatesPosition[int(statesSprites::MDdecrease)]);
+		window.draw(_spriteStates);
 	}
 	//positive states
 	if (_positiveStates[increasePR]) {
-		window.draw(_spritePRincrease);
+		_spriteStates.setScale(0.6, 0.6);
+		_spriteStates.setTextureRect({550, 0, 50, 50 });
+		_spriteStates.setPosition(_spriteStatesPosition[int(statesSprites::PRincrease)]);
+		window.draw(_spriteStates);
 	}
 	if (_positiveStates[increaseMR]) {
-		window.draw(_spriteMRincrease);
+		_spriteStates.setScale(0.6, 0.6);
+		_spriteStates.setTextureRect({ 500, 0, 50, 50 });
+		_spriteStates.setPosition(_spriteStatesPosition[int(statesSprites::MRincrease)]);
+		window.draw(_spriteStates);
 	}
 	if (_positiveStates[increasePD]) {
-		window.draw(_spritePDincrease);
+		_spriteStates.setScale(0.6, 0.6);
+		_spriteStates.setTextureRect({ 400, 0, 50, 50 });
+		_spriteStates.setPosition(_spriteStatesPosition[int(statesSprites::PDincrease)]);
+		window.draw(_spriteStates);
 	}
 	if (_positiveStates[increaseMD]) {
-		window.draw(_spriteMDincrease);
+		_spriteStates.setScale(0.6, 0.6);
+		_spriteStates.setTextureRect({450, 0, 50, 50});
+		_spriteStates.setPosition(_spriteStatesPosition[int(statesSprites::MDdecrease)]);
+		window.draw(_spriteStates);
 	}
 }
 

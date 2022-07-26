@@ -5,7 +5,7 @@
 class mainMenu : public sf::Drawable
 {
 private:
-	int _option;
+	unsigned short _option;
 	bool _flag;
 	int selectedItemIndex;
 	sf::Font _font;

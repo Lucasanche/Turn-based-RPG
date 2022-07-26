@@ -12,7 +12,6 @@ private:
 	sf::Texture _texture;
 	sf::Sprite _sprite;
 	bool Collide;
-	sf::Vector2f _newPos;
 	sf::Vector2f _speed;
 	sf::Vector2f _velocity;
 	bool _left, _right, _up, _down;
@@ -25,6 +24,7 @@ public:
 	void setPosition(sf::Vector2f position) { _sprite.setPosition(position); }
 	sf::FloatRect getBounds() const override;
 	void setCollide();
+	bool collisionDirection(Collision& obj) const;
 };
 
 #endif

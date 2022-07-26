@@ -31,17 +31,15 @@ protected:
 	int _HPbase;
 	int _MP;
 	int _MPbase;
-	int _physicalDamage;
-	int _physicalDamagebase;
-	int _magicDamage;
-	int _magicDamagebase;
-	int _physicalResistance;
-	int _physicalResistancebase;
-	int _magicResistance;
-	int _magicResistancebase;
-
-
-	int _XP;
+	short _physicalDamage;
+	short _physicalDamagebase;
+	short _magicDamage;
+	short _magicDamagebase;
+	short _physicalResistance;
+	short _physicalResistancebase;
+	short _magicResistance;
+	short _magicResistancebase;
+	unsigned int _XP;
 	Ability _ability[3];
 	AbilityFactory _abilityFactory;
 	elements _elementWeak;
@@ -52,28 +50,29 @@ protected:
 	float _frame;
 	bool _flagDie;
 	bool _flagWin;
-	int _backGround;
+	unsigned short _backGround;
 	int _rectWidth;
 	int _rectHeight;
-	int _totalFrames;
+	unsigned short _totalFrames;
 	
 	
 	sf::Texture _textureStates;
 	//States Sprites
-	sf::Sprite _spriteStun;
-	sf::Sprite _spriteBleeding;
-	sf::Sprite _spriteBurns;
-	sf::Sprite _spritePoisoned;
-	sf::Sprite _spritePRincrease;
-	sf::Sprite _spriteMDincrease;
-	sf::Sprite _spritePDincrease;
-	sf::Sprite _spriteMRincrease;
-	sf::Sprite _spritePRdecrease;
-	sf::Sprite _spriteMDdecrease;
-	sf::Sprite _spritePDdecrease;
-	sf::Sprite _spriteMRdecrease;
-	sf::Sprite _spriteDamageMultiplier;
-
+	sf::Sprite _spriteStates;
+	sf::Vector2f _spriteStatesPosition[int(statesSprites::MAX_NUMBER)];
+	//sf::Sprite _spriteStun;
+	//sf::Sprite _spriteBleeding;
+	//sf::Sprite _spriteBurns;
+	//sf::Sprite _spritePoisoned;
+	//sf::Sprite _spritePRincrease;
+	//sf::Sprite _spriteMDincrease;
+	//sf::Sprite _spritePDincrease;
+	//sf::Sprite _spriteMRincrease;
+	//sf::Sprite _spritePRdecrease;
+	//sf::Sprite _spriteMDdecrease;
+	//sf::Sprite _spritePDdecrease;
+	//sf::Sprite _spriteMRdecrease;
+	//sf::Sprite _spriteDamageMultiplier;
 
 public:
 	Dragon();

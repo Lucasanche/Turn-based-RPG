@@ -24,22 +24,37 @@ DyvirFight::DyvirFight() {
 	_magicResistance = _magicResistancebase;
 	_wins = 0;
 	this->setFightSprite();
+	int i = stun;
+	_spriteStatesPosition[int(statesSprites::stun)] = { 230, 510 };
+	_spriteStatesPosition[int(statesSprites::burns)] = { 265, 510 };
+	_spriteStatesPosition[int(statesSprites::poison)] = { 300, 510 };
+	_spriteStatesPosition[int(statesSprites::MRincrease)] = { 335, 510 };
+	_spriteStatesPosition[int(statesSprites::MDincrease)] = { 370, 510 };
+	_spriteStatesPosition[int(statesSprites::PDincrease)] = { 405, 510 };
+	_spriteStatesPosition[int(statesSprites::PRincrease)] = { 440, 510 };
+	_spriteStatesPosition[int(statesSprites::PDdecrease)] = { 475, 510 };
+	_spriteStatesPosition[int(statesSprites::MDdecrease)] = { 510, 510 };
+	_spriteStatesPosition[int(statesSprites::PRdecrease)] = { 545, 510 };
+	_spriteStatesPosition[int(statesSprites::MRdecrease)] = { 580, 510 };
+	_spriteStatesPosition[int(statesSprites::DamageMultiplier)] = { 615, 510 };
+	_spriteStatesPosition[int(statesSprites::Bleeding)] = { 650, 510 };
 
 
-	//Posición de los sprites de estados
-	_spriteStun.setPosition(230, 510);
-	_spriteBurns.setPosition(265, 510);
-	_spritePoisoned.setPosition(300, 510);
-	_spriteMRincrease.setPosition(335, 510);
-	_spriteMDincrease.setPosition(370, 510);
-	_spritePDincrease.setPosition(405, 510);
-	_spritePRincrease.setPosition(440, 510);
-	_spritePDdecrease.setPosition(475, 510);
-	_spriteMDdecrease.setPosition(510, 510);
-	_spritePRdecrease.setPosition(545, 510);
-	_spriteMRdecrease.setPosition(580, 510);
-	_spriteDamageMultiplier.setPosition(615, 510);
-	_spriteBleeding.setPosition(650, 510);
+
+	////Posición de los sprites de estados
+	//_spriteStun.setPosition(230, 510);
+	//_spriteBurns.setPosition(265, 510);
+	//_spritePoisoned.setPosition(300, 510);
+	//_spriteMRincrease.setPosition(335, 510);
+	//_spriteMDincrease.setPosition(370, 510);
+	//_spritePDincrease.setPosition(405, 510);
+	//_spritePRincrease.setPosition(440, 510);
+	//_spritePDdecrease.setPosition(475, 510);
+	//_spriteMDdecrease.setPosition(510, 510);
+	//_spritePRdecrease.setPosition(545, 510);
+	//_spriteMRdecrease.setPosition(580, 510);
+	//_spriteDamageMultiplier.setPosition(615, 510);
+	//_spriteBleeding.setPosition(650, 510);
 }
 
 void DyvirFight::update(bool enemyIsAlive, int enemyXP) {

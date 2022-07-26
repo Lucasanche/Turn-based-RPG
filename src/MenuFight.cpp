@@ -11,18 +11,12 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(4), _drag
 	_flag = false;
 	_option = wait;
 
-	if (!_font.loadFromFile("./Fonts/Nostalgia.ttf")) {
-		std::cout << "No se pudo cargar el archivo ./Fonts/Nostalgia.ttf";
-	}
-	if (!_backMenuTexture.loadFromFile("./Textures/Interface/mFightPrincipal.png")) {
-		std::cout << "No se pudo cargar mFightPrincipal.png" << std::endl;
-	}
-	if (!_backMenuEnemyTexture.loadFromFile("./Textures/Interface/mFightEnemy.png")) {
-		std::cout << "No se pudo cargar mFightEnemy.png" << std::endl;
-	}
-	_backMenu.setTexture(_backMenuTexture);
+	_font.loadFromFile("./Fonts/Nostalgia.ttf");
+	_textures.loadFromFile("./Textures/Interface/mFightPrincipal.png");
+	_backMenu.setTexture(_textures);
+	_textures.loadFromFile("./Textures/Interface/mFightEnemy.png");
+	_backMenuEnemy.setTexture(_textures);
 	_backMenu.setPosition(0, height - _backMenu.getGlobalBounds().height);
-	_backMenuEnemy.setTexture(_backMenuEnemyTexture);
 	_backMenuEnemy.setPosition(width - _backMenuEnemy.getGlobalBounds().width, 0);
 	_selectedItemIndex = 0;
 	///Variables útiles para los sprites
@@ -32,17 +26,18 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(4), _drag
 
 	//Barra de HP y MP
 	//Setear texturas
-	_textureHP.loadFromFile("./Textures/Interface/HP_bar.png");
-	_spriteHPdyvir.setTexture(_textureHP);
-	_spriteMPdyvir.setTexture(_textureHP);
-	_spriteHPFilldyvir.setTexture(_textureHP);
-	_spriteMPFilldyivir.setTexture(_textureHP);
-	_textHPdyvir.setTexture(_textureHP);
-	_textMPdyvir.setTexture(_textureHP);
-	_spriteHPenemy.setTexture(_textureHP);
-	_spriteHPFillenemy.setTexture(_textureHP);
-	_textHPenemy.setTexture(_textureHP);
-	
+	_textures.loadFromFile("./Textures/Interface/HP_bar.png");
+	//_spriteHPMP.setTexture(_textures);
+
+	_spriteHPdyvir.setTexture(_textures);
+	_spriteMPdyvir.setTexture(_textures);
+	_spriteHPFilldyvir.setTexture(_textures);
+	_spriteMPFilldyivir.setTexture(_textures);
+	_textHPdyvir.setTexture(_textures);
+	_textMPdyvir.setTexture(_textures);
+	_spriteHPenemy.setTexture(_textures);
+	_spriteHPFillenemy.setTexture(_textures);
+	_textHPenemy.setTexture(_textures);
 	//
 	spriteSize = { 158,15 };
 	positionHPdyvir = { _backMenu.getPosition().x + 40, _backMenu.getPosition().y + 50 };
@@ -176,31 +171,18 @@ void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 	target.draw(_backMenu);
 	target.draw(_backMenuEnemy);
-	target.draw(_spriteHPdyvir);
-	target.draw(_spriteHPFilldyvir);
-	target.draw(_textHPdyvir);
-	target.draw(_spriteHPenemy);
-	target.draw(_spriteHPFillenemy);
-	target.draw(_spriteMPdyvir);
-	target.draw(_spriteMPFilldyivir);
-	target.draw(_textMPdyvir);
-	target.draw(_textHPenemy);
-	target.draw(_textBox);
+	target.draw(_spriteHPMP);
+	//target.draw(_spriteHPdyvir);
+	//target.draw(_spriteHPFilldyvir);
+	//target.draw(_textHPdyvir);
+	//target.draw(_spriteHPenemy);
+	//target.draw(_spriteHPFillenemy);
+	//target.draw(_spriteMPdyvir);
+	//target.draw(_spriteMPFilldyivir);
+	//target.draw(_textMPdyvir);
+	//target.draw(_textHPenemy);
+	//target.draw(_textBox);
 	
-	//AAAAAAA
-	target.draw(_spriteStunEnemy);
-	target.draw(_spriteBurnsEnemy);
-	target.draw(_spritePoisonedEnemy);
-	target.draw(_spritePRincreaseEnemy);
-	target.draw(_spriteMDincreaseEnemy);
-	target.draw(_spritePDincreaseEnemy);
-	target.draw(_spriteMRincreaseEnemy);
-	target.draw(_spritePRdecreaseEnemy);
-	target.draw(_spriteMDdecreaseEnemy);
-	target.draw(_spritePDdecreaseEnemy);
-	target.draw(_spriteMRdecreaseEnemy);
-	//target.draw(_spriteBleedingEnemy);
-	//target.draw(_spriteDamageMultiplierEnemy);
 
 	for (int i = 0; i < _menu.size(); i++) {
 		target.draw(_menu[i], states);

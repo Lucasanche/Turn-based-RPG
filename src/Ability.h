@@ -7,13 +7,13 @@ class Ability
 {
 private:
 	std::string _name;
-	sf::Text _description;
+	std::string _description;
 	elements _element1;
 	elements _element2;
-	int _mpCost;
+	unsigned int _mpCost;
 	std::vector<bool>_negativeStates;
 	std::vector<bool>_positiveStates;
-	int _magicDamage;
+	unsigned short _magicDamage;
 	abilityName _ID;
 public:
 	Ability();
@@ -21,7 +21,7 @@ public:
 
 	//Sets()
 	void setName(std::string name) { _name = name; }
-	void setDescription(sf::String description) { _description.setString(description); }
+	void setDescription(sf::String description) { _description = description; }
 	void setMagicDamage(int magicDamage) { _magicDamage = magicDamage; }
 	void setMpCost(int mpCost) { _mpCost = mpCost; }
 	void setElements(elements element1, elements element2);
@@ -59,7 +59,7 @@ public:
 	bool getPositiveStates(int i) { return _positiveStates[i]; }
 	abilityName getID() { return _ID; }
 	const std::string getName() { return _name; }
-	sf::String getDescription() { return _description.getString(); }
+	sf::String getDescription() { return _description; }
 	int getMagicDamage() { return _magicDamage; }
 	int getMpCost() { return _mpCost; }
 	elements getElement1() { return _element1; }

@@ -8,8 +8,6 @@ Game::Game() : _window(sf::VideoMode(800, 700), "Proyectazo"), _mainMenu(float(_
 	_loadGameOption = 0;
 }
 
-
-
 void Game::Play() {
 	while (_window.isOpen()) {
 		while (_window.pollEvent(event)) {
