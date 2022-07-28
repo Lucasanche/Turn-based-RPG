@@ -29,7 +29,7 @@ private:
 	bool _gameLoaded;
 public:
 	Map(sf::RenderWindow& window);
-	int update(sf::RenderWindow& window, int loadGameOption);
+	int update(sf::RenderWindow& window, int loadGameOption, const float &delta_time);
 };
 
 #endif

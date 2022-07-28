@@ -7,6 +7,8 @@ BrickTiles::BrickTiles() {
 	_sprite.setTexture(_texture);
 	_frameVortex = 1;
 	_frameCheckpoint = 10;
+	_sprite.setTextureRect(sf::IntRect(0, 0, 35, 35));
+	_sprite.setOrigin(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height / 2);
 }
 
 void BrickTiles::update(int j, int i, char x, int wins) {
@@ -37,8 +39,4 @@ void BrickTiles::update(int j, int i, char x, int wins) {
 
 void BrickTiles::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_sprite, states);
-}
-
-sf::FloatRect BrickTiles::getBounds() const {
-	return _sprite.getGlobalBounds();
 }

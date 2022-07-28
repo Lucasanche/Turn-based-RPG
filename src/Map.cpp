@@ -17,6 +17,7 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 		char aux;
 		int c = 0;
 		while (!openfile.eof()) {
+			openfile >> aux;
 			tempMap.push_back(aux);
 			if (openfile.peek() == '\n') {
 				map.push_back(tempMap);
@@ -27,7 +28,7 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 	}
 }
 
-int Map::update(sf::RenderWindow& window, int loadGameOption) {
+int Map::update(sf::RenderWindow& window, int loadGameOption, const float& delta_time) {
 	if (!_gameLoaded && loadGameOption != 0) {
 		SaveGame _loadGame;
 		if (!_loadGame.loadGame(_dyvirMap, _dyvirFight, loadGameOption)) {
@@ -40,7 +41,7 @@ int Map::update(sf::RenderWindow& window, int loadGameOption) {
 
 	switch (_option) {
 	case 0:
-		if (_dyvirMap.update()) {
+		if (_dyvirMap.update(delta_time)) {
 			_option = 1;
 			fight.setEnemy(_dyvirFight.getWins());
 		}
@@ -48,11 +49,7 @@ int Map::update(sf::RenderWindow& window, int loadGameOption) {
 			for (int j = 0; j < map[i].size(); j++) {
 				tile.update(j, i, map[i][j], _dyvirFight.getWins());
 				window.draw(tile);
-				if (_dyvirMap.isCollision(tile)) {
-					if (_dyvirMap.collisionDirection(tile)) {
-						_dyvirMap.setCollide();
-					}
-					
+				if (_dyvirMap.getCollidable().CheckCollision(tile.getCollidable(), 0.0f)) {
 					if (map[i][j] > '2') {
 						_option = 2;
 						fight.setBoss(_dyvirFight.getWins());
@@ -62,6 +59,7 @@ int Map::update(sf::RenderWindow& window, int loadGameOption) {
 						_option = 6;
 					}
 				}
+				
 			}
 		}
 		_view.setCenter(_dyvirMap.getPosition());
@@ -93,7 +91,6 @@ int Map::update(sf::RenderWindow& window, int loadGameOption) {
 		fight.update(_dyvirFight, window, _clock, true);
 		if (_clock.getElapsedTime().asSeconds() > 3) {
 			if (!fight.getEnemyIsAlive()) {
-				//_taux = tile;
 				_dyvirFight.increaseWins();
 				_option = 0;
 				_dyvirFight.setFightSprite();

@@ -4,7 +4,7 @@
 #include "Collision.h"
 
 
-class BrickTiles : public sf::Drawable, public Collision
+class BrickTiles : public sf::Drawable
 {
 private:
 	sf::Texture _texture;
@@ -15,7 +15,7 @@ public:
 	BrickTiles();
 	void update(int, int, char, int);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-	sf::FloatRect getBounds() const override;
+	Collision getCollidable() { return Collision(_sprite); }
 
 };
 

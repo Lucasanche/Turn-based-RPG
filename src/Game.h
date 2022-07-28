@@ -24,6 +24,8 @@ private:
 	unsigned short _option;
 	unsigned short _loadGameOption;
 	SaveGame _saveGame;
+	sf::Clock _clock;
+	sf::Time _delta_time;
 public:
 	Game();
 	void Play();

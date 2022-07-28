@@ -18,7 +18,10 @@ private:
 	std::vector<sf::String> _menuStrings;
 	sf::Text _textBox;
 	Cursor _cursor;
-	sf::Texture _textures;
+	std::vector<sf::Texture> _texturesv;
+	sf::Texture _HPMPtexture;
+	sf::Texture _fightMenuTexture;
+	sf::Texture _fightMenuEnemyTexture;
 	sf::Sprite _backMenu;
 	sf::Sprite _backMenuEnemy;
 	//Barra de vida Dyvir
