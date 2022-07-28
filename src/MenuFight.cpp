@@ -2,7 +2,7 @@
 #include "MenuFight.h"
 
 
-MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(4), _dragonNames(2), _menuStrings(4) {
+MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(4), _menuStrings(4) {
 	_resultBars = 0;
 	_lenghtHPdyvir = 0;
 	_lenghtMPdyvir = 0;
@@ -12,75 +12,47 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(4), _drag
 	_option = wait;
 
 	_font.loadFromFile("./Fonts/Nostalgia.ttf");
-	if (!_fightMenuTexture.loadFromFile("./Textures/Interface/mFightPrincipal.png")) {
-		std::cout << "no se pudo cargar mFightPrincipal.png \n";
+	if (!_menuFightBackTexture.loadFromFile("./Textures/Interface/MenuFightBack.png")) {
+		std::cout << "no se pudo cargar MenuFightBack.png \n";
 	}
-	_backMenu.setTexture(_fightMenuTexture);
-	if (!_fightMenuEnemyTexture.loadFromFile("./Textures/Interface/mFightEnemy.png")) {
-		std::cout << "no se pudo cargar mFightEnemy.png \n";
-	}
-	_backMenuEnemy.setTexture(_fightMenuEnemyTexture);
-	_backMenu.setPosition(0, height - _backMenu.getGlobalBounds().height);
-	_backMenuEnemy.setPosition(width - _backMenuEnemy.getGlobalBounds().width, 0);
+	_menuFightBack.setTexture(_menuFightBackTexture);
+	sf::Vector2f spriteHPpos = { 31, height - 171 };
+	sf::Vector2f spriteHPenemypos = { 621 , 39 };
 	_selectedItemIndex = 0;
-	///Variables útiles para los sprites
-	 // Setea el color del relleno del HP
 	_statusHPdyvir = 1;
 	_statusHPenemy = 1;
-	//Barra de HP y MP
-	//Setear texturas
 	_HPMPtexture.loadFromFile("./Textures/Interface/HP_bar.png");
-	//_spriteHPMP.setTexture(_textures);
-
-	_spriteHPdyvir.setTexture(_HPMPtexture);
-	_spriteMPdyvir.setTexture(_HPMPtexture);
+	//Barra de HP y MP
 	_spriteHPFilldyvir.setTexture(_HPMPtexture);
-	_spriteMPFilldyivir.setTexture(_HPMPtexture);
+	_spriteMPFilldyvir.setTexture(_HPMPtexture);
 	_textHPdyvir.setTexture(_HPMPtexture);
 	_textMPdyvir.setTexture(_HPMPtexture);
-	_spriteHPenemy.setTexture(_HPMPtexture);
 	_spriteHPFillenemy.setTexture(_HPMPtexture);
 	_textHPenemy.setTexture(_HPMPtexture);
-	//
-	spriteSize = { 158,15 };
-	positionHPdyvir = { _backMenu.getPosition().x + 40, _backMenu.getPosition().y + 50 };
-	positionHPenemy = { _backMenuEnemy.getPosition().x + 30, _backMenuEnemy.getPosition().y + 57 };
 
-	_spriteHPdyvir.setTextureRect({ {0, spriteSize.y * 0 }, spriteSize });
-	_spriteHPdyvir.setPosition(_backMenu.getPosition().x + 40, _backMenu.getPosition().y + 50);
+	spriteSize = { 158,15 };
 	_spriteHPFilldyvir.setTextureRect({ {0, spriteSize.y * 1 }, spriteSize });
-	_spriteHPFilldyvir.setPosition(_spriteHPdyvir.getPosition());
-	_textHPdyvir.setPosition(_spriteHPdyvir.getPosition());
+	_spriteHPFilldyvir.setPosition(spriteHPpos);
 	_textHPdyvir.setTextureRect({ {0, spriteSize.y * 8 }, spriteSize });
-	_spriteMPdyvir.setTextureRect({ {0, spriteSize.y * 0 }, spriteSize });
-	_spriteMPdyvir.setPosition(positionHPdyvir.x, positionHPdyvir.y + _spriteHPdyvir.getGlobalBounds().height + 5);
-	_spriteMPFilldyivir.setTextureRect({ {0, spriteSize.y * 6 }, spriteSize });
-	_spriteMPFilldyivir.setPosition(_spriteMPdyvir.getPosition());
+	_textHPdyvir.setPosition(spriteHPpos);
+	_spriteMPFilldyvir.setTextureRect({ {0, spriteSize.y * 6 }, spriteSize });
+	_spriteMPFilldyvir.setPosition(spriteHPpos.x, spriteHPpos.y + 21);
 	_textMPdyvir.setTextureRect({ {0, spriteSize.y * 7 }, spriteSize });
-	_textMPdyvir.setPosition(_spriteMPdyvir.getPosition());
-	_spriteHPenemy.setTextureRect({ {0, spriteSize.y * 0 }, spriteSize });
-	_spriteHPenemy.setPosition(positionHPenemy);
+	_textMPdyvir.setPosition(_spriteMPFilldyvir.getPosition());
+
 	_spriteHPFillenemy.setTextureRect({ {0, spriteSize.y * _statusHPenemy }, spriteSize });
-	_spriteHPFillenemy.setPosition(_spriteHPenemy.getPosition());
-	_textHPenemy.setPosition(_spriteHPenemy.getPosition());
+	_spriteHPFillenemy.setPosition(spriteHPenemypos);
+	_textHPenemy.setPosition(spriteHPenemypos);
 	_textHPenemy.setTextureRect({ {0, spriteSize.y * 8 }, spriteSize });
-	_posIniMenu = _spriteHPdyvir.getPosition().y + 32;
+	_posIniMenu = spriteHPpos.y + 32;
 	_posMaxMenu = 120;
 
-	// Setea el largo del relleno del HP
-	for (int i = 0; i < _dragonNames.size(); i++) {
-		_dragonNames[i].setCharacterSize(25);
-		_dragonNames[i].setFont(_font);
-		_dragonNames[i].setFillColor(sf::Color::White);
-		_dragonNames[i].setStyle(sf::Text::Italic);
-		_dragonNames[i].setString("DYVIR");
-	}
-
-	_dragonNames[0].setString("DYVIR");
-	_dragonNames[0].setPosition({ _spriteHPdyvir.getPosition().x + _spriteHPdyvir.getGlobalBounds().width / 3, _spriteHPdyvir.getPosition().y - 30 });
-
-	_dragonNames[1].setString("ENEMY");
-	_dragonNames[1].setPosition({ _spriteHPenemy.getPosition().x + _spriteHPenemy.getGlobalBounds().width / 3, _spriteHPenemy.getPosition().y - 40 });
+	_enemyName.setCharacterSize(25);
+	_enemyName.setFont(_font);
+	_enemyName.setFillColor(sf::Color::White);
+	_enemyName.setStyle(sf::Text::Italic);
+	_enemyName.setString("ENEMY");
+	_enemyName.setPosition({ spriteHPenemypos.x + 50 , spriteHPenemypos.y - 34 });
 	
 	_menuStrings[0] = "Atacar";
 	_menuStrings[1] = "Habilidad 1";
@@ -102,7 +74,7 @@ MenuFight::MenuFight(float width, float height, Dragon& dyvir) : _menu(4), _drag
 	_textBox.setFont(_font);
 	_textBox.setFillColor(sf::Color::White);
 	_textBox.setString(" ");
-	_textBox.setPosition(_spriteHPdyvir.getPosition().x + 220, _spriteHPdyvir.getPosition().y);
+	_textBox.setPosition(spriteHPpos.x + 220, spriteHPpos.y);
 }
 
 void MenuFight::updateSpriteHPdyvir(int HP, int HPbase) {
@@ -129,7 +101,7 @@ void MenuFight::updateSpriteHPdyvir(int HP, int HPbase) {
 void MenuFight::updateSpriteMPdyvir(int MP, int MPbase) {
 	_resultBars = MP * 100 / MPbase;
 	_lenghtMPdyvir = _resultBars * spriteSize.x / 100;
-	_spriteMPFilldyivir.setTextureRect({ 0, spriteSize.y * 6, _lenghtMPdyvir, spriteSize.y });
+	_spriteMPFilldyvir.setTextureRect({ 0, spriteSize.y * 6, _lenghtMPdyvir, spriteSize.y });
 }
 
 
@@ -171,26 +143,19 @@ void MenuFight::setTextBoxString(turns option, int dmg) {
 
 void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
-	target.draw(_backMenu);
-	target.draw(_backMenuEnemy);
+	target.draw(_menuFightBack);
 	target.draw(_spriteHPMP);
-	target.draw(_spriteHPdyvir);
 	target.draw(_spriteHPFilldyvir);
 	target.draw(_textHPdyvir);
-	target.draw(_spriteHPenemy);
 	target.draw(_spriteHPFillenemy);
-	target.draw(_spriteMPdyvir);
-	target.draw(_spriteMPFilldyivir);
+	target.draw(_spriteMPFilldyvir);
 	target.draw(_textMPdyvir);
 	target.draw(_textHPenemy);
 	target.draw(_textBox);
+	target.draw(_enemyName);
 	
-
 	for (int i = 0; i < _menu.size(); i++) {
 		target.draw(_menu[i], states);
-	}
-	for (int i = 0; i < _dragonNames.size(); i++) {
-		target.draw(_dragonNames[i], states);
 	}
 	target.draw(_cursor, states);
 }
