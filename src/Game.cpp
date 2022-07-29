@@ -10,6 +10,7 @@ Game::Game() : _window(sf::VideoMode(800, 700), "Proyectazo"), _mainMenu(float(_
 }
 
 void Game::Play() {
+	sf::Event event;
 	while (_window.isOpen()) {
 		
 			_delta_time = _clock.restart();

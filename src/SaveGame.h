@@ -21,7 +21,6 @@ private:
 	errno_t _err;
 	abilityName _inventoryAux;
 	abilityName _abilityEquiped[3];
-	//std::vector<abilityName> _abilityInventory;
 public:
 	bool saveGame(DyvirMap& mapAux, DyvirFight& fightAux, int option);
 	bool loadGame(DyvirMap& mapAux, DyvirFight& fightAux, int option);

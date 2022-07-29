@@ -150,7 +150,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\SaveGame.cpp" />
     <ClCompile Include="src\Ability.cpp" />
     <ClCompile Include="src\AbilityFactory.cpp" />
     <ClCompile Include="src\BrickTiles.cpp" />
@@ -167,6 +166,7 @@
     <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\MenuFight.cpp" />
     <ClCompile Include="src\MenuMap.cpp" />
+    <ClCompile Include="src\SaveGame.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -176,7 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
-    <ClInclude Include="src\SaveGame.h" />
     <ClInclude Include="src\Ability.h" />
     <ClInclude Include="src\AbilityFactory.h" />
     <ClInclude Include="src\BrickTiles.h" />
@@ -194,6 +193,7 @@
     <ClInclude Include="src\MenuFight.h" />
     <ClInclude Include="src\MenuMap.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="src\SaveGame.h" />
     <ClInclude Include="src\stdafx.h" />
   </ItemGroup>
   <ItemGroup>

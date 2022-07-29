@@ -9,7 +9,6 @@
 #include "Map.h"
 #include "DyvirMap.h"
 #include "EnemyFactory.h"
-#include "SaveGame.h"
 
 class Game
 {
@@ -20,10 +19,8 @@ private:
 	mainMenu _mainMenu;
 	Map _map;
 	DyvirMap _dyvirMap;
-	sf::Event event;
 	unsigned short _option;
 	unsigned short _loadGameOption;
-	SaveGame _saveGame;
 	sf::Clock _clock;
 	sf::Time _delta_time;
 public:

@@ -65,7 +65,7 @@ bool SaveGame::loadGame(DyvirMap& mapAux, DyvirFight& fightAux, int option) {
 	if (p != nullptr) {
 		if (_err == 0) {
 			fread(this, sizeof(*this), 1, p);
-			fightAux.setStats(_HPbase, _MPbase, _physicalDamagebase, _magicDamagebase, _physicalResistancebase, _magicResistancebase, _XP);
+			fightAux.setStats(_HPbase, _MPbase, _physicalDamagebase, _magicDamagebase, _physicalResistancebase, _magicResistancebase);
 			fightAux.setLevel(_level);
 			fightAux.setWins(_wins);
 			for (int i = 0; i < _inventorySize; i++) {
@@ -73,7 +73,7 @@ bool SaveGame::loadGame(DyvirMap& mapAux, DyvirFight& fightAux, int option) {
 				_abilityInventoryNames.push_back(_inventoryAux);
 			}
 			_err = fclose(p);
-			p == nullptr;
+			p = nullptr;
 			for (int i = 0; i < _inventorySize; i++) {
 				inventoryAux.push_back(abilityFactory.createAbility(_abilityInventoryNames[i]));
 			}

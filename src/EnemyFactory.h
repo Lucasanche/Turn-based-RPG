@@ -8,6 +8,9 @@
 class EnemyFactory
 {
 public:
+	EnemyFactory() {
+		_enemy = nullptr;
+	}
 	Enemy* getBoss(int);
 	Enemy* getEnemy(int);
 

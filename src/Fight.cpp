@@ -2,7 +2,8 @@
 #include "Fight.h"
 
 
-Fight::Fight() : _backTexture(), _view(sf::FloatRect(0, 0, 800, 700)) {
+Fight::Fight() : _backTexture(), _view(sf::FloatRect(0, 0, 800, 700)), _enemyFactory() {
+	_enemy = nullptr;
 	_menu = nullptr;
 	_turn = start;
 	_music = true;
@@ -10,8 +11,6 @@ Fight::Fight() : _backTexture(), _view(sf::FloatRect(0, 0, 800, 700)) {
 	bufferPelea.loadFromFile("./Sounds/FightMusic.wav");
 	musicaPelea.setBuffer(bufferPelea);
 	musicaPelea.setVolume(30);
-	_turnTime = true;
-	_optionEnemy = 0;
 }
 
 

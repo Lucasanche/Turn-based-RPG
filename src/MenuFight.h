@@ -14,40 +14,28 @@ private:
 	int _resultBars;
 	sf::Font _font;
 	std::vector<sf::Text> _menu;
+	sf::Text _textBox;
 	sf::Text _enemyName;
 	std::vector<sf::String> _menuStrings;
-	sf::Text _textBox;
 	Cursor _cursor;
 	std::vector<sf::Texture> _texturesv;
-	sf::Texture _HPMPtexture;
-	sf::Texture _fightMenuTexture;
-	sf::Texture _fightMenuEnemyTexture;
 	//Barra de vida Dyvir
-	/*sf::Sprite _spriteHPdyvir;*/
+	sf::Texture _HPMPtexture;
 	sf::Sprite _spriteHPFilldyvir;
 	sf::Sprite _textHPdyvir;
-	int _statusHPdyvir;
-	int _lenghtHPdyvir;
-
-	//Experimento
-	sf::Sprite _menuFightBack;
-	sf::Texture _menuFightBackTexture;
-	sf::Sprite _HPMPbar;
-	sf::Sprite _HPMPfill;
-	sf::Sprite _HPMPtext;
-	//Barra MP Dyvir
-	/*sf::Sprite _spriteMPdyvir;*/
 	sf::Sprite _spriteMPFilldyvir;
 	sf::Sprite _textMPdyvir;
-	int _lenghtMPdyvir;
-	//Barra de vida enemy
-	sf::Sprite _spriteHPMP;
 	sf::Sprite _spriteHPFillenemy;
 	sf::Sprite _textHPenemy;
+	int _statusHPdyvir;
+	int _lenghtHPdyvir;
+	int _lenghtMPdyvir;
 	int _statusHPenemy;
 	int _lenghtHPenemy;
-	sf::Vector2i spriteSize;
-	float _posIniMenu;
+	sf::Sprite _menuFightBackground;
+	sf::Texture _menuFightBackgroundTexture;
+	sf::Vector2i _hpSpriteSize;
+	int _posIniMenu;
 	int _posMaxMenu;
 public:
 	MenuFight(float width, float height, Dragon& dyvir);

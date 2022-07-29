@@ -54,25 +54,10 @@ protected:
 	int _rectWidth;
 	int _rectHeight;
 	unsigned short _totalFrames;
-	
-	
 	sf::Texture _textureStates;
 	//States Sprites
 	sf::Sprite _spriteStates;
-	sf::Vector2f _spriteStatesPosition[int(statesSprites::MAX_NUMBER)];
-	//sf::Sprite _spriteStun;
-	//sf::Sprite _spriteBleeding;
-	//sf::Sprite _spriteBurns;
-	//sf::Sprite _spritePoisoned;
-	//sf::Sprite _spritePRincrease;
-	//sf::Sprite _spriteMDincrease;
-	//sf::Sprite _spritePDincrease;
-	//sf::Sprite _spriteMRincrease;
-	//sf::Sprite _spritePRdecrease;
-	//sf::Sprite _spriteMDdecrease;
-	//sf::Sprite _spritePDdecrease;
-	//sf::Sprite _spriteMRdecrease;
-	//sf::Sprite _spriteDamageMultiplier;
+	sf::Vector2f _spriteStatesPosition;
 
 public:
 	Dragon();
@@ -174,7 +159,7 @@ public:
 	void clearStates() { std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
 	std::vector <bool> checkNegativeStates(turns& turn);
 	std::vector <bool> checkPositiveStates();
-	void updateSpriteStates(sf::RenderWindow& window);
+	virtual void updateSpriteStates(sf::RenderWindow& window) = 0;
 	int	doDamage(int);
 	void resetStats();
 	int damageTaken(int);

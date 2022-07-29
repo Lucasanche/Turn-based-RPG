@@ -15,11 +15,9 @@ private:
 	turns _turn;
 	bool _music;
 	bool _backFlag;
-	bool _drop;
 	sf::Time _time;
 	sf::Time _timeAux;
 	sf::Clock _clock;
-	bool _turnTime;
 	sf::Texture _backTexture;
 	sf::Sprite _backSprite;
 	sf::SoundBuffer bufferPelea;
@@ -27,7 +25,6 @@ private:
 	EnemyFactory _enemyFactory;
 	Enemy* _enemy;
 	sf::View _view;
-	int _optionEnemy;
 public:
 	Fight();
 	int update(DyvirFight&, sf::RenderWindow& window, sf::Clock& clock, bool enemyType);
@@ -35,7 +32,6 @@ public:
 	void setEnemy(int);
 	void deleteBoss();
 	bool getEnemyIsAlive();
-	void Wait(int secs);
 	void setBackFlag() { _backFlag = true; }
 };
 

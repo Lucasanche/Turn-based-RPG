@@ -12,13 +12,15 @@ private:
 	unsigned short _wins;
 	std::vector <Ability> _abilityInventory;
 	unsigned short _level;
+	sf::Texture _deathTexture;
+	sf::Texture _winTexture;
 	unsigned int _XPrequired[20] = {200, 500, 900, 1400, 2000, 2800, 3800, 5100, 6700, 8700, 11100, 13900, 17400, 21400, 25900, 31100, 37100, 44300, 52700, 62700 };
 public:
 	DyvirFight();
 	//Gets
 	unsigned short getWins() { return _wins; }
 	unsigned short getLevel() { return _level; }
-	int getInventorySize() { return _abilityInventory.size(); }
+	int getInventorySize() { return int(_abilityInventory.size()); }
 	Ability getInventoryElement(int i) { return _abilityInventory[i]; }
 	std::string getInventoryElementName(int i);
 	std::string getInventoryElementDescription(int i);
@@ -26,7 +28,7 @@ public:
 
 	//Sets
 	void setWins(int wins) { _wins = wins; }
-	void setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalResistance, int magicResist, int XP);
+	void setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalResistance, int magicResist);
 	void setLevel(unsigned short level) { _level = level; }
 	std::string setAbilityEquipedElement(int i, int ability);
 	void setAbilityEquiped(Ability ability, int pos);
@@ -34,14 +36,14 @@ public:
 	void setFightSprite();
 
 	//Functions
-
+	void updateSpriteStates(sf::RenderWindow& window) override;
 	void increaseWins() { _wins++; }
 	bool craftAbility(std::string, std::string, int, int);
 	void update(bool, int) override;
 	void getAbilityDrop(abilityName abilityDrop);
 	void Die() override;
 	void Win(int enemyXP);
-	std::string increaseXP(int XP);
+	std::string increaseXP(unsigned int XP);
 	void levelUp(int level);
 	void restoreLife();
 	

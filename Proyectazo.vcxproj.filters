@@ -18,8 +18,8 @@
     <ClCompile Include="src\stdafx.cpp" />
     <ClCompile Include="src\Ability.cpp" />
     <ClCompile Include="src\AbilityFactory.cpp" />
-    <ClCompile Include="src\SaveGame.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\SaveGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BrickTiles.h" />
@@ -40,8 +40,8 @@
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\AbilityFactory.h" />
     <ClInclude Include="src\Ability.h" />
-    <ClInclude Include="src\SaveGame.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\SaveGame.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Proyectazo.rc" />
