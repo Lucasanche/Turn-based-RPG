@@ -13,9 +13,11 @@ class Fight
 private:
 	MenuFight* _menu;
 	turns _turn;
+	turns _nextTurn;
+	int _damage;
 	bool _music;
 	bool _backFlag;
-	sf::Time _time;
+	float _elapsedTime;
 	sf::Time _timeAux;
 	sf::Clock _clock;
 	sf::Texture _backTexture;
@@ -27,7 +29,7 @@ private:
 	sf::View _view;
 public:
 	Fight();
-	int update(DyvirFight&, sf::RenderWindow& window, sf::Clock& clock, bool enemyType);
+	int update(DyvirFight&, sf::RenderWindow& window, sf::Time& delta_time, bool enemyType);
 	void setBoss(int);
 	void setEnemy(int);
 	void deleteBoss();

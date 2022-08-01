@@ -83,13 +83,14 @@ enum turns
 	ability1,
 	ability2,
 	ability3,
-	enemyUpdateText,
 	enemyCheck,
-	enemyWait,
+	enemyTurn,
 	enemyAttack,
 	enemyAbility1,
 	enemyAbility2,
-	updateText
+	updateText,
+	winBattle,
+	loseBattle
 };
 
 enum class statesSprites

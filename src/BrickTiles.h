@@ -11,9 +11,10 @@ private:
 	sf::Sprite _sprite;
 	float _frameVortex;
 	float _frameCheckpoint;
+	float _frameWalls;
 public:
 	BrickTiles();
-	void update(int, int, char, int);
+	void update(int, int, const char*, int, sf::Time&);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	Collision getCollidable() { return Collision(_sprite); }
 

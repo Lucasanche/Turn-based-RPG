@@ -31,7 +31,7 @@ void Game::Play() {
 				_window.draw(_mainMenu);
 				break;
 			case 1:
-				_option = _map.update(_window, _loadGameOption, _delta_time.asSeconds());
+				_option = _map.update(_window, _loadGameOption, _delta_time);
 				if (_option == 4) {
 					_mainMenu.setOption(4);
 				}

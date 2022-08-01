@@ -46,7 +46,7 @@ public:
 	void MoveDown();
 	void setOption(turns option);
 	void setTextBoxString(turns option, int dmg);
-	void setTextBoxString(turns option, int dmg, std::string string);
+	void setTextBoxString(turns option, int dmg, sf::String string);
 	turns update(Dragon& dyvir, Dragon& enemy);
 	int GetPressedItem() { return _selectedItemIndex; }
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

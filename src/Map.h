@@ -14,8 +14,9 @@ class Map
 {
 private:
 	bool _music;
-	sf::Clock _clock;
+	float _elapsedTime;
 	sf::Texture _backTexture;
+	sf::Sprite _backgroundSprite;
 	sf::SoundBuffer bufferPelea;
 	sf::Sound musicaPelea;
 	sf::View _view;
@@ -25,11 +26,14 @@ private:
 	DyvirMap _dyvirMap;
 	Fight fight;
 	MenuMap menuMap;
-	int x, iaux, jaux, win, _option;
+	int _option;
 	bool _gameLoaded;
+	bool _saveGameFlag;
+	bool _enemyTypeFlag;
+	char _mapValue[3];
 public:
 	Map(sf::RenderWindow& window);
-	int update(sf::RenderWindow& window, int loadGameOption, const float &delta_time);
+	int update(sf::RenderWindow& window, int loadGameOption, sf::Time &delta_time);
 };
 
 #endif

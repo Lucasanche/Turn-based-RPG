@@ -10,11 +10,10 @@ private:
 	Ability _ability;
 public:
 	AbilityFactory();
-	abilityName craftAbility(std::string ab1, std::string ab2);
+	abilityName craftAbility(sf::String ab1, sf::String ab2);
 	Ability createAbility(abilityName abName);
 	Ability createEarthArmor();
 	Ability createTest();
-
 	Ability createBarrier();
 	Ability createHeal();
 	Ability createRestore();

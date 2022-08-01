@@ -155,7 +155,7 @@ public:
 
 	//Functions
 	void checkHP();
-	void useAbility(Dragon& dragon, int i);
+	void useAbility(Dragon& dragon, int index, int& damage);
 	void clearStates() { std::replace(_negativeStates.begin(), _negativeStates.end(), true, false); }
 	std::vector <bool> checkNegativeStates(turns& turn);
 	std::vector <bool> checkPositiveStates();

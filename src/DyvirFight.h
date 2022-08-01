@@ -22,15 +22,15 @@ public:
 	unsigned short getLevel() { return _level; }
 	int getInventorySize() { return int(_abilityInventory.size()); }
 	Ability getInventoryElement(int i) { return _abilityInventory[i]; }
-	std::string getInventoryElementName(int i);
-	std::string getInventoryElementDescription(int i);
+	sf::String getInventoryElementName(int i);
+	sf::String getInventoryElementDescription(int i);
 	std::vector<Ability> getInventory() { return _abilityInventory; }
 
 	//Sets
 	void setWins(int wins) { _wins = wins; }
 	void setStats(int HP, int MP, int physicalDamage, int magicDamage, int physicalResistance, int magicResist);
 	void setLevel(unsigned short level) { _level = level; }
-	std::string setAbilityEquipedElement(int i, int ability);
+	sf::String setAbilityEquipedElement(int i, int ability);
 	void setAbilityEquiped(Ability ability, int pos);
 	void setInventory(std::vector <Ability> abilityInventory) { _abilityInventory = abilityInventory; }
 	void setFightSprite();
@@ -38,12 +38,12 @@ public:
 	//Functions
 	void updateSpriteStates(sf::RenderWindow& window) override;
 	void increaseWins() { _wins++; }
-	bool craftAbility(std::string, std::string, int, int);
+	bool craftAbility(sf::String, sf::String, int, int);
 	void update(bool, int) override;
 	void getAbilityDrop(abilityName abilityDrop);
 	void Die() override;
 	void Win(int enemyXP);
-	std::string increaseXP(unsigned int XP);
+	sf::String increaseXP(unsigned int XP);
 	void levelUp(int level);
 	void restoreLife();
 	

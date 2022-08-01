@@ -158,7 +158,7 @@ void MenuFight::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	}
 	target.draw(_cursor, states);
 }
-void MenuFight::setTextBoxString(turns option, int dmg, std::string string) {
+void MenuFight::setTextBoxString(turns option, int dmg, sf::String string) {
 
 }
 

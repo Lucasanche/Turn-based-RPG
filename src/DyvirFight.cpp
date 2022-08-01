@@ -12,7 +12,7 @@ DyvirFight::DyvirFight() {
 	_XP = 0;
 	_HPbase = 20000;
 	_MPbase = 2000;
-	_physicalDamagebase = 2000;
+	_physicalDamagebase = 20;
 	_magicDamagebase = 150;
 	_physicalResistancebase = 50;
 	_magicResistancebase = 50;
@@ -58,7 +58,7 @@ void DyvirFight::setAbilityEquiped(Ability ability, int pos) {
 	_ability[pos] = ability;
 }
 
-std::string DyvirFight::setAbilityEquipedElement(int i, int ability) {
+sf::String DyvirFight::setAbilityEquipedElement(int i, int ability) {
 	{
 		if (ability < _abilityInventory.size()) {
 			_ability[i] = _abilityInventory[ability];
@@ -68,14 +68,14 @@ std::string DyvirFight::setAbilityEquipedElement(int i, int ability) {
 	}
 }
 
-std::string DyvirFight::getInventoryElementName(int i) {
+sf::String DyvirFight::getInventoryElementName(int i) {
 	if (i >= _abilityInventory.size()) {
 		return "Empty";
 	}
 	else return _abilityInventory[i].getName();
 }
 
-std::string DyvirFight::getInventoryElementDescription(int i) {
+sf::String DyvirFight::getInventoryElementDescription(int i) {
 	if (i >= _abilityInventory.size()) {
 		return "Empty";
 	}
@@ -146,7 +146,7 @@ void DyvirFight::updateSpriteStates(sf::RenderWindow& window) {
 	}
 }
 
-bool DyvirFight::craftAbility(std::string ab1, std::string ab2, int indexAb1, int indexAb2) {
+bool DyvirFight::craftAbility(sf::String ab1, sf::String ab2, int indexAb1, int indexAb2) {
 	if (_abilityFactory.craftAbility(ab1, ab2) != CraftError) {
 		if (indexAb1 < indexAb2) {
 			_abilityInventory.erase(_abilityInventory.begin() + indexAb1);
@@ -207,7 +207,7 @@ void DyvirFight::Win(int enemyXP) {
 	_sprite.setPosition(85, 480 - _sprite.getGlobalBounds().height);
 }
 
-std::string DyvirFight::increaseXP(unsigned int XP) {
+sf::String DyvirFight::increaseXP(unsigned int XP) {
 	_XP += XP;
 	if (_level == 20) {
 		return "Nivel máximo alcanzado";

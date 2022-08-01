@@ -18,7 +18,7 @@ private:
 public:
 	//Functions
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-	bool update(const float& delta_time);
+	bool update(sf::Time & delta_time);
 	DyvirMap();
 	sf::Vector2f getPosition() { return _sprite.getPosition(); }
 	void setPosition(sf::Vector2f position) { _sprite.setPosition(position); }

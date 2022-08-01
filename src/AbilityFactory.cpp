@@ -6,7 +6,7 @@ AbilityFactory::AbilityFactory() {
 	_ability.reset();
 }
 
-abilityName	AbilityFactory::craftAbility(std::string ab1, std::string ab2) {
+abilityName	AbilityFactory::craftAbility(sf::String ab1, sf::String ab2) {
 	if (ab1 == "Fireball" || ab2 == "Fireball") {
 		if (ab1 == "WindBlow" || ab2 == "WindBlow") {
 			return FireTornado;

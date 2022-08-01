@@ -4,7 +4,7 @@
 int main() {
 	Game game;
 	srand(time(0));
-	setlocale(LC_ALL, "Spanish");
+	setlocale(LC_ALL, ".UTF8");
 	game.Play();
 	return 0;
 }

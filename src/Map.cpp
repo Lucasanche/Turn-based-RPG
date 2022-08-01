@@ -5,20 +5,27 @@
 Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), menuMap(window.getSize().x, window.getSize().y, _dyvirFight) {
 	_music = true;
 	_gameLoaded = false;
+	_saveGameFlag = false;
+	_enemyTypeFlag = false;
+	_elapsedTime = 0;
+
 	/*bufferPelea.loadFromFile("./Sounds/FightMusic.wav");
 	musicaPelea.setBuffer(bufferPelea);*/
 	/*musicaPelea.setVolume(30);*/
-	_backTexture.loadFromFile("./Textures/Backgrounds/Dungeon.png");
-	x = iaux = jaux = win = 0;
-	std::ifstream openfile("./Docs/Mapa.txt");
+	//_backTexture.setColor
+	_backTexture.loadFromFile("./Textures/Backgrounds/Dungeon2.png");
+	_backgroundSprite.setTexture(_backTexture);
 	_option = 0;
+	std::ifstream openfile("./Docs/Mapa mejorado.txt");
 	if (openfile.is_open()) {
 		std::vector<char>tempMap;
 		char aux;
-		int c = 0;
 		while (!openfile.eof()) {
-			openfile >> aux;
-			tempMap.push_back(aux);
+			for (int i = 0; i < 3; i++) {
+				openfile >> aux;
+				tempMap.push_back(aux);
+			}
+
 			if (openfile.peek() == '\n') {
 				map.push_back(tempMap);
 				tempMap.clear();
@@ -28,7 +35,8 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 	}
 }
 
-int Map::update(sf::RenderWindow& window, int loadGameOption, const float& delta_time) {
+int Map::update(sf::RenderWindow& window, int loadGameOption, sf::Time& delta_time) {
+	_elapsedTime += delta_time.asSeconds();
 	if (!_gameLoaded && loadGameOption != 0) {
 		SaveGame _loadGame;
 		if (!_loadGame.loadGame(_dyvirMap, _dyvirFight, loadGameOption)) {
@@ -43,20 +51,32 @@ int Map::update(sf::RenderWindow& window, int loadGameOption, const float& delta
 	case 0:
 		if (_dyvirMap.update(delta_time)) {
 			_option = 1;
-			fight.setEnemy(_dyvirFight.getWins());
+			_enemyTypeFlag = false;
 		}
+		window.draw(_backgroundSprite);
 		for (int i = 0; i < map.size(); i++) {
+			int k = 0;
 			for (int j = 0; j < map[i].size(); j++) {
-				tile.update(j, i, map[i][j], _dyvirFight.getWins());
-				window.draw(tile);
-				if (_dyvirMap.getCollidable().CheckCollision(tile.getCollidable(), 0.0f)) {
-					if (map[i][j] > '2') {
-						_option = 2;
-						fight.setBoss(_dyvirFight.getWins());
-						window.clear();
-					}
-					else if (map[i][j] == '2') {
-						_option = 6;
+				if (k < 2) {
+					_mapValue[k] = map[i][j];
+					k++;
+				}
+				else {
+					_mapValue[k] = map[i][j];
+					k = 0;
+					tile.update(j/3, i, _mapValue, _dyvirFight.getWins(), delta_time);
+					window.draw(tile);
+					if (_dyvirMap.getCollidable().CheckCollision(tile.getCollidable(), 0.0f)) {
+						/*if (map[i][j] > '2') {
+							_option = 1;
+							_enemyTypeFlag = true;
+							fight.setBoss(_dyvirFight.getWins());
+							window.clear();
+						}
+						else if (map[i][j] == '2') {
+							_option = 2;
+							_saveGameFlag = true;
+						}*/
 					}
 				}
 				
@@ -64,17 +84,19 @@ int Map::update(sf::RenderWindow& window, int loadGameOption, const float& delta
 		}
 		_view.setCenter(_dyvirMap.getPosition());
 		window.setView(_view);
+
 		window.draw(_dyvirMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
-			_option = 5;
+			_option = 2;
+			_saveGameFlag = false;
 			window.setView(window.getDefaultView());
 		}
 		break;
 	case 1:
-		fight.update(_dyvirFight, window, _clock, false);
-		if (_clock.getElapsedTime().asSeconds() > 3) {
+		fight.update(_dyvirFight, window, delta_time, _enemyTypeFlag);
+		if (_elapsedTime > 3) {
 			if (!fight.getEnemyIsAlive()) {
-				_clock.restart();
+				_elapsedTime = 0;
 				fight.deleteBoss();
 				_dyvirFight.setFightSprite();
 				_option = 0;
@@ -88,67 +110,12 @@ int Map::update(sf::RenderWindow& window, int loadGameOption, const float& delta
 		}
 		break;
 	case 2:
-		fight.update(_dyvirFight, window, _clock, true);
-		if (_clock.getElapsedTime().asSeconds() > 3) {
-			if (!fight.getEnemyIsAlive()) {
-				_dyvirFight.increaseWins();
-				_option = 0;
-				_dyvirFight.setFightSprite();
-				fight.setBackFlag();
-				fight.deleteBoss();
-			}
-			if (!_dyvirFight.getIsAlive()) {
-				window.close();
-				std::cout << "Cagaste fuego";
-				system("pause");
-				_option = 0;
-			}
-		}
-		break;
-	case 3:
-		fight.update(_dyvirFight, window, _clock, false);
-		if (!fight.getEnemyIsAlive()) {
-			_clock.restart();
-			_option = 4;
-		}
-		else if (!_dyvirFight.getIsAlive()) {
-			_option = 4;
-		}
-		break;
-	case 4:
-		fight.update(_dyvirFight, window, _clock, true);
-		if (_clock.getElapsedTime().asSeconds() > 3) {
-			if (!fight.getEnemyIsAlive()) {
-				_option = 0;
-				_dyvirFight.setFightSprite();
-				fight.setBackFlag();
-				fight.deleteBoss();
-			}
-			if (!_dyvirFight.getIsAlive()) {
-				window.close();
-				std::cout << "Cagaste fuego";
-				system("pause");
-				_option = 0;
-			}
-		}
-		break;
-	case 5:
-		menuMap.update(_dyvirFight, false, _dyvirMap);
-		window.draw(menuMap);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-			_option = 0;
-			window.setView(_view);
-			//_view.setSize(window.getSize().x, window.getSize().y);
-		}
-		break;
-	case 6:
+		menuMap.update(_dyvirFight, _saveGameFlag, _dyvirMap);
 		window.setView(window.getDefaultView());
-		menuMap.update(_dyvirFight, true, _dyvirMap);
 		window.draw(menuMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			_option = 0;
 			window.setView(_view);
-			//_view.setSize(window.getSize().x, window.getSize().y);
 		}
 		break;
 	}

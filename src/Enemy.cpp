@@ -3,7 +3,7 @@
 #include "AbilityFactory.h"
 
 
-Enemy::Enemy(std::string path, int rectWidth, int rectHeight, int totalFrames, float scale, int filas) {
+Enemy::Enemy(sf::String path, int rectWidth, int rectHeight, int totalFrames, float scale, int filas) {
 	_filas = filas;
 	_frameY = 0;
 	_texture.loadFromFile(path);

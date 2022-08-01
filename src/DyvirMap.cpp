@@ -21,7 +21,7 @@ void DyvirMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(_sprite, states);
 }
 
-bool DyvirMap::update(const float& delta_time) {
+bool DyvirMap::update(sf::Time& delta_time) {
 	sf::Vector2f position = _sprite.getPosition();
 	_frame += 0.15;
 	if (_frame >= 5) {
@@ -33,19 +33,19 @@ bool DyvirMap::update(const float& delta_time) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !_right) {
 		_left = true;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-			_velocity.x += _speed * delta_time;
+			_velocity.x += _speed * delta_time.asSeconds();
 		}
 		else {
-			_velocity.x += -_speed * delta_time;
+			_velocity.x += -_speed * delta_time.asSeconds();
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !_left) {
 		_right = true;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-			_velocity.x += -_speed * delta_time;
+			_velocity.x += -_speed * delta_time.asSeconds();
 		}
 		else {
-			_velocity.x += _speed * delta_time;
+			_velocity.x += _speed * delta_time.asSeconds();
 		}
 	}
 	else {
@@ -54,19 +54,19 @@ bool DyvirMap::update(const float& delta_time) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !_up) {
 		_down = true;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-			_velocity.y += -_speed * delta_time;
+			_velocity.y += -_speed * delta_time.asSeconds();
 		}
 		else {
-			_velocity.y += _speed * delta_time;
+			_velocity.y += _speed * delta_time.asSeconds();
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !_down) {
 		_up = true;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-			_velocity.y += _speed * delta_time;
+			_velocity.y += _speed * delta_time.asSeconds();
 		}
 		else {
-			_velocity.y += -_speed * delta_time;
+			_velocity.y += -_speed * delta_time.asSeconds();
 		}
 	}
 	else {
@@ -85,7 +85,7 @@ bool DyvirMap::update(const float& delta_time) {
 	
 	if (_velocity != sf::Vector2f(0, 0)) {
 		//Setea los encuentros aleatorios (return false para desactivarlos)
-		if (rand() % 360 == 0) {
+		if (rand() % 100 == 0) {
 			return false;
 		}
 		std::cout << rand() << std::endl;
@@ -93,21 +93,6 @@ bool DyvirMap::update(const float& delta_time) {
 	return false;
 }
 
-//sf::FloatRect DyvirMap::getBounds() const {
-//
-//	return _sprite.getGlobalBounds();
-//
-//}
-
-//void DyvirMap::setCollide() {
-//	if (_velocity.x != 0) {
-//		_sprite.move(-_velocity.x, 0);
-//	}
-//	if (_velocity.y != 0) {
-//		_sprite.move(0, -_velocity.y);
-//		std::cout << _velocity.x << std::endl;
-//	}
-//}
 
 
 
