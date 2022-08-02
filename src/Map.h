@@ -15,8 +15,6 @@ class Map
 private:
 	bool _music;
 	float _elapsedTime;
-	sf::Texture _backTexture;
-	sf::Sprite _backgroundSprite;
 	sf::SoundBuffer bufferPelea;
 	sf::Sound musicaPelea;
 	sf::View _view;

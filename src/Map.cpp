@@ -13,8 +13,6 @@ Map::Map(sf::RenderWindow& window) : _view(sf::FloatRect(200, 300, 300, 250)), m
 	musicaPelea.setBuffer(bufferPelea);*/
 	/*musicaPelea.setVolume(30);*/
 	//_backTexture.setColor
-	_backTexture.loadFromFile("./Textures/Backgrounds/Dungeon2.png");
-	_backgroundSprite.setTexture(_backTexture);
 	_option = 0;
 	std::ifstream openfile("./Docs/Mapa mejorado.txt");
 	if (openfile.is_open()) {
@@ -53,7 +51,6 @@ int Map::update(sf::RenderWindow& window, int loadGameOption, sf::Time& delta_ti
 			_option = 1;
 			_enemyTypeFlag = false;
 		}
-		window.draw(_backgroundSprite);
 		for (int i = 0; i < map.size(); i++) {
 			int k = 0;
 			for (int j = 0; j < map[i].size(); j++) {
@@ -64,8 +61,8 @@ int Map::update(sf::RenderWindow& window, int loadGameOption, sf::Time& delta_ti
 				else {
 					_mapValue[k] = map[i][j];
 					k = 0;
-					tile.update(j/3, i, _mapValue, _dyvirFight.getWins(), delta_time);
-					window.draw(tile);
+					tile.update(j/3, i, _mapValue, _dyvirFight.getWins(), delta_time, window);
+					//window.draw(tile);
 					if (_dyvirMap.getCollidable().CheckCollision(tile.getCollidable(), 0.0f)) {
 						/*if (map[i][j] > '2') {
 							_option = 1;
