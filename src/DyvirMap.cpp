@@ -23,7 +23,7 @@ void DyvirMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 bool DyvirMap::update(sf::Time& delta_time) {
 	sf::Vector2f position = _sprite.getPosition();
-	_frame += 0.15;
+	_frame += 0.05;
 	if (_frame >= 5) {
 		_frame = 0;
 	}

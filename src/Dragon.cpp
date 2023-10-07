@@ -2,7 +2,7 @@
 #include "Dragon.h"
 
 //TODO: setear en false los estados negativos y positivos - Lucas
-Dragon::Dragon() : _negativeStates(9, true), _positiveStates(14, true) {
+Dragon::Dragon() : _negativeStates(9, false), _positiveStates(14, false) {
 	_spriteStatesPosition = {};
 	_elementWeak = Neutral;
 	_spriteStates.setScale(0.5, 0.5);

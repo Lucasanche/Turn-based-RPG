@@ -61,22 +61,26 @@ int Map::update(sf::RenderWindow& window, int loadGameOption, sf::Time& delta_ti
 				else {
 					_mapValue[k] = map[i][j];
 					k = 0;
-					tile.update(j/3, i, _mapValue, _dyvirFight.getWins(), delta_time, window);
-					//window.draw(tile);
+					tile.update(j / 3, i, _mapValue, _dyvirFight.getWins(), delta_time, window);
+					window.draw(tile);
 					if (_dyvirMap.getCollidable().CheckCollision(tile.getCollidable(), 0.0f)) {
-						/*if (map[i][j] > '2') {
+						if (strcmp(_mapValue, "s02")) {
 							_option = 1;
 							_enemyTypeFlag = true;
 							fight.setBoss(_dyvirFight.getWins());
 							window.clear();
 						}
-						else if (map[i][j] == '2') {
-							_option = 2;
+						else if (strcmp(_mapValue, "s01")) {
+							//_option = 2;
+							std::cout << "puedes guardar la partida";
 							_saveGameFlag = true;
-						}*/
+						}
+						else {
+							_saveGameFlag = false;
+						}
 					}
 				}
-				
+
 			}
 		}
 		_view.setCenter(_dyvirMap.getPosition());
@@ -85,7 +89,7 @@ int Map::update(sf::RenderWindow& window, int loadGameOption, sf::Time& delta_ti
 		window.draw(_dyvirMap);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
 			_option = 2;
-			_saveGameFlag = false;
+			//_saveGameFlag = false;
 			window.setView(window.getDefaultView());
 		}
 		break;

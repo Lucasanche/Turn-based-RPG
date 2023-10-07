@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "AbilityFactory.h"
 
-
 AbilityFactory::AbilityFactory() {
 	_ability.reset();
 }

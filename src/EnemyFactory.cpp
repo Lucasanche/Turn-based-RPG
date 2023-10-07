@@ -56,7 +56,7 @@ Enemy* EnemyFactory::getBoss(int wins) {
 Enemy* EnemyFactory::getEnemy(int wins) {
 	int _num = rand() % (2 + (wins * 2));
 	//TODO: modificar el switch para que cree enemigos según las wins
-	switch (0) {
+	switch (_num) {
 		///BASE ENEMIES -> wins = 0 --------------------------------------------------------------------------------------------------------------------------------------
 	case 0:
 		_enemy = new Enemy("./Textures/Characters/spritesheets/enemy1 96x95-4.png", 96, 95, 4, 2.3, 1); //Water

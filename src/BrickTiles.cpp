@@ -148,13 +148,13 @@ void BrickTiles::update(int j, int i, const char* mapValue, int wins, sf::Time& 
 	}
 
 	//Boss Vortex 35x35 (por el culo te la hinco), empieza en 0x 0y
-	/*else if (!strcmp(mapValue, "s02") || !strcmp(mapValue, "s03") || !strcmp(mapValue, "s04") || !strcmp(mapValue, "s05") || !strcmp(mapValue, "s06")) {
+	else if (!strcmp(mapValue, "s02") || !strcmp(mapValue, "s03") || !strcmp(mapValue, "s04") || !strcmp(mapValue, "s05") || !strcmp(mapValue, "s06")) {
 		_spriteNoCollision.setTextureRect(sf::IntRect(32, 128, 32, 32));
 		_spriteNoCollision.setPosition(j * 32, i * 32);
 		_spriteCollision.setTextureRect(sf::IntRect(int(_frameVortex) * 32, 32, 32, 32));
 		_spriteCollision.setPosition(j * 32, i * 32);
 		_draw = true;
-	}*/
+	}
 	if (_draw) {
 		window.draw(_spriteNoCollision);
 		_draw = false;
